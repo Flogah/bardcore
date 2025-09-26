@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://c6il3frbajhsm"]
+
+[ext_resource type="PackedScene" uid="uid://co7r3uteoegh4" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://scenes/enemy.tscn" id="2_0wfyh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sugp2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o5qli"]
+size = Vector2(15, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+albedo_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
+size = Vector2(3, 3)
+
+[sub_resource type="PrismMesh" id="PrismMesh_0wfyh"]
+size = Vector3(5, 5, 3.335)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sugp2"]
+data = PackedVector3Array(0, 2.5, 1.6674999, 2.5, -2.5, 1.6674999, -2.5, -2.5, 1.6674999, 0, 2.5, -1.6674999, -2.5, -2.5, -1.6674999, 2.5, -2.5, -1.6674999, 0, 2.5, 1.6674999, 0, 2.5, -1.6674999, 2.5, -2.5, 1.6674999, 0, 2.5, -1.6674999, 2.5, -2.5, -1.6674999, 2.5, -2.5, 1.6674999, 0, 2.5, -1.6674999, 0, 2.5, 1.6674999, -2.5, -2.5, -1.6674999, 0, 2.5, 1.6674999, -2.5, -2.5, 1.6674999, -2.5, -2.5, -1.6674999, -2.5, -2.5, 1.6674999, 2.5, -2.5, 1.6674999, -2.5, -2.5, -1.6674999, 2.5, -2.5, 1.6674999, 2.5, -2.5, -1.6674999, -2.5, -2.5, -1.6674999)
+
+[node name="Main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5254748, -0.6902425, 0.49743515, 0.08959865, 0.6263045, 0.7744127, -0.8460782, -0.36236477, 0.39095193, 0.2685008, 5.4544697, 0)
+light_energy = 2.171
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sugp2")
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.421765, -4.7683716e-07, 0.60881436)
+camera = NodePath("../CameraArm/Camera3D")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+visible = false
+shape = SubResource("WorldBoundaryShape3D_sugp2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_o5qli")
+surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.889296, 0, 3.756783)
+mesh = SubResource("PlaneMesh_0wfyh")
+surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.863363, 0, -4.964725)
+mesh = SubResource("PlaneMesh_0wfyh")
+surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
+
+[node name="Ramp" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0.99148417, 0, -5.7420416)
+mesh = SubResource("PrismMesh_0wfyh")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0.99148417, 0, -5.7420416)
+visible = false
+shape = SubResource("ConcavePolygonShape3D_sugp2")
+
+[node name="CameraArm" type="Node3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.81915194, 0.57357633, 0, -0.57357633, 0.81915194, 0, 0.365, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.395)
+projection = 1
+size = 12.89
+near = 0.017
+far = 84.78
+
+[node name="Enemy" parent="." instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7052743, 0, -3.409139)

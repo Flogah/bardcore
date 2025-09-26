@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://co7r3uteoegh4"]
+
+[ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Scripts/Player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://Scripts/States/state_machine.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://exybm47wlxf1" path="res://Scripts/States/Player/PlayerIdle.gd" id="3_dqkch"]
+[ext_resource type="Script" uid="uid://cql84k6t4g7rd" path="res://Scripts/States/Player/PlayerRunning.gd" id="4_qlg0r"]
+[ext_resource type="Script" uid="uid://ddv77heoxeh6i" path="res://Scripts/States/Player/PlayerJumping.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://c46uxmyg6pc7d" path="res://Scripts/States/Player/PlayerFalling.gd" id="6_tuyoq"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+albedo_color = Color(4.2114408e-07, 0.35780755, 0.12154665, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tuyoq"]
+top_radius = 0.245
+bottom_radius = 0.054
+height = 0.453
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
+albedo_color = Color(0.6422956, 0.4013693, 6.738305e-07, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tuyoq"]
+radius = 0.087
+height = 1.583
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tuyoq"]
+radius = 1.7880859
+height = 5.270996
+
+[sub_resource type="SphereMesh" id="SphereMesh_tuyoq"]
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_3vyb7")
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_o5qli")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Trumpet" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.5022359, -0.6901628)
+mesh = SubResource("CylinderMesh_tuyoq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_fjrip")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.6126144, -4.4104023)
+mesh = SubResource("CapsuleMesh_tuyoq")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.7123585, 1.6126144, -2.848251)
+mesh = SubResource("CapsuleMesh_tuyoq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.702343, 1.6126144, -2.748113)
+mesh = SubResource("CapsuleMesh_tuyoq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_0wfyh")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_g2els")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://c1oy8va3logcp"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_dqkch")
+metadata/_custom_type_script = "uid://exybm47wlxf1"
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource("4_qlg0r")
+metadata/_custom_type_script = "uid://cql84k6t4g7rd"
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("5_qlg0r")
+metadata/_custom_type_script = "uid://ddv77heoxeh6i"
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("6_tuyoq")
+metadata/_custom_type_script = "uid://c46uxmyg6pc7d"
+
+[node name="EffectArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EffectArea"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.5869693, -2.59685)
+shape = SubResource("CapsuleShape3D_tuyoq")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_tuyoq")
