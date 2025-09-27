@@ -14,9 +14,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func physics_update(_delta: float) -> void:
 	player.global_position += dash_direction * player.dash_force * _delta
-	
 	cur_dash_duration -= _delta
-	print(cur_dash_duration)
 	player.move_and_slide()
 	
 	if cur_dash_duration < 0:

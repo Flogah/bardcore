@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj476uqn2kb0b"]
+[gd_scene load_steps=7 format=3 uid="uid://cj476uqn2kb0b"]
 
 [ext_resource type="Script" uid="uid://bb18oxxgsomp1" path="res://Scripts/enemy.gd" id="1_4ra3w"]
+[ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://Scripts/States/state_machine.gd" id="2_md0e3"]
+[ext_resource type="Script" uid="uid://bjrk6xcq3yky0" path="res://Scripts/States/Enemy/EnemyFollow.gd" id="3_4ra3w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tegq"]
 
@@ -9,7 +11,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md0e3"]
 albedo_color = Color(0.622625, 0, 0.096408896, 1)
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_4ra3w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -20,3 +22,12 @@ shape = SubResource("CapsuleShape3D_8tegq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_7p1mj")
 surface_material_override/0 = SubResource("StandardMaterial3D_md0e3")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_md0e3")
+initial_state = NodePath("EnemyFollow")
+metadata/_custom_type_script = "uid://c1oy8va3logcp"
+
+[node name="EnemyFollow" type="Node" parent="StateMachine"]
+script = ExtResource("3_4ra3w")
+metadata/_custom_type_script = "uid://bjrk6xcq3yky0"
