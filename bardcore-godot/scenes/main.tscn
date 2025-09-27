@@ -19,7 +19,7 @@ glow_enabled = true
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sugp2"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_o5qli"]
-size = Vector2(15, 15)
+size = Vector2(35, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
 albedo_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
@@ -46,6 +46,8 @@ environment = SubResource("Environment_sugp2")
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.421765, -4.7683716e-07, 0.60881436)
 camera = NodePath("../CameraArm/Camera3D")
+dash_force = 30.0
+dash_duration = 0.1
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -58,33 +60,33 @@ mesh = SubResource("PlaneMesh_o5qli")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.889296, 0, 3.756783)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.794075, -3.8146973e-06, 11.522049)
 mesh = SubResource("PlaneMesh_0wfyh")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.863363, 0, -4.964725)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.767082, 0, -11.542347)
 mesh = SubResource("PlaneMesh_0wfyh")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="Ramp" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0.99148417, 0, -5.7420416)
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0.99148417, 0, -12.501154)
 mesh = SubResource("PrismMesh_0wfyh")
 skeleton = NodePath("../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0.99148417, 0, -5.7420416)
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0.99148417, 0, -12.501154)
 visible = false
 shape = SubResource("ConcavePolygonShape3D_sugp2")
 
 [node name="CameraArm" type="Node3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.81915194, 0.57357633, 0, -0.57357633, 0.81915194, 0, 0.365, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 1.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.395)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
 projection = 1
-size = 12.89
+size = 30.0
 near = 0.017
 far = 84.78
 

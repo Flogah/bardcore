@@ -6,10 +6,15 @@ class_name Player
 @export var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var camera: Camera3D
 
+@export var dash_force: float = 15.0
+@export var dash_cooldown: float = 1.0
+@export var dash_duration: float = 0.5
+
 @onready var raycast: RayCast3D = $RayCast3D
 
 func _physics_process(delta: float) -> void:
 	point_to_mouse()
+	velocity.y -= gravity * delta
 	
 func point_to_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
@@ -29,4 +34,3 @@ func point_to_mouse():
 	if !ray_result.is_empty():
 		var look_at_position = Vector3(ray_result.position.x, position.y ,ray_result.position.z)
 		look_at(look_at_position)
-		$MeshInstance3D.global_position = look_at_position
