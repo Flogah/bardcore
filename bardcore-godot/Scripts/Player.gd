@@ -10,12 +10,19 @@ class_name Player
 @export var dash_cooldown: float = 1.0
 @export var dash_duration: float = 0.5
 
-@onready var raycast: RayCast3D = $RayCast3D
+@export var soundVFX: PackedScene
+@onready var trumpet_1: AudioStreamPlayer3D = $Audio/Trumpet1
+@onready var trumpet_exit: Node3D = $Visual/TrumpetExit
+
+
+func _process(delta: float) -> void:
+	point_to_mouse()
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func _physics_process(delta: float) -> void:
-	point_to_mouse()
 	velocity.y -= gravity * delta
-	
+
 func point_to_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
 	
@@ -34,3 +41,9 @@ func point_to_mouse():
 	if !ray_result.is_empty():
 		var look_at_position = Vector3(ray_result.position.x, position.y ,ray_result.position.z)
 		look_at(look_at_position)
+
+func shoot():
+	trumpet_1.play()
+	var new_vfx = soundVFX.instantiate()
+	trumpet_exit.add_child(new_vfx)
+	new_vfx.global_position = trumpet_exit.global_position
