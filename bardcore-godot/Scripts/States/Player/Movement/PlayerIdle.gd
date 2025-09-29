@@ -1,5 +1,5 @@
 extends PlayerState
-class_name PlayerIdle
+class_name PlayerMoveIdle
 
 func enter(previous_state_path: String, data := {}) -> void:
 	player.velocity = Vector3.ZERO
@@ -12,6 +12,3 @@ func physics_update(_delta: float) -> void:
 	var input_dir : Vector2 = Input.get_vector("left", "right", "up", "down")
 	if input_dir:
 		finished.emit(RUNNING)
-	elif Input.is_action_just_pressed("jump"):
-		finished.emit(DASHING)
-	player.move_and_slide()

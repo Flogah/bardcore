@@ -10,19 +10,14 @@ var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var dash_cooldown: float = 1.0
 @export var dash_duration: float = 0.5
 
-@export var soundVFX: PackedScene
-@onready var trumpet_1: AudioStreamPlayer3D = $Audio/Trumpet1
-@onready var trumpet_exit: Node3D = $Visual/TrumpetExit
-
-@onready var trumpeting_area: Area3D = $EffectArea
+@export var weak_attack_cooldown: float = 0.2
 
 func _process(delta: float) -> void:
 	point_to_mouse()
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
 
 func _physics_process(delta: float) -> void:
 	velocity.y -= gravity * delta
+	move_and_slide()
 
 func point_to_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
@@ -42,21 +37,3 @@ func point_to_mouse():
 	if !ray_result.is_empty():
 		var look_at_position = Vector3(ray_result.position.x, position.y ,ray_result.position.z)
 		look_at(look_at_position)
-
-func shoot():
-	trumpet_1.play()
-	var new_vfx = soundVFX.instantiate()
-	trumpet_exit.add_child(new_vfx)
-	new_vfx.global_position = trumpet_exit.global_position
-	
-	var trumpeted_bodies = trumpeting_area.get_overlapping_bodies()
-	var hit_enemies : Array
-	for body in trumpeted_bodies:
-		if body.is_in_group("Enemy"):
-			hit_enemies.append(body)
-	
-	for enemy in hit_enemies:
-		var dir = (enemy.global_position - global_position).normalized()
-		enemy.velocity = dir * 200
-		enemy.velocity.y = 3
-		enemy.move_and_slide()

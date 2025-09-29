@@ -15,4 +15,3 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
 		finished.emit(DASHING)
-	player.move_and_slide()
