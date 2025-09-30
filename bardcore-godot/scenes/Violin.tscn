@@ -60,13 +60,13 @@ stream = ExtResource("6_nbgvm")
 [node name="Visual" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 1.8727498e-08, 0, -0.16928613)
 mesh = SubResource("BoxMesh_am657")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_fjrip")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0.4284352)
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, -1.8727498e-08, 0, -0.59772134)
 mesh = SubResource("BoxMesh_pcpy0")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_fjrip")

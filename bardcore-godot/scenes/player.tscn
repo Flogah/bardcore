@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=14 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://Scripts/States/state_machine.gd" id="2_g2els"]
@@ -11,6 +11,20 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_color = Color(4.2114408e-07, 0.35780755, 0.12154665, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuyoq"]
+albedo_color = Color(0.19777417, 0.7279221, 0.9999997, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_tuyoq"]
+material = SubResource("StandardMaterial3D_tuyoq")
+inner_radius = 0.894
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
+albedo_color = Color(0.19777417, 0.7279221, 0.9999997, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_fjrip"]
+material = SubResource("StandardMaterial3D_fjrip")
+size = Vector3(0.46, 0.26, 0.07)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
 
@@ -26,6 +40,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_o5qli")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17521656, 0)
+mesh = SubResource("TorusMesh_tuyoq")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.17521656, -1.0629247)
+mesh = SubResource("PrismMesh_fjrip")
 
 [node name="BodyHitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -48,8 +70,5 @@ metadata/_custom_type_script = "uid://cql84k6t4g7rd"
 script = ExtResource("5_qlg0r")
 metadata/_custom_type_script = "uid://dri7mdulo5mpn"
 
-[node name="Instrument" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.466439, -0.4744449)
-
-[node name="Violin" parent="Instrument" instance=ExtResource("6_tuyoq")]
-transform = Transform3D(-0.85903454, 0.28093475, 0.42794323, 0.11815969, 0.92220163, -0.36821526, -0.49809438, -0.26574397, -0.8253982, 0.53165853, -0.36507893, -0.1277763)
+[node name="Violin" parent="." instance=ExtResource("6_tuyoq")]
+transform = Transform3D(0.45922196, 0.2627242, -0.8485818, 0.22811007, 0.8883563, 0.39848346, 0.8585341, -0.37656236, 0.34802267, 0.3861423, 1.1433108, -0.3656784)

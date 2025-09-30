@@ -6,7 +6,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	var input_dir : Vector2 = Input.get_vector("left", "right", "up", "down").normalized()
+	var input_dir : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	if input_dir:
 		player.velocity.x = input_dir.x * player.speed
 		player.velocity.z = input_dir.y * player.speed

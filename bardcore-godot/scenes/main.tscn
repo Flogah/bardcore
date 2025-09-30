@@ -45,10 +45,10 @@ environment = SubResource("Environment_sugp2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.421765, -4.7683716e-07, 0.60881436)
+mouse_mode = false
 camera = NodePath("../CameraArm/Camera3D")
 dash_force = 30.0
 dash_duration = 0.1
-weak_attack_cooldown = 0.6
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
