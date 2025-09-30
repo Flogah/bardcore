@@ -19,7 +19,7 @@ albedo_color = Color(0.6422956, 0.4013693, 6.738305e-07, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_pcpy0"]
 size = Vector3(0.085, 0.335, 0.055)
 
-[node name="Violin" type="Node3D" node_paths=PackedStringArray("attack_area", "vfx_spawnpoint", "combat_statemachine")]
+[node name="Instrument" type="Node3D" node_paths=PackedStringArray("attack_area", "vfx_spawnpoint", "combat_statemachine") groups=["Instrument"]]
 script = ExtResource("1_nbgvm")
 attack_area = NodePath("EffectArea")
 vfx_scene = ExtResource("2_am657")

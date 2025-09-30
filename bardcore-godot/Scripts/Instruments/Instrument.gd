@@ -1,6 +1,8 @@
 extends Node
 class_name Instrument
 
+var player_index:int
+
 @export var weak_attack_cooldown:float = .6
 @export var strong_attack_cooldown:float = 2.0
 
@@ -8,3 +10,6 @@ class_name Instrument
 @export var vfx_scene: PackedScene
 @export var vfx_spawnpoint: Node3D
 @export var combat_statemachine: StateMachine
+
+func _ready() -> void:
+	player_index = get_parent().player_index

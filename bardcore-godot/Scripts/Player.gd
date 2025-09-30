@@ -1,16 +1,20 @@
 extends CharacterBody3D
 class_name Player
 
+@export var player_index:int = 0
+
 @export var mouse_mode: bool = true
 
 @export var speed:float = 4.0
 @export var jump_force:float = 5.0
-var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 @export var camera: Camera3D
 
 @export var dash_force: float = 15.0
 @export var dash_cooldown: float = 1.0
 @export var dash_duration: float = 0.5
+
+var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _process(delta: float) -> void:
 	if mouse_mode:
@@ -42,7 +46,13 @@ func point_to_mouse():
 		look_at(look_at_position)
 
 func look_direction():
-	var input_dir : Vector2 = Input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
+	var input_dir : Vector2
+	
+	if player_index == 0:
+		input_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
+	elif player_index == 1:
+		input_dir = Input.get_vector("look_left_p2", "look_right_p2", "look_up_p2", "look_down_p2").normalized()
+	
 	if !input_dir:
 		return
 	rotation = Vector3(0, -input_dir.angle() - PI/2, 0)

@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=13 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://Scripts/States/state_machine.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://exybm47wlxf1" path="res://Scripts/States/Player/Movement/PlayerIdle.gd" id="3_dqkch"]
 [ext_resource type="Script" uid="uid://cql84k6t4g7rd" path="res://Scripts/States/Player/Movement/PlayerRunning.gd" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://dri7mdulo5mpn" path="res://Scripts/States/Player/Movement/PlayerDashing.gd" id="5_qlg0r"]
-[ext_resource type="PackedScene" uid="uid://lxalv8rqbk0c" path="res://scenes/Violin.tscn" id="6_tuyoq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
 
@@ -69,6 +68,3 @@ metadata/_custom_type_script = "uid://cql84k6t4g7rd"
 [node name="Dashing" type="Node" parent="MovementStateMachine"]
 script = ExtResource("5_qlg0r")
 metadata/_custom_type_script = "uid://dri7mdulo5mpn"
-
-[node name="Violin" parent="." instance=ExtResource("6_tuyoq")]
-transform = Transform3D(0.45922196, 0.2627242, -0.8485818, 0.22811007, 0.8883563, 0.39848346, 0.8585341, -0.37656236, 0.34802267, 0.3861423, 1.1433108, -0.3656784)
