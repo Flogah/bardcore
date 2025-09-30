@@ -1,5 +1,5 @@
-extends PlayerState
-class_name PlayerCombatIdle
+extends State
+class_name CombatIdle
 
 func update(_delta: float) -> void:
 	if Input.is_action_pressed("shoot"):

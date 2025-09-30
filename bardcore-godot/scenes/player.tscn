@@ -1,33 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=10 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Scripts/Player.gd" id="1_3vyb7"]
-[ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://scenes/sound_particles.tscn" id="2_fjrip"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://Scripts/States/state_machine.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://exybm47wlxf1" path="res://Scripts/States/Player/Movement/PlayerIdle.gd" id="3_dqkch"]
 [ext_resource type="Script" uid="uid://cql84k6t4g7rd" path="res://Scripts/States/Player/Movement/PlayerRunning.gd" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://dri7mdulo5mpn" path="res://Scripts/States/Player/Movement/PlayerDashing.gd" id="5_qlg0r"]
-[ext_resource type="Script" uid="uid://bjwgpgcxgn5j7" path="res://Scripts/States/Player/Combat/PlayerWeakAttack.gd" id="6_smehm"]
-[ext_resource type="AudioStream" uid="uid://cuy8j1a0hlxe5" path="res://Sound/Trumpet/trumpet1.wav" id="6_tuyoq"]
-[ext_resource type="Script" uid="uid://blr8ho4ugylvs" path="res://Scripts/States/Player/Combat/PlayerCombatIdle.gd" id="8_ur7pv"]
+[ext_resource type="PackedScene" uid="uid://lxalv8rqbk0c" path="res://scenes/Violin.tscn" id="6_tuyoq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_color = Color(4.2114408e-07, 0.35780755, 0.12154665, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_tuyoq"]
-top_radius = 0.245
-bottom_radius = 0.054
-height = 0.453
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
-albedo_color = Color(0.6422956, 0.4013693, 6.738305e-07, 1)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tuyoq"]
-radius = 1.7880859
-height = 5.270996
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_3vyb7")
@@ -41,15 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_o5qli")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
-
-[node name="Trumpet" type="MeshInstance3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.5022359, -0.6901628)
-mesh = SubResource("CylinderMesh_tuyoq")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_fjrip")
-
-[node name="TrumpetExit" type="Node3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5021944, -1.0019009)
 
 [node name="BodyHitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -72,30 +48,8 @@ metadata/_custom_type_script = "uid://cql84k6t4g7rd"
 script = ExtResource("5_qlg0r")
 metadata/_custom_type_script = "uid://dri7mdulo5mpn"
 
-[node name="CombatStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("2_g2els")
-initial_state = NodePath("Idle")
-metadata/_custom_type_script = "uid://c1oy8va3logcp"
+[node name="Instrument" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.466439, -0.4744449)
 
-[node name="WeakAttack" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_sound", "vfx_spawn", "hitbox")]
-script = ExtResource("6_smehm")
-soundVFX = ExtResource("2_fjrip")
-attack_sound = NodePath("../../Audio/Trumpet1")
-vfx_spawn = NodePath("../../Visual/TrumpetExit")
-hitbox = NodePath("../../EffectArea")
-metadata/_custom_type_script = "uid://bjwgpgcxgn5j7"
-
-[node name="Idle" type="Node" parent="CombatStateMachine"]
-script = ExtResource("8_ur7pv")
-metadata/_custom_type_script = "uid://blr8ho4ugylvs"
-
-[node name="EffectArea" type="Area3D" parent="."]
-
-[node name="TrumpetHitbox" type="CollisionShape3D" parent="EffectArea"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.5869693, -2.59685)
-shape = SubResource("CapsuleShape3D_tuyoq")
-
-[node name="Audio" type="Node3D" parent="."]
-
-[node name="Trumpet1" type="AudioStreamPlayer3D" parent="Audio"]
-stream = ExtResource("6_tuyoq")
+[node name="Violin" parent="Instrument" instance=ExtResource("6_tuyoq")]
+transform = Transform3D(-0.85903454, 0.28093475, 0.42794323, 0.11815969, 0.92220163, -0.36821526, -0.49809438, -0.26574397, -0.8253982, 0.53165853, -0.36507893, -0.1277763)

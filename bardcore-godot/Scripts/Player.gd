@@ -10,8 +10,6 @@ var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var dash_cooldown: float = 1.0
 @export var dash_duration: float = 0.5
 
-@export var weak_attack_cooldown: float = 0.2
-
 func _process(delta: float) -> void:
 	point_to_mouse()
 

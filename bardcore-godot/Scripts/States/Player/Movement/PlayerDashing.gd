@@ -21,7 +21,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	
 	if !dash_cooldown_timer.is_stopped():
 		print("Dash is still on cooldown. Time left: " + str(dash_cooldown_timer.time_left))
-		exit()
+		finished.emit(RUNNING)
 		return
 	
 	dash_cooldown_timer.start(player.dash_cooldown)
@@ -34,11 +34,4 @@ func physics_update(_delta: float) -> void:
 	player.global_position += dash_direction * player.dash_force * _delta
 	
 	if dash_duration_timer.is_stopped():
-		stop()
-
-func stop():
-	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down").normalized()
-	if input_dir:
 		finished.emit(RUNNING)
-	else:
-		finished.emit(IDLE)

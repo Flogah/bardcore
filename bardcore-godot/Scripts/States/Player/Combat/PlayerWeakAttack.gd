@@ -1,5 +1,5 @@
-extends PlayerState
-class_name PlayerWeakAttack
+extends State
+class_name WeakAttack
 
 @export var soundVFX: PackedScene
 @export var attack_sound: AudioStreamPlayer3D
@@ -16,11 +16,11 @@ func enter(previous_state_path: String, data := {}) -> void:
 		attack_cooldown_timer.one_shot = true
 	
 	if !attack_cooldown_timer.is_stopped():
-		print("Attack is still on cooldown. Time left: " + str(attack_cooldown_timer.time_left))
+		#print("Attack is still on cooldown. Time left: " + str(attack_cooldown_timer.time_left))
 		finished.emit("Idle")
 		return
 	
-	attack_cooldown_timer.start(player.weak_attack_cooldown)
+	attack_cooldown_timer.start(owner.weak_attack_cooldown)
 	
 	attack_sound.play()
 	var new_vfx = soundVFX.instantiate()
@@ -34,10 +34,10 @@ func enter(previous_state_path: String, data := {}) -> void:
 			hit_enemies.append(body)
 	
 	for enemy in hit_enemies:
-		# push away from player
-		#var dir = (enemy.global_position - global_position).normalized()
+		# push away from owner
+		var dir = (enemy.global_position - owner.global_position).normalized()
 		# push in view direction
-		var dir = -player.global_transform.basis.z
+		#var dir = -owner.global_transform.basis.z
 		enemy.velocity = dir * 200
 		enemy.velocity.y = 3
 		enemy.move_and_slide()
