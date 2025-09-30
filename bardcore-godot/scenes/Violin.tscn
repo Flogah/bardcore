@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://Scripts/States/state_machine.gd" id="3_pcpy0"]
 [ext_resource type="Script" uid="uid://bjwgpgcxgn5j7" path="res://Scripts/States/Player/Combat/PlayerWeakAttack.gd" id="4_qijbx"]
 [ext_resource type="Script" uid="uid://blr8ho4ugylvs" path="res://Scripts/States/Player/Combat/PlayerCombatIdle.gd" id="5_r6572"]
-[ext_resource type="AudioStream" uid="uid://tkjamwrh4tb4" path="res://Sound/Violin/violin-spiccato-g2-91380.mp3" id="6_nbgvm"]
+[ext_resource type="AudioStream" uid="uid://ch7mga6ovy6gd" path="res://Sound/Violin/violin1.wav" id="6_nbgvm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nbgvm"]
 radius = 3.643636

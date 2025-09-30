@@ -8,6 +8,9 @@ class_name WeakAttack
 
 var attack_cooldown_timer: Timer
 
+var pitch: float = 1.0
+var pitch_step : float = .2
+
 func enter(previous_state_path: String, data := {}) -> void:
 	if !attack_cooldown_timer:
 		print("No cooldown timer found. Creating new timer.")
@@ -22,7 +25,25 @@ func enter(previous_state_path: String, data := {}) -> void:
 	
 	attack_cooldown_timer.start(owner.weak_attack_cooldown)
 	
-	attack_sound.pitch_scale = randf_range(0.8, 1.6)
+	# give sound a range of pitches
+	# option a
+	#if pitch < 1.0:
+		#pitch += pitch_step
+	#elif pitch > 1.4:
+		#pitch -= pitch_step
+	#else:
+		#var randomizer = bool(randi() % 2)
+		#if randomizer:
+			#pitch += pitch_step
+		#else:
+			#pitch -= pitch_step
+	# option b
+	pitch += pitch_step
+	
+	if pitch < 1.0 or pitch > 1.4:
+		pitch_step = -pitch_step
+	
+	attack_sound.pitch_scale = pitch
 	attack_sound.play()
 	
 	var new_vfx = soundVFX.instantiate()
