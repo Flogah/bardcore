@@ -14,7 +14,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 		attack_cooldown_timer = Timer.new()
 		add_child(attack_cooldown_timer)
 		attack_cooldown_timer.one_shot = true
-	
+	  
 	if !attack_cooldown_timer.is_stopped():
 		#print("Attack is still on cooldown. Time left: " + str(attack_cooldown_timer.time_left))
 		finished.emit("Idle")
@@ -22,7 +22,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 	
 	attack_cooldown_timer.start(owner.weak_attack_cooldown)
 	
+	attack_sound.pitch_scale = randf_range(0.8, 1.6)
 	attack_sound.play()
+	
 	var new_vfx = soundVFX.instantiate()
 	vfx_spawn.add_child(new_vfx)
 	new_vfx.global_position = vfx_spawn.global_position

@@ -53,6 +53,7 @@ dash_duration = 0.1
 
 [node name="Instrument" parent="Player" instance=ExtResource("2_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3000001, -0.6)
+weak_attack_cooldown = 0.3
 
 [node name="Player2" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.968378, -4.7683716e-07, 4.1509557)
@@ -64,6 +65,7 @@ dash_duration = 0.1
 
 [node name="Instrument" parent="Player2" instance=ExtResource("3_jyhfs")]
 transform = Transform3D(0.7240876, 0.23717181, -0.6476471, 0, 0.9390162, 0.34387273, 0.689708, -0.24899398, 0.67993, 0.41288376, 1.1947656, -0.38697696)
+weak_attack_cooldown = 0.3
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
