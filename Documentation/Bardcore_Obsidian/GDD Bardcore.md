@@ -1,8 +1,8 @@
-## Was ist Bardcore?
-
-## Säulen des Spieldesigns
-Die Säulen sind die zentralen Themen, die bei der fortlaufenden Entwicklung die Richtung weisen sollen. Sie zeigen an, welche Arten von Erfahrungen Spieler haben sollen, die das Spiel definieren.  
-#### Loot erbeuten, Kombos finden
+# Was ist Bardcore?
+Bardcore ist ein Couch-Coop Rogue-lite, bei dem eine Gruppe Barden versucht, vor einem Drachen wegzulaufen. Gegner werden mit Musik bekämpft, aber jeder Run ist anders. Irgendwann wird man eingeholt, und das Dorf darf wachsen - bis zum nächsten Drachenangriff.
+## Prinzipien
+Hier gelistet sind die zentralen Themen, die bei jeder Entscheidung im Spiel im Hinterkopf bleiben sollen. Keine Entscheidung sollte den Prinzipien widersprechen.
+#### Loot erbeuten, Combos finden
 Es gibt viele verschiedene Elemente, die sich zu interessanten Effekten kombinieren lassen. Die Interaktion sollte dabei nie so komplex sein, dass ein extra Menu gebraucht wird, aber tief genug, dass jeder Run einzigartig sein kann.
 Items sollten nie ein direktes Upgrade von etwas anderem sein.
 Beispiele: Binding of Isaac, Nimrods
@@ -18,29 +18,14 @@ Beispiele: Kingdom: Two Crowns, Don't Starve Together
 #### Schwierigkeit und Upgrades
 Jedes Mal spielt von neuem und versucht so weit zu kommen, wie man kann, bevor der Drache einen einholt. Je länger man überlebt, desto mehr Zeit hat das Dorf, sich aufzubauen. Damit kann man Gebäude und Upgrades freischalten und weiterkommen.
 Beispiele: The Last Spell, Rogue Legacy
-## TODO: Zielgruppe und Markt
-An wen richtet sich das Spiel? Vergleichbare Spiele und Zielgruppen.
-## TODO: Core Gameplay
-Wie wird es kontrolliert
-Wie funktioniert Gameplay im 30s Takt
-Wie funktioniert Gameplay langfristig
-Nur MVP! Minimal!
-Extras auch noch ansprechen
-## TODO: Controls
-Tastatur, eventuell auch Controller schon
-## TODO: Balance & Pacing
-Schwierigkeitskurve, Länge, usw.
-## TODO: Charakterdesign
-Ziele vom Design
-## TODO: Setting
+## Kampfsystem
+Wie funktioniert Kampf, wie wird es gesteuert, was ist die Technik dahinter
+## Items
+Wie funktioniert Loot, was für Effekte haben Items, wie werden sie benutzt
+## Charakterdesign
+Ziele vom Design, Art style, Farben, Inspiration
+## Animation
+Wie wird animiert, was ist die Technik dahinter
+## Narrative
+Was ist die Erzählung und wie wird sie erzählt (Text, Vertonung, etc.)
 Wie sieht die Welt aus, in der die Charaktere interagieren
-Funktionale Argumente, was ist unumgehbar
-## TODO: Ton und Ästhetik
-Was ist der Ton und wie wird er rübergebracht
-Art style, Farben, Inspiration
-## TODO: Narrative
-Was ist die Erzählung und wie wird sie erzählt
-Text, Vertonung, etc.
-## TODO: Business Model
-Demo, Early Access, Funding, Release schedule, DLC, Updates
-Preis!

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Architektur/Feature Liste.md",
-                "mode": "source",
+                "file": "GDD Bardcore.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Feature Liste"
+              "title": "GDD Bardcore"
             }
           }
         ]
@@ -171,8 +171,8 @@
   },
   "active": "71bc24a836abd740",
   "lastOpenFiles": [
-    "Architektur/Software Architektur.md",
     "Architektur/Feature Liste.md",
+    "Architektur/Software Architektur.md",
     "Architektur",
     "Interview mit einem Producer.md",
     "Quellen.md",
