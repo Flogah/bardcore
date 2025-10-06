@@ -25,7 +25,7 @@ func spawn_player(player: int):
 	get_tree().get_root().add_child(player_node)
 	
 	# random spawn position
-	player_node.position = Vector3(randf_range(5, 5), 0, randf_range(5, 5))
+	player_node.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))
 
 func delete_player(player: int):
 	player_nodes[player].queue_free()
