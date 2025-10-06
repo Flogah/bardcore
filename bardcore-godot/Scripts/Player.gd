@@ -16,15 +16,21 @@ var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var player: int
 var input
+var device
 
 func init(player_num: int):
 	player = player_num
-	var device = PlayerManager.get_player_device(player)
+	device = PlayerManager.get_player_device(player)
 	input = DeviceInput.new(device)
+	print(input)
 
 func _physics_process(delta: float) -> void:
 	# only in case movement_sm doesnt work
 	#movement()
+	if device < 0:
+		point_to_mouse()
+	else:
+		look_direction()
 	
 	velocity.y -= gravity * delta
 	move_and_slide()
@@ -49,7 +55,7 @@ func point_to_mouse():
 		look_at(look_at_position)
 
 func look_direction():
-	var input_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
+	var input_dir = input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
 	if !input_dir:
 		return
 	rotation = Vector3(0, -input_dir.angle() - PI/2, 0)
