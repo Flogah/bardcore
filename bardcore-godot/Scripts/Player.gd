@@ -1,14 +1,12 @@
 extends CharacterBody3D
 class_name Player
 
-@export var player_index:int = 0
-
-@export var mouse_mode: bool = true
+signal leave
 
 @export var speed:float = 4.0
 @export var jump_force:float = 5.0
 
-@export var camera: Camera3D
+var camera: Camera3D
 
 @export var dash_force: float = 15.0
 @export var dash_cooldown: float = 1.0
@@ -16,13 +14,18 @@ class_name Player
 
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _process(delta: float) -> void:
-	if mouse_mode:
-		point_to_mouse()
-	else:
-		look_direction()
+var player: int
+var input
+
+func init(player_num: int):
+	player = player_num
+	var device = PlayerManager.get_player_device(player)
+	input = DeviceInput.new(device)
 
 func _physics_process(delta: float) -> void:
+	# only in case movement_sm doesnt work
+	#movement()
+	
 	velocity.y -= gravity * delta
 	move_and_slide()
 
@@ -46,13 +49,18 @@ func point_to_mouse():
 		look_at(look_at_position)
 
 func look_direction():
-	var input_dir : Vector2
-	
-	if player_index == 0:
-		input_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
-	elif player_index == 1:
-		input_dir = Input.get_vector("look_left_p2", "look_right_p2", "look_up_p2", "look_down_p2").normalized()
-	
+	var input_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
 	if !input_dir:
 		return
 	rotation = Vector3(0, -input_dir.angle() - PI/2, 0)
+
+func movement():
+	var device = PlayerManager.get_player_device(player)
+	var input_dir = MultiplayerInput.get_vector(device, "move_left", "move_right", "move_up", "move_down")
+	
+	if input_dir:
+		velocity.x = input_dir.x * speed
+		velocity.z = input_dir.y * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
