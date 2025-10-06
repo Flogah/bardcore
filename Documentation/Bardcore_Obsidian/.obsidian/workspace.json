@@ -8,49 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "85851a77088e6fc1",
+            "id": "71bc24a836abd740",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "GDD Bardcore.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "GDD Bardcore"
-            }
-          },
-          {
-            "id": "01f19345322df963",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "GDD Bardcore.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "GDD Bardcore"
-            }
-          },
-          {
-            "id": "75a2888af7c21bfc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Quellen.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Quellen"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -198,11 +169,15 @@
       "bases:Create new base": false
     }
   },
-  "active": "75a2888af7c21bfc",
+  "active": "71bc24a836abd740",
   "lastOpenFiles": [
+    "Architektur/Feature Liste.md",
+    "Architektur/Software Architektur.md",
+    "Architektur",
+    "Interview mit einem Producer.md",
+    "Quellen.md",
     "Backstories.md",
     "GDD Bardcore.md",
-    "Quellen.md",
     "Welcome.md"
   ]
 }

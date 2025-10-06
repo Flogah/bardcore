@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://co7r3uteoegh4"]
+
+[ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://Scripts/States/state_machine.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://cql84k6t4g7rd" path="res://Scripts/States/PlayerWalk.gd" id="3_qhqgy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+albedo_color = Color(4.2114408e-07, 0.35780755, 0.12154665, 1)
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_3vyb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_0wfyh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_o5qli")
+surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stateOwner", "initial_state")]
+script = ExtResource("2_g2els")
+stateOwner = NodePath("..")
+initial_state = NodePath("PlayerWalk")
+metadata/_custom_type_script = "uid://c1oy8va3logcp"
+
+[node name="PlayerWalk" type="Node" parent="StateMachine"]
+script = ExtResource("3_qhqgy")
+metadata/_custom_type_script = "uid://cql84k6t4g7rd"
