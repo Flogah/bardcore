@@ -3,17 +3,15 @@ class_name Player
 
 signal leave
 
-@export var speed:float = 4.0
-@export var jump_force:float = 5.0
+@onready var player_name: Label3D = $PlayerName
 
-var camera: Camera3D
-
-@export var dash_force: float = 15.0
-@export var dash_cooldown: float = 1.0
-@export var dash_duration: float = 0.5
+@export var speed:float = 10.0
+@export var dash_force: float = 50.0
+@export var dash_cooldown: float = 0.1
+@export var dash_duration: float = 0.1
 
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+var camera: Camera3D
 var player: int
 var input
 var device
@@ -22,7 +20,6 @@ func init(player_num: int):
 	player = player_num
 	device = PlayerManager.get_player_device(player)
 	input = DeviceInput.new(device)
-	print(input)
 
 func _physics_process(delta: float) -> void:
 	# only in case movement_sm doesnt work

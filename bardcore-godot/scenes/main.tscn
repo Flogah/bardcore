@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6il3frbajhsm"]
+[gd_scene load_steps=12 format=3 uid="uid://c6il3frbajhsm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -9,17 +9,24 @@ sky_material = SubResource("ProceduralSkyMaterial_o5qli")
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 background_mode = 2
+background_energy_multiplier = 0.5
 sky = SubResource("Sky_0wfyh")
 tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sugp2"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_o5qli"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_sgp6g"]
 size = Vector2(35, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
 albedo_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o5qli"]
+size = Vector2(150, 150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qli"]
+albedo_color = Color(0.08111008, 0.1239166, 0.018113298, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
 size = Vector2(3, 3)
@@ -47,8 +54,13 @@ visible = false
 shape = SubResource("WorldBoundaryShape3D_sugp2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("PlaneMesh_o5qli")
+mesh = SubResource("PlaneMesh_sgp6g")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+mesh = SubResource("PlaneMesh_o5qli")
+surface_material_override/0 = SubResource("StandardMaterial3D_o5qli")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.794075, -3.8146973e-06, 11.522049)
