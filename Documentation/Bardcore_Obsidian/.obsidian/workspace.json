@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GDD Bardcore.md",
-                "mode": "preview",
+                "file": "Architektur/Timeline.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GDD Bardcore"
+              "title": "Timeline"
             }
           }
         ]
@@ -171,13 +171,15 @@
   },
   "active": "71bc24a836abd740",
   "lastOpenFiles": [
+    "Architektur/Asset Liste.md",
+    "Architektur/Timeline.md",
     "Architektur/Feature Liste.md",
     "Architektur/Software Architektur.md",
+    "Backstories.md",
+    "Quellen.md",
+    "GDD Bardcore.md",
     "Architektur",
     "Interview mit einem Producer.md",
-    "Quellen.md",
-    "Backstories.md",
-    "GDD Bardcore.md",
     "Welcome.md"
   ]
 }
