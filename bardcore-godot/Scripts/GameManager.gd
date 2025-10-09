@@ -26,7 +26,7 @@ func spawn_player(player: int):
 	
 	# random spawn position
 	player_node.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))
-	player_node.player_name.set_text("P " + str(player))
+	player_node.set_playername()
 
 func delete_player(player: int):
 	player_nodes[player].queue_free()

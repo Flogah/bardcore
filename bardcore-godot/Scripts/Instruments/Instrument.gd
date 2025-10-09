@@ -1,7 +1,8 @@
 extends Node
 class_name Instrument
 
-var player_index:int
+var player : Player
+var input
 
 @export var weak_attack_cooldown:float = .6
 @export var strong_attack_cooldown:float = 2.0
@@ -12,4 +13,8 @@ var player_index:int
 @export var combat_statemachine: StateMachine
 
 func _ready() -> void:
-	player_index = get_parent().player_index
+	equip()
+
+func equip():
+	player = get_parent()
+	input = player.input

@@ -3,7 +3,12 @@ class_name Player
 
 signal leave
 
+const TRUMPET = preload("uid://515m7a070dcx")
+const VIOLIN = preload("uid://lxalv8rqbk0c")
+
 @onready var player_name: Label3D = $PlayerName
+@onready var instrument_spawn: Node3D = $InstrumentSpawn
+var instrument_offset:Vector3
 
 @export var speed:float = 10.0
 @export var dash_force: float = 50.0
@@ -20,6 +25,10 @@ func init(player_num: int):
 	player = player_num
 	device = PlayerManager.get_player_device(player)
 	input = DeviceInput.new(device)
+
+func _ready() -> void:
+	instrument_offset = instrument_spawn.position
+	add_instrument(TRUMPET)
 
 func _physics_process(delta: float) -> void:
 	# only in case movement_sm doesnt work
@@ -67,3 +76,15 @@ func movement():
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
+
+func set_playername():
+	player_name.set_text("P " + str(player))
+
+func add_instrument(instrument):
+	print(instrument_spawn)
+	var instrument_instance = instrument.instantiate()
+	## TODO why can't godot access instrument_spawn? weird bug
+	#instrument_instance.position = instrument_spawn.position
+	instrument_instance.position = instrument_offset#Vector3(0, 1.5, -0.7)
+	add_child(instrument_instance)
+	
