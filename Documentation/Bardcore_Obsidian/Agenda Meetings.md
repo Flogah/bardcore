@@ -1,0 +1,23 @@
+#### Was habt ihr so gemacht?
+- [x] Tomas
+- [x] Marco
+- [x] Svea
+- [x] Ludwig
+- [x] Florian
+#### Was ist der Plan?
+- [x] Tomas
+	- [ ] Artstyle finden
+	- [ ] Varianten Saeufer
+- [x] Marco
+	- [ ] Konzepte
+	- [ ] Implementation Design
+- [x] Svea
+	- [ ] Motion Design Chars
+- [x] Ludwig
+	- [ ] Kampfsystem ausdefinieren
+	- [ ] Audiobeispiele
+	- [ ] Godot einarbeiten
+- [x] Florian
+	- [ ] Maps: Dorf, Kampf 1
+	- [ ] Meta Loop Design
+	- [ ] Dialoge schreiben
