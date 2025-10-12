@@ -20,6 +20,7 @@ func _ready() -> void:
 
 func spawn_players():
 	# TODO get access to all players and place them at the entrance
+	# compat with multiplayer spawning in
 	# if it's a combat map, lock all entrances
 	if enemies.size() > 0:
 		lock_all_portals()
