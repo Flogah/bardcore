@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chjqoixq4aqki"]
+
+[ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="1_u7g5v"]
+
+[node name="HitEmitterBox" type="Area3D"]
+script = ExtResource("1_u7g5v")

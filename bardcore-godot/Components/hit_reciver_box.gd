@@ -6,7 +6,7 @@ class_name hit_reciver_box
 ## [member effect.incincability_time], to [u]prevent[/u] multiple hits from the same source in rapid succession. [br][br]
 ##[color='YELLOW']If this area wont be hit by an interaction area, make sure that [member owning_char.faction] is in [member interaction_area.targets].[/color][b]
 
-@export var owning_char: CharacterBody2D
+#@export var owning_char: CharacterBody2D
 @export var health_comp: health_component
 
 var e_type = effect.effect_type
@@ -20,8 +20,8 @@ func hit(id: int, type: effect.effect_type, amount: float, inv_time: float, stat
 			add_id_with_timeout(id, inv_time)
 	# TODO: apply_statuses(statuses)
 
-func faction() -> int:
-	return owning_char.char_faction
+#func faction() -> int:
+	#return owning_char.char_faction
 
 func add_id_with_timeout(id: int, timeout: float) -> void:
 	var timer := Timer.new()

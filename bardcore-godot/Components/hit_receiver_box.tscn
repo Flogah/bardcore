@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdmr4fl8bs1hi"]
+
+[ext_resource type="Script" uid="uid://bhrs6p0rwjb3h" path="res://Components/hit_reciver_box.gd" id="1_a20d7"]
+
+[node name="HitReceiverBox" type="Area3D"]
+script = ExtResource("1_a20d7")
