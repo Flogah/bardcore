@@ -6,7 +6,6 @@
       {
         "id": "42b4b703c67d958d",
         "type": "tabs",
-        "dimension": 42.94871794871795,
         "children": [
           {
             "id": "71bc24a836abd740",
@@ -14,33 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Architektur/Timeline.md",
+                "file": "Creative Writing/Dialoge.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Timeline"
-            }
-          }
-        ]
-      },
-      {
-        "id": "2047d327dc94c3ca",
-        "type": "tabs",
-        "dimension": 57.05128205128205,
-        "children": [
-          {
-            "id": "23b7708b5f5ae30e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Agenda Meetings.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Agenda Meetings"
+              "title": "Dialoge"
             }
           }
         ]
@@ -100,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "f30e49a94d3d1370",
@@ -192,14 +169,19 @@
       "bases:Create new base": false
     }
   },
-  "active": "23b7708b5f5ae30e",
+  "active": "71bc24a836abd740",
   "lastOpenFiles": [
     "Architektur/Timeline.md",
-    "Architektur/Feature Liste.md",
+    "Creative Writing/Dialoge.md",
+    "Creative Writing/Backstories.md",
+    "Game Design/Meta Loop.md",
     "Architektur/Asset Liste.md",
+    "Architektur/Feature Liste.md",
+    "Orga",
+    "Creative Writing",
+    "Game Design",
     "Agenda Meetings.md",
     "Architektur/Software Architektur.md",
-    "Backstories.md",
     "Quellen.md",
     "GDD Bardcore.md",
     "Architektur",
