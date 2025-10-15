@@ -20,8 +20,8 @@ Jedes Mal spielt von neuem und versucht so weit zu kommen, wie man kann, bevor d
 Beispiele: The Last Spell, Rogue Legacy
 ## Kampfsystem
 Wie funktioniert Kampf, wie wird es gesteuert, was ist die Technik dahinter:
-<img width="1077" height="548" alt="image" src="https://github.com/user-attachments/assets/1732ceb5-f4b3-4e41-91c5-b0656dae00ed" />
 
+Der Spieler bekommt ein Instrument als Waffe. Damit kann er automatische Attacken und 2-3 Fähigkeiten einsetzen. Die automatischen Attacken sind sehr schwach und nur die Richtung der Attacke kann bestimmt werden. Im Gegensatz dazu machen die Fähigkeiten um ein Mehrfaches mehr Schaden. Die Fähigkeiten werden nur in einem bestimmten Moment aktiviert. Dieser Moment ist abhängig von der aktuell gespielten Hintergrundmusik. Der Moment der Eingabe kann sich dadurch also eher weniger oder eher mehr stark von dem Moment der Ausgabe unterscheiden. Feuerrate und Radius der automatischen Attacken sind abhängig von der aktuellen Hintergrundmusik. Die Hintergrundmusik kann mit Kombinationen von verschiedenen Fähigkeiten innerhalb eines Kombinationsmodus geändert werden. Der Kombinationsmodus kann mit einer separaten Taste aktiviert werden. Es gibt auch Kombinationen, welche zwei oder mehr Spieler benötigen. Die Fähigkeiten haben einen kleine Abklingzeit. Der Kombinationsmodus hat einen große Abklingzeit.
 ## Items
 Wie funktioniert Loot, was für Effekte haben Items, wie werden sie benutzt
 ## Charakterdesign
