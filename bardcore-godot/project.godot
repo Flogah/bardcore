@@ -24,6 +24,7 @@ GameManager="*res://Scripts/GameManager.gd"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
