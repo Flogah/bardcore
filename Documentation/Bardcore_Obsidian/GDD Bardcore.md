@@ -19,7 +19,9 @@ Beispiele: Kingdom: Two Crowns, Don't Starve Together
 Jedes Mal spielt von neuem und versucht so weit zu kommen, wie man kann, bevor der Drache einen einholt. Je länger man überlebt, desto mehr Zeit hat das Dorf, sich aufzubauen. Damit kann man Gebäude und Upgrades freischalten und weiterkommen.
 Beispiele: The Last Spell, Rogue Legacy
 ## Kampfsystem
-Wie funktioniert Kampf, wie wird es gesteuert, was ist die Technik dahinter
+Wie funktioniert Kampf, wie wird es gesteuert, was ist die Technik dahinter:
+<img width="1077" height="548" alt="image" src="https://github.com/user-attachments/assets/1732ceb5-f4b3-4e41-91c5-b0656dae00ed" />
+
 ## Items
 Wie funktioniert Loot, was für Effekte haben Items, wie werden sie benutzt
 ## Charakterdesign
