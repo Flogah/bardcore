@@ -6,18 +6,21 @@
 - [x] Florian
 #### Was ist der Plan?
 - [x] Tomas
-	- [ ] Artstyle finden
-	- [ ] Varianten Saeufer
+- Erste Komposition mit Ludwig
+- Sauf Mainvariante modellieren
+- Env Mockup
+- 1 Instrument Skizzieren
 - [x] Marco
-	- [ ] Konzepte
-	- [ ] Implementation Design
+- Items als Objekte
+- Inventarsystem
+- Item Pickup/Drop
 - [x] Svea
-	- [ ] Motion Design Chars
+- Animation tree platzhalter in Godot
+- Bios Update (Laptop)
 - [x] Ludwig
-	- [ ] Kampfsystem ausdefinieren
-	- [ ] Audiobeispiele
-	- [ ] Godot einarbeiten
+- Grundsaetzliche Angriffe Coden
+- Instrumente festlegen
+- Erste Komposition mit Tomas
 - [x] Florian
-	- [ ] Maps: Dorf, Kampf 1
-	- [ ] Meta Loop Design
-	- [ ] Dialoge schreiben
+- Refactor Godot Projekt
+- Map Transitions
