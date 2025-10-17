@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
-PlayerManager="*res://Scripts/PlayerManager.gd"
-GameManager="*res://Scripts/GameManager.gd"
+PlayerManager="*res://ManagerScripts/PlayerManager.gd"
+GameManager="*res://ManagerScripts/GameManager.gd"
 
 [editor_plugins]
 
@@ -28,7 +28,18 @@ enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://Resources/": "gray"
+"res://Components/": "yellow",
+"res://Enemy/": "red",
+"res://Instrument/": "orange",
+"res://ManagerScripts/": "gray",
+"res://Maps/": "green",
+"res://Player/": "orange",
+"res://Resources/": "gray",
+"res://States/": "blue",
+"res://Textures/": "pink",
+"res://VFX/": "purple",
+"res://addons/": "gray",
+"res://addons/Kenney_Fonts/": "gray"
 }
 
 [global_group]
