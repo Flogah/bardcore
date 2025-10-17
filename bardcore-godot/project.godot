@@ -37,6 +37,7 @@ Player=""
 Camera=""
 Enemy=""
 Instrument=""
+Portal=""
 
 [input]
 
