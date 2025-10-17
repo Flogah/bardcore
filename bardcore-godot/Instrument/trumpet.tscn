@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://515m7a070dcx"]
+
+[ext_resource type="Script" uid="uid://daueiqykpti77" path="res://Instrument/Instrument.gd" id="1_e8i04"]
+[ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://VFX/sound_particles.tscn" id="2_h8dbk"]
+[ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="3_ui8le"]
+[ext_resource type="Script" uid="uid://bjwgpgcxgn5j7" path="res://States/Player/Combat/PlayerWeakAttack.gd" id="4_a3a5n"]
+[ext_resource type="Script" uid="uid://blr8ho4ugylvs" path="res://States/Player/Combat/PlayerCombatIdle.gd" id="5_3ipfh"]
+[ext_resource type="AudioStream" uid="uid://cuy8j1a0hlxe5" path="res://Instrument/SFX/Trumpet/trumpet1.wav" id="6_dw12u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tuyoq"]
+radius = 1.7880859
+height = 5.270996
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tuyoq"]
+top_radius = 0.245
+bottom_radius = 0.054
+height = 0.453
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
+albedo_color = Color(0.6422956, 0.4013693, 6.738305e-07, 1)
+
+[node name="Instrument" type="Node3D" node_paths=PackedStringArray("attack_area", "vfx_spawnpoint", "combat_statemachine") groups=["Instrument"]]
+script = ExtResource("1_e8i04")
+attack_area = NodePath("EffectArea")
+vfx_scene = ExtResource("2_h8dbk")
+vfx_spawnpoint = NodePath("VFXSpawn")
+combat_statemachine = NodePath("CombatStateMachine")
+
+[node name="EffectArea" type="Area3D" parent="."]
+
+[node name="TrumpetHitbox" type="CollisionShape3D" parent="EffectArea"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -2.1102574)
+shape = SubResource("CapsuleShape3D_tuyoq")
+
+[node name="VFXSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.39205408)
+
+[node name="CombatStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ui8le")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://c1oy8va3logcp"
+
+[node name="WeakAttack" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_sound", "vfx_spawn", "hitbox")]
+script = ExtResource("4_a3a5n")
+soundVFX = ExtResource("2_h8dbk")
+attack_sound = NodePath("../../Audio/Trumpet1")
+vfx_spawn = NodePath("../../VFXSpawn")
+hitbox = NodePath("../../EffectArea")
+metadata/_custom_type_script = "uid://bjwgpgcxgn5j7"
+
+[node name="Idle" type="Node" parent="CombatStateMachine"]
+script = ExtResource("5_3ipfh")
+metadata/_custom_type_script = "uid://blr8ho4ugylvs"
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="Trumpet1" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("6_dw12u")
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tuyoq")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_fjrip")
