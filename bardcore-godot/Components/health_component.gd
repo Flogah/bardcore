@@ -21,11 +21,11 @@ func _process(_delta: float) -> void:
 	if health <= 0:
 		died.emit()
 
-func apply(type: effect.effect_type, amount: float):
+func apply(type: hit_effect.effect_type, amount: float):
 	#if telegraph_comp: telegraph_comp.display_number(amount, type)
-	if type == effect.effect_type.ATTACK:
+	if type == hit_effect.effect_type.ATTACK:
 		damage(amount)
-	if type == effect.effect_type.HEAL:
+	if type == hit_effect.effect_type.HEAL:
 		heal(amount)
 
 func set_health(new_health: float):

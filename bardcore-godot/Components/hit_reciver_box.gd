@@ -9,19 +9,17 @@ class_name hit_reciver_box
 #@export var owning_char: CharacterBody2D
 @export var health_comp: health_component
 
-var e_type = effect.effect_type
+var e_type = hit_effect.effect_type
 var interacted_objects_id: Array[int]
 
-func hit(id: int, type: effect.effect_type, amount: float, inv_time: float, statuses: Array[status]):
+func hit(id: int, type: hit_effect.effect_type, amount: float, inv_time: float, statuses: Array[status]):
 	if id not in interacted_objects_id: # invincability frame still active?:
 		if health_comp: # do i have an health component?:
 			health_comp.apply(type,amount)
 		if inv_time > 0:
-			add_id_with_timeout(id, inv_time)
+			add_id_with_timeout(id, inv_time) # add invincability frames for this specific hit_emitter_box
 	# TODO: apply_statuses(statuses)
 
-#func faction() -> int:
-	#return owning_char.char_faction
 
 func add_id_with_timeout(id: int, timeout: float) -> void:
 	var timer := Timer.new()

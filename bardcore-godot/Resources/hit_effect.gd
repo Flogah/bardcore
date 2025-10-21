@@ -1,6 +1,6 @@
 extends Resource
-class_name effect
-##This Resource holds the [member amount] and [member type] of an interaction.
+class_name hit_effect
+## This Resource holds the [member amount] and [member type] of an interaction.
 
 enum effect_type {ATTACK,HEAL,STATUS}
 

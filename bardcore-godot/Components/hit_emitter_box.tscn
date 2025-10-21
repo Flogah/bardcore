@@ -4,3 +4,4 @@
 
 [node name="HitEmitterBox" type="Area3D"]
 script = ExtResource("1_u7g5v")
+targets = null

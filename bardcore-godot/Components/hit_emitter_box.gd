@@ -11,7 +11,7 @@ enum faction {
 	Environment,
 }
 
-@export var interaction_effect: effect 
+@export var interaction_effect: hit_effect 
 @export var targets: Array[faction]
 
 var critical: bool
