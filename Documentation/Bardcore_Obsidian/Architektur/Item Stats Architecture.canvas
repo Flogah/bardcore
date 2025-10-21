@@ -1,0 +1,28 @@
+{
+	"nodes":[
+		{"id":"9e4f74adb3844a4b","type":"group","x":-2587,"y":-2981,"width":2767,"height":2461,"color":"2","label":"Character"},
+		{"id":"3ec1a1d674bd946c","type":"group","x":-1420,"y":-2040,"width":1580,"height":720,"color":"5","label":"Stat Holder Component"},
+		{"id":"19e45a25017594ed","type":"group","x":-2480,"y":-2880,"width":720,"height":680,"color":"5","label":"Equipment Comp"},
+		{"id":"b37cab5eed5ab71c","type":"group","x":-4080,"y":-3320,"width":290,"height":260,"label":"Legend"},
+		{"id":"1aa1726fb53c732e","type":"text","text":"**Controller**\n\nMove (LS)\nRotate (RS)\n\nDodge (B)\nInteract (A)\nItem (X)\n(Y)\n\n\nStandard Use (RT)\nAlternative Use (LT)\n\nStandard Char Ability (RB)\nAlternative Char Ability (LB)\n","x":-4460,"y":-2528,"width":280,"height":420},
+		{"id":"4be5e28fa3aa1f14","type":"text","text":"Scene","x":-4060,"y":-3300,"width":250,"height":60,"color":"2"},
+		{"id":"18d728aa93224cf3","type":"text","text":"Component","x":-4060,"y":-3220,"width":250,"height":60,"color":"5"},
+		{"id":"e90b1078f0fbb68f","type":"text","text":"Resource","x":-4060,"y":-3140,"width":250,"height":60,"color":"4"},
+		{"id":"10ecb8590eb64fec","type":"text","text":"**Equipment Comp**\n\nContains all the currently equipped Items, like Armor, Rings and Instruments.\n\n**In Hands:** *Holdable*\n**Armor:** *Headpiece / Breastplate / Boots*\n**Rings:** *Left- / Right Ringfinger*\n\n```python\n\nvar instruments[2]\nvar head\nvar torso\nvar feet\nvar rings[2]\n\nswitchInstrument()\n\t# switches currently held holdable with one in inventory\n\t\nactivateInstrument()\n\t# uses currently active instrument\n\t\npickUp( item )\n\t# picks up item, and either stores it in inventory or drops\n\t# the currently active item of that kind when inventory is\n\t# full\n```\n\n\n","x":-2460,"y":-2860,"width":680,"height":640,"color":"5"},
+		{"id":"ef624d75c62c8b58","type":"text","text":"**Stat Holder Comp**\n\nThis Component holds all the Stats of this Character.\nWhen a Stat is needed, and called with get_stat(), the stat is calculated by iterating through the Upgrades from the Upgrade Comp and appyling those who relate to this stat.\n\nThe base states are given for each character individually.\n\nAPI:\n\n```python\nget_stat( stat_id ) -> float\n\tvar stat: float = get_base_stat(stat_id)\n\tfor upgrade in Upgrades:\n\t\tif upgrade.stat_id == stat_id:\n\t\t\tupgrade.apply(stat)\n\t# returns the current vaule of the stat\n\t","x":-1400,"y":-2020,"width":500,"height":520,"color":"5"},
+		{"id":"fa109571550e4e1c","type":"text","text":"**Instrument**","x":-960,"y":-3680,"width":687,"height":601,"color":"2"},
+		{"id":"495d0c26d181a3f6","type":"text","text":"**Droppable Item**","x":-1920,"y":-3649,"width":620,"height":540,"color":"2"},
+		{"id":"ac9064fa809031eb","type":"text","text":"**Upgrades Comp**\n\nKeeps an Array of Upgrades that trigger something or modify a stat.\nIt keeps a Map of UpgradeID -> Upgrade, so when the item that added this upgrade is removed, the upgrade can be removed too\n\n```python\naddUpgrade(Upgrade, U_ID)\n\nremoveUpgrade(U_ID)\n```","x":-2430,"y":-2020,"width":620,"height":600,"color":"5"},
+		{"id":"6bef100cedc4665a","type":"text","text":"**Stats**\nHealth\n* MaxHealth\n* TimeTillRegen\n* RegenAmount\n* HealthGain\n* InDamage\n* InHeal\n* Armor\n\nMovement\n* MoveSpeed\n* DogeDistance\n* DogeFatigue\n\nCombat\n* AttackSpeed\n* OutHeal\n* OutDamage\n* Knockback\n* Range\n* Angle\n","x":-240,"y":-2020,"width":380,"height":680,"color":"4"},
+		{"id":"5a501c8a1c1faa6e","type":"text","text":"**Class Default**\nThe starting value of the Stats for this Class","x":580,"y":-1980,"width":250,"height":120,"color":"4"}
+	],
+	"edges":[
+		{"id":"e7c9fb846f902563","fromNode":"5a501c8a1c1faa6e","fromSide":"left","toNode":"9e4f74adb3844a4b","toSide":"right","color":"4","label":"Sets start values,\nInventory Size,\nStart Upgrades,\nAbility"},
+		{"id":"1812990bdecd0c6e","fromNode":"ef624d75c62c8b58","fromSide":"right","toNode":"6bef100cedc4665a","toSide":"left","label":"Contains"},
+		{"id":"9e358019eee14457","fromNode":"fa109571550e4e1c","fromSide":"bottom","toNode":"3ec1a1d674bd946c","toSide":"top","color":"2","label":"recieves stats"},
+		{"id":"3cdf5d42731c7012","fromNode":"ac9064fa809031eb","fromSide":"right","toNode":"3ec1a1d674bd946c","toSide":"left","color":"5","label":"modify"},
+		{"id":"307f5324cf675b1d","fromNode":"19e45a25017594ed","fromSide":"top","toNode":"495d0c26d181a3f6","toSide":"bottom","color":"5","label":"Contains"},
+		{"id":"83ee6099c485d07d","fromNode":"19e45a25017594ed","fromSide":"bottom","toNode":"ac9064fa809031eb","toSide":"top","color":"5","label":"adds / removes Upgrades"},
+		{"id":"539dbc4efd0d27dc","fromNode":"fa109571550e4e1c","fromSide":"left","toNode":"495d0c26d181a3f6","toSide":"right","color":"2","label":"kind of"}
+	]
+}
