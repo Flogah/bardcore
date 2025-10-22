@@ -36,13 +36,19 @@ func on_player_leave(player: int):
 	PlayerManager.leave(player)
 
 func save_all_players():
+	# this removes the player node from the tree, but without deleting it outright
+	# this way, the player and all its children nodes are safe
 	for player in player_nodes:
-		var player_node = player_nodes[player]
-		player_node.get_parent().remove_child(player_node)
-		#save_player(player, player_node)
+		save_player(player)
 
-func save_player(player: int, player_node: Player):
-	player_nodes[player] = player_node
+func save_player(player:int):
+	var player_node = player_nodes[player]
+	player_node.get_parent().remove_child(player_node)
+
+func load_all_players():
+	# puts all saved player nodes into the game
+	for player in player_nodes:
+		load_player(player)
 
 func load_player(player: int):
 	var player_node = player_nodes[player]

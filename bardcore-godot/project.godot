@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="bardcore"
-run/main_scene="uid://c6il3frbajhsm"
+run/main_scene="uid://cr1ydxfa4aiik"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 PlayerManager="*res://ManagerScripts/PlayerManager.gd"
 GameManager="*res://ManagerScripts/GameManager.gd"
-LevelManager="*res://ManagerScripts/LevelManager.gd"
+MapManager="*res://ManagerScripts/MapManager.gd"
 
 [editor_plugins]
 
