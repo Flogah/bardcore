@@ -191,7 +191,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.763202, 0, 0)
 [node name="Preview" type="MeshInstance3D" parent="SpawnCenter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2409172, 0)
 mesh = SubResource("SphereMesh_ju5mt")
-skeleton = NodePath("../../../Terrain")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
