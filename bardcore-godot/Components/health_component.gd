@@ -1,17 +1,18 @@
 extends Node
 class_name health_component
+
+
 ##[/b]This component adds health to its parent. [br][br]
 ##If you assign this in the [hitbox_component] for it be able to work.[br]
 ##If you want to telegraph changes, add a [telegraph_component] and assign it here to [member telegraph_comp].[b]
 
+signal died
+
 #@export var telegraph_comp: telegraphing_component
 @export var health_bar: Label
-
 @export_range(10,1000,10) var max_health: float = 100
+
 var health: float
-
-
-signal died
 
 func _ready() -> void:
 	health = max_health

@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsaca255hp1cx"]
+[gd_scene load_steps=16 format=3 uid="uid://dsaca255hp1cx"]
 
 [ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_vycma"]
+[ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_31uih"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_vycma"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yo7wb"]
@@ -151,11 +152,22 @@ mesh = SubResource("BoxMesh_vycma")
 
 [node name="Enemies" type="Node3D" parent="."]
 
+[node name="Enemy" parent="Enemies" instance=ExtResource("2_31uih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.081271, 0, -8.008665)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("2_31uih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.374717, 0, -9.658266)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("2_31uih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.103231, 0, -7.1997933)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("2_31uih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.550913, 0, 13.473932)
+
 [node name="Exits" type="Node3D" parent="."]
 
 [node name="Portal" parent="Exits" instance=ExtResource("2_vycma")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
-entrance = true
 
 [node name="Portal2" parent="Exits" instance=ExtResource("2_vycma")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)
