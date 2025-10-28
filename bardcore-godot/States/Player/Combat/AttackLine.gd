@@ -17,7 +17,5 @@ func enter(previous_state_path: String, data := {}) -> void:
 	var attackArea = ATTACK_LINE_AREA.instantiate()
 	attackArea.global_position = attack_spawn.global_position
 	get_tree().current_scene.add_child(attackArea)
-	attackArea.rotation = attack_spawn.rotation
-	
-	
+	attackArea.rotation = attack_spawn.global_rotation
 	finished.emit("Idle")
