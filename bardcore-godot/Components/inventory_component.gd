@@ -11,11 +11,11 @@ var slots = {
 
 func pickup(item: droppable_item) -> void:
 	var slot = slots[item.type]
-	drop(item.type)
 	if slot is Array:
 		slot.append(item)
 	elif slot is droppable_item:
-		slot = item
+		drop(item.type)
+	slot = item
 
 func drop(item_type: droppable_item.item_type) -> void:
 	var slot = slots[item_type]
@@ -24,5 +24,9 @@ func drop(item_type: droppable_item.item_type) -> void:
 			if slot[0] is droppable_item:
 				get_tree().add_child(slot.pop_at(0))
 	elif slot is droppable_item:
-		get_tree().add_child(slot)
+		get_tree().add_child(slot) #TODO: make enviroment a class to check for, also may create a function to call here that handles add_child() itself to put it at the right place
+		if owner is Node3D:
+			slot.global_position = owner.global_position
+		else:
+			slot.global_position = Vector3(0,0,0)
 		slots[item_type] = null
