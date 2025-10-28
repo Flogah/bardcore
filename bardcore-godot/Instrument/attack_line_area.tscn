@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgjsdlwnmpwgj"]
+
+[ext_resource type="Script" uid="uid://ctb0238ncslkt" path="res://Instrument/attack_line_area.gd" id="1_16o3o"]
+[ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="2_x5ccc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf4lh"]
+size = Vector3(1, 1, 2.9971924)
+
+[node name="AttackLineArea" type="Node3D"]
+script = ExtResource("1_16o3o")
+
+[node name="hit_emitter_box" type="Area3D" parent="."]
+script = ExtResource("2_x5ccc")
+metadata/_custom_type_script = "uid://q46hat3a6486"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit_emitter_box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9985962)
+shape = SubResource("BoxShape3D_yf4lh")
