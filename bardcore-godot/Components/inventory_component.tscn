@@ -12,3 +12,6 @@ script = ExtResource("1_j7b1u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_gnq3u")
+
+[connection signal="area_entered" from="Area3D" to="." method="add_possible_pickupable_item"]
+[connection signal="area_exited" from="Area3D" to="." method="remove_pickupable_item"]
