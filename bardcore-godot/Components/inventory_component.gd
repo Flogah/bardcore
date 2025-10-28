@@ -16,6 +16,9 @@ var slots = {
 
 var pickup_area: Area3D
 
+func _process(_delta: float) -> void:
+	try_pickup()
+
 func try_pickup() -> void: #call this on pickup input
 	if pickup_item:
 		pickup(pickup_item)
@@ -24,9 +27,12 @@ func pickup(item: droppable_item) -> void: #call this if a item should be forced
 	var slot = slots[item.type]
 	if slot is Array:
 		slot.append(item)
+		if slot.size() >= 2:
+			drop(item.type)
 	elif slot is droppable_item:
 		drop(item.type)
 	slot = item
+	item.owner.remove_child(item)
 
 func drop(item_type: droppable_item.item_type) -> void:
 	var slot = slots[item_type]
@@ -42,7 +48,9 @@ func drop(item_type: droppable_item.item_type) -> void:
 func add_possible_pickupable_item(area: Area3D) -> void:
 	if area.owner is droppable_item:
 		pickupable_items.append(area.owner)
-		if area.owner.global_position.distance_to(global_position) < pickup_item.global_position.distance_to(global_position):
+		if !pickup_item:
+			pickup_item = area.owner
+		elif area.owner.global_position.distance_to(global_position) < pickup_item.global_position.distance_to(global_position):
 			pickup_item = area.owner
 
 func remove_pickupable_item(area: Area3D) -> void:

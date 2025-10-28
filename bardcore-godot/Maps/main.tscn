@@ -95,4 +95,10 @@ size = 30.0
 near = 0.017
 far = 84.78
 
-[node name="TestItem" parent="." instance=ExtResource("1_l70rm")]
+[node name="DroppableItem" parent="." instance=ExtResource("1_l70rm")]
+
+[node name="DroppableItem2" parent="." instance=ExtResource("1_l70rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7799363, 0, 0)
+
+[node name="DroppableItem3" parent="." instance=ExtResource("1_l70rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.085836, 0, 0)
