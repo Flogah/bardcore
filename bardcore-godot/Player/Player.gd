@@ -15,6 +15,8 @@ var instrument_offset:Vector3
 @export var dash_cooldown: float = 0.1
 @export var dash_duration: float = 0.1
 
+@export var inventroy: inventory_component
+
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera: Camera3D
 var player: int
