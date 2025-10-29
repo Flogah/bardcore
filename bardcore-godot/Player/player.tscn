@@ -29,6 +29,7 @@ size = Vector3(0.46, 0.26, 0.07)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 2
 script = ExtResource("1_fhl08")
 
 [node name="InstrumentSpawn" type="Node3D" parent="."]

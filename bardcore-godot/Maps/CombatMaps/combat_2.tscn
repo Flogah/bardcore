@@ -148,7 +148,6 @@ mesh = SubResource("BoxMesh_vycma")
 
 [node name="Portal" parent="Exits" instance=ExtResource("2_qmnqa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
-entrance = true
 
 [node name="Portal2" parent="Exits" instance=ExtResource("2_qmnqa")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)

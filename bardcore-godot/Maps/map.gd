@@ -3,30 +3,39 @@ class_name Map
 
 @onready var enemy_nodes: Node3D = $Enemies
 @onready var exit_nodes: Node3D = $Exits
+@onready var bits: Node3D = $Bits
 
 var enemies = []
 var portals = []
+var right_portal:Portal
+var left_portal:Portal
 
 func _ready() -> void:
+	read_map()
+	shuffle_boxes()
+
+func read_map():
 	for enemy in enemy_nodes.get_children():
 		enemies.append(enemy)
-		# TODO add signal.connect when an enemy dies, so we can check if it's safe
 	for portal in exit_nodes.get_children():
 		portals.append(portal)
 	
+	connect_portals()
+
+func connect_portals():
 	for portal in portals:
-		if portal.entrance:
-			portal.on_enter_portal.connect(enter_previous_map)
+		if portal.position.x <= 0:
+			left_portal = portal
+			left_portal.on_enter_portal.connect(exit_left)
 		else:
-			portal.on_enter_portal.connect(enter_next_map)
+			right_portal = portal
+			right_portal.on_enter_portal.connect(exit_right)
 
-func enter_previous_map():
+func exit_left():
 	MapManager.go_left()
-	spawn_players()
 
-func enter_next_map():
+func exit_right():
 	MapManager.go_right()
-	spawn_players()
 
 func spawn_players():
 	# TODO get access to all players and place them at the entrance
@@ -34,21 +43,11 @@ func spawn_players():
 	if GameManager.player_nodes.is_empty():
 		return
 	
-	var portals = get_tree().get_nodes_in_group("Portal")
 	var entrance
-	
-	# do we need to spawn players on the left side or the right side?
-	# and which portal is left, which is right?
 	if MapManager.coming_from_left:
-		if portals[0].position.x <= 0:
-			entrance = portals[0]
-		else:
-			entrance = portals[1]
+		entrance = left_portal
 	else:
-		if portals[0].position.x >= 0:
-			entrance = portals[0]
-		else:
-			entrance = portals[1]
+		entrance = right_portal
 	
 	var player_nodes = GameManager.player_nodes
 	var entrance_position = entrance.spawn_center.global_position
@@ -77,3 +76,8 @@ func lock_unlock_all_portals():
 	unlock_timer.autostart = true
 	unlock_timer.timeout.connect(unlock_all_portals)
 	add_child(unlock_timer)
+
+func shuffle_boxes():
+	var boxes = bits.get_children()
+	for box in boxes:
+		box.position += Vector3(randf_range(-1, 1), 0, randf_range(-1, 1))

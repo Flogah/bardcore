@@ -1,5 +1,5 @@
 extends Node3D
-class_name portal
+class_name Portal
 
 signal on_enter_portal()
 
@@ -12,7 +12,6 @@ signal on_enter_portal()
 @onready var gate_blocker: CollisionShape3D = $GateBlocker/CollisionShape3D
 
 var entrance : bool = false
-
 var locked : bool = false
 
 func _ready() -> void:
@@ -20,11 +19,7 @@ func _ready() -> void:
 	gate_blocker.disabled = true
 
 func _on_player_entered(body: Node3D) -> void:
-	if !body.is_in_group("Player"):
-		return
-	if locked:
-		body.position = spawn_center.position
-		return
+	print("Player detected!")
 	on_enter_portal.emit()
 
 func lock():
