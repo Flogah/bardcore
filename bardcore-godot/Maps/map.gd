@@ -14,8 +14,6 @@ func _ready() -> void:
 	for portal in exit_nodes.get_children():
 		portals.append(portal)
 	
-	spawn_players()
-	
 	for portal in portals:
 		if portal.entrance:
 			portal.on_enter_portal.connect(enter_previous_map)
@@ -23,12 +21,12 @@ func _ready() -> void:
 			portal.on_enter_portal.connect(enter_next_map)
 
 func enter_previous_map():
-	#MapManager.go_to_previous_map()
 	MapManager.go_left()
+	spawn_players()
 
 func enter_next_map():
-	#MapManager.go_to_next_map()
 	MapManager.go_right()
+	spawn_players()
 
 func spawn_players():
 	# TODO get access to all players and place them at the entrance
@@ -63,14 +61,6 @@ func spawn_players():
 			cur_scene.add_child(player)
 			player.position = entrance_position
 			entrance_position.z += 2.0
-	
-	# for testing, so we can actually see the locking and unlocking
-	#lock_all_portals()
-	#var unlock_timer = Timer.new()
-	#unlock_timer.one_shot = true
-	#unlock_timer.autostart = true
-	#unlock_timer.timeout.connect(unlock_all_portals)
-	#add_child(unlock_timer)
 
 func unlock_all_portals():
 	for portal in portals:
@@ -79,3 +69,11 @@ func unlock_all_portals():
 func lock_all_portals():
 	for portal in portals:
 		portal.lock()
+
+func lock_unlock_all_portals():
+	lock_all_portals()
+	var unlock_timer = Timer.new()
+	unlock_timer.one_shot = true
+	unlock_timer.autostart = true
+	unlock_timer.timeout.connect(unlock_all_portals)
+	add_child(unlock_timer)
