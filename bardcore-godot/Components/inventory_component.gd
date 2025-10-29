@@ -14,9 +14,6 @@ var slots = {
 	droppable_item.item_type.INSTRUMENT: null,
 }
 
-func _process(_delta: float) -> void:
-	try_pickup()
-
 func try_pickup() -> void: #call this on pickup input
 	if pickup_item:
 		pickup(pickup_item)
