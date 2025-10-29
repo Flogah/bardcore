@@ -18,7 +18,8 @@ func spawn_player(player: int):
 	player_node.init(player)
 	
 	# add the player to the tree
-	var current_scene = get_tree().current_scene
+	#var current_scene = get_tree().current_scene
+	var current_scene = MapManager.get_current_map()
 	current_scene.add_child(player_node)
 	
 	# random spawn position

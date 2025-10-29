@@ -23,10 +23,12 @@ func _ready() -> void:
 			portal.on_enter_portal.connect(enter_next_map)
 
 func enter_previous_map():
-	MapManager.go_to_previous_map()
+	#MapManager.go_to_previous_map()
+	MapManager.go_left()
 
 func enter_next_map():
-	MapManager.go_to_next_map()
+	#MapManager.go_to_next_map()
+	MapManager.go_right()
 
 func spawn_players():
 	# TODO get access to all players and place them at the entrance
@@ -52,11 +54,15 @@ func spawn_players():
 	
 	var player_nodes = GameManager.player_nodes
 	var entrance_position = entrance.spawn_center.global_position
+	
 	for player_node in player_nodes:
 		var player = player_nodes[player_node]
-		get_tree().current_scene.add_child(player)
-		player.position = entrance_position
-		entrance_position.z += 2.0
+		#var cur_scene = get_tree().get_current_scene()
+		var cur_scene = MapManager.get_current_map()
+		if cur_scene:
+			cur_scene.add_child(player)
+			player.position = entrance_position
+			entrance_position.z += 2.0
 	
 	# for testing, so we can actually see the locking and unlocking
 	#lock_all_portals()

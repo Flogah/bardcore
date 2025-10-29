@@ -62,31 +62,39 @@ func change_scene_to(target_map : String):
 ######################
 
 func get_current_map() -> Map:
-	return current_map
+	return get_map(current_grid_position)
 
 func get_map(pos : Vector2i) -> Map:
-	var m = map_grid[pos]
+	var m = map_grid.get(pos)
 	if !m:
 		m = get_random_map().instantiate()
+		map_grid[pos] = m
 	return m
 
-func get_random_map() -> Map:
+func get_random_map() -> PackedScene:
 	var rand = combat_maps[randi_range(0, combat_maps.size()-1)]
-	var rand_map = rand.instantiate()
+	var rand_map = load(rand)
 	return rand_map
 
 func unload_map():
 	GameManager.save_all_players()
 	var root = get_tree().get_root()
 	var cur_scene = get_tree().current_scene
-	root.remove_child(cur_scene)
+	#root.remove_child(cur_scene)
+	#root.call_deferred("remove_child", cur_scene)
+	root.remove_child.call_deferred(cur_scene)
 
-func load_map(_pos: Vector2i) -> void:
+func load_map(pos: Vector2i) -> void:
 	unload_map()
 	var root = get_tree().get_root()
-	var map_to_load = get_map(_pos)
-	root.add_child(map_to_load)
-	get_tree().set_current_scene(map_to_load)
+	var map_to_load = get_map(pos)
+	current_grid_position = pos
+	#root.add_child(map_to_load)
+	#root.call_deferred("add_child", map_to_load)
+	root.add_child.call_deferred(map_to_load)
+	#get_tree().set_current_scene.call_deferred(map_to_load)
+	#var scene = get_tree().current_scene
+	#get_tree().current_scene = map_to_load
 
 func go_right():
 	var map_r = current_grid_position + Vector2i(1,0)
