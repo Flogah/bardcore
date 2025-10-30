@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=15 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Player/Player.gd" id="1_fhl08"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="2_vtle1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cql84k6t4g7rd" path="res://States/Player/Movement/PlayerRunning.gd" id="4_00tjw"]
 [ext_resource type="Script" uid="uid://dri7mdulo5mpn" path="res://States/Player/Movement/PlayerDashing.gd" id="5_x3vf3"]
 [ext_resource type="FontFile" uid="uid://difvbbraws6c5" path="res://addons/Kenney_Fonts/Kenney High.ttf" id="6_apopc"]
+[ext_resource type="PackedScene" uid="uid://dd418ylpenn6d" path="res://Components/inventory_component.tscn" id="7_vtle1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
 
@@ -80,3 +81,5 @@ text = "P #"
 font = ExtResource("6_apopc")
 font_size = 12
 outline_size = 6
+
+[node name="InventoryComponent" parent="." instance=ExtResource("7_vtle1")]
