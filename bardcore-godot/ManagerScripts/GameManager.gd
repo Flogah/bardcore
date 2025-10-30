@@ -18,7 +18,8 @@ func spawn_player(player: int):
 	player_node.init(player)
 	
 	# add the player to the tree
-	var current_scene = get_tree().current_scene
+	#var current_scene = get_tree().current_scene
+	var current_scene = MapManager.get_current_map()
 	current_scene.add_child(player_node)
 	
 	# random spawn position
@@ -43,6 +44,8 @@ func save_all_players():
 
 func save_player(player:int):
 	var player_node = player_nodes[player]
+	# this one is to avoid portals triggering their detection twice when switching maps
+	player_node.global_position = Vector3.UP * 1000.0
 	player_node.get_parent().remove_child(player_node)
 
 func load_all_players():
