@@ -44,6 +44,10 @@ folder_colors={
 "res://addons/Kenney_Fonts/": "gray"
 }
 
+[filesystem]
+
+import/blender/enabled=false
+
 [global_group]
 
 Player=""

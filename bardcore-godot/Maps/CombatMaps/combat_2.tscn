@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://d31bh0esbjp34"]
+[gd_scene load_steps=15 format=3 uid="uid://d31bh0esbjp34"]
 
 [ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_piqej"]
+[ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_1jh6t"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_qmnqa"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yo7wb"]
@@ -143,6 +144,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.038653, 0.50000095, -8.65
 mesh = SubResource("BoxMesh_vycma")
 
 [node name="Enemies" type="Node3D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("2_1jh6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2050533, 0, 6.283064)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("2_1jh6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.426115, 0, 8.761313)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("2_1jh6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.885725, 0, 8.619909)
 
 [node name="Exits" type="Node3D" parent="."]
 
