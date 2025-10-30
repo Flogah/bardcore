@@ -4,30 +4,8 @@
     "type": "split",
     "children": [
       {
-        "id": "42b4b703c67d958d",
-        "type": "tabs",
-        "dimension": 40.614886731391586,
-        "children": [
-          {
-            "id": "be27231e83cb5778",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Architektur/Timeline.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Timeline"
-            }
-          }
-        ]
-      },
-      {
         "id": "936811f47bf425e8",
         "type": "tabs",
-        "dimension": 59.385113268608414,
         "children": [
           {
             "id": "71bc24a836abd740",
@@ -35,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Agenda Meetings.md",
+                "file": "Architektur/Software Architektur.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Agenda Meetings"
+              "title": "Software Architektur"
             }
           }
         ]
@@ -193,9 +171,13 @@
   },
   "active": "71bc24a836abd740",
   "lastOpenFiles": [
-    "Architektur/Timeline.md",
+    "Architektur/Game Architektur.canvas",
     "Agenda Meetings.md",
+    "Architektur/Item Stats Architecture.canvas",
     "GDD Bardcore.md",
+    "Architektur/Timeline.md",
+    "Interview mit einem Producer.md",
+    "Quellen.md",
     "Creative Writing/Dialoge.md",
     "Game Design/Meta Loop.md",
     "Creative Writing/Backstories.md",
@@ -205,9 +187,7 @@
     "Creative Writing",
     "Game Design",
     "Architektur/Software Architektur.md",
-    "Quellen.md",
     "Architektur",
-    "Interview mit einem Producer.md",
     "Welcome.md"
   ]
 }
