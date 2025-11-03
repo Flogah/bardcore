@@ -17,7 +17,7 @@ func remove_upgrade(U_ID) -> void:
 		stat_upgrades[upgrade_.effected_stat].erase(upgrade_)
 	upgrades.erase(U_ID)
 
-func modify_stat(stat: float, stat_id: int) -> float:
+func modify_stat(stat: float, stat_id: stat_component.stat_id) -> float:
 	var modifing_upgrades: Array[stat_upgrade] = stat_upgrades[stat_id]
 	var modified_stat: float = stat
 	if modifing_upgrades is Array:
