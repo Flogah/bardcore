@@ -1,21 +1,27 @@
 extends Node
 class_name upgrades_component
 
-var upgrades: Dictionary[int, upgrade] = {}
+var upgrades: Dictionary[int, Array] = {}
 var stat_upgrades: Dictionary[int, Array] = {}
 
-func add_upgrade(U_ID: int, new_upgrade: upgrade) -> void:
-	upgrades[U_ID] = new_upgrade
-	if new_upgrade is stat_upgrade:
-		var this_stat_upgrades: Array[stat_upgrade] = stat_upgrades[new_upgrade.effected_stat]
-		this_stat_upgrades.append(new_upgrade)
-		this_stat_upgrades.sort_custom(sort_stat_upgrades_according_to_apply_prio)
+func add_upgrades(Item_ID: int, new_upgrades: Array[upgrade]) -> void:
+	upgrades[Item_ID] = new_upgrades
+	for new_upgrade in new_upgrades:
+		if new_upgrade is stat_upgrade:
+			var this_stats_upgrades: Array[stat_upgrade] = stat_upgrades[new_upgrade.effected_stat]
+			this_stats_upgrades.append(new_upgrade)
+			this_stats_upgrades.sort_custom(sort_stat_upgrades_according_to_apply_prio)
+		if new_upgrade is triggered_upgrade:
+			new_upgrade.connect_trigger()
 
-func remove_upgrade(U_ID) -> void:
-	var upgrade_ = upgrades[U_ID]
-	if upgrade_ is stat_upgrade:
-		stat_upgrades[upgrade_.effected_stat].erase(upgrade_)
-	upgrades.erase(U_ID)
+func remove_upgrades(Item_ID) -> void:
+	var old_upgrades: Array[upgrade] = upgrades[Item_ID]
+	for old_upgrade in old_upgrades:
+		if old_upgrade is stat_upgrade:
+			stat_upgrades[old_upgrade.effected_stat].erase(old_upgrade)
+		if old_upgrade is triggered_upgrade:
+			old_upgrade.disconnect_trigger()
+	upgrades.erase(Item_ID)
 
 func modify_stat(stat: float, stat_id: stat_component.stat_id) -> float:
 	var modifing_upgrades: Array[stat_upgrade] = stat_upgrades[stat_id]
