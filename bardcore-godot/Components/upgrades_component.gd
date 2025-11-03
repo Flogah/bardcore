@@ -24,11 +24,12 @@ func remove_upgrades(Item_ID) -> void:
 	upgrades.erase(Item_ID)
 
 func modify_stat(stat: float, stat_id: stat_component.stat_id) -> float:
-	var modifing_upgrades: Array[stat_upgrade] = stat_upgrades[stat_id]
 	var modified_stat: float = stat
-	if modifing_upgrades is Array:
-		for mod_upgrade in modifing_upgrades:
-			modified_stat = mod_upgrade.apply(modified_stat)
+	if stat_id in stat_upgrades.keys():
+		var modifing_upgrades: Array[stat_upgrade] = stat_upgrades[stat_id]
+		if modifing_upgrades is Array:
+			for mod_upgrade in modifing_upgrades:
+				modified_stat = mod_upgrade.apply(modified_stat)
 	return modified_stat
 
 func sort_stat_upgrades_according_to_apply_prio(a: stat_upgrade, b: stat_upgrade) -> bool:

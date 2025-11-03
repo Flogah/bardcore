@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcbb3pmxalmni"]
+
+[ext_resource type="Script" uid="uid://c6q38tvrk6b8n" path="res://Components/upgrades_component.gd" id="1_deliq"]
+
+[node name="UpgradesComponent" type="Node"]
+script = ExtResource("1_deliq")
