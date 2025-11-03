@@ -14,11 +14,6 @@ var slots = {
 	droppable_item.item_type.INSTRUMENT: null,
 }
 
-var pickup_area: Area3D
-
-func _process(_delta: float) -> void:
-	try_pickup()
-
 func try_pickup() -> void: #call this on pickup input
 	if pickup_item:
 		pickup(pickup_item)
@@ -26,23 +21,24 @@ func try_pickup() -> void: #call this on pickup input
 func pickup(item: droppable_item) -> void: #call this if a item should be forced into a slot
 	var slot = slots[item.type]
 	if slot is Array:
-		slot.append(item)
 		if slot.size() >= 2:
 			drop(item.type)
+		slot.append(item)
 	elif slot is droppable_item:
 		drop(item.type)
 	slot = item
-	item.owner.remove_child(item)
+	item.get_parent().remove_child(item)
 
 func drop(item_type: droppable_item.item_type) -> void:
 	var slot = slots[item_type]
 	if slot is Array:
-		if slot.size() >= 2:
-			if slot[0] is droppable_item:
-				get_tree().add_child(slot.pop_at(0))
+		if slot[0] is droppable_item:
+			get_tree().current_scene.add_child(slot[0])
+			slot[0].global_position = global_position + global_basis.z * -5
+			slot.remove_at(0)
 	elif slot is droppable_item:
-		get_tree().add_child(slot) #TODO: make enviroment a class to check for, also may create a function to call here that handles add_child() itself to put it at the right place
-		slot.global_position = global_position + Vector3.FORWARD * 5
+		get_tree().current_scene.add_child(slot) #TODO: make enviroment a class to check for, also may create a function to call here that handles add_child() itself to put it at the right place
+		slot.global_position = global_position + global_basis.z * -5
 		slots[item_type] = null
 
 func add_possible_pickupable_item(area: Area3D) -> void:
