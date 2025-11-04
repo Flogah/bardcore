@@ -37,12 +37,12 @@ func drop(item_type: droppable_item.item_type) -> void:
 		if slot[0] is droppable_item:
 			get_tree().current_scene.add_child(slot[0])
 			slot[0].global_position = global_position + global_basis.z * -5
-			upgrades_comp.remove_upgrades(slot[0].id)
+			upgrades_comp.remove_upgrades(slot[0].get_instance_id())
 			slot.remove_at(0)
 	elif slot is droppable_item:
 		get_tree().current_scene.add_child(slot) #TODO: make enviroment a class to check for, also may create a function to call here that handles add_child() itself to put it at the right place
 		slot.global_position = global_position + global_basis.z * -5
-		upgrades_comp.remove_upgrades(slot.id)
+		upgrades_comp.remove_upgrades(slot.get_instance_id())
 		slots[item_type] = null
 
 func add_possible_pickupable_item(area: Area3D) -> void:

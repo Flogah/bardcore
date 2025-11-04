@@ -5,4 +5,4 @@ class_name stat_upgrade
 @export var apply_priority: int
 
 func apply(stat: float) -> float:
-		return 1.0
+		return stat
