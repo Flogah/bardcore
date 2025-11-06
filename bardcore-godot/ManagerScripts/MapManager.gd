@@ -42,7 +42,7 @@ func unload_map():
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()
 	
-	GameManager.save_all_players()
+	PlayerManager.save_all_players()
 	
 	if current_map:
 		var root = get_tree().get_root()
