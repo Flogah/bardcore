@@ -4,21 +4,46 @@
     "type": "split",
     "children": [
       {
+        "id": "42b4b703c67d958d",
+        "type": "tabs",
+        "dimension": 24.90974729241877,
+        "children": [
+          {
+            "id": "be27231e83cb5778",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Architektur/Timeline.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Timeline"
+            }
+          }
+        ]
+      },
+      {
         "id": "936811f47bf425e8",
         "type": "tabs",
+        "dimension": 75.09025270758123,
         "children": [
           {
             "id": "71bc24a836abd740",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Architektur/Software Architektur.md",
-                "mode": "source",
-                "source": false
+                "file": "Architektur/Item Stats Architecture.canvas",
+                "viewState": {
+                  "x": 48.24646290239929,
+                  "y": -1779.724781439973,
+                  "zoom": -0.8112784236827486
+                }
               },
-              "icon": "lucide-file",
-              "title": "Software Architektur"
+              "icon": "lucide-layout-dashboard",
+              "title": "Item Stats Architecture"
             }
           }
         ]
@@ -44,7 +69,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Dateiexplorer"
+              "title": "Files"
             }
           },
           {
@@ -160,20 +185,19 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Schnellauswahl öffnen": false,
-      "graph:Graph-Ansicht öffnen": false,
-      "canvas:Neuen Canvas erstellen": false,
-      "daily-notes:Heutige Notiz öffnen": false,
-      "templates:Vorlage einfügen": false,
-      "command-palette:Befehlspalette öffnen": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
       "bases:Create new base": false
     }
   },
   "active": "71bc24a836abd740",
   "lastOpenFiles": [
-    "Architektur/Game Architektur.canvas",
     "Agenda Meetings.md",
-    "Architektur/Item Stats Architecture.canvas",
+    "Architektur/Timeline.md",
     "GDD Bardcore.md",
     "Architektur/Timeline.md",
     "Interview mit einem Producer.md",
