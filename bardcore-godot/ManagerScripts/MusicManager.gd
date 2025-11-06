@@ -1,11 +1,13 @@
 extends Node
 
-@export var music_list = AudioStreamPlaylist
+var music_player: AudioStreamPlayer
+var music_list = []
 var current_music
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	music_list.play()
+	current_music = 0
+	play_music()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,5 +15,8 @@ func _process(delta: float) -> void:
 	pass
 
 func change_music(index) -> void:
-	current_music = music_list.instantiate()
-	current_music.get_list_stream(index)
+	current_music = index
+	play_music()
+
+func play_music() -> void:
+	music_player.set_stream(music_list[current_music])
