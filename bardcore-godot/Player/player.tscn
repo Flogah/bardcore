@@ -29,9 +29,9 @@ size = Vector3(0.46, 0.26, 0.07)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
-collision_layer = 2
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("inventory") groups=["Player"]]
 script = ExtResource("1_fhl08")
+inventory = NodePath("InventoryComponent")
 
 [node name="InstrumentSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4845772, -0.66652244)

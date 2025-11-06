@@ -14,6 +14,8 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @export var dash_cooldown: float = 0.1
 @export var dash_duration: float = 0.1
 
+@export var inventory: inventory_component
+
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera: Camera3D
 var player: int
@@ -37,6 +39,9 @@ func _physics_process(delta: float) -> void:
 		point_to_mouse()
 	else:
 		look_direction()
+	
+	if MultiplayerInput.is_action_just_pressed(device, "interact"):
+		inventory.try_pickup()
 	
 	velocity.y -= gravity * delta
 	move_and_slide()
