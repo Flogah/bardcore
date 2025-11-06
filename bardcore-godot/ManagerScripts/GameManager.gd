@@ -15,14 +15,12 @@ func spawn_player(player: int):
 	var player_node = player_scene.instantiate()
 	player_node.leave.connect(on_player_leave)
 	player_nodes[player] = player_node
-	
-	# let the player know which device controls it
-	#var device = PlayerManager.get_player_device(player)
-	# already handled by the player itself
 	player_node.init(player)
 	
 	# add the player to the tree
-	get_tree().get_root().add_child(player_node)
+	#var current_scene = get_tree().current_scene
+	var current_scene = MapManager.get_current_map()
+	current_scene.add_child(player_node)
 	
 	# random spawn position
 	player_node.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))
@@ -37,3 +35,24 @@ func on_player_leave(player: int):
 	# this will, through the player manager's "player_left" signal,
 	# indirectly call delete_player because it's connected in this file's _ready()
 	PlayerManager.leave(player)
+
+func save_all_players():
+	# this removes the player node from the tree, but without deleting it outright
+	# this way, the player and all its children nodes are safe
+	for player in player_nodes:
+		save_player(player)
+
+func save_player(player:int):
+	var player_node = player_nodes[player]
+	# this one is to avoid portals triggering their detection twice when switching maps
+	player_node.global_position = Vector3.UP * 1000.0
+	player_node.get_parent().remove_child(player_node)
+
+func load_all_players():
+	# puts all saved player nodes into the game
+	for player in player_nodes:
+		load_player(player)
+
+func load_player(player: int):
+	var player_node = player_nodes[player]
+	get_tree().current_scene.add_child(player_node)

@@ -202,3 +202,6 @@ projection = 1
 size = 33.731
 near = 0.017
 far = 84.78
+
+[node name="BeatTimer" type="Timer" parent="." groups=["BeatTimer"]]
+autostart = true

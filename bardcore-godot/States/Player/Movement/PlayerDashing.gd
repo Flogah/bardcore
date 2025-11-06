@@ -17,6 +17,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 	dash_duration_timer.start(player.dash_duration)
 	
 	dash_direction = player.velocity.normalized()
+	
+	player.add_instrument(player.VIOLIN)
 
 func physics_update(_delta: float) -> void:
 	player.global_position += dash_direction * player.dash_force * _delta

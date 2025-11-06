@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj476uqn2kb0b"]
+[gd_scene load_steps=10 format=3 uid="uid://cj476uqn2kb0b"]
 
 [ext_resource type="Script" uid="uid://bb18oxxgsomp1" path="res://Enemy/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="2_md0e3"]
 [ext_resource type="Script" uid="uid://bjrk6xcq3yky0" path="res://States/Enemy/EnemyFollow.gd" id="3_4ra3w"]
+[ext_resource type="Script" uid="uid://bhrs6p0rwjb3h" path="res://Components/hit_reciver_box.gd" id="4_eqilm"]
+[ext_resource type="Script" uid="uid://bxlgjvef5ow5t" path="res://Components/health_component.gd" id="5_ncf7h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tegq"]
 
@@ -11,6 +13,8 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md0e3"]
 albedo_color = Color(0.622625, 0, 0.096408896, 1)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ncf7h"]
+
 [node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_4ra3w")
 
@@ -18,10 +22,27 @@ script = ExtResource("1_4ra3w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_8tegq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_7p1mj")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_md0e3")
+
+[node name="hit_reciver_box" type="Area3D" parent="." node_paths=PackedStringArray("health_comp")]
+script = ExtResource("4_eqilm")
+health_comp = NodePath("../health_component")
+metadata/_custom_type_script = "uid://bhrs6p0rwjb3h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit_reciver_box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ncf7h")
+debug_color = Color(0, 0.5498251, 0.92603725, 0.41960785)
+
+[node name="health_component" type="Node" parent="."]
+script = ExtResource("5_ncf7h")
+metadata/_custom_type_script = "uid://bxlgjvef5ow5t"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_md0e3")

@@ -4,7 +4,8 @@ class_name EnemyFollow
 var follow_target:CharacterBody3D
 
 func enter(previous_state_path: String, data := {}) -> void:
-	follow_target = get_tree().get_first_node_in_group("Player")
+	var target = GameManager.player_nodes[randi_range(0, GameManager.player_nodes.size()-1)]
+	follow_target = target
 
 func physics_update(delta: float) -> void:
 	var direction = (follow_target.global_position - owner.global_position)

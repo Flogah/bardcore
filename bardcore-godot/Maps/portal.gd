@@ -1,5 +1,7 @@
 extends Node3D
-class_name portal
+class_name Portal
+
+signal on_enter_portal()
 
 @onready var spawn_center: Node3D = $SpawnCenter
 @onready var enter_area: Area3D = $EnterArea
@@ -9,9 +11,7 @@ class_name portal
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var gate_blocker: CollisionShape3D = $GateBlocker/CollisionShape3D
 
-@export var entrance : bool = false
-
-var connected_exit : portal
+var entrance : bool = false
 var locked : bool = false
 
 func _ready() -> void:
@@ -19,8 +19,8 @@ func _ready() -> void:
 	gate_blocker.disabled = true
 
 func _on_player_entered(body: Node3D) -> void:
-	if locked:
-		pass
+	print("Player detected!")
+	on_enter_portal.emit()
 
 func lock():
 	if locked:
