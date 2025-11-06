@@ -69,7 +69,7 @@ func load_all_players():
 
 func load_player(player: int):
 	var player_node = player_nodes[player]
-	get_tree().current_scene.add_child(player_node)
+	MapManager.current_map.add_child(player_node)
 
 
 func join(device: int):
