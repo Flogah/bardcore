@@ -2,6 +2,7 @@ extends Node3D
 class_name inventory_component
 
 #@export var tele_comp: telegraphing_component
+@export var stat_comp: stat_component
 
 var pickupable_items: Array[droppable_item]
 var pickup_item: droppable_item
@@ -27,6 +28,7 @@ func pickup(item: droppable_item) -> void: #call this if a item should be forced
 	elif slot is droppable_item:
 		drop(item.type)
 	slot = item
+	stat_comp.add_upgrades(item.get_instance_id(),item.upgrades)
 	item.get_parent().remove_child(item)
 
 func drop(item_type: droppable_item.item_type) -> void:
@@ -35,10 +37,12 @@ func drop(item_type: droppable_item.item_type) -> void:
 		if slot[0] is droppable_item:
 			get_tree().current_scene.add_child(slot[0])
 			slot[0].global_position = global_position + global_basis.z * -5
+			stat_comp.remove_upgrades(slot[0].get_instance_id())
 			slot.remove_at(0)
 	elif slot is droppable_item:
 		get_tree().current_scene.add_child(slot) #TODO: make enviroment a class to check for, also may create a function to call here that handles add_child() itself to put it at the right place
 		slot.global_position = global_position + global_basis.z * -5
+		stat_comp.remove_upgrades(slot.get_instance_id())
 		slots[item_type] = null
 
 func add_possible_pickupable_item(area: Area3D) -> void:
