@@ -14,7 +14,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 		attack_cooldown_timer = Timer.new()
 		add_child(attack_cooldown_timer)
 		attack_cooldown_timer.one_shot = true
-		attack_cooldown_timer.wait_time = 1.0
+		attack_cooldown_timer.wait_time = 3.0
 	  
 	if !attack_cooldown_timer.is_stopped():
 		#print("Attack is still on cooldown. Time left: " + str(attack_cooldown_timer.time_left))

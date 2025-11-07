@@ -3,10 +3,12 @@ var beatTimer: Timer
 @export var attack_sound: AudioStreamPlayer3D
 
 func _ready() -> void:
-	beatTimer = get_tree().get_first_node_in_group('BeatTimer')
+	beatTimer = MusicManager.beatTimer
+	#beatTimer = get_tree().get_first_node_in_group('BeatTimer')
 	#unnecessary, it's already connected by hand (check your nodes)
 	#attack_sound.finished.connect(clean_up)
 	beatTimer.timeout.connect(_on_triggered)
+	print("beatTimer")
 
 func _on_triggered() -> void:
 	print("EXPLOSION!")
