@@ -5,7 +5,6 @@ const ATTACK_LINE_AREA = preload("uid://bgjsdlwnmpwgj")
 
 @export var attack_spawn: Node3D
 @export var place_sound: AudioStreamPlayer3D
-@export var attack_sound: AudioStreamPlayer3D
 var attack_cooldown_timer: Timer
 
 func enter(previous_state_path: String, data := {}) -> void:
