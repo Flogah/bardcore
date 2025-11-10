@@ -1,4 +1,5 @@
 extends stat_upgrade
+class_name stat_upgrade_editor
 
 @export var amount: float
 @export_enum("Multiply", "Add") var operator: int
