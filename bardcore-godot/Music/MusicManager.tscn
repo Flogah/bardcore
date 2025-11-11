@@ -1,10 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://eniqvqsxfshf"]
+[gd_scene load_steps=5 format=3 uid="uid://eniqvqsxfshf"]
 
 [ext_resource type="Script" uid="uid://cxrbum0bliyx" path="res://ManagerScripts/MusicManager.gd" id="1_txsen"]
+[ext_resource type="AudioStream" uid="uid://bm46kn62qdwo0" path="res://Instrument/SFX/BGM/28756183.wav" id="2_txsen"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_txsen"]
+stream_count = 1
+stream_0 = ExtResource("2_txsen")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_upvx7"]
+clip_count = 1
+clip_0/name = &"test1"
+clip_0/stream = SubResource("AudioStreamPlaylist_txsen")
+clip_0/auto_advance = 1
+clip_0/next_clip = 0
 
 [node name="MusicManager" type="Node" node_paths=PackedStringArray("current_music")]
 script = ExtResource("1_txsen")
 current_music = NodePath("Music")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_upvx7")
+volume_db = -10.0
 autoplay = true
