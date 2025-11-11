@@ -1,13 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://eniqvqsxfshf"]
+[gd_scene load_steps=2 format=3 uid="uid://eniqvqsxfshf"]
 
 [ext_resource type="Script" uid="uid://cxrbum0bliyx" path="res://ManagerScripts/MusicManager.gd" id="1_txsen"]
-[ext_resource type="AudioStream" uid="uid://bm46kn62qdwo0" path="res://Instrument/SFX/BGM/28756183.wav" id="2_upvx7"]
 
-[node name="MusicManager" type="Node" node_paths=PackedStringArray("clips")]
+[node name="MusicManager" type="Node" node_paths=PackedStringArray("current_music")]
 script = ExtResource("1_txsen")
-clips = NodePath("Clips")
+current_music = NodePath("Music")
 
-[node name="Clips" type="Node" parent="."]
-
-[node name="Music" type="AudioStreamPlayer" parent="Clips"]
-stream = ExtResource("2_upvx7")
+[node name="Music" type="AudioStreamPlayer" parent="."]
+autoplay = true
