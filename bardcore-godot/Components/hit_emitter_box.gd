@@ -16,7 +16,7 @@ enum faction {
 
 var critical: bool
 
-func _physics_process(_delta: float) -> void:
+func hit_check() -> void:
 	var areas = self.get_overlapping_areas()
 	for area in areas:
 		if area is hit_reciver_box:

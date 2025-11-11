@@ -1,6 +1,7 @@
 extends Node3D
 var beatTimer: Timer
 @export var attack_sound: AudioStreamPlayer3D
+@onready var hit_emitter_box: hit_emitter_box = $hit_emitter_box
 
 func _ready() -> void:
 	beatTimer = MusicManager.beatTimer
@@ -11,6 +12,7 @@ func _ready() -> void:
 	print("beatTimer")
 
 func _on_triggered() -> void:
+	hit_emitter_box.hit_check()
 	print("EXPLOSION!")
 	attack_sound.play()
 	beatTimer.timeout.disconnect(_on_triggered)
