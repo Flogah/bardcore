@@ -42,6 +42,8 @@ func setup_music() -> void:
 
 func rhythm_signal(every_beat: int) -> void:
 	rhythm_notifier.beats(every_beat).connect(func(count):
-		print("BEAT"))
+		print("BEAT")
+		beat.emit())
 	#emit_signal(notify_signal)
-	beat.emit()
+	
+	

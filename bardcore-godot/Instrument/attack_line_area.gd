@@ -7,7 +7,7 @@ func _ready() -> void:
 	#beatTimer = get_tree().get_first_node_in_group('BeatTimer')
 	#unnecessary, it's already connected by hand (check your nodes)
 	#attack_sound.finished.connect(clean_up)
-	MusicManager.beat.connect(_on_beat)
+	MusicManager.beat.connect(_on_triggered)
 	print("beatTimer")
 
 func _on_triggered() -> void:
