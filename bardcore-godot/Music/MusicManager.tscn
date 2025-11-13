@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://eniqvqsxfshf"]
 
 [ext_resource type="Script" uid="uid://cxrbum0bliyx" path="res://ManagerScripts/MusicManager.gd" id="1_txsen"]
-[ext_resource type="AudioStream" uid="uid://bm46kn62qdwo0" path="res://Instrument/SFX/BGM/28756183.wav" id="2_txsen"]
+[ext_resource type="AudioStream" uid="uid://cgp353opwrx4t" path="res://Instrument/SFX/BGM/Unbenannte Partitur.wav" id="2_upvx7"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_upvx7"]
 
 [node name="MusicManager" type="Node" node_paths=PackedStringArray("current_music")]
@@ -9,7 +9,7 @@ script = ExtResource("1_txsen")
 current_music = NodePath("Music")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_txsen")
+stream = ExtResource("2_upvx7")
 volume_db = -10.0
 autoplay = true
 

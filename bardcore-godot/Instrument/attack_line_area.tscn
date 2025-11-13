@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="2_x5ccc"]
 [ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/hit_effect.gd" id="3_xdx4f"]
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/status.gd" id="4_lkfax"]
-[ext_resource type="AudioStream" uid="uid://dpp8bwfrhyyh" path="res://Instrument/SFX/Trumpet/Linie_bardcore_tr.wav" id="5_xdx4f"]
+[ext_resource type="AudioStream" uid="uid://dc23co36v6bdl" path="res://Instrument/SFX/BGM/Linie_bardcore_tr.wav" id="5_xdx4f"]
 
 [sub_resource type="Resource" id="Resource_31l7u"]
 script = ExtResource("3_xdx4f")
@@ -31,6 +31,5 @@ shape = SubResource("BoxShape3D_yf4lh")
 
 [node name="AbilityCircle" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_xdx4f")
-volume_db = -5.0
 
 [connection signal="finished" from="AbilityCircle" to="." method="clean_up"]

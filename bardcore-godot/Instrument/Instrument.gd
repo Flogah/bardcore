@@ -4,7 +4,7 @@ class_name Instrument
 var player : Player
 var input
 
-@export var weak_attack_cooldown:float = .6
+@export var weak_attack_cooldown:float = 3.0
 @export var strong_attack_cooldown:float = 2.0
 
 @export var attack_area: Area3D

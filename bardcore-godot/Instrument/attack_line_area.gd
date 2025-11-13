@@ -11,9 +11,9 @@ func _ready() -> void:
 	print("beatTimer")
 
 func _on_triggered() -> void:
+	attack_sound.play()
 	hit_emitter_box.hit_check()
 	print("EXPLOSION!")
-	attack_sound.play()
 	MusicManager.beat.disconnect(_on_triggered)
 
 func clean_up() -> void:

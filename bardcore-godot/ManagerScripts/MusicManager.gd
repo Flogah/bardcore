@@ -4,7 +4,7 @@ var music_list: Array
 @export var current_music: AudioStreamPlayer
 var beatTimer: Timer
 var music_volume = -20
-var music1 = preload("uid://bm46kn62qdwo0")
+var music1 = preload("uid://cgp353opwrx4t")
 @onready var rhythm_notifier: RhythmNotifier = $RhythmNotifier
 signal beat
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 	setup_music()
 	setup_rhythm()
 	setup_timer()
-	rhythm_signal(4)
+	rhythm_signal(2)
 	play_music()
 
 func change_music(index) -> void:
