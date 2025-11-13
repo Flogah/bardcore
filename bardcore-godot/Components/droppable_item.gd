@@ -17,17 +17,15 @@ var placeholder_meshes := {
 	item_type.INSTRUMENT: "res://BlenderScenes/PlaceHolder_Ringwear.blend",
 }
 
-@export var type: item_type = item_type.RING
-@export var upgrades: Array[upgrade]
-@export var mesh: PackedScene
+@export var item_resource_: item_resource = load("res://Resources/Items/default_item.tres")
 
 var item_mesh: Node3D
 
 func _ready() -> void:
-	if mesh:
-		item_mesh = mesh.instantiate()
+	if item_resource_.mesh:
+		item_mesh = item_resource_.mesh.instantiate()
 	else:
-		var scene_path = placeholder_meshes[type]
+		var scene_path = placeholder_meshes[item_resource_.type]
 		var scene = load(scene_path)
 		if scene and scene is PackedScene:
 			item_mesh = scene.instantiate()

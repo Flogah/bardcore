@@ -1,10 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=26 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_6iww8"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
 [ext_resource type="PackedScene" uid="uid://dewhw7kq3vfg2" path="res://Components/droppable_item.tscn" id="3_0prmd"]
-[ext_resource type="Script" path="res://Resources/upgrade.gd" id="4_w8tnc"]
-[ext_resource type="Script" path="res://Resources/stat_upgrade_editor_friendly.gd" id="5_0prmd"]
+[ext_resource type="Resource" uid="uid://43v4c5mp588m" path="res://Resources/Items/swift_boots.tres" id="4_0prmd"]
+[ext_resource type="Resource" uid="uid://ccpim72kqpx03" path="res://Resources/Items/beton_ring.tres" id="5_w8tnc"]
+[ext_resource type="Resource" uid="uid://d3mf2t38nve5p" path="res://Resources/Items/doktor_robe.tres" id="6_v7h8f"]
+[ext_resource type="Resource" uid="uid://c6tah80dr5voy" path="res://Resources/Items/eimer_helm.tres" id="7_ffh53"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
@@ -65,27 +67,6 @@ size = Vector3(7.725, 2.885, 3.77)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wdvh6"]
 size = Vector3(3.925, 2.63, 2.8)
-
-[sub_resource type="Resource" id="Resource_w8tnc"]
-script = ExtResource("5_0prmd")
-amount = 2.0
-effected_stat = 0
-metadata/_custom_type_script = "uid://y5etfwy1xbcx"
-
-[sub_resource type="Resource" id="Resource_0prmd"]
-script = ExtResource("5_0prmd")
-amount = 5.0
-operator = 1
-effected_stat = 0
-apply_priority = 5
-metadata/_custom_type_script = "uid://y5etfwy1xbcx"
-
-[sub_resource type="Resource" id="Resource_v7h8f"]
-script = ExtResource("5_0prmd")
-amount = 0.1
-effected_stat = 0
-apply_priority = 100
-metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [node name="Homebase" type="Node3D"]
 script = ExtResource("1_6iww8")
@@ -230,16 +211,25 @@ far = 84.78
 [node name="BeatTimer" type="Timer" parent="." groups=["BeatTimer"]]
 autostart = true
 
-[node name="DroppableItem" parent="." instance=ExtResource("3_0prmd")]
+[node name="SwiftBoots" parent="." instance=ExtResource("3_0prmd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.646255, 0, 0)
-upgrades = Array[ExtResource("4_w8tnc")]([SubResource("Resource_w8tnc")])
-mesh = null
+item_resource_ = ExtResource("4_0prmd")
 
-[node name="DroppableItem2" parent="." instance=ExtResource("3_0prmd")]
-upgrades = Array[ExtResource("4_w8tnc")]([SubResource("Resource_0prmd")])
-mesh = null
+[node name="BetonRing" parent="." instance=ExtResource("3_0prmd")]
+item_resource_ = ExtResource("5_w8tnc")
 
-[node name="DroppableItem3" parent="." instance=ExtResource("3_0prmd")]
+[node name="DoktorRobe" parent="." instance=ExtResource("3_0prmd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.159136)
-upgrades = Array[ExtResource("4_w8tnc")]([SubResource("Resource_v7h8f")])
-mesh = null
+item_resource_ = ExtResource("6_v7h8f")
+
+[node name="EimerHelm" parent="." instance=ExtResource("3_0prmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.072732, 0, 0)
+item_resource_ = ExtResource("7_ffh53")
+
+[node name="EimerHelm2" parent="." instance=ExtResource("3_0prmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.61665, 0, 4.37953)
+item_resource_ = ExtResource("7_ffh53")
+
+[node name="BetonRing2" parent="." instance=ExtResource("3_0prmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.342706, 0, 4.8843184)
+item_resource_ = ExtResource("5_w8tnc")
