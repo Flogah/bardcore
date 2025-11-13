@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_6iww8"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
 [ext_resource type="PackedScene" uid="uid://dewhw7kq3vfg2" path="res://Components/droppable_item.tscn" id="3_0prmd"]
-[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/upgrade.gd" id="4_w8tnc"]
-[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/stat_upgrade_editor_friendly.gd" id="5_0prmd"]
+[ext_resource type="Script" path="res://Resources/upgrade.gd" id="4_w8tnc"]
+[ext_resource type="Script" path="res://Resources/stat_upgrade_editor_friendly.gd" id="5_0prmd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
@@ -233,10 +233,13 @@ autostart = true
 [node name="DroppableItem" parent="." instance=ExtResource("3_0prmd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.646255, 0, 0)
 upgrades = Array[ExtResource("4_w8tnc")]([SubResource("Resource_w8tnc")])
+mesh = null
 
 [node name="DroppableItem2" parent="." instance=ExtResource("3_0prmd")]
 upgrades = Array[ExtResource("4_w8tnc")]([SubResource("Resource_0prmd")])
+mesh = null
 
 [node name="DroppableItem3" parent="." instance=ExtResource("3_0prmd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.159136)
 upgrades = Array[ExtResource("4_w8tnc")]([SubResource("Resource_v7h8f")])
+mesh = null
