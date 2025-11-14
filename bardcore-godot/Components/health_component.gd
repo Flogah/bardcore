@@ -7,6 +7,7 @@ class_name health_component
 ##If you want to telegraph changes, add a [telegraph_component] and assign it here to [member telegraph_comp].[b]
 
 signal died
+signal damaged
 
 #@export var telegraph_comp: telegraphing_component
 @export var health_bar: Label
@@ -26,6 +27,7 @@ func apply(type: hit_effect.effect_type, amount: float):
 	#if telegraph_comp: telegraph_comp.display_number(amount, type)
 	if type == hit_effect.effect_type.ATTACK:
 		damage(amount)
+		damaged.emit()
 	if type == hit_effect.effect_type.HEAL:
 		heal(amount)
 
