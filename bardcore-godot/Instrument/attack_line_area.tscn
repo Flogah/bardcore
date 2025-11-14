@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgjsdlwnmpwgj"]
+[gd_scene load_steps=8 format=3 uid="uid://bgjsdlwnmpwgj"]
 
 [ext_resource type="Script" uid="uid://ctb0238ncslkt" path="res://Instrument/attack_line_area.gd" id="1_16o3o"]
 [ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="2_x5ccc"]
-[ext_resource type="AudioStream" uid="uid://0l3sitsl4d1f" path="res://Instrument/SFX/Trumpet/Kreis_Bardcore_tr.wav" id="3_ttfti"]
+[ext_resource type="AudioStream" uid="uid://kvt15ee1qva1" path="res://Instrument/SFX/BGM/test2.wav" id="3_ttfti"]
+[ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/hit_effect.gd" id="3_xdx4f"]
+[ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/status.gd" id="4_lkfax"]
+
+[sub_resource type="Resource" id="Resource_31l7u"]
+script = ExtResource("3_xdx4f")
+amount = 40.0
+invincability_time = 3.0
+metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf4lh"]
 size = Vector3(1, 1, 3.4243164)
@@ -13,6 +21,8 @@ attack_sound = NodePath("AbilityCircle")
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
 script = ExtResource("2_x5ccc")
+interaction_effect = SubResource("Resource_31l7u")
+targets = Array[int]([1])
 metadata/_custom_type_script = "uid://q46hat3a6486"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hit_emitter_box"]
@@ -21,6 +31,6 @@ shape = SubResource("BoxShape3D_yf4lh")
 
 [node name="AbilityCircle" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_ttfti")
-volume_db = -10.667
+volume_db = -5.0
 
 [connection signal="finished" from="AbilityCircle" to="." method="clean_up"]

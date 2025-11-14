@@ -6,3 +6,6 @@ var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta: float) -> void:
 	velocity.y -= gravity * delta
+
+func _on_health_component_died() -> void:
+	queue_free()

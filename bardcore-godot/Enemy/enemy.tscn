@@ -52,3 +52,5 @@ metadata/_custom_type_script = "uid://c1oy8va3logcp"
 [node name="EnemyFollow" type="Node" parent="StateMachine"]
 script = ExtResource("3_4ra3w")
 metadata/_custom_type_script = "uid://bjrk6xcq3yky0"
+
+[connection signal="died" from="health_component" to="." method="_on_health_component_died"]

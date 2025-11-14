@@ -3,11 +3,15 @@ extends Node
 var music_player: AudioStreamPlayer
 var music_list = []
 var current_music
+var beatTimer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_music = 0
-	play_music()
+	beatTimer = Timer.new()
+	add_child(beatTimer)
+	beatTimer.start(3.0)
+	#play_music()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
