@@ -20,11 +20,14 @@ func enter(previous_state_path: String, data := {}) -> void:
 		finished.emit("Idle")
 		return
 	
-	attack_cooldown_timer.start(owner.weak_attack_cooldown)
+	attack_cooldown_timer.start(1.0)
 	var attackArea = ATTACK_LINE_AREA.instantiate()
 	attackArea.global_position = attack_spawn.global_position
 	MapManager.current_map.add_child(attackArea)
 	attackArea.rotation = attack_spawn.global_rotation
-	place_sound.play()
-	
 	finished.emit("Idle")
+	#place_sound.play()
+
+#func _input(event):
+	#if event.is_action_released("attack_line"):
+	
