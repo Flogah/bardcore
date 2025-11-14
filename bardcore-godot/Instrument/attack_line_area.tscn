@@ -39,7 +39,8 @@ shape = SubResource("BoxShape3D_yf4lh")
 stream = ExtResource("5_xdx4f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5095102, 0, 0, 0, 1, 0, 0, 0, 1.7042396, 0, -1.3601308, -1.1079499)
+transform = Transform3D(0.5095102, 0, 0, 0, 1, 0, 0, 0, 1.7042396, 0, -1.1702536, -1.1079499)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_xdx4f")
 surface_material_override/0 = SubResource("StandardMaterial3D_lkfax")
 

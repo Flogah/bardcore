@@ -22,8 +22,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 	
 	attack_cooldown_timer.start(1.0)
 	var attackArea = ATTACK_LINE_AREA.instantiate()
-	attackArea.global_position = attack_spawn.global_position
+	#attackArea.global_position = attack_spawn.global_position
 	MapManager.current_map.add_child(attackArea)
+	attackArea.global_position = attack_spawn.global_position
 	attackArea.rotation = attack_spawn.global_rotation
 	finished.emit("Idle")
 	#place_sound.play()
