@@ -20,15 +20,16 @@ func try_pickup() -> void: #call this on pickup input
 		pickup(pickup_item)
 
 func pickup(item: droppable_item) -> void: #call this if a item should be forced into a slot
-	var slot = slots[item.type]
-	if slot is Array:
+	var slot = slots[item.item_resource_.type]
+	if slots[item.item_resource_.type] is Array:
 		if slot.size() >= 2:
-			drop(item.type)
-		slot.append(item)
-	elif slot is droppable_item:
-		drop(item.type)
-	slot = item
-	stat_comp.add_upgrades(item.get_instance_id(),item.upgrades)
+			drop(item.item_resource_.type)
+		slots[item.item_resource_.type].append(item)
+	else:
+		if slot != null:
+			drop(item.item_resource_.type)
+		slots[item.item_resource_.type] = item
+	stat_comp.add_upgrades(item.get_instance_id(),item.item_resource_.upgrades)
 	item.get_parent().remove_child(item)
 
 func drop(item_type: droppable_item.item_type) -> void:

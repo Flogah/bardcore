@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="stat_upgrade_editor" load_steps=2 format=3 uid="uid://bwrlqmydeawbh"]
+
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="1_cgjmx"]
+
+[resource]
+script = ExtResource("1_cgjmx")
+amount = 2.0
+effected_stat = 0
+apply_priority = 1
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"

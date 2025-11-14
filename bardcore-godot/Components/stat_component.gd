@@ -58,6 +58,7 @@ func _ready() -> void:
 		stat_object.base = stats[key]
 		stat_object.modified = stats[key]
 		stats[key] = stat_object
+		stat_upgrades[key] =  []
 
 func get_stat(s_id: stat_id) -> float:
 	var requested_stat: stat = stats[s_id]
@@ -75,7 +76,7 @@ func add_upgrades(Item_ID: int, new_upgrades: Array[upgrade]) -> void:
 	for new_upgrade in new_upgrades:
 		if new_upgrade is stat_upgrade:
 			stats_upgrades_changed[new_upgrade.effected_stat] = 0
-			var this_stats_upgrades: Array[stat_upgrade] = stat_upgrades[new_upgrade.effected_stat]
+			var this_stats_upgrades = stat_upgrades[new_upgrade.effected_stat]
 			this_stats_upgrades.append(new_upgrade)
 			this_stats_upgrades.sort_custom(sort_stat_upgrades_according_to_apply_prio)
 		if new_upgrade is triggered_upgrade:
@@ -98,7 +99,7 @@ func remove_upgrades(Item_ID) -> void:
 func calculate_stat(stat_object: stat, s_id: stat_id) -> void:
 	var stat_value = stat_object.base
 	if s_id in stat_upgrades.keys():
-		var modifing_upgrades: Array[stat_upgrade] = stat_upgrades[s_id]
+		var modifing_upgrades = stat_upgrades[s_id]
 		if modifing_upgrades is Array:
 			for mod_upgrade in modifing_upgrades:
 				stat_value = mod_upgrade.apply(stat_value)

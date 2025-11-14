@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="item_resource" load_steps=3 format=3 uid="uid://tij1prrsap8h"]
+
+[ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_jv4ti"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_2oc7q"]
+
+[resource]
+script = ExtResource("1_jv4ti")
+metadata/_custom_type_script = "uid://b7fgxjqg7f181"
