@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ctb0238ncslkt" path="res://Instrument/attack_line_area.gd" id="1_16o3o"]
 [ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="2_x5ccc"]
-[ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/hit_effect.gd" id="3_xdx4f"]
-[ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/status.gd" id="4_lkfax"]
+[ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="3_xdx4f"]
+[ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="4_lkfax"]
 [ext_resource type="AudioStream" uid="uid://dc23co36v6bdl" path="res://Instrument/SFX/BGM/Linie_bardcore_tr.wav" id="5_xdx4f"]
 
 [sub_resource type="Resource" id="Resource_31l7u"]

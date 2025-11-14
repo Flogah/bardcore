@@ -9,13 +9,14 @@ enum item_type {
 	INSTRUMENT,
 }
 
-var placeholder_meshes := {
-	item_type.RING: "res://BlenderScenes/PlaceHolder_Ringwear.blend",
-	item_type.HELMET: "res://BlenderScenes/PlaceHolder_Headwear.blend",
-	item_type.TORSO: "res://BlenderScenes/PlaceHolder_Torsowear.blend",
-	item_type.BOOTS: "res://BlenderScenes/PlaceHolder_Footwear.blend",
-	item_type.INSTRUMENT: "res://BlenderScenes/PlaceHolder_Ringwear.blend",
-}
+# there are no meshes for now, so things break. it's all commented out for now
+#var placeholder_meshes := {
+	#item_type.RING: "res://BlenderScenes/PlaceHolder_Ringwear.blend",
+	#item_type.HELMET: "res://BlenderScenes/PlaceHolder_Headwear.blend",
+	#item_type.TORSO: "res://BlenderScenes/PlaceHolder_Torsowear.blend",
+	#item_type.BOOTS: "res://BlenderScenes/PlaceHolder_Footwear.blend",
+	#item_type.INSTRUMENT: "res://BlenderScenes/PlaceHolder_Ringwear.blend",
+#}
 
 @export var item_resource_: item_resource = load("res://Resources/Items/default_item.tres")
 
@@ -24,17 +25,18 @@ var item_mesh: Node3D
 func _ready() -> void:
 	if item_resource_.mesh:
 		item_mesh = item_resource_.mesh.instantiate()
-	else:
-		var scene_path = placeholder_meshes[item_resource_.type]
-		var scene = load(scene_path)
-		if scene and scene is PackedScene:
-			item_mesh = scene.instantiate()
-		else:
-			push_error("Fehler: Platzhalter konnte nicht geladen werden: %s" % scene_path)
-			return
+	#else:
+		#var scene_path = placeholder_meshes[item_resource_.type]
+		#var scene = load(scene_path)
+		#if scene and scene is PackedScene:
+			#item_mesh = scene.instantiate()
+		#else:
+			#push_error("Fehler: Platzhalter konnte nicht geladen werden: %s" % scene_path)
+			#return
 	add_child(item_mesh)
 
 
 func _process(delta: float) -> void:
+	if !item_mesh:return
 	item_mesh.rotate(Vector3.UP, delta * deg_to_rad(25))
 	item_mesh.position.y = lerp(item_mesh.position.y + 1, sin(Time.get_ticks_msec()/300.0)*0.5 + 1, 0.5)
