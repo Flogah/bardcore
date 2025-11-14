@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="item_resource" load_steps=5 format=3 uid="uid://d3mf2t38nve5p"]
+
+[ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_dmwj2"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_ynlje"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_ynlje"]
+
+[sub_resource type="Resource" id="Resource_n7grm"]
+script = ExtResource("3_ynlje")
+amount = 5.0
+operator = 1
+effected_stat = 8
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[resource]
+script = ExtResource("1_dmwj2")
+type = 2
+upgrades = Array[ExtResource("2_ynlje")]([SubResource("Resource_n7grm")])
+metadata/_custom_type_script = "uid://b7fgxjqg7f181"

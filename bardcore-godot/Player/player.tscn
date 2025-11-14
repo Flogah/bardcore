@@ -85,6 +85,7 @@ font = ExtResource("6_apopc")
 font_size = 12
 outline_size = 6
 
-[node name="InventoryComponent" parent="." instance=ExtResource("7_vtle1")]
+[node name="InventoryComponent" parent="." node_paths=PackedStringArray("stat_comp") instance=ExtResource("7_vtle1")]
+stat_comp = NodePath("../StatComponent")
 
 [node name="StatComponent" parent="." instance=ExtResource("9_x3vf3")]
