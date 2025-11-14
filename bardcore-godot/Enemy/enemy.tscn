@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj476uqn2kb0b"]
+[gd_scene load_steps=11 format=3 uid="uid://cj476uqn2kb0b"]
 
 [ext_resource type="Script" uid="uid://bb18oxxgsomp1" path="res://Enemy/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="2_md0e3"]
 [ext_resource type="Script" uid="uid://bjrk6xcq3yky0" path="res://States/Enemy/EnemyFollow.gd" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bhrs6p0rwjb3h" path="res://Components/hit_reciver_box.gd" id="4_eqilm"]
 [ext_resource type="Script" uid="uid://bxlgjvef5ow5t" path="res://Components/health_component.gd" id="5_ncf7h"]
+[ext_resource type="Script" uid="uid://ddb14bq4ftq7b" path="res://States/Enemy/EnemyIdle.gd" id="6_m6jha"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tegq"]
 
@@ -46,11 +47,15 @@ metadata/_custom_type_script = "uid://bxlgjvef5ow5t"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_md0e3")
-initial_state = NodePath("EnemyFollow")
+initial_state = NodePath("EnemyIdle")
 metadata/_custom_type_script = "uid://c1oy8va3logcp"
 
 [node name="EnemyFollow" type="Node" parent="StateMachine"]
 script = ExtResource("3_4ra3w")
 metadata/_custom_type_script = "uid://bjrk6xcq3yky0"
+
+[node name="EnemyIdle" type="Node" parent="StateMachine"]
+script = ExtResource("6_m6jha")
+metadata/_custom_type_script = "uid://ddb14bq4ftq7b"
 
 [connection signal="died" from="health_component" to="." method="_on_health_component_died"]
