@@ -1,7 +1,6 @@
 extends Node3D
 
-@export var fadeTimer:Timer
-
+@onready var fadeTimer: Timer = $FadeTimer
 @onready var camera_3d: Camera3D = $Camera3D
 
 var shaking: bool = false

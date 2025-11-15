@@ -45,8 +45,6 @@ size = Vector3(16.576172, 7.7929688, 2.0117188)
 script = ExtResource("1_piqej")
 camera = NodePath("CameraArm")
 
-[node name="CameraArm" parent="." instance=ExtResource("2_acvef")]
-
 [node name="Terrain" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
@@ -165,3 +163,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
 [node name="Portal2" parent="Exits" instance=ExtResource("2_qmnqa")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)
+
+[node name="CameraArm" parent="." instance=ExtResource("2_acvef")]
