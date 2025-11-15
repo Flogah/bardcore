@@ -5,7 +5,7 @@ var music_list: Array
 var beatTimer: Timer
 var music_volume = -20
 var music1 = preload("uid://cgp353opwrx4t")
-@onready var rhythm_notifier: RhythmNotifier = $RhythmNotifier
+@export var rhythm_notifier: RhythmNotifier
 signal beat
 
 # Called when the node enters the scene tree for the first time.
