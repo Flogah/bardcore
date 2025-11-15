@@ -85,5 +85,5 @@ func shuffle_boxes():
 	for box in boxes:
 		box.position += Vector3(randf_range(-1, 1), 0, randf_range(-1, 1))
 
-func screenshake(strength:float = 1.0, fade:float = 0.1):
+func screenshake(strength:float = 0.2, fade:float = 0.3):
 	camera.screen_shake(strength, fade)
