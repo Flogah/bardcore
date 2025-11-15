@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://d31bh0esbjp34"]
+[gd_scene load_steps=16 format=3 uid="uid://d31bh0esbjp34"]
 
 [ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_piqej"]
 [ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_1jh6t"]
+[ext_resource type="PackedScene" uid="uid://rd04ajsd7xdc" path="res://Maps/Camera/camera_arm.tscn" id="2_acvef"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_qmnqa"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yo7wb"]
@@ -40,8 +41,11 @@ size = Vector3(16.576172, 7.7929688, 2.0117188)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vycma"]
 
-[node name="Combat1" type="Node3D"]
+[node name="Combat1" type="Node3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_piqej")
+camera = NodePath("CameraArm")
+
+[node name="CameraArm" parent="." instance=ExtResource("2_acvef")]
 
 [node name="Terrain" type="Node3D" parent="."]
 
@@ -161,13 +165,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
 [node name="Portal2" parent="Exits" instance=ExtResource("2_qmnqa")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)
-
-[node name="CameraArm" type="Node3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 1.5, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
-projection = 1
-size = 30.0
-near = 0.017
-far = 84.78
