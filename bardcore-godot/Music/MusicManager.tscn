@@ -4,9 +4,10 @@
 [ext_resource type="AudioStream" uid="uid://cgp353opwrx4t" path="res://Instrument/SFX/BGM/Unbenannte Partitur.wav" id="2_upvx7"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_upvx7"]
 
-[node name="MusicManager" type="Node" node_paths=PackedStringArray("current_music", "rhythm_notifier")]
+[node name="MusicManager" type="Node" node_paths=PackedStringArray("rhythm_notifier")]
 script = ExtResource("1_txsen")
-current_music = NodePath("Music")
+current_music = Object(AudioStreamPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","stream":ExtResource("2_upvx7"),"volume_db":-10.0,"pitch_scale":1.0,"autoplay":true,"stream_paused":false,"mix_target":0,"max_polyphony":1,"bus":&"Master","playback_type":0,"script":null)
+
 rhythm_notifier = NodePath("RhythmNotifier")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
