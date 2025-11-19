@@ -17,11 +17,11 @@ func _process(delta):
 	else:
 		camera_3d.position = Vector3(0, 0, camera_3d.position.z)
 
-func screen_shake(intensity, fade):
-	max_fade = fade
-	shaking = true
-	fadeTimer.start(fade)
-	current_intensity = intensity
+#func screen_shake(intensity, fade):
+#	max_fade = fade
+#	shaking = true
+#	fadeTimer.start(fade)
+#	current_intensity = intensity
 
 func stop_screen_shake():
 	shaking = false
