@@ -21,6 +21,7 @@ MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 PlayerManager="*res://ManagerScripts/PlayerManager.gd"
 MapManager="*res://ManagerScripts/MapManager.gd"
 MusicManager="*res://ManagerScripts/MusicManager.gd"
+GameManager="*res://ManagerScripts/GameManager.gd"
 
 [editor_plugins]
 
