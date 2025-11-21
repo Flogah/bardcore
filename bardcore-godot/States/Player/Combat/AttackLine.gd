@@ -6,6 +6,7 @@ const ATTACK_LINE_AREA = preload("uid://bgjsdlwnmpwgj")
 @export var attack_spawn: Node3D
 @export var place_sound: AudioStreamPlayer3D
 var attack_cooldown_timer: Timer
+var attackArea
 
 func enter(previous_state_path: String, data := {}) -> void:
 	if !attack_cooldown_timer:
@@ -21,14 +22,18 @@ func enter(previous_state_path: String, data := {}) -> void:
 		return
 	
 	attack_cooldown_timer.start(1.0)
-	var attackArea = ATTACK_LINE_AREA.instantiate()
 	#attackArea.global_position = attack_spawn.global_position
+	setup_attack_area(ATTACK_LINE_AREA)
 	MapManager.current_map.add_child(attackArea)
-	attackArea.global_position = attack_spawn.global_position
-	attackArea.rotation = attack_spawn.global_rotation
+	
 	finished.emit("Idle")
 	#place_sound.play()
 
+func setup_attack_area(attack_area):
+	attackArea = attack_area.instantiate()
+	attackArea.global_position = attack_spawn.global_position
+	attackArea.rotation = attack_spawn.global_rotation
+	return attackArea
 #func _input(event):
 	#if event.is_action_released("attack_line"):
 	
