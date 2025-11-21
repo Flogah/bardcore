@@ -1,7 +1,6 @@
 extends Node
 
-var music_list: Array
-@export var current_music: AudioStream
+@export var current_music: AudioStreamPlayer
 var music_player_1: AudioStreamPlayer
 var music_player_2: AudioStreamPlayer
 var beatTimer: Timer
@@ -13,48 +12,56 @@ signal beat
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	setup_music_playlist()
-	
-	setup_music_player(music_list[0])
-	setup_music_player(music_list[1])
+	setup_music_player()
 	setup_music()
 	setup_rhythm()
 	setup_timer()
 	rhythm_signal(2)
-	play_music(music_player_1)
+	play_music()
 
 func setup_music() -> void:
-	pass
+	current_music = AudioStreamPlayer.new()
+	add_child(current_music)
+	current_music.set_autoplay(true)
+	current_music.volume_db = music_volume
+	current_music = music_player_1
 
-func change_music(index: int) -> void:
-	pass
+func change_music(from: AudioStreamPlayer, to: AudioStreamPlayer, bpm: int = 100) -> void:
+	stop_music()
+	if current_music == from:
+		current_music = to
+	change_rhythm(bpm)
+	play_music()
 
-func play_music(audiostreamplayer: AudioStreamPlayer) -> void:
-	audiostreamplayer.play()
+func play_music() -> void:
+	current_music.play()
+
+func stop_music() -> void:
+	current_music.stop()
 
 func setup_rhythm() -> void:
 	rhythm_notifier = RhythmNotifier.new()
 	add_child(rhythm_notifier)
 	rhythm_notifier.bpm = 120
-	rhythm_notifier.audio_stream_player = music_player_1
+	rhythm_notifier.audio_stream_player = current_music
+
+func change_rhythm(bpm: int) -> void:
+	rhythm_notifier.bpm = bpm
+	rhythm_notifier.audio_stream_player = current_music
 
 func setup_timer() -> void:
 	beatTimer = Timer.new()
 	add_child(beatTimer)
 	beatTimer.start(3.0)
 
-func setup_music_player(asp: AudioStreamPlayer) -> void:
-	asp = AudioStreamPlayer.new()
-	add_child(asp)
-	asp.set_autoplay(true)
-	asp.volume_db = music_volume
+func setup_music_player() -> void:
+	music_player_1 = AudioStreamPlayer.new()
+	music_player_2 = AudioStreamPlayer.new()
+	add_child(music_player_1)
+	add_child(music_player_2)
 	music_player_1.set_stream(music1)
 	music_player_2.set_stream(music2)
 
-func setup_music_playlist() -> void:
-	music_list.resize(2)
-	music_list.insert(0, music_player_1)
-	music_list.insert(1, music_player_2)
 
 func rhythm_signal(every_beat: int) -> void:
 	rhythm_notifier.beats(every_beat).connect(func(count):

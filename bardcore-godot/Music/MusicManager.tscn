@@ -1,21 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://eniqvqsxfshf"]
+[gd_scene load_steps=3 format=3 uid="uid://eniqvqsxfshf"]
 
 [ext_resource type="Script" uid="uid://cxrbum0bliyx" path="res://ManagerScripts/MusicManager.gd" id="1_txsen"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_upvx7"]
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_txsen"]
-clip_count = 1
-clip_0/name = &""
-clip_0/auto_advance = 0
-
-[node name="MusicManager" type="Node" node_paths=PackedStringArray("rhythm_notifier")]
+[node name="MusicManager" type="Node" node_paths=PackedStringArray("current_music", "rhythm_notifier")]
 script = ExtResource("1_txsen")
-current_music = Object(AudioStreamPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","stream":Resource("res://Instrument/SFX/BGM/Unbenannte Partitur.wav"),"volume_db":-10.0,"pitch_scale":1.0,"autoplay":true,"stream_paused":false,"mix_target":0,"max_polyphony":1,"bus":&"Master","playback_type":0,"script":null)
-
+current_music = NodePath("")
 rhythm_notifier = NodePath("RhythmNotifier")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamInteractive_txsen")
 volume_db = -10.0
 autoplay = true
 

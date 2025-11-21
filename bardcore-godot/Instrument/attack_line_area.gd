@@ -18,5 +18,4 @@ func _on_triggered() -> void:
 
 func clean_up() -> void:
 	print("clean up")
-	MusicManager.change_music(1)
 	queue_free()
