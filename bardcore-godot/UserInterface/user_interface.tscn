@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhlou0id1xnvc"]
+
+[ext_resource type="Script" uid="uid://b4801makoty31" path="res://UserInterface/user_interface.gd" id="1_71fg6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpatf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71fg6"]
+bg_color = Color(0.6228889, 0.08363319, 0, 1)
+
+[node name="UserInterface" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_71fg6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeContainer" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.0
+offset_top = 36.0
+offset_right = 103.0
+offset_bottom = 98.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/TimeContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12225223, 0.12225223, 0.12225223, 1)
+
+[node name="TimeLeft" type="Label" parent="Control/TimeContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.5
+anchor_right = 0.66700006
+anchor_bottom = 0.87100005
+offset_left = -0.09799957
+offset_right = 0.09799194
+offset_bottom = -0.002002716
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "XX:XX:XX"
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="TimeProgressBar" type="ProgressBar" parent="Control/TimeContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xpatf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_71fg6")
+value = 20.0
+
+[node name="FadeTimer" type="Timer" parent="Control/TimeContainer"]

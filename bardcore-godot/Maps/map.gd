@@ -15,6 +15,7 @@ var left_portal:Portal
 func _ready() -> void:
 	read_map()
 	shuffle_boxes()
+	#MusicManager.beat.connect(screenshake)
 
 func read_map():
 	for enemy in enemy_nodes.get_children():
@@ -81,3 +82,6 @@ func shuffle_boxes():
 	var boxes = bits.get_children()
 	for box in boxes:
 		box.position += Vector3(randf_range(-1, 1), 0, randf_range(-1, 1))
+
+#func screenshake(strength:float = 0.2, fade:float = 0.3):
+	#camera.screen_shake(strength, fade)
