@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-@onready var time_left_label: Label = $Control/TimeContainer/VBoxContainer/TimeLeft
-@onready var time_progress_bar: ProgressBar = $Control/TimeContainer/VBoxContainer/TimeProgressBar
-@onready var fadeTimer: Timer = $Control/TimeContainer/VBoxContainer/FadeTimer
+@export var time_left_label: Label
+@export var time_progress_bar: ProgressBar
+@export var fadeTimer: Timer
 
 var shaking: bool = false
 var current_intensity:float = -1.0
@@ -20,12 +20,18 @@ var reset_pos:Vector2
 	#else:
 		#time_left_label.position = reset_pos
 
-func update_label(time:float) -> void:
-	time_left_label.text = str(time)
+func update_time(time:float) -> void:
+	update_label(time)
+	update_progress_bar(time)
 
-func update_prograss_bar(now_val:float, max_val:float) -> void:
-	time_progress_bar.max_value = max_val
-	time_progress_bar.value = now_val
+func update_label(time:float) -> void:
+	time_left_label.text = str(snapped(time, 0.1))
+
+func update_progress_bar(val:float) -> void:
+	time_progress_bar.value = time_progress_bar.max_value - val
+
+func update_progress_bar_max(val:float) -> void:
+	time_progress_bar.max_value = val
 
 func timer_shake(intensity:float, fade:float) -> void:
 	max_fade = fade

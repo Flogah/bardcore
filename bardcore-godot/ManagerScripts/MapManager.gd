@@ -43,8 +43,9 @@ func unload_map():
 		get_tree().current_scene.queue_free()
 	
 	PlayerManager.save_all_players()
-	
+
 	if current_map:
+		#TODO do some cleanup of temporary assets if possible
 		var root = get_tree().get_root()
 		root.remove_child.call_deferred(current_map)
 
@@ -76,4 +77,5 @@ func go_left():
 func finish_map():
 	await get_tree().create_timer(.2).timeout
 	current_map.spawn_players()
+	GameManager.add_dragon_time(10.0)
 	GameManager.start_dragon_timer()

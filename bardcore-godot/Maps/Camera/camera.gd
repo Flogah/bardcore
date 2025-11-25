@@ -2,9 +2,9 @@ extends Node3D
 
 @onready var camera_3d: Camera3D = $Camera3D
 
-var shaking: bool = false
-var current_intensity:float = -1.0
-var max_fade:float = 0.0
+#var shaking: bool = false
+#var current_intensity:float = -1.0
+#var max_fade:float = 0.0
 #
 #func _ready():
 	#fadeTimer.timeout.connect(stop_screen_shake)
