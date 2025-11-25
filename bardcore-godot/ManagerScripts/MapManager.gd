@@ -29,6 +29,7 @@ func get_current_map() -> Map:
 func get_map(pos : Vector2i) -> Map:
 	var m = map_grid.get(pos)
 	if !m:
+		GameManager.add_dragon_time(10.0)
 		m = random_map().instantiate()
 		map_grid[pos] = m
 	return m
@@ -77,5 +78,4 @@ func go_left():
 func finish_map():
 	await get_tree().create_timer(.2).timeout
 	current_map.spawn_players()
-	GameManager.add_dragon_time(10.0)
 	GameManager.start_dragon_timer()
