@@ -4,21 +4,18 @@ extends CanvasLayer
 @export var time_progress_bar: ProgressBar
 @export var fadeTimer: Timer
 
-var shaking: bool = false
-var current_intensity:float = -1.0
 var max_fade:float = 0.0
-var reset_pos:Vector2
+var current_intensity : float = -1.0
 
-#func _ready():
-	#fadeTimer.timeout.connect(stop_shake)
-	#reset_pos = time_left_label.position
+func _ready():
+	MusicManager.beat.connect(timer_beat)
 
-#func _process(_delta):
-	#if shaking:
-		#apply_shake()
-		#current_intensity *= fadeTimer.time_left / max_fade
-	#else:
-		#time_left_label.position = reset_pos
+func _process(_delta):
+	if current_intensity > 1.0:
+		time_left_label.scale = Vector2.ONE * current_intensity
+		current_intensity *= fadeTimer.time_left / max_fade
+	else:
+		time_left_label.scale = Vector2.ONE
 
 func update_time(time:float) -> void:
 	update_label(time)
@@ -33,20 +30,7 @@ func update_progress_bar(val:float) -> void:
 func update_progress_bar_max(val:float) -> void:
 	time_progress_bar.max_value = val
 
-func timer_shake(intensity:float, fade:float) -> void:
+func timer_beat(intensity:float = 1.4, fade:float = 0.6) -> void:
 	max_fade = fade
-	shaking = true
 	fadeTimer.start(fade)
 	current_intensity = intensity
-
-func stop_shake():
-	shaking = false
-	current_intensity = -1.0
-
-func apply_shake():
-	time_left_label.position = randomOffset(.5)
-
-func randomOffset(maxOffset) -> Vector2:
-	var a = randf_range(-maxOffset, maxOffset)
-	var b = randf_range(-maxOffset, maxOffset)
-	return Vector2(a, b)

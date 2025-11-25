@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhlou0id1xnvc"]
+[gd_scene load_steps=8 format=3 uid="uid://bhlou0id1xnvc"]
 
 [ext_resource type="Script" uid="uid://b4801makoty31" path="res://UserInterface/user_interface.gd" id="1_71fg6"]
+[ext_resource type="FontFile" uid="uid://d3gwcc2oyaok4" path="res://addons/Kenney_Fonts/Kenney Future Narrow.ttf" id="2_mm0wo"]
 [ext_resource type="Texture2D" uid="uid://cbrmi5k31lw24" path="res://icon.svg" id="2_v7due"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpatf"]
@@ -34,11 +35,11 @@ mouse_filter = 2
 [node name="TimeContainer" type="Control" parent="Control"]
 layout_mode = 1
 anchor_right = 1.0
-anchor_bottom = 0.23900001
+anchor_bottom = 0.15
 offset_left = 15.0
 offset_top = 15.0
 offset_right = -15.0
-offset_bottom = -57.87201
+offset_bottom = -0.20000458
 grow_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/TimeContainer"]
@@ -55,6 +56,7 @@ size_flags_vertical = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_xpatf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_71fg6")
 value = 20.0
+show_percentage = false
 
 [node name="TimeContainer2" type="Control" parent="Control/TimeContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
@@ -63,10 +65,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="ColorRect" type="ColorRect" parent="Control/TimeContainer/VBoxContainer/TimeContainer2"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.12225223, 0.12225223, 0.12225223, 1)
@@ -75,17 +79,23 @@ color = Color(0.12225223, 0.12225223, 0.12225223, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 90.0
-offset_top = 20.0
-offset_right = -90.5
-offset_bottom = -20.0
+anchor_bottom = 1.082
+offset_left = 75.0
+offset_top = 6.0
+offset_right = -75.0
+offset_bottom = -6.198002
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(50, 16)
 size_flags_horizontal = 4
 size_flags_vertical = 6
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_mm0wo")
+theme_override_font_sizes/font_size = 30
 text = "XX:XX:XX"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FadeTimer" type="Timer" parent="Control/TimeContainer/VBoxContainer/TimeContainer2"]
 

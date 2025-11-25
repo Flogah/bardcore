@@ -1,7 +1,8 @@
 extends Node3D
 class_name Map
 
-@export var camera: Node3D
+@export var camera: Camera3D
+@export var mapGameState : GameManager.gameState
 
 @onready var enemy_nodes: Node3D = $Enemies
 @onready var exit_nodes: Node3D = $Exits

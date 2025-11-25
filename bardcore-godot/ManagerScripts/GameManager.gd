@@ -6,7 +6,14 @@ var max_time_value: float
 var dragon_timer:Timer
 var is_running:bool
 
-# maybe different states to start out?
+var currentGameState : gameState
+
+enum gameState {
+	home,
+	combat,
+	post_combat,
+	shop,
+}
 
 # this single variable could hold the unlocks in the village
 var unlocks: Dictionary = {}
