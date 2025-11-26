@@ -10,6 +10,7 @@ signal died
 signal damaged
 
 #@export var telegraph_comp: telegraphing_component
+@export var stat_comp: stat_component
 @export var health_bar: Label
 @export_range(10,1000,10) var max_health: float = 100
 
@@ -26,10 +27,10 @@ func _process(_delta: float) -> void:
 func apply(type: hit_effect.effect_type, amount: float):
 	#if telegraph_comp: telegraph_comp.display_number(amount, type)
 	if type == hit_effect.effect_type.ATTACK:
-		damage(amount)
+		damage( amount * stat_comp.get_stat(stat_comp.stat_id.IN_DAMAGE) )
 		damaged.emit()
 	if type == hit_effect.effect_type.HEAL:
-		heal(amount)
+		heal( amount * stat_comp.get_stat(stat_comp.stat_id.IN_HEAL) )
 
 func set_health(new_health: float):
 	health = new_health
