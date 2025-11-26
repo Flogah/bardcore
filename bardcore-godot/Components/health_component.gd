@@ -54,7 +54,7 @@ func set_health(new_health: float):
 	health = new_health
 
 func heal(amount: float):
-	health = min(max_health, health+amount)
+	health = min(max_health, health+amount*stat_comp.get_stat(stat_comp.stat_id.HEALTH_GAIN))
 	healed.emit()
 
 func damage(amount: float):
