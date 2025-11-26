@@ -13,7 +13,7 @@ enum stat_id {
 	REGENERATION_AMOUNT, #Regeneration per delta time
 	IN_HEAL, #Modifier applied on all incoming heals
 	HEALTH_GAIN, #Modifier applied on all positive health changes (incoming heals, regeneration, ...)
-	INCOMING_DAMAGE, #Modifier applied on all negative health changes (hits, status-effect damage, ...)
+	IN_DAMAGE, #Modifier applied on all negative health changes (hits, status-effect damage, ...)
 	
 	# -- Combat Stats --
 	OUT_HEAL, #Modifier applied on all outgoing heals
@@ -25,10 +25,10 @@ enum stat_id {
 	
 }
 
-var upgrades: Dictionary[int, Array] = {}
-var stat_upgrades: Dictionary[int, Array] = {}
+var upgrades: Dictionary[int, Array] = {} # Contains all item_ids as keys and point to an array with all upgrades from that item
+var stat_upgrades: Dictionary[int, Array] = {} # Contains all stat_ids as keys and they point onto an array with all upgrades that effect the key-stat
 
-@export var stats: Dictionary = {
+@export var stats: Dictionary = { #Contains Stat_id: int -> base_value: float before game and converts on_ready to Stat_id: int -> stat_object: stat
 	
 	# -- Movement Stats --
 	stat_id.MOVEMENT_SPEED: 10.0, #Maximum Move Speed
@@ -40,7 +40,7 @@ var stat_upgrades: Dictionary[int, Array] = {}
 	stat_id.REGENERATION_AMOUNT: 5.0, #Regeneration per delta time
 	stat_id.IN_HEAL: 1.0, #Modifier applied on all incoming heals
 	stat_id.HEALTH_GAIN: 1.0, #Modifier applied on all positive health changes (incoming heals, regeneration, ...)
-	stat_id.INCOMING_DAMAGE: 1.0, #Modifier applied on all negative health changes (hits, status-effect damage, ...)
+	stat_id.IN_DAMAGE: 1.0, #Modifier applied on all negative health changes (hits, status-effect damage, ...)
 	
 	# -- Combat Stats --
 	stat_id.OUT_HEAL: 1.0, #Modifier applied on all outgoing heals
