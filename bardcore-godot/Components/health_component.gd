@@ -63,11 +63,12 @@ func damage(amount: float):
 	damaged.emit()
 
 func check_max_health_change() -> void:
-	var stat_max_health = stat_comp.get_stat(stat_comp.stat_id.MAX_HEALTH)
-	if stat_max_health != max_health:
-		var health_percent = health / max_health
-		max_health = stat_max_health
-		set_health(max_health * health_percent)
+	if stat_comp:
+		var stat_max_health = stat_comp.get_stat(stat_comp.stat_id.MAX_HEALTH)
+		if stat_max_health != max_health:
+			var health_percent = health / max_health
+			max_health = stat_max_health
+			set_health(max_health * health_percent)
 
 func handle_regeneration(delta: float) -> void:
 	heal(stat_comp.get_stat(stat_comp.stat_id.REGENERATION_AMOUNT) * delta)
