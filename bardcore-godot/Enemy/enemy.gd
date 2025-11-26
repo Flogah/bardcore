@@ -17,7 +17,7 @@ func _on_health_component_died() -> void:
 	queue_free()
 
 func bleed():
-	blood_particles.emitting = true
+	blood_particles.restart()
 	squish()
 
 func squish():
