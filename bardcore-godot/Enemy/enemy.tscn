@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="2_md0e3"]
 [ext_resource type="Script" uid="uid://bjrk6xcq3yky0" path="res://States/Enemy/EnemyFollow.gd" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bhrs6p0rwjb3h" path="res://Components/hit_reciver_box.gd" id="4_eqilm"]
-[ext_resource type="Script" uid="uid://bxlgjvef5ow5t" path="res://Components/health_component.gd" id="5_ncf7h"]
+[ext_resource type="PackedScene" uid="uid://btdqkmooqxlov" path="res://Components/health_component.tscn" id="6_glvfu"]
 [ext_resource type="Script" uid="uid://ddb14bq4ftq7b" path="res://States/Enemy/EnemyIdle.gd" id="6_m6jha"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tegq"]
@@ -60,17 +60,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_md0e3")
 
 [node name="hit_reciver_box" type="Area3D" parent="." node_paths=PackedStringArray("health_comp")]
 script = ExtResource("4_eqilm")
-health_comp = NodePath("../health_component")
+health_comp = NodePath("")
 metadata/_custom_type_script = "uid://bhrs6p0rwjb3h"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hit_reciver_box"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ncf7h")
 debug_color = Color(0, 0.5498251, 0.92603725, 0.41960785)
-
-[node name="health_component" type="Node" parent="."]
-script = ExtResource("5_ncf7h")
-metadata/_custom_type_script = "uid://bxlgjvef5ow5t"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_md0e3")
@@ -96,5 +92,7 @@ explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_m6jha")
 draw_pass_1 = SubResource("PlaneMesh_0rspp")
 
-[connection signal="damaged" from="health_component" to="." method="bleed"]
-[connection signal="died" from="health_component" to="." method="_on_health_component_died"]
+[node name="HealthComponent" parent="." instance=ExtResource("6_glvfu")]
+
+[connection signal="damaged" from="HealthComponent" to="." method="bleed"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
