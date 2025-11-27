@@ -19,6 +19,3 @@ func _on_triggered() -> void:
 func clean_up() -> void:
 	print("clean up")
 	queue_free()
-
-func _on_beat() -> void:
-	print("Signal beat")
