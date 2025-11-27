@@ -8,6 +8,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
+@onready var visual: Node3D = $Visual
 
 @export var dash_force: float = 50.0
 @export var dash_cooldown: float = 0.1
@@ -15,6 +16,15 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 
 @export var stat_comp: stat_component
 @export var inventory: inventory_component
+
+@export var player_colors : PackedColorArray = [
+	Color.BLUE,
+	Color.GREEN,
+	Color.YELLOW,
+	Color.BLACK,
+	Color.WHITE,
+	Color.RED,
+]
 
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera: Camera3D
@@ -31,6 +41,7 @@ func init(player_num: int):
 func _ready() -> void:
 	if !equipped_instrument:
 		add_instrument(TRUMPET)
+	set_colors()
 
 func _physics_process(delta: float) -> void:
 	# only in case movement_sm doesnt work
@@ -92,3 +103,13 @@ func add_instrument(instrument):
 	instrument_instance.position = instrument_spawn.position
 	add_child(instrument_instance)
 	equipped_instrument = instrument_instance
+
+func set_colors():
+	var col = player_colors[player]
+	PlayerManager.set_player_color(player, col)
+	print(PlayerManager.get_player_color(player))
+	var mat = StandardMaterial3D.new()
+	mat.albedo_color = col
+	var meshes = visual.get_children()
+	for mesh in meshes:
+		mesh.set_surface_override_material(0, mat)

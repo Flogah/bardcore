@@ -29,6 +29,7 @@ func get_current_map() -> Map:
 func get_map(pos : Vector2i) -> Map:
 	var m = map_grid.get(pos)
 	if !m:
+		GameManager.add_dragon_time(10.0)
 		m = random_map().instantiate()
 		map_grid[pos] = m
 	return m
@@ -43,8 +44,9 @@ func unload_map():
 		get_tree().current_scene.queue_free()
 	
 	PlayerManager.save_all_players()
-	
+
 	if current_map:
+		#TODO do some cleanup of temporary assets if possible
 		var root = get_tree().get_root()
 		root.remove_child.call_deferred(current_map)
 
@@ -59,7 +61,7 @@ func load_map(pos: Vector2i = current_grid_position) -> void:
 
 func go_right():
 	print("Going right!")
-	
+	GameManager.stop_dragon_timer()
 	var map_r = current_grid_position + Vector2i(1,0)
 	coming_from_left = true
 	load_map(map_r)
@@ -67,6 +69,7 @@ func go_right():
 
 func go_left():
 	print("Going left!")
+	GameManager.stop_dragon_timer()
 	var map_l = current_grid_position - Vector2i(1,0)
 	coming_from_left = false
 	load_map(map_l)
@@ -75,3 +78,4 @@ func go_left():
 func finish_map():
 	await get_tree().create_timer(.2).timeout
 	current_map.spawn_players()
+	GameManager.start_dragon_timer()

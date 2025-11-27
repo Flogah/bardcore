@@ -9,7 +9,7 @@ enum item_type {
 	INSTRUMENT,
 }
 
-var placeholder_meshes := {
+const PLACEHOLDER_MESHES := {
 	item_type.RING: "res://BlenderScenes/PlaceHolder_Ringwear.blend",
 	item_type.HELMET: "res://BlenderScenes/PlaceHolder_Headwear.blend",
 	item_type.TORSO: "res://BlenderScenes/PlaceHolder_Torsowear.blend",
@@ -25,7 +25,7 @@ func _ready() -> void:
 	if item_resource_.mesh:
 		item_mesh = item_resource_.mesh.instantiate()
 	else:
-		var scene_path = placeholder_meshes[item_resource_.type]
+		var scene_path = PLACEHOLDER_MESHES[item_resource_.type]
 		var scene = load(scene_path)
 		if scene and scene is PackedScene:
 			item_mesh = scene.instantiate()
