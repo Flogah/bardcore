@@ -22,6 +22,7 @@ PlayerManager="*res://ManagerScripts/PlayerManager.gd"
 MapManager="*res://ManagerScripts/MapManager.gd"
 MusicManager="*res://ManagerScripts/MusicManager.gd"
 GameManager="*res://ManagerScripts/GameManager.gd"
+UserInterface="*res://UserInterface/user_interface.tscn"
 
 [editor_plugins]
 

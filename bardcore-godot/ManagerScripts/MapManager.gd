@@ -29,6 +29,7 @@ func get_current_map() -> Map:
 func get_map(pos : Vector2i) -> Map:
 	var m = map_grid.get(pos)
 	if !m:
+		GameManager.add_dragon_time(10.0)
 		m = random_map().instantiate()
 		map_grid[pos] = m
 	return m
@@ -43,8 +44,9 @@ func unload_map():
 		get_tree().current_scene.queue_free()
 	
 	PlayerManager.save_all_players()
-	
+
 	if current_map:
+		#TODO do some cleanup of temporary assets if possible
 		var root = get_tree().get_root()
 		root.remove_child.call_deferred(current_map)
 
