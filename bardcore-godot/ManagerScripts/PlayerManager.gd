@@ -81,6 +81,7 @@ func join(device: int):
 			"device": device,
 			"bard": "drunk",
 			"instrument": "trumpet",
+			"color": "ROYAL_BLUE",
 		}
 		player_joined.emit(player)
 
@@ -97,6 +98,12 @@ func get_player_indexes():
 
 func get_player_device(player: int) -> int:
 	return get_player_data(player, "device")
+
+func set_player_color(player: int, col: Color):
+	set_player_data(player, "color", str(col))
+
+func get_player_color(player: int) -> Color:
+	return get_player_data(player, "color")
 
 # get player data.
 # null means it doesn't exist.
