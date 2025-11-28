@@ -18,6 +18,9 @@ enum gameState {
 # this single variable could hold the unlocks in the village
 var unlocks: Dictionary = {}
 
+# this is the resource you earn for upgrades and unlocks
+var building_time:int
+
 func _physics_process(delta: float):
 	if is_running:
 		UserInterface.update_time(dragon_timer.time_left)
@@ -44,6 +47,7 @@ func add_dragon_time(time:float):
 func dragon_death():
 	is_running = false
 	get_tree().paused = true
+	add_building_time(convert_flee_time(max_time_value))
 
 func create_dragon_timer():
 	dragon_timer = Timer.new()
@@ -51,3 +55,13 @@ func create_dragon_timer():
 	dragon_timer.timeout.connect(dragon_death)
 	max_time_value = time_left
 	print("Dragon Timer created")
+
+func convert_flee_time(time:float) -> int:
+	var days:int = roundi(time)%60
+	return days
+	#var weeks:int = days%7
+	#days -= weeks * 7
+
+func add_building_time(val:int):
+	building_time += val
+	print(building_time)
