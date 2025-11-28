@@ -2,6 +2,7 @@ extends Node
 class_name Instrument
 
 var player : Player
+var player_num: int
 var input
 
 @export var weak_attack_cooldown:float = 3.0
@@ -17,4 +18,5 @@ func _ready() -> void:
 
 func equip():
 	player = get_parent()
+	player_num = player.player
 	input = player.input
