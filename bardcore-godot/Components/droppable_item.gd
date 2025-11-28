@@ -45,13 +45,14 @@ func _process(delta: float) -> void:
 	item_mesh.rotate(Vector3.UP, delta * deg_to_rad(25))
 	item_mesh.position.y = lerp(item_mesh.position.y + 1, sin(Time.get_ticks_msec()/300.0)*0.5 + 1, 0.5)
 
-func check_if_item_info_should_be_displayed() -> void:
-	print("checked!")
+func check_if_item_info_should_be_displayed(_entered_or_exited_body: Node3D) -> void:
+	print("checking")
 	for body in pickup_area.get_overlapping_bodies():
 		if body is Player:
+			print("contains player")
 			item_label.text = item_label_text
 			return
-	item_label_text = ""
+	item_label.text = ""
 
 func update_item_label() -> void:
 	var label_text: String = item_resource_.name + "\n"
