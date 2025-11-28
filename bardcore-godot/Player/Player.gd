@@ -113,3 +113,7 @@ func set_colors():
 	var meshes = visual.get_children()
 	for mesh in meshes:
 		mesh.set_surface_override_material(0, mat)
+
+func reset():
+	inventory.drop_all()
+	# TODO reset health and everything else

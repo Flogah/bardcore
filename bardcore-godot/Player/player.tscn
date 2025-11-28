@@ -89,7 +89,6 @@ outline_size = 6
 [node name="InventoryComponent" parent="." node_paths=PackedStringArray("stat_comp") instance=ExtResource("7_vtle1")]
 stat_comp = NodePath("../StatComponent")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("stat_comp") instance=ExtResource("8_00tjw")]
-stat_comp = NodePath("../StatComponent")
+[node name="HealthComponent" parent="." instance=ExtResource("8_00tjw")]
 
 [node name="StatComponent" parent="." instance=ExtResource("9_x3vf3")]

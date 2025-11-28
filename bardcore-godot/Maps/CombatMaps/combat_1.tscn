@@ -43,10 +43,12 @@ size = Vector3(16.576172, 7.7929688, 2.0117188)
 [sub_resource type="BoxMesh" id="BoxMesh_yo7wb"]
 size = Vector3(3.285, 1, 2.705)
 
-[node name="Combat1" type="Node3D" node_paths=PackedStringArray("camera")]
+[node name="Combat1" type="Node3D" node_paths=PackedStringArray("camera", "right_portal", "left_portal")]
 script = ExtResource("1_vycma")
 camera = NodePath("CameraArm/Camera3D")
 mapGameState = 1
+right_portal = NodePath("Exits/Portal2")
+left_portal = NodePath("Exits/Portal")
 
 [node name="CameraArm" type="Node3D" parent="."]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 0, 0)

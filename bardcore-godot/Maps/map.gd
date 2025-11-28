@@ -4,14 +4,17 @@ class_name Map
 @export var camera: Camera3D
 @export var mapGameState : GameManager.gameState
 
+@export var right_portal:Portal
+@export var left_portal:Portal
+
+@export var spawn_position:Node3D
+
 @onready var enemy_nodes: Node3D = $Enemies
 @onready var exit_nodes: Node3D = $Exits
 @onready var bits: Node3D = $Bits
 
 var enemies = []
 var portals = []
-var right_portal:Portal
-var left_portal:Portal
 
 func _ready() -> void:
 	read_map()
@@ -23,17 +26,13 @@ func read_map():
 		enemies.append(enemy)
 	for portal in exit_nodes.get_children():
 		portals.append(portal)
-	
 	connect_portals()
 
 func connect_portals():
-	for portal in portals:
-		if portal.position.x <= 0:
-			left_portal = portal
-			left_portal.on_enter_portal.connect(exit_left)
-		else:
-			right_portal = portal
-			right_portal.on_enter_portal.connect(exit_right)
+	if right_portal:
+		right_portal.on_enter_portal.connect(exit_right)
+	if left_portal:
+		left_portal.on_enter_portal.connect(exit_left)
 
 func exit_left():
 	MapManager.go_left()
@@ -46,13 +45,15 @@ func spawn_players():
 		return
 	
 	var entrance
-	if MapManager.coming_from_left:
-		entrance = left_portal
+
+	if spawn_position:
+		entrance = spawn_position.global_position
+	elif MapManager.coming_from_left:
+		entrance = left_portal.spawn_center.global_position
 	else:
-		entrance = right_portal
+		entrance = right_portal.spawn_center.global_position
 	
 	var player_nodes = PlayerManager.player_nodes
-	var entrance_position = entrance.spawn_center.global_position
 	
 	for player_node in player_nodes:
 		var player = player_nodes[player_node]
@@ -60,8 +61,8 @@ func spawn_players():
 		var cur_scene = MapManager.get_current_map()
 		if cur_scene:
 			cur_scene.add_child(player)
-			player.position = entrance_position
-			entrance_position.z += 2.0
+			player.position = entrance
+			entrance.z += 2.0
 
 func unlock_all_portals():
 	for portal in portals:
