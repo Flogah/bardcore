@@ -19,4 +19,5 @@ metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 [resource]
 script = ExtResource("1_6u4ug")
 upgrades = Array[ExtResource("2_xx18j")]([SubResource("Resource_knwdt"), SubResource("Resource_vb2me")])
+name = "Beton Ring"
 metadata/_custom_type_script = "uid://b7fgxjqg7f181"

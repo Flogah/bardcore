@@ -16,4 +16,5 @@ metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 script = ExtResource("1_ehwc2")
 type = 3
 upgrades = Array[ExtResource("2_0hdoc")]([SubResource("Resource_g0yid")])
+name = "Swift Boots"
 metadata/_custom_type_script = "uid://b7fgxjqg7f181"
