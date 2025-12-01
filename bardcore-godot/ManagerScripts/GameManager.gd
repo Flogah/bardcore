@@ -1,14 +1,17 @@
 extends Node
 
 # get's carried from map to map, so it's important to not have it be a single timer node
-var starting_time:float = 5.0
-var time_left: float
-var max_time_value: float
+var starting_time:int = 5
+# the time it takes to get to the next beat, better visualizing the time
+var beat_time:float = 1.0
+var standard_bonus_time:int = 2
+
+var time_left:int
+var max_time_value:int
 var dragon_timer:Timer
-var standard_bonus_time:float = 2.0
+
 
 var currentGameState : gameState
-
 enum gameState {
 	home,
 	combat,
@@ -25,46 +28,45 @@ var building_time:int
 func _ready():
 	create_dragon_timer()
 	reset_time()
-	dragon_timer.wait_time = time_left
+	MusicManager.beat.connect(dragon_beat)
+	reset_time()
+	
 	MapManager.entered_new_map.connect(add_dragon_time)
 	UserInterface.update_progress_bar_max(max_time_value)
-	UserInterface.update_time(dragon_timer.time_left)
+	UserInterface.update_time(time_left)
 
 func _physics_process(delta: float):
-	if dragon_timer && !dragon_timer.paused:
-		UserInterface.update_time(dragon_timer.time_left)
+	if dragon_timer && !dragon_timer.is_stopped():
+		UserInterface.update_time(float(time_left) + dragon_timer.time_left - beat_time)
 
-func start_dragon_timer():
-	UserInterface.show()
+func dragon_beat():
+	dragon_timer.start(beat_time)
 	
-	dragon_timer.paused = false
-	dragon_timer.start(time_left)
+	if currentGameState == gameState.home:
+		return
+	
+	time_left -= 1
+	UserInterface.update_time(time_left)
+	if time_left < 1:
+		dragon_death()
 
-func stop_dragon_timer():
-	if !dragon_timer: return
-	dragon_timer.paused = true
-	if dragon_timer.time_left > 0.0:
-		time_left = dragon_timer.time_left
-
-func add_dragon_time(time:float = standard_bonus_time):
-	time_left += time
+func add_dragon_time(time:int = standard_bonus_time):
 	max_time_value += time
-	UserInterface.update_progress_bar_max(max_time_value)
+	time_left += time
+	UserInterface.update_progress_bar_max(float(max_time_value))
+	UserInterface.update_time(float(time_left))
 
 func create_dragon_timer():
 	dragon_timer = Timer.new()
+	dragon_timer.one_shot = true
 	add_child(dragon_timer)
-	dragon_timer.timeout.connect(dragon_death)
 	print("Dragon Timer created")
 
 func dragon_death():
-	stop_dragon_timer()
-	reset_time()
 	add_building_time(10)
 	reset_game()
 
 func reset_time():
-	dragon_timer.wait_time = starting_time
 	time_left = starting_time
 	max_time_value = starting_time
 
@@ -82,6 +84,7 @@ func reset_game():
 	var loading_screen = preload("res://UserInterface/loading_screen.tscn").instantiate()
 	get_tree().root.add_child(loading_screen)
 	
+	reset_time()
 	MapManager.reset()
 	PlayerManager.reset()
 	MusicManager.reset()

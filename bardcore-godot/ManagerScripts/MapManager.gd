@@ -66,14 +66,12 @@ func load_map(pos: Vector2i = current_grid_position) -> void:
 
 func go_right():
 	print("Going right!")
-	GameManager.stop_dragon_timer()
 	var map_r = current_grid_position + Vector2i(1,0)
 	coming_from_left = true
 	load_map(map_r)
 
 func go_left():
 	print("Going left!")
-	GameManager.stop_dragon_timer()
 	var map_l = current_grid_position - Vector2i(1,0)
 	coming_from_left = false
 	load_map(map_l)
@@ -82,8 +80,6 @@ func finish_map():
 	await get_tree().create_timer(.2).timeout
 	current_map.spawn_players()
 	GameManager.change_gamestate(current_map.mapGameState)
-	if !current_map.mapGameState == GameManager.gameState.home:
-		GameManager.start_dragon_timer()
 
 func reset():
 	unload_map()

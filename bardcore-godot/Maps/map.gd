@@ -63,6 +63,9 @@ func spawn_players():
 			cur_scene.add_child(player)
 			player.position = entrance
 			entrance.z += 2.0
+	
+	if mapGameState != GameManager.gameState.home:
+		UserInterface.show()
 
 func unlock_all_portals():
 	for portal in portals:
