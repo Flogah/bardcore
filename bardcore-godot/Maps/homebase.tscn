@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=22 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_6iww8"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
+[ext_resource type="PackedScene" uid="uid://c0m48hn2rvbsg" path="res://Maps/Buildings/building.tscn" id="3_fxw5g"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
@@ -143,6 +144,7 @@ shape = SubResource("BoxShape3D_dtoj1")
 
 [node name="Bits" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278862, 0, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bits"]
 transform = Transform3D(0.67932606, 0, 0.7338366, 0, 1, 0, -0.7338366, 0, 0.67932606, -17.070549, 1.4719172, -11.813549)
@@ -206,3 +208,8 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 22.5
 
 [node name="BeatTimer" type="Timer" parent="." groups=["BeatTimer"]]
 autostart = true
+
+[node name="Buildings" type="Node3D" parent="."]
+
+[node name="Building" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 6.227239, 0, -11.356634)
