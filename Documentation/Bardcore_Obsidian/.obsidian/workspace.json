@@ -4,46 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "42b4b703c67d958d",
+        "id": "c46d4b65f0db0db1",
         "type": "tabs",
-        "dimension": 24.90974729241877,
         "children": [
           {
-            "id": "be27231e83cb5778",
+            "id": "3370c582eb0973d2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Architektur/Timeline.md",
+                "file": "Game Design/Unlock Mechanics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Timeline"
-            }
-          }
-        ]
-      },
-      {
-        "id": "936811f47bf425e8",
-        "type": "tabs",
-        "dimension": 75.09025270758123,
-        "children": [
-          {
-            "id": "71bc24a836abd740",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Architektur/Item Stats Architecture.canvas",
-                "viewState": {
-                  "x": 48.24646290239929,
-                  "y": -1779.724781439973,
-                  "zoom": -0.8112784236827486
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "Item Stats Architecture"
+              "title": "Unlock Mechanics"
             }
           }
         ]
@@ -194,16 +169,19 @@
       "bases:Create new base": false
     }
   },
-  "active": "71bc24a836abd740",
+  "active": "3370c582eb0973d2",
   "lastOpenFiles": [
+    "Game Design/Item Konzepte.md",
+    "Game Design/Meta Loop.md",
+    "Game Design/Unlock Mechanics.md",
+    "Game Design/Unlocks.md",
+    "Architektur/Timeline.md",
+    "Architektur/Item Stats Architecture.canvas",
     "Agenda Meetings.md",
-    "Architektur/Timeline.md",
     "GDD Bardcore.md",
-    "Architektur/Timeline.md",
     "Interview mit einem Producer.md",
     "Quellen.md",
     "Creative Writing/Dialoge.md",
-    "Game Design/Meta Loop.md",
     "Creative Writing/Backstories.md",
     "Architektur/Asset Liste.md",
     "Architektur/Feature Liste.md",
