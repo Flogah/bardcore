@@ -213,3 +213,18 @@ autostart = true
 
 [node name="Building" parent="Buildings" instance=ExtResource("3_fxw5g")]
 transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 6.227239, 0, -11.356634)
+
+[node name="Building2" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.13922489, 0, 0.99026084, 0, 1, 0, -0.99026084, 0, -0.13922489, 0.16232157, 0, -13.383564)
+
+[node name="Building3" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.13922489, 0, 0.99026084, 0, 1, 0, -0.99026084, 0, -0.13922489, -4.227737, 0, -13.655114)
+
+[node name="Building4" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.13922489, 0, 0.99026084, 0, 1, 0, -0.99026084, 0, -0.13922489, -8.482021, 0, -14.56028)
+
+[node name="Building5" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.69431925, 0, 0.71966714, 0, 1, 0, -0.71966714, 0, -0.69431925, -13.369923, 0, -11.30168)
+
+[node name="Building6" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.9225044, 0, 0.38598663, 0, 1, 0, -0.38598663, 0, -0.9225044, -16.040165, 0, -6.9116216)
