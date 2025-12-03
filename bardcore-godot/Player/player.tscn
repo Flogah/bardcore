@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=14 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Player/Player.gd" id="1_fhl08"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="2_vtle1"]
@@ -9,25 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://dd418ylpenn6d" path="res://Components/inventory_component.tscn" id="7_vtle1"]
 [ext_resource type="PackedScene" uid="uid://btdqkmooqxlov" path="res://Components/health_component.tscn" id="8_00tjw"]
 [ext_resource type="PackedScene" uid="uid://dnrcjxypytfhw" path="res://Components/stat_component.tscn" id="9_x3vf3"]
+[ext_resource type="PackedScene" uid="uid://couj5e4yhr0jl" path="res://Components/indicator_ring.tscn" id="10_x3vf3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_color = Color(0, 0.35686275, 0.12156863, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuyoq"]
-albedo_color = Color(0.19777417, 0.7279221, 0.9999997, 1)
-
-[sub_resource type="TorusMesh" id="TorusMesh_tuyoq"]
-material = SubResource("StandardMaterial3D_tuyoq")
-inner_radius = 0.894
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
-albedo_color = Color(0.19777417, 0.7279221, 0.9999997, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_fjrip"]
-material = SubResource("StandardMaterial3D_fjrip")
-size = Vector3(0.46, 0.26, 0.07)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
 
@@ -47,14 +34,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_o5qli")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17521656, 0)
-mesh = SubResource("TorusMesh_tuyoq")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.17521656, -1.0629247)
-mesh = SubResource("PrismMesh_fjrip")
 
 [node name="BodyHitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -89,7 +68,9 @@ outline_size = 6
 [node name="InventoryComponent" parent="." node_paths=PackedStringArray("stat_comp") instance=ExtResource("7_vtle1")]
 stat_comp = NodePath("../StatComponent")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("stat_comp") instance=ExtResource("8_00tjw")]
-stat_comp = NodePath("../StatComponent")
+[node name="HealthComponent" parent="." instance=ExtResource("8_00tjw")]
 
 [node name="StatComponent" parent="." instance=ExtResource("9_x3vf3")]
+
+[node name="IndicatorRing" parent="." instance=ExtResource("10_x3vf3")]
+direction_arrow = true
