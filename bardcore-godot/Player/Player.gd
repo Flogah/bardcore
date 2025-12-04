@@ -9,6 +9,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
 @onready var visual: Node3D = $Visual
+@onready var indicator_ring: Node3D = $IndicatorRing
 
 @export var dash_force: float = 50.0
 @export var dash_cooldown: float = 0.1
@@ -113,6 +114,7 @@ func set_colors():
 	var meshes = visual.get_children()
 	for mesh in meshes:
 		mesh.set_surface_override_material(0, mat)
+	indicator_ring.set_color(col)
 
 func reset():
 	inventory.drop_all()

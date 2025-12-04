@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://couj5e4yhr0jl"]
+
+[ext_resource type="Script" uid="uid://csqt80pvc48x" path="res://Components/indicator_ring.gd" id="1_iafsb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuyoq"]
+albedo_color = Color(0.19777417, 0.7279221, 0.9999997, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_8hhxr"]
+material = SubResource("StandardMaterial3D_tuyoq")
+inner_radius = 0.894
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
+albedo_color = Color(0.19777417, 0.7279221, 0.9999997, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_y6xyu"]
+material = SubResource("StandardMaterial3D_fjrip")
+size = Vector3(0.46, 0.26, 0.07)
+
+[node name="IndicatorRing" type="Node3D"]
+script = ExtResource("1_iafsb")
+
+[node name="Ring" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17521656, 0)
+mesh = SubResource("TorusMesh_8hhxr")
+
+[node name="Arrow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.17521656, -1.0629247)
+mesh = SubResource("PrismMesh_y6xyu")
