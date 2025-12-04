@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://cxrbum0bliyx" path="res://ManagerScripts/MusicManager.gd" id="1_txsen"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_upvx7"]
 
-[node name="MusicManager" type="Node" node_paths=PackedStringArray("current_music", "rhythm_notifier")]
+[node name="MusicManager" type="Node" node_paths=PackedStringArray("rhythm_notifier")]
 script = ExtResource("1_txsen")
-current_music = NodePath("")
 rhythm_notifier = NodePath("RhythmNotifier")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]

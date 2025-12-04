@@ -69,4 +69,6 @@ func rhythm_signal(every_beat: int) -> void:
 		beat.emit())
 	#emit_signal(notify_signal)
 	
-	
+func reset():
+	# TODO reset everything so the music restarts clean
+	pass
