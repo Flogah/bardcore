@@ -46,6 +46,10 @@ func drop(item_type: droppable_item.item_type) -> void:
 		stat_comp.remove_upgrades(slot.get_instance_id())
 		slots[item_type] = null
 
+func drop_all():
+	# TODO remove all items from inventory and all ongoing item effects for a clean reset
+	pass
+
 func add_possible_pickupable_item(area: Area3D) -> void:
 	if area.owner is droppable_item:
 		pickupable_items.append(area.owner)
