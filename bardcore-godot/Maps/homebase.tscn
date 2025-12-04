@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=22 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_6iww8"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
+[ext_resource type="PackedScene" uid="uid://c0m48hn2rvbsg" path="res://Maps/Buildings/building.tscn" id="3_fxw5g"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
@@ -145,6 +146,7 @@ shape = SubResource("BoxShape3D_dtoj1")
 
 [node name="Bits" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278862, 0, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bits"]
 transform = Transform3D(0.67932606, 0, 0.7338366, 0, 1, 0, -0.7338366, 0, 0.67932606, -17.070549, 1.4719172, -11.813549)
@@ -211,3 +213,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4909654, 0, 3.8463798)
 
 [node name="BeatTimer" type="Timer" parent="." groups=["BeatTimer"]]
 autostart = true
+
+[node name="Buildings" type="Node3D" parent="."]
+
+[node name="Building" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 6.227239, 0, -11.356634)
+
+[node name="Building2" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.13922489, 0, 0.99026084, 0, 1, 0, -0.99026084, 0, -0.13922489, 0.16232157, 0, -13.383564)
+
+[node name="Building3" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.13922489, 0, 0.99026084, 0, 1, 0, -0.99026084, 0, -0.13922489, -4.227737, 0, -13.655114)
+
+[node name="Building4" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.13922489, 0, 0.99026084, 0, 1, 0, -0.99026084, 0, -0.13922489, -8.482021, 0, -14.56028)
+
+[node name="Building5" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.69431925, 0, 0.71966714, 0, 1, 0, -0.71966714, 0, -0.69431925, -13.369923, 0, -11.30168)
+
+[node name="Building6" parent="Buildings" instance=ExtResource("3_fxw5g")]
+transform = Transform3D(-0.9225044, 0, 0.38598663, 0, 1, 0, -0.38598663, 0, -0.9225044, -16.040165, 0, -6.9116216)

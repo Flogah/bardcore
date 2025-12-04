@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 signal leave
+signal interact
 
 const TRUMPET = preload("uid://515m7a070dcx")
 const VIOLIN = preload("uid://lxalv8rqbk0c")
@@ -54,6 +55,7 @@ func _physics_process(delta: float) -> void:
 	
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
 		inventory.try_pickup()
+		interact.emit()
 	
 	velocity.y -= gravity * delta
 	move_and_slide()
