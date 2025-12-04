@@ -1,0 +1,36 @@
+extends State
+class_name AttackCircle
+
+const ATTACK_CIRCLE_AREA = preload("uid://bivf4jcutmgdo")
+
+@export var attack_spawn: Node3D
+@export var place_sound: AudioStreamPlayer3D
+var attack_cooldown_timer: Timer
+var attackArea
+
+func enter(previous_state_path: String, data := {}) -> void:
+	if !attack_cooldown_timer:
+		print("No cooldown timer found. Creating new timer.")
+		attack_cooldown_timer = Timer.new()
+		add_child(attack_cooldown_timer)
+		attack_cooldown_timer.one_shot = true
+		attack_cooldown_timer.wait_time = 1.5
+	  
+	if !attack_cooldown_timer.is_stopped():
+		#print("Attack is still on cooldown. Time left: " + str(attack_cooldown_timer.time_left))
+		finished.emit("Idle")
+		return
+	
+	attack_cooldown_timer.start(1.0)
+	#attackArea.global_position = attack_spawn.global_position
+	setup_attack_area(ATTACK_CIRCLE_AREA)
+	MapManager.current_map.add_child(attackArea)
+	
+	finished.emit("Idle")
+	#place_sound.play()
+
+func setup_attack_area(attack_area):
+	attackArea = attack_area.instantiate()
+	attackArea.global_position = attack_spawn.global_position
+	attackArea.rotation = attack_spawn.global_rotation
+	return attackArea
