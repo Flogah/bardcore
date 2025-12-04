@@ -7,4 +7,4 @@ func update(_delta: float) -> void:
 		#finished.emit("WeakAttack")
 
 	if owner.input.is_action_pressed("attack_line"):
-		finished.emit("AttackLine")
+		finished.emit("AttackLine", {player_num = owner.player_num})
