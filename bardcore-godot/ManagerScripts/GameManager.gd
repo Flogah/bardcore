@@ -80,6 +80,14 @@ func add_building_time(val:int):
 	building_time += val
 	print(building_time)
 
+func pay_building_cost(val: int) -> bool:
+	if val > building_time:
+		print("Not enough building time available. Cost: " + str(val) + ", Available: " + str(building_time))
+		return false
+	building_time -= val
+	print(building_time)
+	return true
+
 func reset_game():
 	var loading_screen = preload("res://UserInterface/loading_screen.tscn").instantiate()
 	get_tree().root.add_child(loading_screen)

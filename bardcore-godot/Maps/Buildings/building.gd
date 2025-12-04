@@ -8,6 +8,11 @@ enum buildState {
 
 @export var state:buildState = buildState.unbuilt
 
+@export var build_cost: Dictionary[buildState, int] = {
+	buildState.unbuilt: 1,
+	buildState.level1: 4,
+}
+
 @onready var level_0: Node3D = $Level0
 @onready var level_1: Node3D = $Level1
 @onready var level_2: Node3D = $Level2
@@ -16,6 +21,9 @@ func interact():
 	upgrade()
 
 func upgrade():
+	# this applies the cost but already checks if there is enough balance left
+	if !GameManager.pay_building_cost(build_cost.get(state)):
+		return
 	if state == buildState.unbuilt:
 		# build anim
 		build_to_1()
