@@ -63,7 +63,7 @@ func create_dragon_timer():
 	print("Dragon Timer created")
 
 func dragon_death():
-	add_building_time(10)
+	add_building_time(max_time_value - time_left)
 	reset_game()
 
 func reset_time():
@@ -71,13 +71,19 @@ func reset_time():
 	max_time_value = starting_time
 
 func convert_flee_time(time:float) -> int:
-	var days:int = roundi(time)%60
-	return days
-	#var weeks:int = days%7
+	# per 60 beats/per minute one day
+	var days:int = roundi(time/60)
+	var weeks:int = days/7
 	#days -= weeks * 7
+	
+	print("Time survived: " + str(time))
+	print("Days earned: " + str(days))
+	print("Weeks earned: " + str(weeks))
+	
+	return days
 
 func add_building_time(val:int):
-	building_time += val
+	building_time += convert_flee_time(val)
 	print(building_time)
 
 func pay_building_cost(val: int) -> bool:
