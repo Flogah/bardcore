@@ -5,9 +5,12 @@ Man erhält für jede Minute die man überlebt verdient man 1 Tag.
 7 Tage sind 1 Woche.
 4 Wochen sind 1 Monat.
 
-Earlygame Unlocks sind im Bereich 1 - 4 Wochen
-Midgame Unlocks sind im Bereich 2 - 6 Monate
-Lategame Unlocks sind im Bereich 7 - 12 Monate
+|           | Kosten min | Kosten max | umgerechnet | Notiz                                                          |
+| --------- | ---------- | ---------- | ----------- | -------------------------------------------------------------- |
+| Earlygame | 1 Woche    | 4 Wochen   | 7-28 Min    | Erste Runs, Keine Boni                                         |
+| Midgame   | 2 Monate   | 6 Monate   | 56-168 Min  | Erster Boss wird regelmäßig besiegt                            |
+| Lategame  | 7 Monate   | 1 Jahr     | 198-336 Min | Man hat den finalen Bosskampf gegen den Drachen freigeschaltet |
+Tatsächliche Gametime wird gedeckelt bei 15 Minuten pro Welt. Alles darüber hinaus ist Bonuszeit, die direkt verdient wird statt Gametime zugeschrieben zu werden.
 
 Mögliche Sachen um verdiente Zeit zu erhöhen:
 Länger Überleben
