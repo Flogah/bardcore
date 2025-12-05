@@ -23,14 +23,14 @@ func enter(previous_state_path: String, data := {}) -> void:
 	
 	attack_cooldown_timer.start(1.0)
 	#attackArea.global_position = attack_spawn.global_position
-	setup_attack_area(ATTACK_CIRCLE_AREA)
+	attackArea = ATTACK_CIRCLE_AREA.instantiate()
 	MapManager.current_map.add_child(attackArea)
+	setup_attack_area()
 	
 	finished.emit("Idle")
 	#place_sound.play()
 
-func setup_attack_area(attack_area):
-	attackArea = attack_area.instantiate()
+func setup_attack_area():
 	attackArea.global_position = attack_spawn.global_position
 	attackArea.rotation = attack_spawn.global_rotation
 	return attackArea
