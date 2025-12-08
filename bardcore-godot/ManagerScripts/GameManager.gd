@@ -1,5 +1,12 @@
 extends Node
 
+enum gameState {
+	home,
+	combat,
+	post_combat,
+	shop,
+}
+
 # get's carried from map to map, so it's important to not have it be a single timer node
 var starting_time:int = 5
 # the time it takes to get to the next beat, better visualizing the time
@@ -11,12 +18,7 @@ var max_time_value:int
 var dragon_timer:Timer
 
 var currentGameState : gameState
-enum gameState {
-	home,
-	combat,
-	post_combat,
-	shop,
-}
+
 
 # this single variable could hold the unlocks in the village
 var unlocks: Dictionary = {}
