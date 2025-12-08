@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cr1ydxfa4aiik"]
 
-[ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_6iww8"]
+[ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
 [ext_resource type="PackedScene" uid="uid://c0m48hn2rvbsg" path="res://Maps/Buildings/building.tscn" id="3_fxw5g"]
 
@@ -64,12 +64,10 @@ size = Vector3(7.725, 2.885, 3.77)
 [sub_resource type="BoxMesh" id="BoxMesh_wdvh6"]
 size = Vector3(3.925, 2.63, 2.8)
 
-[node name="Homebase" type="Node3D" node_paths=PackedStringArray("camera", "right_portal", "spawn_position")]
-script = ExtResource("1_6iww8")
-camera = NodePath("CameraArm/Camera3D")
-mapGameState = null
-right_portal = NodePath("Exits/Portal")
+[node name="Homebase" type="Node3D" node_paths=PackedStringArray("spawn_position", "exit_portal")]
+script = ExtResource("1_fxw5g")
 spawn_position = NodePath("Exits/Spawn")
+exit_portal = NodePath("Exits/Portal")
 
 [node name="CameraArm" type="Node3D" parent="."]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 1.5, 0)
@@ -209,11 +207,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 22.5
 
 [node name="Spawn" type="Node3D" parent="Exits"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4909654, 0, 3.8463798)
-
-[node name="Enemies" type="Node3D" parent="."]
-
-[node name="BeatTimer" type="Timer" parent="." groups=["BeatTimer"]]
-autostart = true
 
 [node name="Buildings" type="Node3D" parent="."]
 
