@@ -11,7 +11,6 @@ class_name Map
 
 @onready var enemy_nodes: Node3D = $Enemies
 @onready var exit_nodes: Node3D = $Exits
-@onready var bits: Node3D = $Bits
 
 var enemies = []
 var portals = []

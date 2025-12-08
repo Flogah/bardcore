@@ -10,7 +10,6 @@ var time_left:int
 var max_time_value:int
 var dragon_timer:Timer
 
-
 var currentGameState : gameState
 enum gameState {
 	home,
@@ -23,7 +22,7 @@ enum gameState {
 var unlocks: Dictionary = {}
 
 # this is the resource you earn for upgrades and unlocks
-var building_time:int
+var building_time:int = 1
 
 func _ready():
 	create_dragon_timer()
