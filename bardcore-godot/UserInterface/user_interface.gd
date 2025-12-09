@@ -16,26 +16,34 @@ func _ready():
 	GameManager.game_state_changed.connect(change_ui_state)
 
 func _process(_delta):
+	shrink_timer()
+
+func shrink_timer():
 	if current_intensity > 1.0:
 		time_left_label.scale = Vector2.ONE * current_intensity
+		#build_time_label.scale = Vector2.ONE * current_intensity
 		current_intensity *= fadeTimer.time_left / max_fade
 	else:
 		time_left_label.scale = Vector2.ONE
+		#build_time_label.scale = Vector2.ONE
 
 func update_time(time:float) -> void:
-	update_label(time)
+	update_time_label(time)
 	update_progress_bar(time)
 
-func update_label(time:float) -> void:
+func update_time_label(time:float) -> void:
 	time_left_label.text = str(snapped(time, 0.1))
 
 func update_progress_bar(val:float) -> void:
 	time_progress_bar.value = time_progress_bar.max_value - val
 
+func update_build_label(val:int) -> void:
+	build_time_label.text = str(val) + " Days until the dragon returns"
+
 func update_progress_bar_max(val:float) -> void:
 	time_progress_bar.max_value = val
 
-func timer_beat(intensity:float = 1.4, fade:float = 0.6) -> void:
+func timer_beat(intensity:float = 1.2, fade:float = 100) -> void:
 	max_fade = fade
 	fadeTimer.start(fade)
 	current_intensity = intensity
