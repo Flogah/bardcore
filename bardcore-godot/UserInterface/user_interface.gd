@@ -69,11 +69,14 @@ func change_ui_state(mode: GameManager.gameState):
 		combat_ui.show()
 
 func add_dragon_pointer():
-	var dragon_warning = preload("uid://dfitq5rmlp4bh").instantiate()
+	var dragon_warning = preload("res://UserInterface/dragon_warning.tscn").instantiate()
 	add_child(dragon_warning)
 
 func show_upgrade_hint(building: Building):
+	update_upgrade_hint(building)
 	upgrade_hint_label.show()
+
+func update_upgrade_hint(building: Building):
 	var upgrade_txt = "Name: {0} lv.{1} \n Kosten: {2} Days \n F to Upgrade"
 	var b_name: String = building.building_name
 	var state: String = str(building.state)

@@ -72,3 +72,4 @@ func go_left():
 func reset():
 	unload_map()
 	map_grid = {}
+	coming_from_left = true
