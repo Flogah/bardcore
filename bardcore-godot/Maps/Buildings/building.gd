@@ -7,6 +7,8 @@ enum buildState {
 	level3,
 }
 
+@export var building_name:String
+
 @export var state:buildState = buildState.unbuilt
 
 # this defines the cost for upgrade from the stated state
@@ -24,6 +26,8 @@ enum buildState {
 @export var level_4: Node3D
 
 #@export var build_level_models:Dictionary[buildState, Node3D] = {}
+
+
 
 @onready var collision: CollisionShape3D = $Collision/CollisionShape3D
 @onready var anim: AnimationPlayer = $AnimationPlayer

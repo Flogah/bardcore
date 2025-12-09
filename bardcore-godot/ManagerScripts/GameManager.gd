@@ -1,5 +1,7 @@
 extends Node
 
+signal game_state_changed(new_value)
+
 enum gameState {
 	home,
 	combat,
@@ -101,14 +103,13 @@ func reset_game():
 	
 	reset_time()
 	MapManager.reset()
-	PlayerManager.reset()
 	MusicManager.reset()
 	
 	await get_tree().create_timer(1.0).timeout
-	UserInterface.hide()
 	loading_screen.queue_free()
 	
 	get_tree().change_scene_to_packed(MapManager.HOMEBASE)
 
 func change_gamestate(new_gamestate:gameState):
 	currentGameState = new_gamestate
+	game_state_changed.emit(currentGameState)

@@ -117,7 +117,3 @@ func set_colors():
 	for mesh in meshes:
 		mesh.set_surface_override_material(0, mat)
 	indicator_ring.set_color(col)
-
-func reset():
-	inventory.drop_all()
-	# TODO reset health and everything else

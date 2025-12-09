@@ -163,9 +163,4 @@ func get_unjoined_devices():
 	return devices.filter(func(device): return !is_device_joined(device))
 
 func reset():
-	for node in player_nodes:
-		var player = player_nodes.get(node)
-		reset_player_node(player)
-
-func reset_player_node(player: Player):
-	player.reset()
+	player_nodes = {}
