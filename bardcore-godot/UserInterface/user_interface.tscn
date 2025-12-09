@@ -16,16 +16,18 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mm0wo"]
 bg_color = Color(0.79863435, 0.1375759, 0.13508749, 1)
 
-[node name="UserInterface" type="CanvasLayer" node_paths=PackedStringArray("combat_ui", "home_ui", "time_left_label", "time_progress_bar", "build_time_label", "fadeTimer")]
+[node name="UserInterface" type="CanvasLayer" node_paths=PackedStringArray("combat_ui", "home_ui", "upgrade_hint_label", "time_left_label", "time_progress_bar", "build_time_label", "fadeTimer")]
 script = ExtResource("1_71fg6")
 combat_ui = NodePath("Combat_UI")
 home_ui = NodePath("Home_UI")
+upgrade_hint_label = NodePath("Home_UI/UpgradeHint/UpgradeLabel")
 time_left_label = NodePath("Combat_UI/TimeContainer/VBoxContainer/TimeContainer2/TimeLeft")
 time_progress_bar = NodePath("Combat_UI/TimeContainer/VBoxContainer/TimeProgressBar")
 build_time_label = NodePath("Home_UI/BuildTimeContainer/BuildTimeLeft")
 fadeTimer = NodePath("FadeTimer")
 
 [node name="Combat_UI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -155,6 +157,37 @@ theme_override_font_sizes/font_size = 40
 text = "XX Days until the dragon returns"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UpgradeHint" type="Control" parent="Home_UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -201.0
+offset_top = 62.0
+offset_right = 201.0
+offset_bottom = 178.0
+grow_horizontal = 2
+
+[node name="UpgradeLabel" type="Label" parent="Home_UI/UpgradeHint"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.5
+offset_right = 70.5
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_mm0wo")
+theme_override_font_sizes/font_size = 30
+text = "Name: XXXXX lv X
+Kosten: XX Days
+F to Upgrade"
+horizontal_alignment = 1
 
 [node name="General_UI" type="Control" parent="."]
 layout_mode = 3

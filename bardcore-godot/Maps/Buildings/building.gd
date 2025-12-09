@@ -99,7 +99,12 @@ func finish_building_3(_anim):
 
 func _on_interaction_area_body_entered(body: Node3D) -> void:
 	body.interact.connect(interact)
+	UserInterface.show_upgrade_hint(self)
 
 func _on_interaction_area_body_exited(body: Node3D) -> void:
 	if body.interact.is_connected(interact):
 		body.interact.disconnect(interact)
+		UserInterface.hide_upgrade_hint()
+
+func get_current_upgrade_cost() -> int:
+	return build_cost.get(state)

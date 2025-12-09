@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @export var combat_ui: Control
 @export var home_ui: Control
+@export var upgrade_hint_label: Label
 
 @export var time_left_label: Label
 @export var time_progress_bar: ProgressBar
@@ -70,4 +71,15 @@ func change_ui_state(mode: GameManager.gameState):
 func add_dragon_pointer():
 	var dragon_warning = preload("uid://dfitq5rmlp4bh").instantiate()
 	add_child(dragon_warning)
+
+func show_upgrade_hint(building: Building):
+	upgrade_hint_label.show()
+	var upgrade_txt = "Name: {0} lv.{1} \n Kosten: {2} Days \n F to Upgrade"
+	var b_name: String = building.building_name
+	var state: String = str(building.state)
+	var cost: String = str(building.get_current_upgrade_cost())
 	
+	upgrade_hint_label.text = upgrade_txt.format([b_name, state, cost])
+
+func hide_upgrade_hint():
+	upgrade_hint_label.hide()
