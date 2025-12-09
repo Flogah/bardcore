@@ -25,6 +25,7 @@ enum buildState {
 
 @onready var collision: CollisionShape3D = $Collision/CollisionShape3D
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var interaction_collision: CollisionShape3D = $InteractionArea/CollisionShape3D
 
 func interact():
 	upgrade()
@@ -37,6 +38,7 @@ func upgrade():
 	if !GameManager.pay_building_cost(build_cost.get(state)):
 		return
 	
+	interaction_collision.disabled = true
 	if state == buildState.unbuilt:
 		build_to_1()
 	elif state == buildState.level1:
@@ -60,6 +62,7 @@ func finish_building_1(_anim):
 	state = buildState.level1
 	
 	collision.disabled = false
+	interaction_collision.disabled = false
 
 func build_to_2():
 	# build anim
@@ -71,6 +74,7 @@ func finish_building_2(_anim):
 	anim.animation_finished.disconnect(finish_building_2)
 	level_1.hide()
 	state = buildState.level2
+	interaction_collision.disabled = false
 #endregion
 
 func _on_interaction_area_body_entered(body: Node3D) -> void:
