@@ -14,6 +14,7 @@ var current_intensity : float = -1.0
 func _ready():
 	MusicManager.beat.connect(timer_beat)
 	GameManager.game_state_changed.connect(change_ui_state)
+	GameManager.building_time_changed.connect(update_build_label)
 
 func _process(_delta):
 	shrink_timer()
@@ -38,7 +39,13 @@ func update_progress_bar(val:float) -> void:
 	time_progress_bar.value = time_progress_bar.max_value - val
 
 func update_build_label(val:int) -> void:
-	build_time_label.text = str(val) + " Days until the dragon returns"
+	if val == 0:
+		build_time_label.text = "The dragon returns!"
+		add_dragon_pointer()
+	elif val == 1:
+		build_time_label.text = str(val) + " Day until the dragon returns"
+	else:
+		build_time_label.text = str(val) + " Days until the dragon returns"
 
 func update_progress_bar_max(val:float) -> void:
 	time_progress_bar.max_value = val
@@ -59,3 +66,8 @@ func change_ui_state(mode: GameManager.gameState):
 		print("No specific UI available. Reverting to default.")
 		home_ui.hide()
 		combat_ui.show()
+
+func add_dragon_pointer():
+	var dragon_warning = preload("uid://dfitq5rmlp4bh").instantiate()
+	add_child(dragon_warning)
+	

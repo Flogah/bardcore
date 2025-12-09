@@ -8,6 +8,7 @@ func _ready() -> void:
 	exit_portal.on_enter_portal.connect(enter_run)
 	GameManager.change_gamestate(mapGameState)
 	spawn_players()
+	UserInterface.update_build_label(GameManager.building_time)
 
 func enter_run():
 	MapManager.load_map()

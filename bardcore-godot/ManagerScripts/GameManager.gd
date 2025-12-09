@@ -1,6 +1,7 @@
 extends Node
 
 signal game_state_changed(new_value)
+signal building_time_changed(new_value)
 
 enum gameState {
 	home,
@@ -86,15 +87,17 @@ func convert_flee_time(time:float) -> int:
 	return days
 
 func add_building_time(val:int):
-	building_time += convert_flee_time(val)
-	print(building_time)
+	#building_time += convert_flee_time(val)
+	building_time += 5
+	building_time_changed.emit(building_time)
 
 func pay_building_cost(val: int) -> bool:
 	if val > building_time:
 		print("Not enough building time available. Cost: " + str(val) + ", Available: " + str(building_time))
 		return false
 	building_time -= val
-	print(building_time)
+	building_time_changed.emit(building_time)
+	print("Building Time: ", building_time)
 	return true
 
 func reset_game():
