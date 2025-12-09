@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0m48hn2rvbsg"]
+[gd_scene load_steps=18 format=3 uid="uid://c0m48hn2rvbsg"]
 
 [ext_resource type="Script" uid="uid://dgwh5sbbspeqj" path="res://Maps/Buildings/building.gd" id="1_67fxh"]
 
@@ -28,6 +28,12 @@ size = Vector3(6.03, 2.5, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lv0hd"]
 size = Vector3(0.39, 1.16, 0.645)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e0lrr"]
+size = Vector3(3.06, 2.5, 2.29)
+
+[sub_resource type="PrismMesh" id="PrismMesh_8ofdm"]
+size = Vector3(2.84, 1.22, 3.505)
 
 [sub_resource type="Animation" id="Animation_67fxh"]
 length = 0.001
@@ -126,6 +132,39 @@ tracks/8/path = NodePath("Level2:position:z")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Level3:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Level3:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Level3:position:z")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
@@ -269,23 +308,89 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.33333334, 0.8333334)
 }
 
+[sub_resource type="Animation" id="Animation_wvfqc"]
+resource_name = "level2_to_level3"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Level2:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -7, -0.083333336, 1.1666667, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level2:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Level3:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.083333336, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.39999998, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Level3:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-8.936209, 0, 0, 0.083333336, 1.4893682, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.39999998, 0.9)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Level3:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.083333336, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.39999998, 0.9)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y52u6"]
 _data = {
 &"RESET": SubResource("Animation_67fxh"),
 &"level0_to_level1": SubResource("Animation_y52u6"),
-&"level1_to_level2": SubResource("Animation_uuowk")
+&"level1_to_level2": SubResource("Animation_uuowk"),
+&"level2_to_level3": SubResource("Animation_wvfqc")
 }
 
-[node name="Building" type="Node3D" node_paths=PackedStringArray("level_0", "level_1", "level_2", "build_level_models")]
+[node name="Building" type="Node3D" node_paths=PackedStringArray("level_0", "level_1", "level_2", "level_3")]
 script = ExtResource("1_67fxh")
 level_0 = NodePath("Level0")
 level_1 = NodePath("Level1")
 level_2 = NodePath("Level2")
-build_level_models = {
-0: NodePath("Level0"),
-1: NodePath("Level1"),
-2: NodePath("Level2")
-}
+level_3 = NodePath("Level3")
 
 [node name="InteractionArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0, 0)
@@ -416,6 +521,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, 0.9758
 mesh = SubResource("BoxMesh_lv0hd")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Level2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, -0.96463513)
+mesh = SubResource("BoxMesh_lv0hd")
+
+[node name="Level3" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0707619, 1.2728355, 0)
+mesh = SubResource("BoxMesh_67fxh")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0707619, 3.7653797, 0)
+mesh = SubResource("BoxMesh_uk1hs")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2239492, 6.1730347, -0.5919962)
+mesh = SubResource("BoxMesh_e0lrr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Level3"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0707619, 5.5631776, 0)
+mesh = SubResource("PrismMesh_67fxh")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Level3"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.326365, 7.8610997, -0.6495418)
+mesh = SubResource("PrismMesh_8ofdm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.503, 1, 0)
+mesh = SubResource("BoxMesh_uuowk")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, 0.9758246)
+mesh = SubResource("BoxMesh_lv0hd")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Level3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, -0.96463513)
 mesh = SubResource("BoxMesh_lv0hd")
 

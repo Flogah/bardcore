@@ -4,6 +4,7 @@ enum buildState {
 	unbuilt,
 	level1,
 	level2,
+	level3,
 }
 
 @export var state:buildState = buildState.unbuilt
@@ -11,8 +12,9 @@ enum buildState {
 # this defines the cost for upgrade from the stated state
 # if it's not in this list, you can' upgrade
 @export var build_cost: Dictionary[buildState, int] = {
-	buildState.unbuilt: 0,
-	buildState.level1: 0,
+	buildState.unbuilt: 1,
+	buildState.level1: 3,
+	buildState.level2: 5,
 }
 
 @export var level_0: Node3D
@@ -21,7 +23,7 @@ enum buildState {
 @export var level_3: Node3D
 @export var level_4: Node3D
 
-@export var build_level_models:Dictionary[buildState, Node3D] = {}
+#@export var build_level_models:Dictionary[buildState, Node3D] = {}
 
 @onready var collision: CollisionShape3D = $Collision/CollisionShape3D
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -43,12 +45,14 @@ func upgrade():
 		build_to_1()
 	elif state == buildState.level1:
 		build_to_2()
+	elif state == buildState.level2:
+		build_to_3()
 
 #region Upgrade Behaviour
 # could be more compact, but allows less control
-func build_up(new_state:buildState = state + 1):
-	if build_level_models.has(new_state):
-		print(build_level_models.get(new_state))
+#func build_up(new_state:buildState = state + 1):
+	#if build_level_models.has(new_state):
+		#print(build_level_models.get(new_state))
 
 func build_to_1():
 	# upgrade anim
@@ -74,6 +78,18 @@ func finish_building_2(_anim):
 	anim.animation_finished.disconnect(finish_building_2)
 	level_1.hide()
 	state = buildState.level2
+	interaction_collision.disabled = false
+
+func build_to_3():
+	# build anim
+	level_3.show()
+	anim.animation_finished.connect(finish_building_3)
+	anim.play("level2_to_level3")
+
+func finish_building_3(_anim):
+	anim.animation_finished.disconnect(finish_building_3)
+	level_2.hide()
+	state = buildState.level3
 	interaction_collision.disabled = false
 #endregion
 
