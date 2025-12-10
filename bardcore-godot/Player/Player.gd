@@ -53,15 +53,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		look_direction()
 	
+	velocity.y -= gravity * delta
+	move_and_slide()
+	
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
 		inventory.try_pickup()
 		interact.emit()
 	
 	if MultiplayerInput.is_action_just_pressed(device, "escape"):
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
-	
-	velocity.y -= gravity * delta
-	move_and_slide()
 
 func point_to_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
