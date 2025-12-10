@@ -1,5 +1,7 @@
 class_name Building extends Node3D
 
+signal building_upgraded
+
 enum buildState {
 	unbuilt,
 	level1,
@@ -66,6 +68,7 @@ func finish_building_1(_anim):
 	anim.animation_finished.disconnect(finish_building_1)
 	level_0.hide()
 	state = buildState.level1
+	building_upgraded.emit()
 	
 	collision.disabled = false
 	interaction_collision.disabled = false
@@ -80,6 +83,8 @@ func finish_building_2(_anim):
 	anim.animation_finished.disconnect(finish_building_2)
 	level_1.hide()
 	state = buildState.level2
+	building_upgraded.emit()
+	
 	interaction_collision.disabled = false
 
 func build_to_3():
@@ -92,6 +97,8 @@ func finish_building_3(_anim):
 	anim.animation_finished.disconnect(finish_building_3)
 	level_2.hide()
 	state = buildState.level3
+	building_upgraded.emit()
+	
 	interaction_collision.disabled = false
 #endregion
 

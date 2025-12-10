@@ -30,6 +30,8 @@ var village_state: Dictionary = {}
 var building_time:int = 1
 
 func _ready():
+	load_village_state()
+	
 	create_dragon_timer()
 	MusicManager.beat.connect(dragon_beat)
 	reset_time()
@@ -99,11 +101,10 @@ func pay_building_cost(val: int) -> bool:
 	print("Building Time: ", building_time)
 	return true
 
-func set_building(b: Building):
-	var b_name = b.building_name
+func set_building(b_name: String, state: int):
 	village_state[b_name] = {
-		"name": b_name,
-		"level": b.state
+		"b_name": b_name,
+		"level": state
 	}
 
 func get_building_lvl(b_name: String) -> int:
@@ -127,3 +128,36 @@ func reset_game():
 func change_gamestate(new_gamestate:gameState):
 	currentGameState = new_gamestate
 	game_state_changed.emit(currentGameState)
+
+func save_village_state():
+	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.WRITE)
+	for build in village_state:
+		var json_string = JSON.stringify(village_state.get(build))
+		save_file.store_line(json_string)
+
+func load_village_state():
+	if !FileAccess.file_exists("res://Save/Savegame.save"):
+		return
+	
+	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.READ)
+	
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+
+		# Creates the helper class to interact with JSON.
+		var json = JSON.new()
+		# Check if there is any error while parsing the JSON string, skip in case of failure.
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+			
+		# Get the data from the JSON object.
+		var node_data = json.data
+		
+		set_building(node_data["b_name"], node_data["level"])
+
+func reset_all_progress():
+	for building in village_state:
+		village_state[building].set("level", 0)
+	save_village_state()

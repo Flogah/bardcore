@@ -57,6 +57,9 @@ func _physics_process(delta: float) -> void:
 		inventory.try_pickup()
 		interact.emit()
 	
+	if MultiplayerInput.is_action_just_pressed(device, "escape"):
+		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
+	
 	velocity.y -= gravity * delta
 	move_and_slide()
 
