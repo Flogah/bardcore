@@ -24,14 +24,13 @@ var currentGameState : gameState
 
 
 # this single variable could hold the unlocks in the village
-var unlocks: Dictionary = {}
+var village_state: Dictionary = {}
 
 # this is the resource you earn for upgrades and unlocks
 var building_time:int = 1
 
 func _ready():
 	create_dragon_timer()
-	reset_time()
 	MusicManager.beat.connect(dragon_beat)
 	reset_time()
 	
@@ -99,6 +98,18 @@ func pay_building_cost(val: int) -> bool:
 	building_time_changed.emit(building_time)
 	print("Building Time: ", building_time)
 	return true
+
+func set_building(b: Building):
+	var b_name = b.building_name
+	village_state[b_name] = {
+		"name": b_name,
+		"level": b.state
+	}
+
+func get_building_lvl(b_name: String) -> int:
+	if !village_state.has(b_name):
+		return 0
+	return village_state[b_name].get("level")
 
 func reset_game():
 	var loading_screen = preload("res://UserInterface/loading_screen.tscn").instantiate()

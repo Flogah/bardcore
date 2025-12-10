@@ -385,12 +385,13 @@ _data = {
 &"level2_to_level3": SubResource("Animation_wvfqc")
 }
 
-[node name="Building" type="Node3D" node_paths=PackedStringArray("level_0", "level_1", "level_2", "level_3")]
+[node name="Building" type="Node3D" node_paths=PackedStringArray("level_0", "level_1", "level_2", "level_3", "level_4")]
 script = ExtResource("1_67fxh")
 level_0 = NodePath("Level0")
 level_1 = NodePath("Level1")
 level_2 = NodePath("Level2")
 level_3 = NodePath("Level3")
+level_4 = NodePath("Level4")
 
 [node name="InteractionArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0, 0)
@@ -558,6 +559,9 @@ mesh = SubResource("BoxMesh_lv0hd")
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Level3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, -0.96463513)
 mesh = SubResource("BoxMesh_lv0hd")
+
+[node name="Level4" type="Node3D" parent="."]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -27,8 +27,6 @@ enum buildState {
 
 #@export var build_level_models:Dictionary[buildState, Node3D] = {}
 
-
-
 @onready var collision: CollisionShape3D = $Collision/CollisionShape3D
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var interaction_collision: CollisionShape3D = $InteractionArea/CollisionShape3D
@@ -108,3 +106,23 @@ func _on_interaction_area_body_exited(body: Node3D) -> void:
 
 func get_current_upgrade_cost() -> int:
 	return build_cost.get(state)
+
+func set_state(new_state: int):
+	level_0.hide()
+	level_1.hide()
+	level_2.hide()
+	level_3.hide()
+	level_4.hide()
+	
+	if new_state == 0:
+		level_0.show()
+	if new_state == 1:
+		level_1.show()
+	if new_state == 2:
+		level_2.show()
+	if new_state == 3:
+		level_3.show()
+	if new_state == 4:
+		level_4.show()
+	
+	state = new_state as buildState
