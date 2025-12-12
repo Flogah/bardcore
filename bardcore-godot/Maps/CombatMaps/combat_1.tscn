@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dsaca255hp1cx"]
 
-[ext_resource type="Script" uid="uid://q7kjwvyivsg7" path="res://Maps/map.gd" id="1_vycma"]
+[ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_31uih"]
 [ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_31uih"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_vycma"]
 
@@ -43,12 +43,11 @@ size = Vector3(16.576172, 7.7929688, 2.0117188)
 [sub_resource type="BoxMesh" id="BoxMesh_yo7wb"]
 size = Vector3(3.285, 1, 2.705)
 
-[node name="Combat1" type="Node3D" node_paths=PackedStringArray("camera", "right_portal", "left_portal")]
-script = ExtResource("1_vycma")
-camera = NodePath("CameraArm/Camera3D")
-mapGameState = 1
+[node name="Combat1" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal")]
+script = ExtResource("1_31uih")
 right_portal = NodePath("Exits/Portal2")
 left_portal = NodePath("Exits/Portal")
+mapGameState = 1
 
 [node name="CameraArm" type="Node3D" parent="."]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 0, 0)

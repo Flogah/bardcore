@@ -1,5 +1,15 @@
 extends Node
 
+signal game_state_changed(new_value)
+signal building_time_changed(new_value)
+
+enum gameState {
+	home,
+	combat,
+	post_combat,
+	shop,
+}
+
 # get's carried from map to map, so it's important to not have it be a single timer node
 var starting_time:int = 5
 # the time it takes to get to the next beat, better visualizing the time
@@ -10,24 +20,19 @@ var time_left:int
 var max_time_value:int
 var dragon_timer:Timer
 
-
 var currentGameState : gameState
-enum gameState {
-	home,
-	combat,
-	post_combat,
-	shop,
-}
+
 
 # this single variable could hold the unlocks in the village
-var unlocks: Dictionary = {}
+var village_state: Dictionary = {}
 
 # this is the resource you earn for upgrades and unlocks
-var building_time:int
+var building_time:int = 1
 
 func _ready():
+	load_village_state()
+	
 	create_dragon_timer()
-	reset_time()
 	MusicManager.beat.connect(dragon_beat)
 	reset_time()
 	
@@ -63,7 +68,7 @@ func create_dragon_timer():
 	print("Dragon Timer created")
 
 func dragon_death():
-	add_building_time(10)
+	add_building_time(max_time_value - time_left)
 	reset_game()
 
 func reset_time():
@@ -71,14 +76,41 @@ func reset_time():
 	max_time_value = starting_time
 
 func convert_flee_time(time:float) -> int:
-	var days:int = roundi(time)%60
-	return days
-	#var weeks:int = days%7
+	# per 60 beats/per minute one day
+	var days:int = roundi(time/60)
+	var weeks:int = days/7
 	#days -= weeks * 7
+	
+	print("Time survived: " + str(time))
+	print("Days earned: " + str(days))
+	print("Weeks earned: " + str(weeks))
+	
+	return days
 
 func add_building_time(val:int):
-	building_time += val
-	print(building_time)
+	#building_time += convert_flee_time(val)
+	building_time += 5
+	building_time_changed.emit(building_time)
+
+func pay_building_cost(val: int) -> bool:
+	if val > building_time:
+		print("Not enough building time available. Cost: " + str(val) + ", Available: " + str(building_time))
+		return false
+	building_time -= val
+	building_time_changed.emit(building_time)
+	print("Building Time: ", building_time)
+	return true
+
+func set_building(b_name: String, state: int):
+	village_state[b_name] = {
+		"b_name": b_name,
+		"level": state
+	}
+
+func get_building_lvl(b_name: String) -> int:
+	if !village_state.has(b_name):
+		return 0
+	return village_state[b_name].get("level")
 
 func reset_game():
 	var loading_screen = preload("res://UserInterface/loading_screen.tscn").instantiate()
@@ -86,13 +118,46 @@ func reset_game():
 	
 	reset_time()
 	MapManager.reset()
-	PlayerManager.reset()
 	MusicManager.reset()
 	
 	await get_tree().create_timer(1.0).timeout
-	UserInterface.hide()
 	loading_screen.queue_free()
-	MapManager.load_map()
+	
+	get_tree().change_scene_to_packed(MapManager.HOMEBASE)
 
 func change_gamestate(new_gamestate:gameState):
 	currentGameState = new_gamestate
+	game_state_changed.emit(currentGameState)
+
+func save_village_state():
+	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.WRITE)
+	for build in village_state:
+		var json_string = JSON.stringify(village_state.get(build))
+		save_file.store_line(json_string)
+
+func load_village_state():
+	if !FileAccess.file_exists("res://Save/Savegame.save"):
+		return
+	
+	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.READ)
+	
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+
+		# Creates the helper class to interact with JSON.
+		var json = JSON.new()
+		# Check if there is any error while parsing the JSON string, skip in case of failure.
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+			
+		# Get the data from the JSON object.
+		var node_data = json.data
+		
+		set_building(node_data["b_name"], node_data["level"])
+
+func reset_all_progress():
+	for building in village_state:
+		village_state[building].set("level", 0)
+	save_village_state()

@@ -63,6 +63,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "START"
 
+[node name="Reset" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "RESET"
+
 [node name="Quit" type="Button" parent="MainMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
@@ -87,4 +92,5 @@ theme_override_font_sizes/font_size = 29
 text = "Alpha 1"
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/Start" to="MainMenu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Reset" to="MainMenu" method="_on_reset_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Quit" to="MainMenu" method="_on_quit_button_pressed"]

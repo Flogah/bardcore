@@ -33,7 +33,9 @@ func spawn_player(player: int):
 	
 	# add the player to the tree
 	#var current_scene = get_tree().current_scene
-	var current_scene = MapManager.get_current_map()
+	var current_scene = get_tree().current_scene
+	if !current_scene:
+		current_scene = MapManager.get_current_map()
 	current_scene.add_child(player_node)
 	
 	# random spawn position
@@ -72,7 +74,6 @@ func load_all_players():
 func load_player(player: int):
 	var player_node = player_nodes[player]
 	MapManager.current_map.add_child(player_node)
-
 
 func join(device: int):
 	var player = next_player()
@@ -162,9 +163,4 @@ func get_unjoined_devices():
 	return devices.filter(func(device): return !is_device_joined(device))
 
 func reset():
-	for node in player_nodes:
-		var player = player_nodes.get(node)
-		reset_player_node(player)
-
-func reset_player_node(player: Player):
-	player.reset()
+	player_nodes = {}

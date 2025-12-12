@@ -53,12 +53,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		look_direction()
 	
+	velocity.y -= gravity * delta
+	move_and_slide()
+	
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
 		inventory.try_pickup()
 		interact.emit()
 	
-	velocity.y -= gravity * delta
-	move_and_slide()
+	if MultiplayerInput.is_action_just_pressed(device, "escape"):
+		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func point_to_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
@@ -117,7 +120,3 @@ func set_colors():
 	for mesh in meshes:
 		mesh.set_surface_override_material(0, mat)
 	indicator_ring.set_color(col)
-
-func reset():
-	inventory.drop_all()
-	# TODO reset health and everything else
