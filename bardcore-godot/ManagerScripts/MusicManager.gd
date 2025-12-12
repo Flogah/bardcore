@@ -90,4 +90,6 @@ func eighth_beat() -> void:
 		eighthBeat.emit())
 	#emit_signal(notify_signal)
 	
-	
+func reset():
+	# TODO reset everything so the music restarts clean
+	pass

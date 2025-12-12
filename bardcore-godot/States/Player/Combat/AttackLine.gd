@@ -10,14 +10,9 @@ var attackArea
 
 func enter(previous_state_path: String, data := {}) -> void:
 	if !attack_cooldown_timer:
-		print("No cooldown timer found. Creating new timer.")
-		attack_cooldown_timer = Timer.new()
-		add_child(attack_cooldown_timer)
-		attack_cooldown_timer.one_shot = true
-		attack_cooldown_timer.wait_time = 3.0
+		setup_cd_timer()
 	  
 	if !attack_cooldown_timer.is_stopped():
-		#print("Attack is still on cooldown. Time left: " + str(attack_cooldown_timer.time_left))
 		finished.emit("Idle")
 		return
 	
@@ -33,7 +28,13 @@ func enter(previous_state_path: String, data := {}) -> void:
 func setup_attack_area():
 	attackArea.global_position = attack_spawn.global_position
 	attackArea.rotation = attack_spawn.global_rotation
-	return attackArea
+
 #func _input(event):
 	#if event.is_action_released("attack_line"):
 	
+func setup_cd_timer():
+	print("No cooldown timer found. Creating new timer.")
+	attack_cooldown_timer = Timer.new()
+	add_child(attack_cooldown_timer)
+	attack_cooldown_timer.one_shot = true
+	attack_cooldown_timer.wait_time = 3.0

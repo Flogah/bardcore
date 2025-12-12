@@ -15,4 +15,5 @@ metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 script = ExtResource("1_dmwj2")
 type = 2
 upgrades = Array[ExtResource("2_ynlje")]([SubResource("Resource_n7grm")])
+name = "Doktor Robe"
 metadata/_custom_type_script = "uid://b7fgxjqg7f181"

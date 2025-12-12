@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 signal leave
+signal interact
 
 const TRUMPET = preload("uid://515m7a070dcx")
 const VIOLIN = preload("uid://lxalv8rqbk0c")
@@ -9,6 +10,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
 @onready var visual: Node3D = $Visual
+@onready var indicator_ring: Node3D = $IndicatorRing
 
 @export var dash_force: float = 50.0
 @export var dash_cooldown: float = 0.1
@@ -51,11 +53,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		look_direction()
 	
-	if MultiplayerInput.is_action_just_pressed(device, "interact"):
-		inventory.try_pickup()
-	
 	velocity.y -= gravity * delta
 	move_and_slide()
+	
+	if MultiplayerInput.is_action_just_pressed(device, "interact"):
+		inventory.try_pickup()
+		interact.emit()
+	
+	if MultiplayerInput.is_action_just_pressed(device, "escape"):
+		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func point_to_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
@@ -113,3 +119,4 @@ func set_colors():
 	var meshes = visual.get_children()
 	for mesh in meshes:
 		mesh.set_surface_override_material(0, mat)
+	indicator_ring.set_color(col)
