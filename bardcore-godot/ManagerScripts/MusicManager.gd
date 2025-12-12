@@ -9,6 +9,9 @@ var music1 = preload("uid://cgp353opwrx4t")
 var music2 = preload("uid://dc23co36v6bdl")
 @export var rhythm_notifier: RhythmNotifier
 signal beat
+signal halfBeat
+signal quarterBeat
+signal eighthBeat
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +19,10 @@ func _ready() -> void:
 	setup_music()
 	setup_rhythm()
 	setup_timer()
-	rhythm_signal(2)
+	beats()
+	half_beat()
+	quarter_beat()
+	eighth_beat()
 	play_music()
 
 func setup_music() -> void:
@@ -63,10 +69,25 @@ func setup_music_player() -> void:
 	music_player_2.set_stream(music2)
 
 
-func rhythm_signal(every_beat: int) -> void:
-	rhythm_notifier.beats(every_beat).connect(func(count):
+func beats() -> void:
+	rhythm_notifier.beats(1).connect(func(count):
 		#print("BEAT")
 		beat.emit())
+		
+func half_beat() -> void:
+	rhythm_notifier.beats(2).connect(func(count):
+		#print("BEAT")
+		halfBeat.emit())
+		
+func quarter_beat() -> void:
+	rhythm_notifier.beats(4).connect(func(count):
+		#print("BEAT")
+		quarterBeat.emit())
+		
+func eighth_beat() -> void:
+	rhythm_notifier.beats(8).connect(func(count):
+		#print("BEAT")
+		eighthBeat.emit())
 	#emit_signal(notify_signal)
 	
 func reset():

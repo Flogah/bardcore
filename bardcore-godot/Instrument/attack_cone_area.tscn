@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0o1tl8lwamf"]
+
+[ext_resource type="Script" uid="uid://byy01wwi44f4x" path="res://Instrument/attack_cone_area.gd" id="1_kegxm"]
+[ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="2_a5c61"]
+[ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="3_1swvx"]
+[ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="4_c7r5u"]
+[ext_resource type="AudioStream" uid="uid://df1u7s0whxvmv" path="res://Instrument/SFX/Trumpet/Halbkreis_Sound_tr_bardcore.wav" id="5_tlcps"]
+
+[sub_resource type="Resource" id="Resource_d1wrl"]
+script = ExtResource("3_1swvx")
+metadata/_custom_type_script = "uid://buv1cjylhq6sg"
+
+[node name="AttackConeArea" type="Node3D"]
+script = ExtResource("1_kegxm")
+
+[node name="hit_emitter_box" type="Area3D" parent="."]
+script = ExtResource("2_a5c61")
+interaction_effect = SubResource("Resource_d1wrl")
+targets = Array[int]([1])
+metadata/_custom_type_script = "uid://q46hat3a6486"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit_emitter_box"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_tlcps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
