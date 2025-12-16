@@ -93,6 +93,7 @@ process_material = SubResource("ParticleProcessMaterial_m6jha")
 draw_pass_1 = SubResource("PlaneMesh_0rspp")
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_glvfu")]
+max_health = 10.0
 
 [connection signal="damaged" from="HealthComponent" to="." method="bleed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
