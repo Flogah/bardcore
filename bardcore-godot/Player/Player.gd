@@ -124,8 +124,8 @@ func try_interact():
 	var interactables = interaction_area.get_overlapping_areas()
 	for thing in interactables:
 		var ia: Interactable = thing.owner
-		if ia.is_class("droppable_item"):
-			inventory.try_pickup()
+		if ia is droppable_item:
+			inventory.pickup(ia)
 			return
 		else:
 			ia.interact()
