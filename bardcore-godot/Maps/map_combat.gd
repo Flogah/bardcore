@@ -1,4 +1,5 @@
 extends Map
+class_name combat_map
 
 signal all_enemies_dead
 

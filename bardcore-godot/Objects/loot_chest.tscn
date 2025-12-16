@@ -1,7 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://depu4blv1ijn1"]
+[gd_scene load_steps=5 format=3 uid="uid://depu4blv1ijn1"]
 
 [ext_resource type="Script" uid="uid://6vfbpaaiu628" path="res://Objects/loot_chest.gd" id="1_hoplw"]
+[ext_resource type="PackedScene" uid="uid://bfipmg11tf4rs" path="res://BlenderScenes/PlaceHolder_Chest.blend" id="2_sm8bi"]
+[ext_resource type="PackedScene" uid="uid://couj5e4yhr0jl" path="res://Components/indicator_ring.tscn" id="3_bjqqd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q5iep"]
+radius = 1.3148779
 
 [node name="LootChest" type="Node3D"]
 script = ExtResource("1_hoplw")
 metadata/_custom_type_script = "uid://dnwhdir2agpej"
+
+[node name="PlaceHolder_Chest" parent="." instance=ExtResource("2_sm8bi")]
+transform = Transform3D(0.66, 0, 0, 0, 0.66, 0, 0, 0, 0.66, 0, 0, 0)
+
+[node name="IndicatorRing" parent="." instance=ExtResource("3_bjqqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2762647, 0, 0)
+color = Color(1, 1, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2636311, 0, 0)
+shape = SubResource("SphereShape3D_q5iep")
