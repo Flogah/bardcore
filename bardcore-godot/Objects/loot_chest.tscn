@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://depu4blv1ijn1"]
+
+[ext_resource type="Script" uid="uid://6vfbpaaiu628" path="res://Objects/loot_chest.gd" id="1_hoplw"]
+
+[node name="LootChest" type="Node3D"]
+script = ExtResource("1_hoplw")
+metadata/_custom_type_script = "uid://dnwhdir2agpej"

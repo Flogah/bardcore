@@ -1,0 +1,2 @@
+extends Interactable
+class_name loot_chest
