@@ -23,6 +23,11 @@ enum stat_id {
 	RANGE, #Multiplies the leangth of the instruments area
 	ANGLE, #Multiplies the angle of the instruments area
 	
+	# -- Item Slot Stats --
+	HELMET_SLOTS,
+	TORSO_SLOTS,
+	BOOTS_SLOTS,
+	RING_SLOTS,
 }
 
 var upgrades: Dictionary[int, Array] = {} # Contains all item_ids as keys and point to an array with all upgrades from that item
@@ -50,6 +55,10 @@ var stat_upgrades: Dictionary[int, Array] = {} # Contains all stat_ids as keys a
 	stat_id.RANGE: 1.0, #Multiplies the leangth of the instruments area
 	stat_id.ANGLE: 1.0, #Multiplies the angle of the instruments area
 	
+	stat_id.HELMET_SLOTS: 1.0,
+	stat_id.TORSO_SLOTS: 1.0,
+	stat_id.BOOTS_SLOTS: 1.0,
+	stat_id.RING_SLOTS: 2.0,
 }
 
 func _ready() -> void:
