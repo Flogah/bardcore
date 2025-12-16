@@ -21,11 +21,12 @@ albedo_color = Color(0, 0.35686275, 0.12156863, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_x3vf3"]
 radius = 1.9830381
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stat_comp", "inventory") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stat_comp", "inventory", "indicator_ring") groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_fhl08")
 stat_comp = NodePath("StatComponent")
 inventory = NodePath("InventoryComponent")
+indicator_ring = NodePath("IndicatorRing")
 
 [node name="InstrumentSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4845772, -0.66652244)

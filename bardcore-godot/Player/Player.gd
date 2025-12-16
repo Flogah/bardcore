@@ -9,7 +9,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
 @onready var visual: Node3D = $Visual
-@onready var indicator_ring: Node3D = $IndicatorRing
+
 @onready var interaction_area: Area3D = $InteractionArea
 
 @export var dash_force: float = 50.0
@@ -19,6 +19,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @export var stat_comp: stat_component
 @export var inventory: inventory_component
 
+@export var indicator_ring: Node3D
 @export var player_colors : PackedColorArray = [
 	Color.BLUE,
 	Color.GREEN,

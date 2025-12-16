@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dgwh5sbbspeqj" path="res://Maps/Buildings/building.gd" id="1_67fxh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_67fxh"]
-radius = 2.475148
+radius = 0.7939086
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_67fxh"]
 size = Vector3(5.0006104, 1, 4.004196)
@@ -399,6 +399,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64483905, 0)
 shape = SubResource("SphereShape3D_67fxh")
 
 [node name="Collision" type="StaticBody3D" parent="."]
