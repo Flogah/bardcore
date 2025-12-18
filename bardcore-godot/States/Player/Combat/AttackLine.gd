@@ -22,13 +22,14 @@ func enter(previous_state_path: String, data := {}) -> void:
 	#attackArea.global_position = attack_spawn.global_position
 	attackArea = ATTACK_LINE_AREA.instantiate()
 	MapManager.current_map.add_child(attackArea)
-	setup_attack_area()	
+	setup_attack_area()
 	
 	finished.emit("Idle")
 
 func setup_attack_area():
 	attackArea.global_position = attack_spawn.global_position
 	attackArea.rotation = attack_spawn.global_rotation
+	attackArea.set_color(owner.player_num)
 
 #func _input(event):
 	#if event.is_action_released("attack_line"):

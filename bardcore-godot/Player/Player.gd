@@ -114,12 +114,12 @@ func add_instrument(instrument):
 func set_colors():
 	var col = player_colors[player]
 	PlayerManager.set_player_color(player, col)
-	print(PlayerManager.get_player_color(player))
-	"""var mat = StandardMaterial3D.new()
-	mat.albedo_color = col
-	var meshes = visual.get_children()
-	for mesh in meshes:
-		mesh.set_surface_override_material(0, mat)"""
+	#print(PlayerManager.get_player_color(player))
+	#var mat = StandardMaterial3D.new()
+	#mat.albedo_color = col
+	#var meshes = visual.get_children()
+	#for mesh in meshes:
+		#mesh.set_surface_override_material(0, mat)
 	indicator_ring.set_color(col)
 
 func try_interact():
