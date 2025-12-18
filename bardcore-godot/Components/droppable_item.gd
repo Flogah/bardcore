@@ -1,4 +1,4 @@
-extends Node3D
+extends Interactable
 class_name droppable_item
 
 enum item_type {

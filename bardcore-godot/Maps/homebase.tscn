@@ -1,8 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=24 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
 [ext_resource type="PackedScene" uid="uid://c0m48hn2rvbsg" path="res://Maps/Buildings/building.tscn" id="3_fxw5g"]
+[ext_resource type="PackedScene" uid="uid://dewhw7kq3vfg2" path="res://Components/droppable_item.tscn" id="4_0prmd"]
+[ext_resource type="Resource" uid="uid://ccpim72kqpx03" path="res://Resources/Items/beton_ring.tres" id="5_w8tnc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
@@ -229,3 +231,17 @@ building_name = "Lautenbauer"
 [node name="Fanfarenbauer" parent="Buildings" instance=ExtResource("3_fxw5g")]
 transform = Transform3D(-0.8309553, 0, 0.5563392, 0, 1, 0, -0.5563392, 0, -0.8309553, -15.577503, -1.9073486e-06, -6.4840336)
 building_name = "Fanfarenbauer"
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="DroppableItem" parent="Items" instance=ExtResource("4_0prmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.618218, 0, 4.903259)
+item_resource_ = ExtResource("5_w8tnc")
+
+[node name="DroppableItem2" parent="Items" instance=ExtResource("4_0prmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.72311, 9.536743e-07, 2.124362)
+item_resource_ = ExtResource("5_w8tnc")
+
+[node name="DroppableItem3" parent="Items" instance=ExtResource("4_0prmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.837685, 0, 4.9396715)
+item_resource_ = ExtResource("5_w8tnc")
