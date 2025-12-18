@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="item_resource" load_steps=6 format=3 uid="uid://cwxmnmqbtrbc0"]
+
+[ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_p28d3"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_cgr5o"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_cgr5o"]
+
+[sub_resource type="Resource" id="Resource_sc3ad"]
+script = ExtResource("3_cgr5o")
+amount = 2.0
+effected_stat = 9
+explanation = "Outgoing Damage x2"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_6kuv1"]
+script = ExtResource("3_cgr5o")
+amount = 2.0
+effected_stat = 7
+explanation = "Incoming Damage x2"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[resource]
+script = ExtResource("1_p28d3")
+upgrades = Array[ExtResource("2_cgr5o")]([SubResource("Resource_sc3ad"), SubResource("Resource_6kuv1")])
+name = "Ring of Anger"
+metadata/_custom_type_script = "uid://b7fgxjqg7f181"

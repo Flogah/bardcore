@@ -11,7 +11,7 @@ enum gameState {
 }
 
 # get's carried from map to map, so it's important to not have it be a single timer node
-var starting_time:int = 5
+var starting_time:int = 50
 # the time it takes to get to the next beat, better visualizing the time
 var beat_time:float = 1.0
 var standard_bonus_time:int = 2
@@ -40,7 +40,7 @@ func _ready():
 	UserInterface.update_progress_bar_max(max_time_value)
 	UserInterface.update_time(time_left)
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	if dragon_timer && !dragon_timer.is_stopped():
 		UserInterface.update_time(float(time_left) + dragon_timer.time_left - beat_time)
 

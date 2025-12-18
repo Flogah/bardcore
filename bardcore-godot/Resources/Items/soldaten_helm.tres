@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="item_resource" load_steps=6 format=3 uid="uid://dllms1y7r3ljh"]
+
+[ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_ha36r"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_jmsiv"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_jmsiv"]
+
+[sub_resource type="Resource" id="Resource_1cowb"]
+script = ExtResource("3_jmsiv")
+amount = 1.0
+operator = 1
+effected_stat = 10
+apply_priority = 50
+explanation = "Armor +1"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_7qiyi"]
+script = ExtResource("3_jmsiv")
+amount = 5.0
+operator = 1
+effected_stat = 9
+apply_priority = 50
+explanation = "Outgoing Damage +5"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[resource]
+script = ExtResource("1_ha36r")
+type = 1
+upgrades = Array[ExtResource("2_jmsiv")]([SubResource("Resource_1cowb"), SubResource("Resource_7qiyi")])
+name = "Soldaten Helm"
+metadata/_custom_type_script = "uid://b7fgxjqg7f181"

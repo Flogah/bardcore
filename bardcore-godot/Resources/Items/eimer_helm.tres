@@ -9,6 +9,7 @@ script = ExtResource("3_61ir1")
 amount = 10.0
 operator = 1
 effected_stat = 10
+explanation = "Armor +10"
 metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]

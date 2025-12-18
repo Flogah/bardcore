@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cj476uqn2kb0b"]
+[gd_scene load_steps=15 format=3 uid="uid://cj476uqn2kb0b"]
 
 [ext_resource type="Script" uid="uid://bb18oxxgsomp1" path="res://Enemy/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="2_md0e3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bhrs6p0rwjb3h" path="res://Components/hit_reciver_box.gd" id="4_eqilm"]
 [ext_resource type="PackedScene" uid="uid://btdqkmooqxlov" path="res://Components/health_component.tscn" id="6_glvfu"]
 [ext_resource type="Script" uid="uid://ddb14bq4ftq7b" path="res://States/Enemy/EnemyIdle.gd" id="6_m6jha"]
+[ext_resource type="PackedScene" uid="uid://be8ut3u87uxov" path="res://Components/telegraphing_component.tscn" id="7_glvfu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tegq"]
 
@@ -92,7 +93,11 @@ explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_m6jha")
 draw_pass_1 = SubResource("PlaneMesh_0rspp")
 
-[node name="HealthComponent" parent="." instance=ExtResource("6_glvfu")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("telegraph_comp") instance=ExtResource("6_glvfu")]
+telegraph_comp = NodePath("../TelegraphingComponent")
+
+[node name="TelegraphingComponent" parent="." instance=ExtResource("7_glvfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0997615, 0)
 
 [connection signal="damaged" from="HealthComponent" to="." method="bleed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
