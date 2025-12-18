@@ -2,10 +2,32 @@
 
 [ext_resource type="Script" uid="uid://csqt80pvc48x" path="res://Components/indicator_ring.gd" id="1_iafsb"]
 
-[sub_resource type="TorusMesh" id="TorusMesh_iafsb"]
-inner_radius = 0.8
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuyoq"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(0.19777417, 0.7279221, 0.9999997, 1)
+disable_receive_shadows = true
 
-[sub_resource type="PrismMesh" id="PrismMesh_8hhxr"]
+[sub_resource type="TorusMesh" id="TorusMesh_8hhxr"]
+material = SubResource("StandardMaterial3D_tuyoq")
+inner_radius = 0.894
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(0.19777417, 0.7279221, 0.9999997, 1)
+disable_receive_shadows = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_y6xyu"]
+material = SubResource("StandardMaterial3D_fjrip")
 size = Vector3(0.46, 0.26, 0.07)
 
 [node name="IndicatorRing" type="Node3D"]
