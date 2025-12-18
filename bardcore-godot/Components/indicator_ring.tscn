@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://couj5e4yhr0jl"]
+[gd_scene load_steps=4 format=3 uid="uid://couj5e4yhr0jl"]
 
 [ext_resource type="Script" uid="uid://csqt80pvc48x" path="res://Components/indicator_ring.gd" id="1_iafsb"]
 
@@ -35,8 +35,8 @@ script = ExtResource("1_iafsb")
 
 [node name="Ring" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17521656, 0)
-mesh = SubResource("TorusMesh_8hhxr")
+mesh = SubResource("TorusMesh_iafsb")
 
 [node name="Arrow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.17521656, -1.0629247)
-mesh = SubResource("PrismMesh_y6xyu")
+mesh = SubResource("PrismMesh_8hhxr")

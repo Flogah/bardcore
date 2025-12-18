@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://be8ut3u87uxov"]
+
+[ext_resource type="Script" uid="uid://66hoks1ur3wg" path="res://telegraphing_component.gd" id="1_v8qo1"]
+
+[node name="TelegraphingComponent" type="Node3D"]
+script = ExtResource("1_v8qo1")

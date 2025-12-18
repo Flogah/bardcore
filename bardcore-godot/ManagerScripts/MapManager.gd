@@ -19,7 +19,13 @@ func read_all_maps():
 		combat_maps.append("res://Maps/CombatMaps/" + dir)
 
 func get_current_map() -> Map:
-	return get_map(current_grid_position)
+	return current_map
+
+func get_map_at_pos(pos: Vector2i) -> Map:
+	return get_map(pos)
+
+func set_current_map(map: Map):
+	current_map = map
 
 func get_map(pos : Vector2i) -> Map:
 	var m = map_grid.get(pos)
@@ -51,7 +57,7 @@ func load_map(pos: Vector2i = current_grid_position) -> void:
 	var map_to_load = get_map(pos)
 	root.add_child.call_deferred(map_to_load)
 	current_grid_position = pos
-	current_map = map_to_load
+	set_current_map(map_to_load)
 	
 	await get_tree().create_timer(.2).timeout
 	current_map.spawn_players()

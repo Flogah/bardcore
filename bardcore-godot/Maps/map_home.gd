@@ -10,9 +10,11 @@ var buildings
 func _ready() -> void:
 	gather_buildings()
 	load_buildings()
+	save_buildings()
 	exit_portal.on_enter_portal.connect(enter_run)
 	GameManager.change_gamestate(mapGameState)
 	spawn_players()
+	MapManager.set_current_map(self)
 	UserInterface.update_build_label(GameManager.building_time)
 
 func enter_run():

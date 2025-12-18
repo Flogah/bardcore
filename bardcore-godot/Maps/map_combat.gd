@@ -1,4 +1,7 @@
 extends Map
+class_name combat_map
+
+signal all_enemies_dead
 
 @export var right_portal:Portal
 @export var left_portal:Portal
@@ -13,10 +16,12 @@ func _ready() -> void:
 	find_enemies()
 	find_portals()
 	connect_portals()
+	get_tree().create_timer(1.0).timeout.connect(check_for_surviving_enemies)
 
 func find_enemies():
 	for enemy in enemy_nodes.get_children():
 		enemies.append(enemy)
+		enemy.tree_exiting.connect(check_for_surviving_enemies)
 
 func find_portals():
 	for portal in exit_nodes.get_children():
@@ -27,6 +32,7 @@ func connect_portals():
 		right_portal.on_enter_portal.connect(exit_right)
 	if left_portal:
 		left_portal.on_enter_portal.connect(exit_left)
+	all_enemies_dead.connect(unlock_all_portals)
 
 func unlock_all_portals():
 	for portal in portals:
@@ -69,3 +75,17 @@ func spawn_players():
 			cur_scene.add_child(player)
 			player.position = entrance
 			entrance.z += 2.0
+	
+	lock_all_portals()
+
+func check_for_surviving_enemies():
+	await get_tree().create_timer(0.1).timeout
+	var bodies = enemy_nodes.get_children()
+	if bodies:
+		return
+	
+	#for body in enemies:
+		#if !body.dead:
+			#return
+	all_enemies_dead.emit()
+	print("all dead")
