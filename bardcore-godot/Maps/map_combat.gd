@@ -35,6 +35,7 @@ func connect_portals():
 	all_enemies_dead.connect(unlock_all_portals)
 
 func unlock_all_portals():
+	mapGameState = GameManager.gameState.post_combat
 	for portal in portals:
 		portal.unlock()
 	
@@ -76,7 +77,8 @@ func spawn_players():
 			player.position = entrance
 			entrance.z += 2.0
 	
-	lock_all_portals()
+	if mapGameState == GameManager.gameState.combat:
+		lock_all_portals()
 
 func check_for_surviving_enemies():
 	await get_tree().create_timer(0.1).timeout
