@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://515m7a070dcx"]
+[gd_scene load_steps=13 format=3 uid="uid://515m7a070dcx"]
 
 [ext_resource type="Script" uid="uid://daueiqykpti77" path="res://Instrument/Instrument.gd" id="1_e8i04"]
 [ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://VFX/sound_particles.tscn" id="2_h8dbk"]

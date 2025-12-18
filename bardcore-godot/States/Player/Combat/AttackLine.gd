@@ -7,8 +7,6 @@ const ATTACK_LINE_AREA = preload("uid://bgjsdlwnmpwgj")
 @export var place_sound: AudioStreamPlayer3D
 var attack_cooldown_timer: Timer
 var attackArea
-@onready var hit_emitter_box_2: hit_emitter_box = $hit_emitter_box2
-
 
 func enter(previous_state_path: String, data := {}) -> void:
 	if !attack_cooldown_timer:
@@ -22,13 +20,14 @@ func enter(previous_state_path: String, data := {}) -> void:
 	#attackArea.global_position = attack_spawn.global_position
 	attackArea = ATTACK_LINE_AREA.instantiate()
 	MapManager.current_map.add_child(attackArea)
-	setup_attack_area()	
+	setup_attack_area()
 	
 	finished.emit("Idle")
 
 func setup_attack_area():
 	attackArea.global_position = attack_spawn.global_position
 	attackArea.rotation = attack_spawn.global_rotation
+	attackArea.set_color(owner.player_num)
 
 #func _input(event):
 	#if event.is_action_released("attack_line"):
