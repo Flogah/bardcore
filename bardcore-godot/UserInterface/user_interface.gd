@@ -44,12 +44,12 @@ func update_progress_bar(val:float) -> void:
 
 func update_build_label(val:int) -> void:
 	if val == 0:
-		build_time_label.text = "The dragon returns!"
+		build_time_label.text = "Der Drache kommt!"
 		add_dragon_pointer()
 	elif val == 1:
-		build_time_label.text = str(val) + " Day until the dragon returns"
+		build_time_label.text = str(val) + " Tag bis der Drache wiederkehrt"
 	else:
-		build_time_label.text = str(val) + " Days until the dragon returns"
+		build_time_label.text = str(val) + " Tage bis der Drache wiederkehrt"
 
 func update_progress_bar_max(val:float) -> void:
 	time_progress_bar.max_value = val
@@ -90,10 +90,10 @@ func update_upgrade_hint(building: Building):
 func hide_upgrade_hint():
 	upgrade_hint_label.hide()
 
-func create_hint(pos:Vector3, text:String) -> InputHint:
+func create_hint(pos:Vector3, text:String, interaction_required:bool) -> InputHint:
 	var hint = INPUT_HINT.instantiate()
 	gen_ui.add_child(hint)
-	hint.set_hint(project(pos), text)
+	hint.set_hint(project(pos), text, interaction_required)
 	return hint
 
 func project(pos: Vector3) -> Vector2:
