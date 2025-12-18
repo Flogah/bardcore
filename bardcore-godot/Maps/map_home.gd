@@ -10,6 +10,7 @@ var buildings
 func _ready() -> void:
 	gather_buildings()
 	load_buildings()
+	save_buildings()
 	exit_portal.on_enter_portal.connect(enter_run)
 	GameManager.change_gamestate(mapGameState)
 	spawn_players()

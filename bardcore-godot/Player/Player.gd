@@ -61,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		try_interact()
 	
 	if MultiplayerInput.is_action_just_pressed(device, "escape"):
+		GameManager.save_village_state()
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func point_to_mouse():

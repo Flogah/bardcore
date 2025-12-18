@@ -24,10 +24,9 @@ var currentGameState : gameState
 
 
 # this single variable could hold the unlocks in the village
-var village_state: Dictionary = {}
-
-# this is the resource you earn for upgrades and unlocks
-var building_time:int = 1
+var village_state: Dictionary = {
+	"building_time": 1,
+}
 
 func _ready():
 	load_village_state()
@@ -89,28 +88,28 @@ func convert_flee_time(time:float) -> int:
 
 func add_building_time(val:int):
 	#building_time += convert_flee_time(val)
-	building_time += 5
-	building_time_changed.emit(building_time)
+	village_state["building_time"] += 5
+	building_time_changed.emit(village_state["building_time"])
 
 func pay_building_cost(val: int) -> bool:
-	if val > building_time:
-		print("Not enough building time available. Cost: " + str(val) + ", Available: " + str(building_time))
+	if val > village_state["building_time"]:
+		print("Not enough building time available. Cost: " + str(val) + ", Available: " + str(village_state["building_time"]))
 		return false
-	building_time -= val
-	building_time_changed.emit(building_time)
-	print("Building Time: ", building_time)
+	village_state["building_time"] -= val
+	building_time_changed.emit(village_state["building_time"])
+	print("Building Time: ", village_state["building_time"])
 	return true
 
-func set_building(b_name: String, state: int):
-	village_state[b_name] = {
-		"b_name": b_name,
-		"level": state
-	}
+func get_building_time():
+	return village_state["building_time"]
+
+func set_building(b_name: String, level: int):
+	village_state[b_name] = level
 
 func get_building_lvl(b_name: String) -> int:
 	if !village_state.has(b_name):
 		return 0
-	return village_state[b_name].get("level")
+	return village_state[b_name]
 
 func reset_game():
 	var loading_screen = preload("res://UserInterface/loading_screen.tscn").instantiate()
@@ -131,9 +130,11 @@ func change_gamestate(new_gamestate:gameState):
 
 func save_village_state():
 	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.WRITE)
-	for build in village_state:
-		var json_string = JSON.stringify(village_state.get(build))
-		save_file.store_line(json_string)
+	
+	var save_state = village_state
+	
+	var json_string = JSON.stringify(save_state)
+	save_file.store_line(json_string)
 
 func load_village_state():
 	if !FileAccess.file_exists("res://Save/Savegame.save"):
@@ -141,23 +142,23 @@ func load_village_state():
 	
 	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.READ)
 	
-	while save_file.get_position() < save_file.get_length():
-		var json_string = save_file.get_line()
+	#for line in save_file.get_length():
+	var json_string = save_file.get_line()
 
-		# Creates the helper class to interact with JSON.
-		var json = JSON.new()
-		# Check if there is any error while parsing the JSON string, skip in case of failure.
-		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-			continue
-			
-		# Get the data from the JSON object.
-		var node_data = json.data
+	# Creates the helper class to interact with JSON.
+	var json = JSON.new()
+	# Check if there is any error while parsing the JSON string, skip in case of failure.
+	var parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 		
-		set_building(node_data["b_name"], node_data["level"])
+	var node_data = json.data
+	
+	village_state = node_data
+
 
 func reset_all_progress():
-	for building in village_state:
-		village_state[building].set("level", 0)
+	for key in village_state:
+		village_state[key] = 0
+	village_state["building_time"] = 1
 	save_village_state()
