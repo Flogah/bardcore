@@ -6,6 +6,7 @@ var beatTimer: Timer
 
 @onready var hit_emitter_box: hit_emitter_box = $hit_emitter_box
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+@onready var explode_particles: GPUParticles3D = $ExplodeParticles3D
 
 func _ready() -> void:
 	#beatTimer = get_tree().get_first_node_in_group('BeatTimer')
@@ -15,6 +16,7 @@ func _ready() -> void:
 	print("beatTimer")
 
 func _on_triggered() -> void:
+	explode_particles.restart()
 	attack_sound.play()
 	hit_emitter_box.hit_check()
 	print("EXPLOSION!")

@@ -11,10 +11,10 @@ enum gameState {
 }
 
 # get's carried from map to map, so it's important to not have it be a single timer node
-var starting_time:int = 5
+var starting_time:int = 500
 # the time it takes to get to the next beat, better visualizing the time
 var beat_time:float = 1.0
-var standard_bonus_time:int = 2
+var standard_bonus_time:int = 100
 
 var time_left:int
 var max_time_value:int
