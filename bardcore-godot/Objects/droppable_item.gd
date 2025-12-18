@@ -25,7 +25,7 @@ const PLACEHOLDER_MESHES := {
 var item_label_text: String
 
 var item_mesh: Node3D
-var hint
+
 func _ready() -> void:
 	if item_resource_.mesh:
 		item_mesh = item_resource_.mesh.instantiate()
