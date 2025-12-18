@@ -49,7 +49,7 @@ script = ExtResource("1_kegxm")
 attack_sound = NodePath("AbilityCone")
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
-transform = Transform3D(1.2849321, 0, 0, 0, 0.99999946, 0, 0, 0, 1.3100542, 0, -0.26906562, 0.22103846)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26906562, 0.22103846)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("2_a5c61")
@@ -71,7 +71,7 @@ transform = Transform3D(6.025799, 0, 0, 0, -2.615866e-07, -0.014115618, 0, 5.984
 mesh = SubResource("PrismMesh_1swvx")
 
 [node name="hit_emitter_box2" type="Area3D" parent="."]
-transform = Transform3D(1.2849321, 0, 0, 0, 0.99999946, 0, 0, 0, 1.3100542, 0, -0.26906562, 0.22103846)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26906562, 0.22103846)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("2_a5c61")
