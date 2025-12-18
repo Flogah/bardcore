@@ -16,21 +16,23 @@ func display_number(value: int, type: hit_effect.effect_type):
 	num.modulate = color
 	num.outline_modulate = Color.BLACK
 	num.font = preload("res://addons/Kenney_Fonts/Kenney High Square.ttf")
-	num.font_size = 8
+	num.font_size = 250
 	num.outline_size = 4
 	num.pixel_size = 0.005
 	num.width = 500.0
+	num.scale = Vector3.ONE
 	num.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	
-	owner.owner.add_child(num)
+	MapManager.current_map.add_child(num)
 	num.global_position = global_position
-	num.position.x += randf_range(-2,2)
-	num.position.y += randf_range(-2,2)
+	num.position.x += randf_range(-.2,.2)
+	num.position.y += randf_range(-.2,.2)
 	
 	var tween: Tween = get_tree().create_tween()
 	
 	tween.set_parallel(true)
-	tween.tween_property(num, "position:y", num.position.y - 24, 0.25).set_ease(Tween.EASE_OUT)
+	tween.tween_property(num, "position:y", num.position.y - -2, 0.25).set_ease(Tween.EASE_OUT)
 	tween.tween_property(num, "position:y", num.position.y, 0.5).set_ease(Tween.EASE_IN).set_delay(0.25)
-	tween.tween_property(num, "scale", Vector3.ZERO, 0.25).set_delay(0.5).set_ease(Tween.EASE_IN)
+	tween.tween_property(num, "scale", Vector3.ZERO, .25).set_delay(0.5).set_ease(Tween.EASE_IN)
+	
 	tween.finished.connect(num.queue_free)

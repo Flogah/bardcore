@@ -24,6 +24,10 @@ MusicManager="*res://ManagerScripts/MusicManager.gd"
 GameManager="*res://ManagerScripts/GameManager.gd"
 UserInterface="*res://UserInterface/user_interface.tscn"
 
+[display]
+
+window/size/always_on_top=true
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg")

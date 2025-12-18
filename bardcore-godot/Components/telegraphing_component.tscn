@@ -4,3 +4,8 @@
 
 [node name="TelegraphingComponent" type="Node3D"]
 script = ExtResource("1_v8qo1")
+
+[node name="Label3D" type="Label3D" parent="."]
+visible = false
+text = "XXX"
+font_size = 242

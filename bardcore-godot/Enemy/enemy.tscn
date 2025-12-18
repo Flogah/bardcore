@@ -99,7 +99,7 @@ draw_pass_1 = SubResource("PlaneMesh_0rspp")
 telegraph_comp = NodePath("../TelegraphingComponent")
 
 [node name="TelegraphingComponent" parent="." instance=ExtResource("7_glvfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0997615, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4725027, 0)
 
 [connection signal="damaged" from="HealthComponent" to="." method="bleed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
