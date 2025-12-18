@@ -21,7 +21,7 @@ func display_number(value: int, type: hit_effect.effect_type):
 	num.pixel_size = 0.005
 	num.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	
-	get_parent().get_parent().add_child(num)
+	owner.owner.add_child(num)
 	num.global_position = global_position
 	num.position.x += rng.randf_range(-2,2)
 	num.position.y += rng.randf_range(-2,2)
@@ -34,4 +34,4 @@ func display_number(value: int, type: hit_effect.effect_type):
 	tween.tween_property(num, "scale", Vector3.ZERO, 0.25).set_delay(0.5).set_ease(Tween.EASE_IN)
 	
 	await tween.finished
-	#num.queue_free()
+	num.queue_free()
