@@ -396,7 +396,7 @@ level_4 = NodePath("Level4")
 [node name="InteractionArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0, 0)
 collision_layer = 8
-collision_mask = 2
+collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64483905, 0)
@@ -569,5 +569,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_y52u6")
 }
 
-[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
-[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
