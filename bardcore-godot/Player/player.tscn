@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=13 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Player/Player.gd" id="1_fhl08"]
+[ext_resource type="PackedScene" uid="uid://dmourlxma2oj7" path="res://BlenderScenes/lover_in_pose_2.tscn" id="2_apopc"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="2_vtle1"]
 [ext_resource type="Script" uid="uid://exybm47wlxf1" path="res://States/Player/Movement/PlayerIdle.gd" id="3_od3ui"]
 [ext_resource type="Script" uid="uid://cql84k6t4g7rd" path="res://States/Player/Movement/PlayerRunning.gd" id="4_00tjw"]
@@ -11,11 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dnrcjxypytfhw" path="res://Components/stat_component.tscn" id="9_x3vf3"]
 [ext_resource type="PackedScene" uid="uid://couj5e4yhr0jl" path="res://Components/indicator_ring.tscn" id="10_x3vf3"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
-albedo_color = Color(0, 0.35686275, 0.12156863, 1)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stat_comp", "inventory") groups=["Player"]]
@@ -25,15 +21,12 @@ stat_comp = NodePath("StatComponent")
 inventory = NodePath("InventoryComponent")
 
 [node name="InstrumentSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4845772, -0.66652244)
+transform = Transform3D(1, 0, 0, 0, 0.9820148, 0.18880408, 0, -0.18880408, 0.9820148, 1.1920929e-07, 1.6192602, -0.16985476)
 
 [node name="Visual" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_o5qli")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
+[node name="lover_in_pose2" parent="Visual" instance=ExtResource("2_apopc")]
+transform = Transform3D(-0.99056214, 0, -0.1370643, 0, 1, 0, 0.1370643, 0, -0.99056214, 0, 0, 0)
 
 [node name="BodyHitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -56,7 +49,7 @@ script = ExtResource("5_x3vf3")
 metadata/_custom_type_script = "uid://dri7mdulo5mpn"
 
 [node name="PlayerName" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9013684, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.941727, 0)
 billboard = 1
 double_sided = false
 fixed_size = true

@@ -75,7 +75,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707
 [node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
 projection = 1
-size = 33.731
+size = 25.0
 near = 0.017
 far = 84.78
 

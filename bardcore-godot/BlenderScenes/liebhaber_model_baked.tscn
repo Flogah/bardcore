@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckkpi21t6p8g3"]
+
+[ext_resource type="PackedScene" uid="uid://gijtim30blx" path="res://BlenderScenes/liebhaber_model_baked.blend" id="1_l02sm"]
+[ext_resource type="Texture2D" uid="uid://cvyq5isiui102" path="res://BlenderScenes/textures/Ucupaint Body Color.png" id="2_wu7uo"]
+[ext_resource type="Texture2D" uid="uid://yggbgo0dv7j1" path="res://BlenderScenes/textures/Sakko Color.png" id="4_uohdj"]
+[ext_resource type="Texture2D" uid="uid://whkit3f6uso0" path="res://BlenderScenes/textures/Belt Color.png" id="6_kmvp4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxn6m"]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("2_wu7uo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krjeo"]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("4_uohdj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y57fa"]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("6_kmvp4")
+
+[node name="liebhaber_model_baked" instance=ExtResource("1_l02sm")]
+
+[node name="Shrek" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dxn6m")
+surface_material_override/1 = SubResource("StandardMaterial3D_krjeo")
+
+[node name="belt" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_y57fa")
