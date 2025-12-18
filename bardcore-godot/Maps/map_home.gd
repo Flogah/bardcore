@@ -15,7 +15,7 @@ func _ready() -> void:
 	GameManager.change_gamestate(mapGameState)
 	spawn_players()
 	MapManager.set_current_map(self)
-	UserInterface.update_build_label(GameManager.building_time)
+	UserInterface.update_build_label(GameManager.get_building_time())
 
 func enter_run():
 	save_buildings()

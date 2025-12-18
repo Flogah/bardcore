@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=14 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Player/Player.gd" id="1_fhl08"]
 [ext_resource type="PackedScene" uid="uid://dmourlxma2oj7" path="res://BlenderScenes/lover_in_pose_2.tscn" id="2_apopc"]
