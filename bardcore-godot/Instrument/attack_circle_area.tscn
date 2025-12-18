@@ -13,6 +13,7 @@ invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c4r5d"]
+radius = 3.5
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xv3mu"]
 
@@ -45,12 +46,11 @@ scale_curve = SubResource("CurveTexture_31l7u")
 size = Vector2(0.3, 0.3)
 
 [node name="AttackCircleArea" type="Node3D" node_paths=PackedStringArray("attack_sound")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.08055878)
 script = ExtResource("1_xv3mu")
 attack_sound = NodePath("AudioStreamPlayer3D")
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
-transform = Transform3D(2.9354098, 0, 0, 0, 1, 0, 0, 0, 2.9354098, 0, -0.1664617, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1664617, 0)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_tqdmu")
@@ -59,7 +59,6 @@ targets = Array[int]([1])
 metadata/_custom_type_script = "uid://q46hat3a6486"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hit_emitter_box"]
-transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0)
 shape = SubResource("CylinderShape3D_c4r5d")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -72,7 +71,7 @@ mesh = SubResource("CylinderMesh_xv3mu")
 surface_material_override/0 = SubResource("StandardMaterial3D_rtdfi")
 
 [node name="hit_emitter_box2" type="Area3D" parent="."]
-transform = Transform3D(2.9354098, 0, 0, 0, 1, 0, 0, 0, 2.9354098, 0, -0.1664617, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1664617, 0)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_tqdmu")
@@ -81,7 +80,6 @@ targets = Array[int]([1])
 metadata/_custom_type_script = "uid://q46hat3a6486"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="hit_emitter_box2"]
-transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0)
 shape = SubResource("CylinderShape3D_c4r5d")
 
 [node name="DotSound" type="AudioStreamPlayer3D" parent="."]
