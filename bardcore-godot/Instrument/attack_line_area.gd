@@ -7,25 +7,24 @@ var beatTimer: Timer
 
 @onready var emitter: hit_emitter_box = $hit_emitter_box
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
-@onready var hit_emitter_box_2: hit_emitter_box = $hit_emitter_box2
+@onready var emitter_2: hit_emitter_box = $hit_emitter_box2
 @onready var particles: GPUParticles3D = $GPUParticles3D
 
 func _ready() -> void:
 	#beatTimer = get_tree().get_first_node_in_group('BeatTimer')
 	#unnecessary, it's already connected by hand (check your nodes)
 	#attack_sound.finished.connect(clean_up)
-	place_sound.play()
+	
 	MusicManager.halfBeat.connect(_on_triggered)
 	print("beatTimer")
 
 func activate():
 	await get_tree().create_timer(0.05).timeout
+	place_sound.play()
 	emitter_2.hit_check()
 
 func _on_triggered() -> void:
 	particles.restart()
-	attack_sound.play()
-	hit_emitter_box.hit_check()
 	print("EXPLOSION!")
 	attack_sound.play()
 	emitter.hit_check()
