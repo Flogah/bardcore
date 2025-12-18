@@ -7,6 +7,8 @@ const ATTACK_LINE_AREA = preload("uid://bgjsdlwnmpwgj")
 @export var place_sound: AudioStreamPlayer3D
 var attack_cooldown_timer: Timer
 var attackArea
+@onready var hit_emitter_box_2: hit_emitter_box = $hit_emitter_box2
+
 
 func enter(previous_state_path: String, data := {}) -> void:
 	if !attack_cooldown_timer:
@@ -23,7 +25,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 	setup_attack_area()	
 	
 	finished.emit("Idle")
-	#place_sound.play()
 
 func setup_attack_area():
 	attackArea.global_position = attack_spawn.global_position
