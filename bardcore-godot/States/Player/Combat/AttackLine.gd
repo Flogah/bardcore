@@ -22,7 +22,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	attackArea.scale.x *= owner.get_parent().stat_comp.get_stat(stat_component.stat_id.ANGLE)
 	attackArea.scale.z *= owner.get_parent().stat_comp.get_stat(stat_component.stat_id.RANGE)
 	var effect: hit_effect = hit_effect.new()
-	effect.amount = owner.get_parent().stat_comp.get_stat(stat_component.stat_id.OUT_DAMAGE) + 10
+	effect.amount = owner.get_parent().stat_comp.get_stat(stat_component.stat_id.OUT_DAMAGE)
 	effect.type = effect.effect_type.ATTACK
 	attackArea.get_child(0).interaction_effect = effect
 	MapManager.current_map.add_child(attackArea)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0o1tl8lwamf"]
+[gd_scene load_steps=16 format=3 uid="uid://d0o1tl8lwamf"]
 
 [ext_resource type="Script" uid="uid://byy01wwi44f4x" path="res://Instrument/attack_cone_area.gd" id="1_kegxm"]
 [ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="2_a5c61"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="4_c7r5u"]
 [ext_resource type="Shape3D" uid="uid://cedba3umy6q7e" path="res://Instrument/Trumpet/attack_cone_area.tres" id="5_a5c61"]
 [ext_resource type="AudioStream" uid="uid://df1u7s0whxvmv" path="res://Instrument/SFX/Trumpet/Halbkreis_Sound_tr_bardcore.wav" id="5_tlcps"]
+[ext_resource type="AudioStream" uid="uid://ch7mga6ovy6gd" path="res://Instrument/SFX/Violin/violin1.wav" id="7_1swvx"]
 
 [sub_resource type="Resource" id="Resource_d1wrl"]
 script = ExtResource("3_1swvx")
+invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5c61"]
@@ -17,11 +19,39 @@ albedo_color = Color(0, 0.39607844, 0.011764706, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_1swvx"]
 material = SubResource("StandardMaterial3D_a5c61")
 
+[sub_resource type="Resource" id="Resource_c7r5u"]
+script = ExtResource("3_1swvx")
+amount = 20.0
+invincability_time = 0.0
+metadata/_custom_type_script = "uid://buv1cjylhq6sg"
+
+[sub_resource type="Curve" id="Curve_d1wrl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2991453, 0.8849558), 1.260733, 1.260733, 0, 0, Vector2(0.7307693, 0.5973452), -1.4955752, -1.4955752, 0, 0, Vector2(0.9871796, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_eaha5"]
+curve = SubResource("Curve_d1wrl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_trbht"]
+emission_shape = 3
+emission_box_extents = Vector3(0.455, 0.07, 1.69)
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+scale_curve = SubResource("CurveTexture_eaha5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jnw5f"]
+size = Vector2(0.3, 0.3)
+
 [node name="AttackConeArea" type="Node3D" node_paths=PackedStringArray("attack_sound")]
 script = ExtResource("1_kegxm")
 attack_sound = NodePath("AbilityCone")
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
+transform = Transform3D(1.2849321, 0, 0, 0, 0.99999946, 0, 0, 0, 1.3100542, 0, -0.26906562, 0.22103846)
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("2_a5c61")
 interaction_effect = SubResource("Resource_d1wrl")
 targets = Array[int]([1])
@@ -37,7 +67,34 @@ stream = ExtResource("5_tlcps")
 volume_db = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.689585, 0, 0, 0, -0.051424015, -0.0141641535, 0, 4.567837, -0.00015945786, 0, -1.3451883, -2.1387084)
+transform = Transform3D(6.025799, 0, 0, 0, -2.615866e-07, -0.014115618, 0, 5.9844036, -6.170132e-10, 0, -1.6142532, -2.5807853)
 mesh = SubResource("PrismMesh_1swvx")
+
+[node name="hit_emitter_box2" type="Area3D" parent="."]
+transform = Transform3D(1.2849321, 0, 0, 0, 0.99999946, 0, 0, 0, 1.3100542, 0, -0.26906562, 0.22103846)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_a5c61")
+interaction_effect = SubResource("Resource_c7r5u")
+targets = Array[int]([1])
+metadata/_custom_type_script = "uid://q46hat3a6486"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hit_emitter_box2"]
+transform = Transform3D(-0.99997926, -0.006457474, 3.7756647e-05, -4.135286e-12, -0.0058468687, -0.9999829, 0.006457584, -0.99996203, 0.0058467463, 0, -0.025255442, 0)
+shape = ExtResource("5_a5c61")
+
+[node name="DotSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_1swvx")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0789976, -1.1263534)
+emitting = false
+amount = 50
+amount_ratio = 0.2
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_trbht")
+draw_pass_1 = SubResource("PlaneMesh_jnw5f")
 
 [connection signal="finished" from="AbilityCone" to="." method="_on_audio_stream_player_3d_finished"]
