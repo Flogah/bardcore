@@ -16,10 +16,11 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mm0wo"]
 bg_color = Color(0.79863435, 0.1375759, 0.13508749, 1)
 
-[node name="UserInterface" type="CanvasLayer" node_paths=PackedStringArray("combat_ui", "home_ui", "upgrade_hint_label", "time_left_label", "time_progress_bar", "build_time_label", "fadeTimer")]
+[node name="UserInterface" type="CanvasLayer" node_paths=PackedStringArray("combat_ui", "home_ui", "gen_ui", "upgrade_hint_label", "time_left_label", "time_progress_bar", "build_time_label", "fadeTimer")]
 script = ExtResource("1_71fg6")
 combat_ui = NodePath("Combat_UI")
 home_ui = NodePath("Home_UI")
+gen_ui = NodePath("General_UI")
 upgrade_hint_label = NodePath("Home_UI/UpgradeHint/UpgradeLabel")
 time_left_label = NodePath("Combat_UI/TimeContainer/VBoxContainer/TimeContainer2/TimeLeft")
 time_progress_bar = NodePath("Combat_UI/TimeContainer/VBoxContainer/TimeProgressBar")
@@ -159,6 +160,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UpgradeHint" type="Control" parent="Home_UI"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -218,6 +220,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PlayerInfo" type="Control" parent="General_UI/PlayerContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 

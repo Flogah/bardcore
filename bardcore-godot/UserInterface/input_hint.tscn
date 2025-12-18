@@ -1,14 +1,27 @@
-[gd_scene format=3 uid="uid://bfs4dssi0ep7u"]
+[gd_scene load_steps=2 format=3 uid="uid://bfs4dssi0ep7u"]
+
+[ext_resource type="Script" uid="uid://fyn80xrvdaph" path="res://UserInterface/input_hint.gd" id="1_wco1l"]
 
 [node name="InputHint" type="Control"]
+top_level = true
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 3
 anchor_right = 0.087000005
-anchor_bottom = 0.039
-offset_right = -30.224007
-offset_bottom = -0.27200127
+anchor_bottom = 0.15
+offset_right = 145.776
+offset_bottom = -0.20000458
 size_flags_horizontal = 0
 size_flags_vertical = 0
+script = ExtResource("1_wco1l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20784314, 0.45490196, 0.47843137, 0.5568628)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -19,4 +32,3 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "DRÜCKE 'F'"
 horizontal_alignment = 1
-vertical_alignment = 1

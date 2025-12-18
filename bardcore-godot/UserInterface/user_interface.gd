@@ -1,7 +1,10 @@
 extends CanvasLayer
 
+const INPUT_HINT = preload("uid://bfs4dssi0ep7u")
+
 @export var combat_ui: Control
 @export var home_ui: Control
+@export var gen_ui: Control
 @export var upgrade_hint_label: Label
 
 @export var time_left_label: Label
@@ -86,3 +89,13 @@ func update_upgrade_hint(building: Building):
 
 func hide_upgrade_hint():
 	upgrade_hint_label.hide()
+
+func create_hint(pos:Vector3, text:String) -> InputHint:
+	var hint = INPUT_HINT.instantiate()
+	gen_ui.add_child(hint)
+	hint.set_hint(project(pos), text)
+	return hint
+
+func project(pos: Vector3) -> Vector2:
+	var camera : Camera3D = get_tree().get_first_node_in_group("Camera")
+	return camera.unproject_position(pos)
