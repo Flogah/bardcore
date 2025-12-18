@@ -96,6 +96,7 @@ stream = ExtResource("6_lkfax")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0789976, -1.1263534)
 emitting = false
 amount = 50
+amount_ratio = 0.2
 lifetime = 0.7
 one_shot = true
 explosiveness = 0.85

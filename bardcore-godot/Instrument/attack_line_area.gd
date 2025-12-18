@@ -20,10 +20,12 @@ func _ready() -> void:
 
 func activate():
 	await get_tree().create_timer(0.05).timeout
+	particles.restart()
 	place_sound.play()
 	emitter_2.hit_check()
 
 func _on_triggered() -> void:
+	particles.amount_ratio = 1.0
 	particles.restart()
 	print("EXPLOSION!")
 	attack_sound.play()
