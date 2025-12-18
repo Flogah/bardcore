@@ -19,6 +19,12 @@ func enter(previous_state_path: String, data := {}) -> void:
 	attack_cooldown_timer.start(1.0)
 	#attackArea.global_position = attack_spawn.global_position
 	attackArea = ATTACK_LINE_AREA.instantiate()
+	attackArea.scale.x *= owner.get_parent().stat_comp.get_stat(stat_component.stat_id.ANGLE)
+	attackArea.scale.z *= owner.get_parent().stat_comp.get_stat(stat_component.stat_id.RANGE)
+	var effect: hit_effect = hit_effect.new()
+	effect.amount = owner.get_parent().stat_comp.get_stat(stat_component.stat_id.OUT_DAMAGE) + 10
+	effect.type = effect.effect_type.ATTACK
+	attackArea.get_child(0).interaction_effect = effect
 	MapManager.current_map.add_child(attackArea)
 	setup_attack_area()
 	
