@@ -48,6 +48,7 @@ size = Vector3(3.285, 1, 2.705)
 script = ExtResource("1_qqfg0")
 right_portal = NodePath("Exits/Portal2")
 left_portal = NodePath("Exits/Portal")
+mapGameState = 1
 metadata/_custom_type_script = "uid://ba7q3y3ses2ty"
 
 [node name="CameraArm" type="Node3D" parent="."]
