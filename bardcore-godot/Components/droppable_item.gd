@@ -55,14 +55,15 @@ func _process(delta: float) -> void:
 	#item_label.text = ""
 
 func update_item_label() -> void:
-	var label_text: String = item_resource_.name + "\n"
+	var label_text: String = item_resource_.name
 	for _upgrade in item_resource_.upgrades:
-		label_text = label_text + _upgrade.explanation + "\n" 
+		label_text += "\n" + _upgrade.explanation
 	item_label_text = label_text
 
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	hint = UserInterface.create_hint(global_position, item_label_text)
+func _on_area_3d_area_entered(_area: Area3D) -> void:
+	if hint: return
+	hint = UserInterface.create_hint(global_position, item_label_text, true)
 
-func _on_area_3d_area_exited(area: Area3D) -> void:
+func _on_area_3d_area_exited(_area: Area3D) -> void:
 	hint.queue_free()
