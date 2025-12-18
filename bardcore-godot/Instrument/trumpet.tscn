@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://515m7a070dcx"]
+[gd_scene load_steps=14 format=3 uid="uid://515m7a070dcx"]
 
 [ext_resource type="Script" uid="uid://daueiqykpti77" path="res://Instrument/Instrument.gd" id="1_e8i04"]
 [ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://VFX/sound_particles.tscn" id="2_h8dbk"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cuy8j1a0hlxe5" path="res://Instrument/SFX/Trumpet/trumpet1.wav" id="6_dw12u"]
 [ext_resource type="Script" uid="uid://b65v6gv11arep" path="res://States/Player/Combat/AttackLine.gd" id="6_h8dbk"]
 [ext_resource type="Script" uid="uid://8a7ai77stjvy" path="res://States/Player/Combat/AttackCircle.gd" id="7_a3a5n"]
+[ext_resource type="Script" uid="uid://7mjq2lo5wtmw" path="res://States/Player/Combat/AttackCone.gd" id="8_3ipfh"]
 [ext_resource type="AudioStream" uid="uid://cy46frjy36a0t" path="res://Instrument/SFX/BGM/test1.wav" id="8_ui8le"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tuyoq"]
@@ -66,6 +67,12 @@ script = ExtResource("7_a3a5n")
 attack_spawn = NodePath("../../VFXSpawn")
 place_sound = NodePath("../../Audio/AbilityLine")
 metadata/_custom_type_script = "uid://8a7ai77stjvy"
+
+[node name="AttackCone" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_spawn", "place_sound")]
+script = ExtResource("8_3ipfh")
+attack_spawn = NodePath("../../VFXSpawn")
+place_sound = NodePath("../../Audio/AbilityLine")
+metadata/_custom_type_script = "uid://7mjq2lo5wtmw"
 
 [node name="Audio" type="Node3D" parent="."]
 
