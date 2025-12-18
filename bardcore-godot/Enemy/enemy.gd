@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody3D
 
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -6,7 +7,12 @@ var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var move_speed: float = 2
 
+var dead: bool = false
+
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
+	
 	if visual.scale.y < 1.0:
 		visual.scale.y += .02
 	
@@ -14,6 +20,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_health_component_died() -> void:
+	dead = true
+	get_parent().remove_child(self)
 	queue_free()
 
 func bleed():

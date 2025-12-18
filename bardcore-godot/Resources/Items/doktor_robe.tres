@@ -9,6 +9,7 @@ script = ExtResource("3_ynlje")
 amount = 5.0
 operator = 1
 effected_stat = 8
+explanation = "Outgoing Heal +5"
 metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]

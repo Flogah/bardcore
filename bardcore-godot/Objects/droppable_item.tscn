@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dewhw7kq3vfg2"]
 
-[ext_resource type="Script" uid="uid://u0d1atpjbpn5" path="res://Components/droppable_item.gd" id="1_cph8e"]
+[ext_resource type="Script" uid="uid://u0d1atpjbpn5" path="res://Objects/droppable_item.gd" id="1_cph8e"]
 [ext_resource type="FontFile" uid="uid://d1gqgofaoje8y" path="res://addons/Kenney_Fonts/Kenney Pixel.ttf" id="2_gp6lp"]
 [ext_resource type="PackedScene" uid="uid://couj5e4yhr0jl" path="res://Components/indicator_ring.tscn" id="3_e87kh"]
 
@@ -13,6 +13,7 @@ pickup_area = NodePath("Area3D")
 item_label = NodePath("Label3D")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

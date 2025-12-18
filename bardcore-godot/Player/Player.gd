@@ -2,7 +2,6 @@ extends CharacterBody3D
 class_name Player
 
 signal leave
-signal interact
 
 const TRUMPET = preload("uid://515m7a070dcx")
 const VIOLIN = preload("uid://lxalv8rqbk0c")
@@ -10,7 +9,8 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
 @onready var visual: Node3D = $Visual
-@onready var indicator_ring: Node3D = $IndicatorRing
+
+@onready var interaction_area: Area3D = $InteractionArea
 
 @export var dash_force: float = 50.0
 @export var dash_cooldown: float = 0.1
@@ -19,6 +19,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @export var stat_comp: stat_component
 @export var inventory: inventory_component
 
+@export var indicator_ring: Node3D
 @export var player_colors : PackedColorArray = [
 	Color.BLUE,
 	Color.GREEN,
@@ -57,8 +58,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
-		inventory.try_pickup()
-		interact.emit()
+		try_interact()
 	
 	if MultiplayerInput.is_action_just_pressed(device, "escape"):
 		GameManager.save_village_state()
@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 func point_to_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
 	
-	var camera = get_tree().get_first_node_in_group("Camera")
+	camera = get_tree().get_first_node_in_group("Camera")
 	
 	var ray_origin = camera.project_ray_origin(mouse_position)
 	var ray_normal = ray_origin + camera.project_ray_normal(mouse_position) * 1000
@@ -90,7 +90,7 @@ func look_direction():
 	rotation = Vector3(0, -input_dir.angle() - PI/2, 0)
 
 func movement():
-	var device = PlayerManager.get_player_device(player)
+	device = PlayerManager.get_player_device(player)
 	var input_dir = MultiplayerInput.get_vector(device, "move_left", "move_right", "move_up", "move_down")
 	
 	if input_dir:
@@ -121,3 +121,13 @@ func set_colors():
 	for mesh in meshes:
 		mesh.set_surface_override_material(0, mat)
 	indicator_ring.set_color(col)
+
+func try_interact():
+	var interactables = interaction_area.get_overlapping_areas()
+	for thing in interactables:
+		var ia: Interactable = thing.owner
+		if ia is droppable_item:
+			inventory.pickup(ia)
+			return
+		else:
+			ia.interact()
