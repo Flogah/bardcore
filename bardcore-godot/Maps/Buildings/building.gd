@@ -29,7 +29,6 @@ enum buildState {
 @export var level_3: Node3D
 @export var level_4: Node3D
 
-var hint
 #@export var build_level_models:Dictionary[buildState, Node3D] = {}
 
 @onready var collision: CollisionShape3D = $Collision/CollisionShape3D
