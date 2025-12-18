@@ -15,9 +15,11 @@ func display_number(value: int, type: hit_effect.effect_type):
 	num.text = str(value)
 	num.modulate = color
 	num.outline_modulate = Color.BLACK
+	num.font = preload("res://addons/Kenney_Fonts/Kenney High Square.ttf")
 	num.font_size = 8
 	num.outline_size = 4
 	num.pixel_size = 0.005
+	num.width = 500.0
 	num.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	
 	owner.owner.add_child(num)
