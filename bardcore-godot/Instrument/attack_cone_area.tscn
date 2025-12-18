@@ -101,9 +101,11 @@ stream = ExtResource("7_1swvx")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0789976, -2.8877745)
+emitting = false
 amount = 200
 amount_ratio = 0.2
 lifetime = 0.7
+one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_trbht")
 draw_pass_1 = SubResource("PlaneMesh_jnw5f")
