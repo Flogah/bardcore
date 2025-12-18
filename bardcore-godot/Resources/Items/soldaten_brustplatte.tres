@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="item_resource" load_steps=6 format=3 uid="uid://bm3v21jyaqc3j"]
+
+[ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_npsm2"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_41aag"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_41aag"]
+
+[sub_resource type="Resource" id="Resource_kdpqs"]
+script = ExtResource("3_41aag")
+amount = 2.0
+operator = 1
+effected_stat = 10
+apply_priority = 50
+explanation = "Armor +2"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_2vv5y"]
+script = ExtResource("3_41aag")
+amount = 5.0
+operator = 1
+effected_stat = 9
+apply_priority = 50
+explanation = "Outgoing Damage +5"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[resource]
+script = ExtResource("1_npsm2")
+type = 2
+upgrades = Array[ExtResource("2_41aag")]([SubResource("Resource_kdpqs"), SubResource("Resource_2vv5y")])
+name = "Soldaten Brustplatte"
+metadata/_custom_type_script = "uid://b7fgxjqg7f181"

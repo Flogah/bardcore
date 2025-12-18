@@ -40,7 +40,7 @@ func _ready():
 	UserInterface.update_progress_bar_max(max_time_value)
 	UserInterface.update_time(time_left)
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	if dragon_timer && !dragon_timer.is_stopped():
 		UserInterface.update_time(float(time_left) + dragon_timer.time_left - beat_time)
 
