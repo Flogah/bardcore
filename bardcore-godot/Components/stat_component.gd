@@ -49,7 +49,7 @@ var stat_upgrades: Dictionary[int, Array] = {} # Contains all stat_ids as keys a
 	
 	# -- Combat Stats --
 	stat_id.OUT_HEAL: 1.0, #Modifier applied on all outgoing heals
-	stat_id.OUT_DAMAGE: 1.0, #Modifier applied on all outgoing damaging hits
+	stat_id.OUT_DAMAGE: 20.0, #Modifier applied on all outgoing damaging hits
 	stat_id.ARMOR: 1.0, #Multiplied with the damage after accounting for armor-piercing
 	stat_id.ARMOR_PIERCING: 0.0, #Removed form armor of hits target
 	stat_id.RANGE: 1.0, #Multiplies the leangth of the instruments area
