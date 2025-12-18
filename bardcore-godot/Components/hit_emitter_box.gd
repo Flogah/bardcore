@@ -18,13 +18,13 @@ var critical: bool
 
 func hit_check() -> void:
 	var areas = self.get_overlapping_areas()
+	
 	for area in areas:
 		if area is hit_reciver_box:
 			var acceptable_targets = faction.keys()
 			for group in area.owner.get_groups():
 				if group in acceptable_targets:
 					deal_hit(area)
-					return
 
 func deal_hit(area:hit_reciver_box):
 	area.hit(

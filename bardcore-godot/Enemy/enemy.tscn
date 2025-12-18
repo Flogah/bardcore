@@ -60,6 +60,8 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_md0e3")
 
 [node name="hit_reciver_box" type="Area3D" parent="." node_paths=PackedStringArray("health_comp")]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("4_eqilm")
 health_comp = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bhrs6p0rwjb3h"
