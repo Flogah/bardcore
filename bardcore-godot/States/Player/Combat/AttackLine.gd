@@ -28,6 +28,8 @@ func setup_attack_area():
 	attackArea.global_position = attack_spawn.global_position
 	attackArea.rotation = attack_spawn.global_rotation
 	attackArea.set_color(owner.player_num)
+	await get_tree().create_timer(.01).timeout
+	attackArea.activate()
 
 #func _input(event):
 	#if event.is_action_released("attack_line"):

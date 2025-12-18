@@ -13,7 +13,9 @@ var e_type = hit_effect.effect_type
 var interacted_objects_id: Array[int]
 
 func hit(id: int, type: hit_effect.effect_type, amount: float, inv_time: float, statuses: Array[status]):
+	print("hit")
 	if id not in interacted_objects_id: # invincability frame still active?:
+		
 		if health_comp: # do i have an health component?:
 			health_comp.apply(type,amount)
 		if inv_time > 0:
