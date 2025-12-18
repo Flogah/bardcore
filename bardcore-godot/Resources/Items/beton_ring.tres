@@ -8,15 +8,18 @@
 script = ExtResource("3_xx18j")
 amount = 10.0
 apply_priority = 1
+explanation = "MaxHealth x10"
 metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [sub_resource type="Resource" id="Resource_vb2me"]
 script = ExtResource("3_xx18j")
 amount = 0.5
 effected_stat = 0
+explanation = "MoveSpeed x0.5"
 metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]
 script = ExtResource("1_6u4ug")
 upgrades = Array[ExtResource("2_xx18j")]([SubResource("Resource_knwdt"), SubResource("Resource_vb2me")])
+name = "Beton Ring"
 metadata/_custom_type_script = "uid://b7fgxjqg7f181"

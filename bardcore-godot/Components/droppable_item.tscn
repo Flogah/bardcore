@@ -1,14 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://dewhw7kq3vfg2"]
+[gd_scene load_steps=5 format=3 uid="uid://dewhw7kq3vfg2"]
 
 [ext_resource type="Script" uid="uid://u0d1atpjbpn5" path="res://Components/droppable_item.gd" id="1_cph8e"]
+[ext_resource type="FontFile" uid="uid://d1gqgofaoje8y" path="res://addons/Kenney_Fonts/Kenney Pixel.ttf" id="2_gp6lp"]
+[ext_resource type="PackedScene" uid="uid://couj5e4yhr0jl" path="res://Components/indicator_ring.tscn" id="3_e87kh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gp6lp"]
 radius = 1.0852671
 
-[node name="DroppableItem" type="Node3D"]
+[node name="DroppableItem" type="Node3D" node_paths=PackedStringArray("pickup_area", "item_label")]
 script = ExtResource("1_cph8e")
+pickup_area = NodePath("Area3D")
+item_label = NodePath("Label3D")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_gp6lp")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7349086, 0)
+pixel_size = 0.05
+font = ExtResource("2_gp6lp")
+
+[node name="IndicatorRing" parent="." instance=ExtResource("3_e87kh")]
+color = Color(1, 1, 0, 1)
+
+[connection signal="body_entered" from="Area3D" to="." method="check_if_item_info_should_be_displayed"]
+[connection signal="body_exited" from="Area3D" to="." method="check_if_item_info_should_be_displayed"]

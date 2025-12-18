@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://bivf4jcutmgdo"]
+
+[ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="1_tqdmu"]
+[ext_resource type="Script" uid="uid://cm0jhgrusjbxq" path="res://Instrument/attack_circle_area.gd" id="1_xv3mu"]
+[ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="2_c4r5d"]
+[ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="3_xv3mu"]
+[ext_resource type="AudioStream" uid="uid://0l3sitsl4d1f" path="res://Instrument/SFX/Trumpet/Kreis_Bardcore_tr.wav" id="4_c4r5d"]
+
+[sub_resource type="Resource" id="Resource_rtdfi"]
+script = ExtResource("2_c4r5d")
+metadata/_custom_type_script = "uid://buv1cjylhq6sg"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c4r5d"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xv3mu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtdfi"]
+albedo_color = Color(0.15455905, 0.56553996, 0, 1)
+
+[node name="AttackCircleArea" type="Node3D" node_paths=PackedStringArray("attack_sound")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.08055878)
+script = ExtResource("1_xv3mu")
+attack_sound = NodePath("AudioStreamPlayer3D")
+
+[node name="hit_emitter_box" type="Area3D" parent="."]
+script = ExtResource("1_tqdmu")
+interaction_effect = SubResource("Resource_rtdfi")
+targets = Array[int]([1])
+metadata/_custom_type_script = "uid://q46hat3a6486"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit_emitter_box"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0)
+shape = SubResource("CylinderShape3D_c4r5d")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_c4r5d")
+volume_db = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.48, 0, 0, 0, 0.025, 0, 0, 0, 2.48, 0, -1.328781, 0)
+mesh = SubResource("CylinderMesh_xv3mu")
+surface_material_override/0 = SubResource("StandardMaterial3D_rtdfi")
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

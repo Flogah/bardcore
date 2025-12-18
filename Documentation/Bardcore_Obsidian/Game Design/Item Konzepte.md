@@ -41,3 +41,28 @@ Bewegungsgeschwindigkeit x1,25
 
 ___
 
+# Item Progression
+Zu bestimmten Punkten im Spiel, werden unterschiedliche Kategorien an Items gedropped. 
+Dies ist nicht als fest zu betrachten, sondern eher eine flexible Wahrscheinlichkeitsverschiebung. 
+In den ersten räumen droppen z.B. zu 90% Early-Game Items, zu 8% Mid-Game Items und zu 2% End-Game Items. 
+Gegen Ende (40+min Run) könnte die Wahrscheinlichkeit dann 20% Early-Game, 50% Mid-Game und 30% End Game sein.
+
+
+## Early Game
+Simple aber spürbare Effekte, die entweder Grundlegene Werte verändern, oder im Falle von Auslösenden Effekten, an simple und häufig auftretenden Bedinungen geknüpft. 
+Zudem keine bis kaum negative Effekte von Items.
+
+## Mid Game
+Stärkere Versionen von bereits exsistiernden Items, mit dafür leichten negativen Zusatzeffekten. Hier können auch komplexere Auslöser vorliegen für Triggered-Effekte.
+
+## End Game
+Enorm Starke aber komplexe nischenhafte Effekte, die hauptsächlich in Kombination mit anderen Items stark sind. Auslöser sind oft komplex und an mehrere Bedingungen geknüpft, dafür aber auch deutlich wirkungsvoller. 
+Falls Simple Werte stark beeinflusst werden, gibt es oft auch starke nachteilige Effekte, die damit einhergehen.
+
+----
+
+# Item Aquisition
+Items erhält man Ausschließlich an 3 Orten:
+- Im Dorf am Anfang, durch die Meta-Progression beeinflusst (An den Gebäuden)
+- In hin und wieder auftretenden Shops in den Runs
+- In Kisten, die alle paar Räume auftreten (erst aufschließbar nachdem alle Gegner besiegt wurden)

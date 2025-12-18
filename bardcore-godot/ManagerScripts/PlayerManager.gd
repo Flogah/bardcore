@@ -33,7 +33,9 @@ func spawn_player(player: int):
 	
 	# add the player to the tree
 	#var current_scene = get_tree().current_scene
-	var current_scene = MapManager.get_current_map()
+	var current_scene = get_tree().current_scene
+	if !current_scene:
+		current_scene = MapManager.get_current_map()
 	current_scene.add_child(player_node)
 	
 	# random spawn position
@@ -58,6 +60,8 @@ func save_all_players():
 
 func save_player(player:int):
 	var player_node = player_nodes[player]
+	if !player_node.is_inside_tree():
+		return
 	# this one is to avoid portals triggering their detection twice when switching maps
 	player_node.global_position = Vector3.UP * 1000.0
 	player_node.get_parent().remove_child(player_node)
@@ -71,7 +75,6 @@ func load_player(player: int):
 	var player_node = player_nodes[player]
 	MapManager.current_map.add_child(player_node)
 
-
 func join(device: int):
 	var player = next_player()
 	if player >= 0:
@@ -81,6 +84,7 @@ func join(device: int):
 			"device": device,
 			"bard": "drunk",
 			"instrument": "trumpet",
+			"color": "ROYAL_BLUE",
 		}
 		player_joined.emit(player)
 
@@ -97,6 +101,12 @@ func get_player_indexes():
 
 func get_player_device(player: int) -> int:
 	return get_player_data(player, "device")
+
+func set_player_color(player: int, col: Color):
+	set_player_data(player, "color", col)
+
+func get_player_color(player: int) -> Color:
+	return get_player_data(player, "color")
 
 # get player data.
 # null means it doesn't exist.
@@ -151,3 +161,6 @@ func get_unjoined_devices():
 	
 	# filter out devices that are joined:
 	return devices.filter(func(device): return !is_device_joined(device))
+
+func reset():
+	player_nodes = {}
