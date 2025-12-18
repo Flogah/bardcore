@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_health_component_died() -> void:
 	dead = true
-	owner.remove_child(self)
+	get_parent().remove_child(self)
 	queue_free()
 
 func bleed():

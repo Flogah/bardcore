@@ -16,6 +16,7 @@ func _ready() -> void:
 	find_enemies()
 	find_portals()
 	connect_portals()
+	get_tree().create_timer(1.0).timeout.connect(check_for_surviving_enemies)
 
 func find_enemies():
 	for enemy in enemy_nodes.get_children():
@@ -87,3 +88,4 @@ func check_for_surviving_enemies():
 		#if !body.dead:
 			#return
 	all_enemies_dead.emit()
+	print("all dead")

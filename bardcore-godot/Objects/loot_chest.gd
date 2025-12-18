@@ -8,6 +8,7 @@ var drop_item: PackedScene = load("res://Objects/droppable_item.tscn")
 var item_resources: Array[item_resource] = []
 
 var locked: bool = true
+var opened: bool = false
 
 func interact():
 	if !locked:
@@ -32,20 +33,22 @@ func lock() -> void:
 	locked = true
 
 func open() -> void:
-	var lid := $PlaceHolder_Chest/Box/Lid
-	var lid_tween: Tween = lid.create_tween()
-	lid_tween.set_trans(Tween.TRANS_BOUNCE)
-	lid_tween.set_ease(Tween.EASE_OUT)
-	lid_tween.tween_property(
-		lid,
-		"rotation_degrees:z",
-		100.0,
-		1.0
-	)
-	for item in generate_loot():
-		item.global_position = position
-		MapManager.get_current_map().add_child(item)
-		_throw_item(item)
+	if !opened:
+		opened = true
+		var lid := $PlaceHolder_Chest/Box/Lid
+		var lid_tween: Tween = lid.create_tween()
+		lid_tween.set_trans(Tween.TRANS_BOUNCE)
+		lid_tween.set_ease(Tween.EASE_OUT)
+		lid_tween.tween_property(
+			lid,
+			"rotation_degrees:z",
+			100.0,
+			1.0
+		)
+		for item in generate_loot():
+			MapManager.get_current_map().add_child(item)
+			item.global_position = position
+			_throw_item(item)
 
 
 func generate_loot() -> Array[droppable_item]:
