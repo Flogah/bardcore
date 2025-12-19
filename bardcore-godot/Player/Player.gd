@@ -13,7 +13,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @onready var interaction_area: Area3D = $InteractionArea
 
 @export var dash_force: float = 50.0
-@export var dash_cooldown: float = 0.1
+@export var dash_cooldown: float = 2.0
 @export var dash_duration: float = 0.1
 
 @export var stat_comp: stat_component
