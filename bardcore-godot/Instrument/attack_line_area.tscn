@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="3_xdx4f"]
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="4_lkfax"]
 [ext_resource type="AudioStream" uid="uid://yee5i1c1nt5k" path="res://Instrument/SFX/BGM/Linie_bardcore_tr_new.wav" id="5_xdx4f"]
-[ext_resource type="AudioStream" uid="uid://ch7mga6ovy6gd" path="res://Instrument/SFX/Violin/violin1.wav" id="6_lkfax"]
+[ext_resource type="AudioStream" uid="uid://dtsfx3hsha42h" path="res://Instrument/SFX/BGM/place_sound.wav" id="6_lkfax"]
 
 [sub_resource type="Resource" id="Resource_31l7u"]
 script = ExtResource("3_xdx4f")
@@ -89,6 +89,7 @@ shape = SubResource("BoxShape3D_lkfax")
 
 [node name="DotSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_lkfax")
+volume_db = 30.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0789976, -1.1263534)

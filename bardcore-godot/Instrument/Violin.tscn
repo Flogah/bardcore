@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://lxalv8rqbk0c"]
+[gd_scene load_steps=14 format=3 uid="uid://lxalv8rqbk0c"]
 
 [ext_resource type="Script" uid="uid://daueiqykpti77" path="res://Instrument/Instrument.gd" id="1_5u75h"]
 [ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://VFX/sound_particles.tscn" id="2_pvdqr"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://bjwgpgcxgn5j7" path="res://States/Player/Combat/PlayerWeakAttack.gd" id="4_ds1ep"]
 [ext_resource type="Script" uid="uid://blr8ho4ugylvs" path="res://States/Player/Combat/PlayerCombatIdle.gd" id="5_m54yn"]
 [ext_resource type="AudioStream" uid="uid://ch7mga6ovy6gd" path="res://Instrument/SFX/Violin/violin1.wav" id="6_7b1ot"]
+[ext_resource type="Script" uid="uid://bqcyw84s3jw3r" path="res://States/Player/Combat/AttackArrow.gd" id="6_ds1ep"]
+[ext_resource type="Script" uid="uid://4yxdoa3on7pb" path="res://States/Player/Combat/AttackRing.gd" id="7_m54yn"]
+[ext_resource type="Script" uid="uid://bgcbxhef1f7dg" path="res://States/Player/Combat/AttackWings.gd" id="8_7b1ot"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nbgvm"]
 radius = 3.643636
@@ -33,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.0
 shape = SubResource("SphereShape3D_nbgvm")
 
 [node name="VFXSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.116626084, 0.0012161136)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.485, 0)
 
 [node name="CombatStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_kd48f")
@@ -51,6 +54,21 @@ metadata/_custom_type_script = "uid://bjwgpgcxgn5j7"
 [node name="Idle" type="Node" parent="CombatStateMachine"]
 script = ExtResource("5_m54yn")
 metadata/_custom_type_script = "uid://blr8ho4ugylvs"
+
+[node name="AttackArrow" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_spawn")]
+script = ExtResource("6_ds1ep")
+attack_spawn = NodePath("../../VFXSpawn")
+metadata/_custom_type_script = "uid://bqcyw84s3jw3r"
+
+[node name="AttackRing" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_spawn")]
+script = ExtResource("7_m54yn")
+attack_spawn = NodePath("../../VFXSpawn")
+metadata/_custom_type_script = "uid://4yxdoa3on7pb"
+
+[node name="AttackWings" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_spawn")]
+script = ExtResource("8_7b1ot")
+attack_spawn = NodePath("../../VFXSpawn")
+metadata/_custom_type_script = "uid://bgcbxhef1f7dg"
 
 [node name="Audio" type="Node3D" parent="."]
 

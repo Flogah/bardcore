@@ -14,3 +14,12 @@ func update(_delta: float) -> void:
 	
 	if owner.input.is_action_pressed("attack_cone"):
 		finished.emit("AttackCone")
+	
+	if owner.input.is_action_pressed("attack_ring"):
+		finished.emit("AttackRing")
+	
+	if owner.input.is_action_pressed("attack_wings"):
+		finished.emit("AttackWings")
+	
+	if owner.input.is_action_pressed("attack_arrow"):
+		finished.emit("AttackArrow")
