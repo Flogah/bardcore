@@ -20,8 +20,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 	attack_cooldown_timer.start(1.0)
 	#attackArea.global_position = attack_spawn.global_position
 	attackArea = ATTACK_CIRCLE_AREA.instantiate()
-	attackArea.scale.x *= owner.get_parent().stat_comp.get_stat(stat_component.stat_id.ANGLE)
-	attackArea.scale.z *= owner.get_parent().stat_comp.get_stat(stat_component.stat_id.RANGE)
+	var scale_mult: float = owner.get_parent().stat_comp.get_stat(stat_component.stat_id.ANGLE) + owner.get_parent().stat_comp.get_stat(stat_component.stat_id.RANGE) * 0.65
+	attackArea.scale.x *= scale_mult
+	attackArea.scale.z *= scale_mult 
 	var effect: hit_effect = hit_effect.new()
 	effect.amount = owner.get_parent().stat_comp.get_stat(stat_component.stat_id.OUT_DAMAGE)
 	effect.type = effect.effect_type.ATTACK

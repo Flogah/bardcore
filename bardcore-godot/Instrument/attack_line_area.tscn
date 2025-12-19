@@ -9,12 +9,12 @@
 
 [sub_resource type="Resource" id="Resource_31l7u"]
 script = ExtResource("3_xdx4f")
-amount = 40.0
+amount = 0.0
 invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lkfax"]
-size = Vector3(5.2441406, 2.4360352, 7.5284424)
+size = Vector3(2.7, 1, 7.5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xdx4f"]
 
@@ -23,7 +23,7 @@ albedo_color = Color(0, 0.35686275, 0.12156863, 1)
 
 [sub_resource type="Resource" id="Resource_xdx4f"]
 script = ExtResource("3_xdx4f")
-amount = 20.0
+amount = 5.0
 invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 
@@ -36,7 +36,7 @@ curve = SubResource("Curve_lkfax")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lkfax"]
 emission_shape = 3
-emission_box_extents = Vector3(0.455, 0.07, 1.69)
+emission_box_extents = Vector3(1.35, 0.07, 3.8)
 direction = Vector3(0, 1, 0)
 spread = 5.0
 initial_velocity_min = 1.0
@@ -52,7 +52,7 @@ attack_sound = NodePath("AbilityCircle")
 place_sound = NodePath("DotSound")
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
-transform = Transform3D(2.6656013, 0, 0, 0, 1, 0, 0, 0, 2.2408273, 0, 0, 0.45825818)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6849185, -1.9609534)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("2_x5ccc")
@@ -61,7 +61,6 @@ targets = Array[int]([1])
 metadata/_custom_type_script = "uid://q46hat3a6486"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="hit_emitter_box"]
-transform = Transform3D(0.195, 0, 0, 0, 0.4, 0, 0, 0, 0.46, 0, -0.718, -1.108)
 shape = SubResource("BoxShape3D_lkfax")
 
 [node name="AbilityCircle" type="AudioStreamPlayer3D" parent="."]
@@ -75,7 +74,7 @@ mesh = SubResource("PlaneMesh_xdx4f")
 surface_material_override/0 = SubResource("StandardMaterial3D_lkfax")
 
 [node name="hit_emitter_box2" type="Area3D" parent="."]
-transform = Transform3D(2.6656013, 0, 0, 0, 1, 0, 0, 0, 2.2408273, 0, 0, 0.45825818)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6849185, -1.9609534)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("2_x5ccc")
@@ -84,7 +83,6 @@ targets = Array[int]([1])
 metadata/_custom_type_script = "uid://q46hat3a6486"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="hit_emitter_box2"]
-transform = Transform3D(0.195, 0, 0, 0, 0.4, 0, 0, 0, 0.46, 0, -0.718, -1.108)
 shape = SubResource("BoxShape3D_lkfax")
 
 [node name="DotSound" type="AudioStreamPlayer3D" parent="."]
@@ -92,9 +90,9 @@ stream = ExtResource("6_lkfax")
 volume_db = 30.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0789976, -1.1263534)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0789976, -2.014927)
 emitting = false
-amount = 50
+amount = 200
 amount_ratio = 0.2
 lifetime = 0.7
 one_shot = true
