@@ -11,10 +11,10 @@ enum gameState {
 }
 
 # get's carried from map to map, so it's important to not have it be a single timer node
-var starting_time:int = 500
+var starting_time:int = 180
 # the time it takes to get to the next beat, better visualizing the time
 var beat_time:float = 1.0
-var standard_bonus_time:int = 2
+var standard_bonus_time:int = 20
 
 var time_left:int
 var max_time_value:int
@@ -32,7 +32,7 @@ func _ready():
 	load_village_state()
 	
 	create_dragon_timer()
-	MusicManager.beat.connect(dragon_beat)
+	MusicManager.halfBeat.connect(dragon_beat)
 	reset_time()
 	
 	MapManager.entered_new_map.connect(add_dragon_time)
