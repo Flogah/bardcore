@@ -9,6 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_rtdfi"]
 script = ExtResource("2_c4r5d")
+amount = 0.0
 invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 
@@ -22,7 +23,7 @@ albedo_color = Color(0.15455905, 0.56553996, 0, 1)
 
 [sub_resource type="Resource" id="Resource_fqapy"]
 script = ExtResource("2_c4r5d")
-amount = 20.0
+amount = 5.0
 invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 

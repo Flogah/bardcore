@@ -28,11 +28,13 @@ func display_number(value: int, type: hit_effect.effect_type):
 	num.position.x += randf_range(-.2,.2)
 	num.position.y += randf_range(-.2,.2)
 	
-	var tween: Tween = get_tree().create_tween()
-	
-	tween.set_parallel(true)
-	tween.tween_property(num, "position:y", num.position.y - -2, 0.25).set_ease(Tween.EASE_OUT)
-	tween.tween_property(num, "position:y", num.position.y, 0.5).set_ease(Tween.EASE_IN).set_delay(0.25)
-	tween.tween_property(num, "scale", Vector3.ZERO, .25).set_delay(0.5).set_ease(Tween.EASE_IN)
-	
-	tween.finished.connect(num.queue_free)
+	if is_inside_tree():
+		var tween: Tween = get_tree().create_tween()
+		
+		tween.set_parallel(true)
+		tween.tween_property(num, "position:y", num.position.y - -2, 0.25).set_ease(Tween.EASE_OUT)
+		tween.tween_property(num, "position:y", num.position.y, 0.5).set_ease(Tween.EASE_IN).set_delay(0.25)
+		tween.tween_property(num, "scale", Vector3.ZERO, .25).set_delay(0.5).set_ease(Tween.EASE_IN)
+		
+		tween.finished.connect(num.queue_free)
+	else: num.queue_free()
