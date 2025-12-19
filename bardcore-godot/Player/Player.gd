@@ -43,7 +43,10 @@ func init(player_num: int):
 
 func _ready() -> void:
 	if !equipped_instrument:
-		add_instrument(VIOLIN)
+		if player%2 > 0:
+			add_instrument(VIOLIN)
+		else:
+			add_instrument(TRUMPET)
 	set_colors()
 
 func _physics_process(delta: float) -> void:
