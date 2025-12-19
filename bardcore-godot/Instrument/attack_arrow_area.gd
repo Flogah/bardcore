@@ -15,7 +15,7 @@ func _ready() -> void:
 	#unnecessary, it's already connected by hand (check your nodes)
 	#attack_sound.finished.connect(clean_up)
 	
-	MusicManager.halfBeat.connect(_on_triggered)
+	MusicManager.thirdBeat.connect(_on_triggered)
 	print("beatTimer")
 
 func activate():
@@ -30,7 +30,7 @@ func _on_triggered() -> void:
 	print("EXPLOSION!")
 	attack_sound.play()
 	emitter.hit_check()
-	MusicManager.halfBeat.disconnect(_on_triggered)
+	MusicManager.thirdBeat.disconnect(_on_triggered)
 
 func clean_up() -> void:
 	print("clean up")
