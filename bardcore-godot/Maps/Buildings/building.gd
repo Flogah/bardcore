@@ -119,7 +119,7 @@ func _on_interaction_area_area_entered(_area: Area3D) -> void:
 	#UserInterface.show_upgrade_hint(self)
 
 func _on_interaction_area_area_exited(_area: Area3D) -> void:
-	hint.queue_free()
+	if hint: hint.queue_free()
 	#UserInterface.hide_upgrade_hint()
 
 func get_current_upgrade_cost() -> int:
