@@ -12,7 +12,7 @@ func _ready() -> void:
 	#beatTimer = get_tree().get_first_node_in_group('BeatTimer')
 	#unnecessary, it's already connected by hand (check your nodes)
 	#attack_sound.finished.connect(clean_up)
-	MusicManager.beat.connect(_on_triggered)
+	MusicManager.quarterBeat.connect(_on_triggered)
 	print("beatTimer")
 
 func activate():
@@ -27,8 +27,7 @@ func _on_triggered() -> void:
 	attack_sound.play()
 	emitter.hit_check()
 	print("EXPLOSION!")
-	MusicManager.beat.disconnect(_on_triggered)
-	mesh_instance.hide()
+	MusicManager.quarterBeat.disconnect(_on_triggered)
 
 
 func _on_audio_stream_player_3d_finished() -> void:

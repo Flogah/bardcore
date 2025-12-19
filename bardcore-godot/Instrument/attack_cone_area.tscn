@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="4_c7r5u"]
 [ext_resource type="Shape3D" uid="uid://cedba3umy6q7e" path="res://Instrument/Trumpet/attack_cone_area.tres" id="5_a5c61"]
 [ext_resource type="AudioStream" uid="uid://df1u7s0whxvmv" path="res://Instrument/SFX/Trumpet/Halbkreis_Sound_tr_bardcore.wav" id="5_tlcps"]
-[ext_resource type="AudioStream" uid="uid://ch7mga6ovy6gd" path="res://Instrument/SFX/Violin/violin1.wav" id="7_1swvx"]
+[ext_resource type="AudioStream" uid="uid://dtsfx3hsha42h" path="res://Instrument/SFX/BGM/place_sound.wav" id="7_1swvx"]
 
 [sub_resource type="Resource" id="Resource_d1wrl"]
 script = ExtResource("3_1swvx")
@@ -14,11 +14,11 @@ amount = 0.0
 invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5c61"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7r5u"]
 albedo_color = Color(0, 0.39607844, 0.011764706, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_1swvx"]
-material = SubResource("StandardMaterial3D_a5c61")
+material = SubResource("StandardMaterial3D_c7r5u")
 
 [sub_resource type="Resource" id="Resource_c7r5u"]
 script = ExtResource("3_1swvx")
@@ -42,7 +42,7 @@ image = SubResource("Image_1swvx")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2991453, 0.8849558), 1.260733, 1.260733, 0, 0, Vector2(0.7307693, 0.5973452), -1.4955752, -1.4955752, 0, 0, Vector2(0.9871796, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_eaha5"]
+[sub_resource type="CurveTexture" id="CurveTexture_tlcps"]
 curve = SubResource("Curve_d1wrl")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_trbht"]
@@ -53,7 +53,7 @@ direction = Vector3(0, 1, 0)
 spread = 5.0
 initial_velocity_min = 1.0
 initial_velocity_max = 3.0
-scale_curve = SubResource("CurveTexture_eaha5")
+scale_curve = SubResource("CurveTexture_tlcps")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jnw5f"]
 size = Vector2(0.3, 0.3)
@@ -99,6 +99,7 @@ shape = ExtResource("5_a5c61")
 
 [node name="DotSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_1swvx")
+volume_db = 30.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0789976, -2.8877745)
