@@ -31,6 +31,7 @@ func _on_triggered() -> void:
 	attack_sound.play()
 	emitter.hit_check()
 	MusicManager.thirdBeat.disconnect(_on_triggered)
+	mesh_instance.hide()
 
 func clean_up() -> void:
 	print("clean up")

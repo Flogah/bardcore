@@ -28,6 +28,7 @@ func _on_triggered() -> void:
 	emitter.hit_check()
 	print("EXPLOSION!")
 	MusicManager.quarterBeat.disconnect(_on_triggered)
+	mesh_instance.hide()
 
 
 func _on_audio_stream_player_3d_finished() -> void:
