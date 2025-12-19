@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://515m7a070dcx"]
+[gd_scene load_steps=12 format=3 uid="uid://515m7a070dcx"]
 
 [ext_resource type="Script" uid="uid://daueiqykpti77" path="res://Instrument/Instrument.gd" id="1_e8i04"]
 [ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://VFX/sound_particles.tscn" id="2_h8dbk"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="3_ui8le"]
-[ext_resource type="Script" uid="uid://bjwgpgcxgn5j7" path="res://States/Player/Combat/PlayerWeakAttack.gd" id="4_a3a5n"]
 [ext_resource type="Script" uid="uid://blr8ho4ugylvs" path="res://States/Player/Combat/PlayerCombatIdle.gd" id="5_3ipfh"]
 [ext_resource type="AudioStream" uid="uid://cuy8j1a0hlxe5" path="res://Instrument/SFX/Trumpet/trumpet1.wav" id="6_dw12u"]
 [ext_resource type="Script" uid="uid://b65v6gv11arep" path="res://States/Player/Combat/AttackLine.gd" id="6_h8dbk"]
@@ -37,16 +36,11 @@ script = ExtResource("3_ui8le")
 initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://c1oy8va3logcp"
 
-[node name="WeakAttack" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_sound", "vfx_spawn", "hitbox")]
-script = ExtResource("4_a3a5n")
-soundVFX = ExtResource("2_h8dbk")
-attack_sound = NodePath("../../Audio/Trumpet1")
-vfx_spawn = NodePath("../../VFXSpawn")
-hitbox = NodePath("../../EffectArea")
-metadata/_custom_type_script = "uid://bjwgpgcxgn5j7"
-
-[node name="Idle" type="Node" parent="CombatStateMachine"]
+[node name="Idle" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_1", "attack_2", "attack_3")]
 script = ExtResource("5_3ipfh")
+attack_1 = NodePath("../AttackLine")
+attack_2 = NodePath("../AttackCone")
+attack_3 = NodePath("../AttackCircle")
 metadata/_custom_type_script = "uid://blr8ho4ugylvs"
 
 [node name="AttackLine" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("attack_spawn", "place_sound")]

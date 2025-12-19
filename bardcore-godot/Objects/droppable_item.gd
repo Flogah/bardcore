@@ -66,4 +66,4 @@ func _on_area_3d_area_entered(_area: Area3D) -> void:
 	hint = UserInterface.create_hint(global_position, item_label_text, true)
 
 func _on_area_3d_area_exited(_area: Area3D) -> void:
-	hint.queue_free()
+	if hint: hint.queue_free()
