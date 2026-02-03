@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://5pe1dv1hk7j0"]
+
+[ext_resource type="PackedScene" uid="uid://c2fy0sbn3peio" path="res://Meshes/Buildings/Trumpets_stage1.glb" id="1_8r0a0"]
+[ext_resource type="Material" uid="uid://cwtm8ihj3sfgl" path="res://Materials/Buildings/Building_trumpets.tres" id="2_stiop"]
+
+[node name="Trumpets_stage1" instance=ExtResource("1_8r0a0")]
+
+[node name="Cylinder" parent="." index="0"]
+material_override = ExtResource("2_stiop")
+
+[node name="Cube_001" parent="." index="1"]
+material_override = ExtResource("2_stiop")
+
+[node name="Cube_002" parent="." index="2"]
+material_override = ExtResource("2_stiop")
+
+[node name="Cube_003" parent="." index="3"]
+material_override = ExtResource("2_stiop")
+
+[node name="Cone_001" parent="." index="4"]
+material_override = ExtResource("2_stiop")
+
+[node name="Circle_002" parent="." index="5"]
+material_override = ExtResource("2_stiop")
+
+[node name="Circle_003" parent="." index="6"]
+material_override = ExtResource("2_stiop")
+
+[node name="Cylinder_001" parent="." index="7"]
+material_override = ExtResource("2_stiop")
+
+[node name="Cone_002" parent="." index="8"]
+material_override = ExtResource("2_stiop")
+
+[node name="Cone_003" parent="." index="9"]
+material_override = ExtResource("2_stiop")
