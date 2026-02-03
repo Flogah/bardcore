@@ -71,12 +71,12 @@ spawn_position = NodePath("Exits/Spawn")
 exit_portal = NodePath("Exits/Portal")
 
 [node name="CameraArm" type="Node3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 1.5, 0)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9166208, 0.39975703, 0, -0.39975703, 0.9166208, 0, 1.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
 projection = 1
-size = 29.846
+size = 31.836
 near = 0.017
 far = 84.78
 
@@ -95,8 +95,18 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2oixm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
 transform = Transform3D(0.5254748, -0.6902425, 0.49743515, 0.08959865, 0.6263045, 0.7744127, -0.8460782, -0.36236477, 0.39095193, 0.2685008, 5.4544697, 0)
-light_energy = 2.171
+light_energy = 1.5
+light_indirect_energy = 3.0
 shadow_enabled = true
+sky_mode = 1
+
+[node name="Skylight" type="DirectionalLight3D" parent="Terrain"]
+transform = Transform3D(-0.22584213, -0.6804793, -0.6970964, 0.45826557, -0.7056742, 0.5403857, -0.8596442, -0.1974134, 0.47121114, -3.3385556, 5.254349, 0)
+light_color = Color(0.45178914, 0.6968951, 0.81278986, 1)
+light_energy = 0.3
+light_indirect_energy = 3.0
+shadow_enabled = true
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
 environment = SubResource("Environment_15k71")

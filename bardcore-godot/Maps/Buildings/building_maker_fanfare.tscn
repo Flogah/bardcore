@@ -471,19 +471,19 @@ mesh = SubResource("BoxMesh_y52u6")
 visible = false
 
 [node name="Trumpets_stage1" parent="Level1" instance=ExtResource("2_p4kj7")]
-transform = Transform3D(-4.395323e-08, 0, -1.0055326, 0, 1.0055326, 0, 1.0055326, 0, -4.395323e-08, 2.4791842, 0, 0)
+transform = Transform3D(-3.278354e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.278354e-08, 2.4791842, 0, 0)
 
 [node name="Level2" type="Node3D" parent="."]
 visible = false
 
 [node name="Trumpets_stage2" parent="Level2" instance=ExtResource("3_1yu6w")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.479, 0, 0)
+transform = Transform3D(-3.278354e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.278354e-08, 2.479, 0, 0)
 
 [node name="Level3" type="Node3D" parent="."]
 visible = false
 
 [node name="Trumpets_stage3" parent="Level3" instance=ExtResource("4_2r5xx")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.479, 0, 0)
+transform = Transform3D(-3.278354e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.278354e-08, 2.479, 0, 0)
 
 [node name="Level4" type="Node3D" parent="."]
 visible = false

@@ -1,42 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk3skpefr0fks"]
 
-[ext_resource type="PackedScene" uid="uid://djx1k808gaxc6" path="res://Meshes/Buildings/Trumpets_stage3.glb" id="1_vx5yk"]
+[ext_resource type="PackedScene" uid="uid://daht413diaqww" path="res://Meshes/Buildings/stage3.glb" id="1_vx5yk"]
 [ext_resource type="Material" uid="uid://cwtm8ihj3sfgl" path="res://Materials/Buildings/Building_trumpets.tres" id="2_upluv"]
 
-[node name="Trumpets_stage3" instance=ExtResource("1_vx5yk")]
+[node name="stage3" instance=ExtResource("1_vx5yk")]
 
 [node name="Cylinder_004" parent="." index="0"]
-material_override = ExtResource("2_upluv")
-
-[node name="Cube_007" parent="." index="1"]
-material_override = ExtResource("2_upluv")
-
-[node name="Cube_009" parent="." index="3"]
-material_override = ExtResource("2_upluv")
-
-[node name="Cylinder_006" parent="." index="4"]
-material_override = ExtResource("2_upluv")
-
-[node name="Circle_004" parent="." index="5"]
-material_override = ExtResource("2_upluv")
-
-[node name="Plane_002" parent="." index="7"]
-material_override = ExtResource("2_upluv")
-
-[node name="Circle_006" parent="." index="8"]
-material_override = ExtResource("2_upluv")
-
-[node name="Plane_003" parent="." index="9"]
-material_override = ExtResource("2_upluv")
-
-[node name="Circle_007" parent="." index="10"]
-material_override = ExtResource("2_upluv")
-
-[node name="Plane_004" parent="." index="11"]
-material_override = ExtResource("2_upluv")
-
-[node name="Circle_008" parent="." index="12"]
-material_override = ExtResource("2_upluv")
-
-[node name="Plane_005" parent="." index="13"]
 material_override = ExtResource("2_upluv")
