@@ -1,0 +1,36 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvvrsp4odk0nq"]
+
+[ext_resource type="PackedScene" uid="uid://c0acgwthwku7l" path="res://BlenderScenes/liebhaber_model_baked_dicker.blend" id="1_hwppu"]
+[ext_resource type="Texture2D" uid="uid://f65np5kqt7n4" path="res://BlenderScenes/textures/Body Color.png" id="2_jy884"]
+[ext_resource type="Texture2D" uid="uid://cqj70topmftpt" path="res://BlenderScenes/textures/Body Normal.png" id="3_ug5oy"]
+[ext_resource type="Texture2D" uid="uid://yggbgo0dv7j1" path="res://BlenderScenes/textures/Sakko Color.png" id="4_mff1i"]
+[ext_resource type="Texture2D" uid="uid://i6bdhbykethc" path="res://BlenderScenes/textures/Sakko Normal.png" id="5_xwb55"]
+[ext_resource type="Texture2D" uid="uid://whkit3f6uso0" path="res://BlenderScenes/textures/Belt Color.png" id="6_o1mxd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxwd2"]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("2_jy884")
+normal_enabled = true
+normal_texture = ExtResource("3_ug5oy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fs5o"]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("4_mff1i")
+normal_enabled = true
+normal_texture = ExtResource("5_xwb55")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g4ml"]
+diffuse_mode = 2
+specular_mode = 1
+albedo_texture = ExtResource("6_o1mxd")
+
+[node name="liebhaber_model_baked_dicker" instance=ExtResource("1_hwppu")]
+
+[node name="Shrek" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_oxwd2")
+surface_material_override/1 = SubResource("StandardMaterial3D_3fs5o")
+
+[node name="belt" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1g4ml")

@@ -13,7 +13,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 @onready var interaction_area: Area3D = $InteractionArea
 
 @export var dash_force: float = 50.0
-@export var dash_cooldown: float = 0.1
+@export var dash_cooldown: float = 2.0
 @export var dash_duration: float = 0.1
 
 @export var stat_comp: stat_component
@@ -43,7 +43,10 @@ func init(player_num: int):
 
 func _ready() -> void:
 	if !equipped_instrument:
-		add_instrument(TRUMPET)
+		if player%2 > 0:
+			add_instrument(VIOLIN)
+		else:
+			add_instrument(TRUMPET)
 	set_colors()
 
 func _physics_process(delta: float) -> void:
@@ -61,6 +64,7 @@ func _physics_process(delta: float) -> void:
 		try_interact()
 	
 	if MultiplayerInput.is_action_just_pressed(device, "escape"):
+		GameManager.save_village_state()
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func point_to_mouse():
@@ -113,12 +117,12 @@ func add_instrument(instrument):
 func set_colors():
 	var col = player_colors[player]
 	PlayerManager.set_player_color(player, col)
-	print(PlayerManager.get_player_color(player))
-	var mat = StandardMaterial3D.new()
-	mat.albedo_color = col
-	var meshes = visual.get_children()
-	for mesh in meshes:
-		mesh.set_surface_override_material(0, mat)
+	#print(PlayerManager.get_player_color(player))
+	#var mat = StandardMaterial3D.new()
+	#mat.albedo_color = col
+	#var meshes = visual.get_children()
+	#for mesh in meshes:
+		#mesh.set_surface_override_material(0, mat)
 	indicator_ring.set_color(col)
 
 func try_interact():

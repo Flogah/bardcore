@@ -2,6 +2,7 @@ class_name Building
 extends Interactable
 
 signal building_upgraded
+signal left_hint_area
 
 enum buildState {
 	unbuilt,
@@ -103,13 +104,27 @@ func finish_building_3(_anim):
 	interaction_collision.disabled = false
 #endregion
 
-func _on_interaction_area_body_entered(_body: Node3D) -> void:
-	UserInterface.show_upgrade_hint(self)
+func _on_interaction_area_area_entered(_area: Area3D) -> void:
+	if hint: return
+	
+	var upgrade_available:bool = false
+	var upgrade_txt = "{0} lv.{1}".format([building_name, state])
+	if get_current_upgrade_cost() > -1:
+		if get_current_upgrade_cost() == 1:
+			upgrade_txt +=  "\n Kosten: {0} Tag".format([get_current_upgrade_cost()])
+		else:
+			upgrade_txt +=  "\n Kosten: {0} Tage".format([get_current_upgrade_cost()])
+		upgrade_available = true
+	hint = UserInterface.create_hint(global_position, upgrade_txt, upgrade_available)
+	#UserInterface.show_upgrade_hint(self)
 
-func _on_interaction_area_body_exited(_body: Node3D) -> void:
-	UserInterface.hide_upgrade_hint()
+func _on_interaction_area_area_exited(_area: Area3D) -> void:
+	if hint: hint.queue_free()
+	#UserInterface.hide_upgrade_hint()
 
 func get_current_upgrade_cost() -> int:
+	if !build_cost.has(state):
+		return -1
 	return build_cost.get(state)
 
 func set_state(new_state: int):

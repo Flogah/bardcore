@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfs4dssi0ep7u"]
+
+[ext_resource type="Script" uid="uid://fyn80xrvdaph" path="res://UserInterface/input_hint.gd" id="1_wco1l"]
+
+[node name="InputHint" type="PanelContainer"]
+top_level = true
+anchors_preset = -1
+anchor_right = 0.123
+anchor_bottom = 0.11000001
+offset_right = -41.696
+offset_bottom = -28.280006
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("1_wco1l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.20784314, 0.45490196, 0.47843137, 0.5568628)
+
+[node name="InputHint" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="RichTextLabel" parent="InputHint"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "HINT"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

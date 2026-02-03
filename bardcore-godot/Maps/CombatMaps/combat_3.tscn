@@ -1,0 +1,196 @@
+[gd_scene load_steps=17 format=3 uid="uid://q6c7auq6evki"]
+
+[ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_qqfg0"]
+[ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_vgxg5"]
+[ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="3_8h51k"]
+[ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="4_ky5dj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oal2d"]
+size = Vector2(35, 35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptfht"]
+albedo_color = Color(0.32658744, 0.297964, 0.15519646, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q1ill"]
+size = Vector2(150, 150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6mun"]
+albedo_color = Color(0.08111008, 0.1239166, 0.018113298, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j04yc"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_vycma"]
+sky_material = SubResource("ProceduralSkyMaterial_j04yc")
+
+[sub_resource type="Environment" id="Environment_tpylo"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_vycma")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_eq4rk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i6ppx"]
+size = Vector3(37.875244, 7.7929688, 2.0117188)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ed50o"]
+size = Vector3(16.576172, 7.7929688, 2.0117188)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qpv88"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ssnf"]
+size = Vector3(3.285, 1, 2.705)
+
+[node name="Combat3" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal")]
+script = ExtResource("1_qqfg0")
+right_portal = NodePath("Exits/Portal2")
+left_portal = NodePath("Exits/Portal")
+mapGameState = 1
+metadata/_custom_type_script = "uid://ba7q3y3ses2ty"
+
+[node name="CameraArm" type="Node3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
+projection = 1
+size = 33.731
+near = 0.017
+far = 84.78
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
+mesh = SubResource("PlaneMesh_oal2d")
+surface_material_override/0 = SubResource("StandardMaterial3D_ptfht")
+
+[node name="Background" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+mesh = SubResource("PlaneMesh_q1ill")
+surface_material_override/0 = SubResource("StandardMaterial3D_c6mun")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
+transform = Transform3D(0.5254748, -0.6902425, 0.49743515, 0.08959865, 0.6263045, 0.7744127, -0.8460782, -0.36236477, 0.39095193, 0.2685008, 5.4544697, 0)
+light_energy = 2.171
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
+environment = SubResource("Environment_tpylo")
+
+[node name="Boundaries" type="Node3D" parent="."]
+visible = false
+
+[node name="Floor" type="StaticBody3D" parent="Boundaries"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Floor"]
+visible = false
+shape = SubResource("WorldBoundaryShape3D_eq4rk")
+
+[node name="Wall" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.476318)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_i6ppx")
+
+[node name="Wall2" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 17.523682)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_i6ppx")
+
+[node name="Wall3" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17.463135, 0, 10.792434)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_ed50o")
+
+[node name="Wall4" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17.463135, 0, -10.704235)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_ed50o")
+
+[node name="Wall5" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.421297, 0, -10.704235)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_ed50o")
+
+[node name="Wall6" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.421297, 0, 10.792435)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_ed50o")
+
+[node name="Bits" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.149129, 0.5, 7.3653326)
+mesh = SubResource("BoxMesh_qpv88")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8531094, 0.50000095, -7.700119)
+mesh = SubResource("BoxMesh_qpv88")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9873471, 0.50000095, -2.7861958)
+mesh = SubResource("BoxMesh_qpv88")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.115227, 0.49999905, 8.730066)
+mesh = SubResource("BoxMesh_qpv88")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.760935, 0.49999905, 10.951485)
+mesh = SubResource("BoxMesh_qpv88")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.78731, 0.49999905, 12.029179)
+mesh = SubResource("BoxMesh_qpv88")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2336059, 0.49999714, -5.2399273)
+mesh = SubResource("BoxMesh_0ssnf")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55742407, 0.50000095, -6.1976795)
+mesh = SubResource("BoxMesh_qpv88")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Bits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.068651, 0.9999981, 21.24601)
+mesh = SubResource("BoxMesh_qpv88")
+skeleton = NodePath("../MeshInstance3D5")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("2_vgxg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.081271, 0, -8.008665)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("2_vgxg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.374717, 0, -9.658266)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("2_vgxg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.103231, 0, -7.1997933)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("2_vgxg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.550913, 0, 13.473932)
+
+[node name="Exits" type="Node3D" parent="."]
+
+[node name="Portal" parent="Exits" instance=ExtResource("3_8h51k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="Portal2" parent="Exits" instance=ExtResource("3_8h51k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)
+
+[node name="LootChest" parent="." instance=ExtResource("4_ky5dj")]
+transform = Transform3D(-0.20186433, 0, -0.9794135, 0, 1, 0, 0.9794135, 0, -0.20186433, 11.449697, 0, -13.221106)

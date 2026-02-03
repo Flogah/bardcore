@@ -14,6 +14,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	randomize_wander()
 
 func update(_delta: float) -> void:
+	return
 	if wander_time > 0:
 		wander_time -= _delta
 	else:

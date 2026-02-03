@@ -10,6 +10,7 @@ var music2 = preload("uid://dc23co36v6bdl")
 @export var rhythm_notifier: RhythmNotifier
 signal beat
 signal halfBeat
+signal thirdBeat
 signal quarterBeat
 signal eighthBeat
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	setup_timer()
 	beats()
 	half_beat()
+	third_beat()
 	quarter_beat()
 	eighth_beat()
 	play_music()
@@ -79,6 +81,10 @@ func half_beat() -> void:
 		#print("BEAT")
 		halfBeat.emit())
 		
+func third_beat() -> void:
+	rhythm_notifier.beats(3).connect(func(count):
+		#print("BEAT")
+		thirdBeat.emit())
 func quarter_beat() -> void:
 	rhythm_notifier.beats(4).connect(func(count):
 		#print("BEAT")

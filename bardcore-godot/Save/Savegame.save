@@ -1,5 +1,1 @@
-{"b_name":"Fidelbauer","level":1}
-{"b_name":"Trommelbauer","level":2}
-{"b_name":"Gasthaus","level":3}
-{"b_name":"Lautenbauer","level":2}
-{"b_name":"Fanfarenbauer","level":1}
+{"Fanfarenbauer":0,"Fidelbauer":0,"Gasthaus":0,"Lautenbauer":0,"Trommelbauer":0,"building_time":1}
