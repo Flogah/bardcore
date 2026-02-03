@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
 [ext_resource type="PackedScene" uid="uid://c0m48hn2rvbsg" path="res://Maps/Buildings/building.tscn" id="3_fxw5g"]
-[ext_resource type="PackedScene" uid="uid://cuu4pv5q0cii1" path="res://Maps/Buildings/building_trumpet.tscn" id="4_no1lh"]
+[ext_resource type="PackedScene" uid="uid://cuu4pv5q0cii1" path="res://Maps/Buildings/building_maker_fanfare.tscn" id="4_no1lh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
@@ -221,5 +221,10 @@ building_name = "Gasthaus"
 
 [node name="Building" parent="Buildings" instance=ExtResource("4_no1lh")]
 transform = Transform3D(0.55972815, 0, 0.8286762, 0, 1, 0, -0.8286762, 0, 0.55972815, 15.489484, -3.8146973e-06, -8.152549)
+build_cost = Dictionary[int, int]({
+0: 0,
+1: 0,
+2: 0
+})
 
 [node name="Items" type="Node3D" parent="."]
