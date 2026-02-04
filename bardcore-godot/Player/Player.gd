@@ -29,6 +29,10 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 	Color.RED,
 ]
 
+var can_move: bool = true
+var can_interact: bool = true
+var can_fight: bool = true
+
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera: Camera3D
 var player: int
@@ -68,6 +72,9 @@ func _physics_process(delta: float) -> void:
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func point_to_mouse():
+	if !can_move:
+		return
+	
 	var mouse_position = get_viewport().get_mouse_position()
 	
 	camera = get_tree().get_first_node_in_group("Camera")
@@ -87,12 +94,18 @@ func point_to_mouse():
 		look_at(look_at_position)
 
 func look_direction():
+	if !can_move:
+		return
+	
 	var input_dir = input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
 	if !input_dir:
 		return
 	rotation = Vector3(0, -input_dir.angle() - PI/2, 0)
 
 func movement():
+	if !can_move:
+		return
+	
 	device = PlayerManager.get_player_device(player)
 	var input_dir = MultiplayerInput.get_vector(device, "move_left", "move_right", "move_up", "move_down")
 	
@@ -126,6 +139,9 @@ func set_colors():
 	indicator_ring.set_color(col)
 
 func try_interact():
+	if !can_interact:
+		return
+	
 	var interactables = interaction_area.get_overlapping_areas()
 	for thing in interactables:
 		var ia: Interactable = thing.owner

@@ -13,8 +13,8 @@ func update(_delta: float) -> void:
 	if owner.input.is_action_pressed("attack_1"):
 		finished.emit(attack_1.name)
 	
-	if owner.input.is_action_pressed("attack_2"):
+	elif owner.input.is_action_pressed("attack_2"):
 		finished.emit(attack_2.name)
 	
-	if owner.input.is_action_pressed("attack_3"):
+	elif owner.input.is_action_pressed("attack_3"):
 		finished.emit(attack_3.name)
