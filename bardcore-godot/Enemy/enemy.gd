@@ -4,6 +4,7 @@ extends CharacterBody3D
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var blood_particles: GPUParticles3D = $BloodParticles
 @onready var visual: Node3D = $Visual
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var move_speed: float = 2
 
