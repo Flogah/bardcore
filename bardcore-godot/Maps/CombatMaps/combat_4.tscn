@@ -1,14 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0tri4uknsi5j"]
+[gd_scene load_steps=18 format=3 uid="uid://c0tri4uknsi5j"]
 
 [ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_dslxw"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_b2si4"]
+[ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_t3xkg"]
+[ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_gwbk7"]
 [ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="3_t3xkg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oal2d"]
 size = Vector2(35, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptfht"]
-albedo_color = Color(0.32658744, 0.297964, 0.15519646, 1)
+albedo_texture = ExtResource("2_t3xkg")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q1ill"]
 size = Vector2(150, 150)
@@ -50,16 +52,6 @@ left_portal = NodePath("Exits/Portal")
 mapGameState = 2
 metadata/_custom_type_script = "uid://ba7q3y3ses2ty"
 
-[node name="CameraArm" type="Node3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
-projection = 1
-size = 33.731
-near = 0.017
-far = 84.78
-
 [node name="Terrain" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
@@ -78,6 +70,8 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
 environment = SubResource("Environment_tpylo")
+
+[node name="pumpkin_trees" parent="Terrain" instance=ExtResource("3_gwbk7")]
 
 [node name="Boundaries" type="Node3D" parent="."]
 visible = false
@@ -165,7 +159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.911826, 0.50000095, 7.3577
 mesh = SubResource("BoxMesh_qpv88")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.068651, 0.9999981, 21.24601)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.138928, 0.48685503, 9.090191)
 mesh = SubResource("BoxMesh_qpv88")
 skeleton = NodePath("../MeshInstance3D5")
 
@@ -187,3 +181,13 @@ transform = Transform3D(0.47688287, 0, -0.878967, 0, 1, 0, 0.878967, 0, 0.476882
 
 [node name="LootChest3" parent="." instance=ExtResource("3_t3xkg")]
 transform = Transform3D(-0.8405102, 0, 0.541796, 0, 1, 0, -0.541796, 0, -0.8405102, 11.494478, 1.1444092e-05, 12.042531)
+
+[node name="CameraArm" type="Node3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
+projection = 1
+size = 24.0
+near = 0.017
+far = 84.78

@@ -1,14 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsaca255hp1cx"]
+[gd_scene load_steps=18 format=3 uid="uid://dsaca255hp1cx"]
 
 [ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_31uih"]
 [ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_31uih"]
+[ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_84stc"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_vycma"]
+[ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_vf0v2"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yo7wb"]
 size = Vector2(35, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3t7c"]
-albedo_color = Color(0.32658744, 0.297964, 0.15519646, 1)
+albedo_texture = ExtResource("2_84stc")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kk8mo"]
 size = Vector2(150, 150)
@@ -77,6 +79,8 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
 environment = SubResource("Environment_yo7wb")
+
+[node name="pumpkin_trees" parent="Terrain" instance=ExtResource("3_vf0v2")]
 
 [node name="Boundaries" type="Node3D" parent="."]
 visible = false
