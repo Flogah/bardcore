@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsaca255hp1cx"]
+[gd_scene load_steps=17 format=3 uid="uid://dsaca255hp1cx"]
 
 [ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_31uih"]
 [ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_31uih"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_vycma"]
+[ext_resource type="PackedScene" uid="uid://dlsx2cbhuy1ij" path="res://Enemy/Dragon/dragon_arrival.tscn" id="4_84stc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yo7wb"]
 size = Vector2(35, 35)
@@ -184,3 +185,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
 [node name="Portal2" parent="Exits" instance=ExtResource("2_vycma")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)
+
+[node name="DragonArrival" parent="." instance=ExtResource("4_84stc")]

@@ -1,0 +1,159 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlsx2cbhuy1ij"]
+
+[ext_resource type="PackedScene" uid="uid://cep7t6p1s1fkd" path="res://Enemy/Dragon/dragon.tscn" id="1_bjjaf"]
+
+[sub_resource type="Animation" id="Animation_vf0v2"]
+resource_name = "arrival"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dragon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2, 2),
+"points": PackedFloat32Array(40.232445, 0, 0, 0.28, -1.4275475, -35.305466, -0.009742538, 0.13065538, 0.49025747, -6.5747523, -10.236353, -0.12980825, -3.1974006, 0.109080635, 2.6868439, 0, -0.42001224, 0.5238217, 0, 0),
+"times": PackedFloat32Array(0, 1.5666667, 2.3455162, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dragon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2, 2),
+"points": PackedFloat32Array(12.469104, 0, 0, 0.28, 0.99333024, 16.195911, -0.009742538, 0.040493574, 0.49025747, -2.0376904, 51.279926, -0.12980825, 1.4667649, 0.109080635, -1.2325537, 0, -0.5, 2.078184, 0, 0),
+"times": PackedFloat32Array(0, 1.5666667, 2.3455162, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dragon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2, 2),
+"points": PackedFloat32Array(22.274319, 0, 0, 0.28, 1.1478599, 22.290237, -0.009742538, 0.07233614, 0.49025747, -3.6400504, 9.868956, -0.12980825, 2.0186908, 0.109080635, -1.6963488, 0, -0.15083885, -0.034568816, 0, 0),
+"times": PackedFloat32Array(0, 1.5666667, 2.3455162, 3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dragon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2, 2),
+"points": PackedFloat32Array(-0.14719458, 0, 0, 0.28, -0.04542744, -0.15257636, -0.009742538, -0.00047801627, 0.49025747, 0.024054414, 0.0013628524, -0.12980825, -0.01381791, 0.109080635, 0.011611484, 0, -0.5, -0.02453243, 0, 0),
+"times": PackedFloat32Array(0, 1.5666667, 2.3455162, 3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dragon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2, 2),
+"points": PackedFloat32Array(0.08398269, 0, 0, 0.28, -0.034317743, 0.0786541, -0.009742538, 0.00027273488, 0.49025747, -0.01372438, 0.07594821, -0.12980825, 0.007123222, 0.109080635, -0.005985795, 0, -0.5, 0.013997115, 0, 0),
+"times": PackedFloat32Array(0, 1.5666667, 2.3455162, 3)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Dragon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2, 2),
+"points": PackedFloat32Array(1.2091457, 0, 0, 0.28, -0.43599266, 1.140528, -0.009742538, 0.003926716, 0.49025747, -0.19759756, -0.6052043, -0.12980825, 0.10329066, 0.109080635, -0.08679734, 0, -0.5, 0.20152427, 0, 0),
+"times": PackedFloat32Array(0, 1.5666667, 2.3455162, 3)
+}
+
+[sub_resource type="Animation" id="Animation_8xddd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dragon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-14.140425, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dragon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(7.495372, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dragon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-56.782085, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dragon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.9595391, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dragon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.07793561, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Dragon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.3227091, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_twr7n"]
+_data = {
+&"RESET": SubResource("Animation_8xddd"),
+&"arrival": SubResource("Animation_vf0v2")
+}
+
+[node name="DragonArrival" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_twr7n")
+}
+autoplay = "arrival"
+
+[node name="Dragon" parent="." instance=ExtResource("1_bjjaf")]
+transform = Transform3D(2.9999995, 0, 0, 0, 3.0000012, 0, 0, 0, 3.0000014, 0, 0, 0)

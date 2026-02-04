@@ -39,7 +39,7 @@ func create_dragon_timer():
 	dragon_timer = Timer.new()
 	dragon_timer.one_shot = true
 	add_child(dragon_timer)
-	dragon_timer.timeout.connect(dragon_death)
+	dragon_timer.timeout.connect(dragon_arrival)
 	dragon_timer.wait_time = starting_time
 	dragon_timer.start()
 	pause_dragon_timer()
@@ -65,8 +65,11 @@ func add_new_map_bonus_time() -> void:
 func reset_bonus_time() -> void:
 	bonus_time_counter = 1
 
+func dragon_arrival():
+	MapManager.current_map.game_over_cinema()
+
 func dragon_death():
-	#add_building_time(max_time_value - time_left)
+	add_building_time(dragon_timer.wait_time)
 	reset_game()
 
 func reset_time():

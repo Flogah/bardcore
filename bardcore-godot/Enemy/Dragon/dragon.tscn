@@ -1,12 +1,166 @@
-[gd_scene load_steps=3 format=3 uid="uid://cep7t6p1s1fkd"]
+[gd_scene load_steps=8 format=3 uid="uid://cep7t6p1s1fkd"]
 
 [ext_resource type="Material" uid="uid://dpxel0n6q71m6" path="res://Materials/dragon_black.tres" id="1_idk10"]
+[ext_resource type="PackedScene" uid="uid://2ppawe2j46ho" path="res://Enemy/Dragon/wing.tscn" id="2_6jdnd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6jdnd"]
 
+[sub_resource type="Animation" id="Animation_6jdnd"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wing:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.022023793, -0.26089257, -0.08230008)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wing2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.1415927, 0, 0), Vector3(3.1415927, 0.26005405, -0.08726646)]
+}
+
+[sub_resource type="Animation" id="Animation_5y76b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wing:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wing2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.1415927, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wing:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.76, 0.76000005, 0.76)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("wing2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.76, -0.76000005, -0.76)]
+}
+
+[sub_resource type="Animation" id="Animation_uv0r1"]
+resource_name = "flapping"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wing:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10389283, 0.23333333, 0.33333334, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.6981317, 0), Vector3(0, -0.5473029, 0), Vector3(0, 0.5235988, 0), Vector3(0, 0.5235988, 0), Vector3(0, -0.6981317, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wing:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.35364562, 0.4),
+"transitions": PackedFloat32Array(1, 1, 0.8122525, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.76, 0.76), Vector3(0.8, 0.76, 0.76), Vector3(0.8, 0.76, 0.76), Vector3(0.5, 0.76, 0.76)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wing2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.102930866, 0.23333333, 0.33333334, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.1415927, 0.6981317, 0), Vector3(3.1415927, 0.54803336, 0), Vector3(3.1415927, -0.5235988, 0), Vector3(3.1415927, -0.5235988, 0), Vector3(3.1415927, 0.6981317, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("wing2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.35364562, 0.4),
+"transitions": PackedFloat32Array(1, 1, 0.8122525, 1),
+"update": 0,
+"values": [Vector3(-0.5, -0.76, -0.76), Vector3(-0.8, -0.76, -0.76), Vector3(-0.8, -0.76, -0.76), Vector3(-0.5, -0.76, -0.76)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lkyx0"]
+_data = {
+&"RESET": SubResource("Animation_5y76b"),
+&"flapping": SubResource("Animation_uv0r1"),
+&"idle": SubResource("Animation_6jdnd")
+}
+
 [node name="Dragon" type="Node3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_6jdnd")
 surface_material_override/0 = ExtResource("1_idk10")
+
+[node name="wing" parent="." instance=ExtResource("2_6jdnd")]
+transform = Transform3D(0.76, 0, 0, 0, 0.76000005, 0, 0, 0, 0.76, -0.23022962, 1.1005657, -0.24788404)
+
+[node name="wing2" parent="." instance=ExtResource("2_6jdnd")]
+transform = Transform3D(-0.76, 0, 0, 0, 0.76000005, -6.644131e-08, 0, 6.644132e-08, 0.76, 0.23, 1.101, -0.248)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lkyx0")
+}
+autoplay = "flapping"
