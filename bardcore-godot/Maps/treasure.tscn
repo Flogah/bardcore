@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://c0tri4uknsi5j"]
 
-[ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_dslxw"]
-[ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_b2si4"]
-[ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="3_t3xkg"]
+[ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_hhmxj"]
+[ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_xaev4"]
+[ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="3_hc65q"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oal2d"]
 size = Vector2(35, 35)
@@ -44,7 +44,7 @@ size = Vector3(16.576172, 7.7929688, 2.0117188)
 size = Vector3(3.285, 1, 2.705)
 
 [node name="Combat4" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal")]
-script = ExtResource("1_dslxw")
+script = ExtResource("1_hhmxj")
 right_portal = NodePath("Exits/Portal2")
 left_portal = NodePath("Exits/Portal")
 mapGameState = 2
@@ -173,17 +173,17 @@ skeleton = NodePath("../MeshInstance3D5")
 
 [node name="Exits" type="Node3D" parent="."]
 
-[node name="Portal" parent="Exits" instance=ExtResource("2_b2si4")]
+[node name="Portal" parent="Exits" instance=ExtResource("2_xaev4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
-[node name="Portal2" parent="Exits" instance=ExtResource("2_b2si4")]
+[node name="Portal2" parent="Exits" instance=ExtResource("2_xaev4")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)
 
-[node name="LootChest" parent="." instance=ExtResource("3_t3xkg")]
+[node name="LootChest" parent="." instance=ExtResource("3_hc65q")]
 transform = Transform3D(-0.20186433, 0, -0.9794135, 0, 1, 0, 0.9794135, 0, -0.20186433, 11.449697, 0, -13.221106)
 
-[node name="LootChest2" parent="." instance=ExtResource("3_t3xkg")]
+[node name="LootChest2" parent="." instance=ExtResource("3_hc65q")]
 transform = Transform3D(0.47688287, 0, -0.878967, 0, 1, 0, 0.878967, 0, 0.47688287, -13.39733, 5.722046e-06, -8.797175)
 
-[node name="LootChest3" parent="." instance=ExtResource("3_t3xkg")]
+[node name="LootChest3" parent="." instance=ExtResource("3_hc65q")]
 transform = Transform3D(-0.8405102, 0, 0.541796, 0, 1, 0, -0.541796, 0, -0.8405102, 11.494478, 1.1444092e-05, 12.042531)
