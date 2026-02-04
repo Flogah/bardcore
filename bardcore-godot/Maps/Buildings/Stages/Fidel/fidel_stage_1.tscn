@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dslspxj3ojm7b"]
+
+[ext_resource type="PackedScene" uid="uid://cinimfeinm7kq" path="res://Meshes/Buildings/Fidel_stage1.glb" id="1_v7c5t"]
+[ext_resource type="Material" uid="uid://cwtm8ihj3sfgl" path="res://Materials/Buildings/Building.tres" id="2_e275n"]
+
+[node name="Fidel_stage1" instance=ExtResource("1_v7c5t")]
+
+[node name="Cube_001" parent="." index="0"]
+material_override = ExtResource("2_e275n")

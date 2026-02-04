@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5yhc7hyedeqj"]
 
 [ext_resource type="PackedScene" uid="uid://cmeg3di22mnpm" path="res://Meshes/Buildings/stage2.glb" id="1_xyodc"]
-[ext_resource type="Material" uid="uid://cwtm8ihj3sfgl" path="res://Materials/Buildings/Building_trumpets.tres" id="2_ullf3"]
+[ext_resource type="Material" uid="uid://cwtm8ihj3sfgl" path="res://Materials/Buildings/Building.tres" id="2_ullf3"]
 
 [node name="stage2" instance=ExtResource("1_xyodc")]
 
