@@ -1,16 +1,16 @@
 [gd_scene load_steps=18 format=3 uid="uid://c0tri4uknsi5j"]
 
-[ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_dslxw"]
-[ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_b2si4"]
-[ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_t3xkg"]
-[ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_gwbk7"]
-[ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="3_t3xkg"]
+[ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_4byjr"]
+[ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_2cq06"]
+[ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_vxkin"]
+[ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="4_ahlo8"]
+[ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="5_p857v"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oal2d"]
 size = Vector2(35, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptfht"]
-albedo_texture = ExtResource("2_t3xkg")
+albedo_texture = ExtResource("2_2cq06")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q1ill"]
 size = Vector2(150, 150)
@@ -46,7 +46,7 @@ size = Vector3(16.576172, 7.7929688, 2.0117188)
 size = Vector3(3.285, 1, 2.705)
 
 [node name="Combat4" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal")]
-script = ExtResource("1_dslxw")
+script = ExtResource("1_4byjr")
 right_portal = NodePath("Exits/Portal2")
 left_portal = NodePath("Exits/Portal")
 mapGameState = 2
@@ -71,7 +71,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
 environment = SubResource("Environment_tpylo")
 
-[node name="pumpkin_trees" parent="Terrain" instance=ExtResource("3_gwbk7")]
+[node name="pumpkin_trees" parent="Terrain" instance=ExtResource("3_vxkin")]
 
 [node name="Boundaries" type="Node3D" parent="."]
 visible = false
@@ -167,19 +167,19 @@ skeleton = NodePath("../MeshInstance3D5")
 
 [node name="Exits" type="Node3D" parent="."]
 
-[node name="Portal" parent="Exits" instance=ExtResource("2_b2si4")]
+[node name="Portal" parent="Exits" instance=ExtResource("4_ahlo8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
-[node name="Portal2" parent="Exits" instance=ExtResource("2_b2si4")]
+[node name="Portal2" parent="Exits" instance=ExtResource("4_ahlo8")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)
 
-[node name="LootChest" parent="." instance=ExtResource("3_t3xkg")]
+[node name="LootChest" parent="." instance=ExtResource("5_p857v")]
 transform = Transform3D(-0.20186433, 0, -0.9794135, 0, 1, 0, 0.9794135, 0, -0.20186433, 11.449697, 0, -13.221106)
 
-[node name="LootChest2" parent="." instance=ExtResource("3_t3xkg")]
+[node name="LootChest2" parent="." instance=ExtResource("5_p857v")]
 transform = Transform3D(0.47688287, 0, -0.878967, 0, 1, 0, 0.878967, 0, 0.47688287, -13.39733, 5.722046e-06, -8.797175)
 
-[node name="LootChest3" parent="." instance=ExtResource("3_t3xkg")]
+[node name="LootChest3" parent="." instance=ExtResource("5_p857v")]
 transform = Transform3D(-0.8405102, 0, 0.541796, 0, 1, 0, -0.541796, 0, -0.8405102, 11.494478, 1.1444092e-05, 12.042531)
 
 [node name="CameraArm" type="Node3D" parent="."]
