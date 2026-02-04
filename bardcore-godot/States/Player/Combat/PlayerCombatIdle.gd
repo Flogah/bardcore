@@ -9,7 +9,9 @@ func update(_delta: float) -> void:
 	# disabled for now, as it doesn't add anything
 	#if owner.input.is_action_pressed("shoot"):
 		#finished.emit("WeakAttack")
-
+	if !owner.player.can_attack:
+		return
+	
 	if owner.input.is_action_pressed("attack_1"):
 		finished.emit(attack_1.name)
 	

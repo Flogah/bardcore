@@ -94,6 +94,7 @@ func check_for_surviving_enemies():
 	print("all dead")
 
 func game_over_cinema():
+	game_over = true
 	lock_all_portals()
 	arrive_dragon()
 	
