@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=16 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Player/Player.gd" id="1_fhl08"]
 [ext_resource type="Script" uid="uid://bhrs6p0rwjb3h" path="res://Components/hit_reciver_box.gd" id="2_5htga"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://btdqkmooqxlov" path="res://Components/health_component.tscn" id="8_00tjw"]
 [ext_resource type="PackedScene" uid="uid://dnrcjxypytfhw" path="res://Components/stat_component.tscn" id="9_x3vf3"]
 [ext_resource type="PackedScene" uid="uid://couj5e4yhr0jl" path="res://Components/indicator_ring.tscn" id="10_x3vf3"]
+[ext_resource type="PackedScene" uid="uid://bc1ryiksd4yvg" path="res://Components/info_ring.tscn" id="13_p5o4e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
 
@@ -75,7 +76,8 @@ outline_size = 6
 [node name="InventoryComponent" parent="." node_paths=PackedStringArray("stat_comp") instance=ExtResource("7_vtle1")]
 stat_comp = NodePath("../StatComponent")
 
-[node name="HealthComponent" parent="." instance=ExtResource("8_00tjw")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("stat_comp") instance=ExtResource("8_00tjw")]
+stat_comp = NodePath("../StatComponent")
 
 [node name="StatComponent" parent="." instance=ExtResource("9_x3vf3")]
 
@@ -88,3 +90,6 @@ collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 shape = SubResource("SphereShape3D_x3vf3")
+
+[node name="InfoRing" parent="." instance=ExtResource("13_p5o4e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014508545, 0)
