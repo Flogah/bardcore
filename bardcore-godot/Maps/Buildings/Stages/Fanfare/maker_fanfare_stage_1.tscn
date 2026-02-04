@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://5pe1dv1hk7j0"]
+
+[ext_resource type="PackedScene" uid="uid://cj8yomxw1xvne" path="res://Meshes/Buildings/stage1.glb" id="1_50tut"]
+[ext_resource type="Material" uid="uid://cwtm8ihj3sfgl" path="res://Materials/Buildings/Building.tres" id="2_stiop"]
+
+[node name="stage1" instance=ExtResource("1_50tut")]
+
+[node name="Cylinder" parent="." index="0"]
+material_override = ExtResource("2_stiop")

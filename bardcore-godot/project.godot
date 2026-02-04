@@ -43,6 +43,7 @@ folder_colors={
 "res://ManagerScripts/": "gray",
 "res://Maps/": "green",
 "res://Menus/": "green",
+"res://Meshes/": "pink",
 "res://Objects/": "orange",
 "res://Player/": "orange",
 "res://Resources/": "gray",

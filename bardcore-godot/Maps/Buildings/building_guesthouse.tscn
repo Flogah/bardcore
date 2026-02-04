@@ -1,0 +1,495 @@
+[gd_scene load_steps=14 format=3 uid="uid://b4g0c6swxctq4"]
+
+[ext_resource type="Script" uid="uid://dgwh5sbbspeqj" path="res://Maps/Buildings/building.gd" id="1_4ount"]
+[ext_resource type="PackedScene" uid="uid://bosgsamw01bu" path="res://Maps/Buildings/Stages/Guesthouse/guests_stage_1.tscn" id="2_12jn7"]
+[ext_resource type="PackedScene" uid="uid://ox8bono7g2cv" path="res://Maps/Buildings/Stages/Guesthouse/guests_stage_2.tscn" id="3_d73gv"]
+[ext_resource type="PackedScene" uid="uid://dkbcuq70ia26n" path="res://Maps/Buildings/Stages/Guesthouse/guests_stage_3.tscn" id="4_d73gv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_67fxh"]
+radius = 0.7939086
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_67fxh"]
+size = Vector3(5.727356, 1, 4.004196)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y52u6"]
+size = Vector3(0.12, 0.795, 0.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wvfqc"]
+size = Vector3(0.06, 0.515, 1.105)
+
+[sub_resource type="Animation" id="Animation_67fxh"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Level0:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level1:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level1:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Level1:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Level0:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Level0:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Level2:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Level2:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Level2:position:z")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Level3:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Level3:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Level3:position:z")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_y52u6"]
+resource_name = "level0_to_level1"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Level1:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0.36666667, 0.8666667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level1:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-4, -0.25, 0, 0.25, 0, 0, -0.083333336, -0.6666667, 0, 0),
+"times": PackedFloat32Array(0.36666667, 0.8666667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level1:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0.36666667, 0.8666667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Level0:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Level0:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -2, -0.083333336, 0.33333334, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Level0:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_uuowk"]
+resource_name = "level1_to_level2"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Level1:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level1:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -4, -0.083333336, 0.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level1:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Level2:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0.33333334, 0.8333334)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Level2:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-6.6509542, -0.25, 0, 0.25, 0, 0, -0.083333336, -1.1084924, 0, 0),
+"times": PackedFloat32Array(0.33333334, 0.8333334)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Level2:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0.33333334, 0.8333334)
+}
+
+[sub_resource type="Animation" id="Animation_wvfqc"]
+resource_name = "level2_to_level3"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Level2:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -7, -0.083333336, 1.1666667, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level2:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Level3:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.083333336, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.39999998, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Level3:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-8.936209, 0, 0, 0.083333336, 1.4893682, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.39999998, 0.9)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Level3:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.083333336, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.39999998, 0.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y52u6"]
+_data = {
+&"RESET": SubResource("Animation_67fxh"),
+&"level0_to_level1": SubResource("Animation_y52u6"),
+&"level1_to_level2": SubResource("Animation_uuowk"),
+&"level2_to_level3": SubResource("Animation_wvfqc")
+}
+
+[node name="Building" type="Node3D" node_paths=PackedStringArray("level_0", "level_1", "level_2", "level_3", "level_4")]
+script = ExtResource("1_4ount")
+level_0 = NodePath("Level0")
+level_1 = NodePath("Level1")
+level_2 = NodePath("Level2")
+level_3 = NodePath("Level3")
+level_4 = NodePath("Level4")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0, 0)
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64483905, 0)
+shape = SubResource("SphereShape3D_67fxh")
+
+[node name="Collision" type="StaticBody3D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42276, 0.5308386, -0.0010910034)
+shape = SubResource("BoxShape3D_67fxh")
+disabled = true
+
+[node name="Level0" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4135146, 0.3733486, 1.4795674)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93362, 0.3733486, -0.01578176)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0164747, 0.7298366, -0.01578176)
+mesh = SubResource("BoxMesh_wvfqc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58103365, 0.3733486, 1.5211917)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5677901, 0.3733486, 1.4545933)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0577397, 0.3733486, 1.5378414)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4551387, 0.3733486, -1.5340136)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6226577, 0.3733486, -1.4923893)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526166, 0.3733486, -1.5589877)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5439658, 0.3733486, 1.5211917)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6927896, 0.3733486, 1.4545933)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5023417, 0.3733486, -1.4923893)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6511655, 0.3733486, -1.5589877)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.102612, 0.3733486, 0.55098486)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.126443, 0.3733486, -0.519913)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4420958, 0.3733486, 0.55098486)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4182649, 0.3733486, -0.519913)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Level0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0910397, 0.3733486, -1.450765)
+mesh = SubResource("BoxMesh_y52u6")
+
+[node name="Level1" type="Node3D" parent="."]
+visible = false
+
+[node name="Guests_stage1" parent="Level1" instance=ExtResource("2_12jn7")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.58598423, 0, 0)
+
+[node name="Level2" type="Node3D" parent="."]
+visible = false
+
+[node name="Guests_stage2" parent="Level2" instance=ExtResource("3_d73gv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.6848607, 0, 0)
+
+[node name="Level3" type="Node3D" parent="."]
+
+[node name="Guests_stage3" parent="Level3" instance=ExtResource("4_d73gv")]
+transform = Transform3D(-3.7373237e-08, 0, 0.855, 0, 0.855, 0, -0.855, 0, -3.7373237e-08, 0.72345257, 0, 0)
+
+[node name="Level4" type="Node3D" parent="."]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y52u6")
+}
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
