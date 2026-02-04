@@ -7,13 +7,13 @@ const ATTACK_LINE_AREA = preload("uid://bgjsdlwnmpwgj")
 @export var place_sound: AudioStreamPlayer3D
 var attack_cooldown_timer: Timer
 var attackArea
-@onready var hit_emitter_box_2: hit_emitter_box = $hit_emitter_box2
+#@onready var hit_emitter_box_2: hit_emitter_box = $hit_emitter_box2
 
 
 func enter(previous_state_path: String, data := {}) -> void:
 	if !attack_cooldown_timer:
 		setup_cd_timer()
-	  
+	
 	if !attack_cooldown_timer.is_stopped():
 		finished.emit("Idle")
 		return
