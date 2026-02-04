@@ -11,17 +11,13 @@ enum gameState {
 }
 
 # get's carried from map to map, so it's important to not have it be a single timer node
-var starting_time:int = 40
-# the time it takes to get to the next beat, better visualizing the time
-var beat_time:float = 1.0
-var standard_bonus_time:int = 5
-
-var time_left:int
-var max_time_value:int
+var starting_time:float = 1.0
 var dragon_timer:Timer
 
+var bonus_time_counter:int = 1 # the amount of times bonus time was added
+var max_bounus_time:int = 30 # the amount of bonus time for the first map, becomes less with every map
+var bonus_time_fade_factor:float = 0.08 # the lower the less it fades: 0.2 very quick, 0.05 very slowly
 var currentGameState : gameState
-
 
 # this single variable could hold the unlocks in the village
 var village_state: Dictionary = {
@@ -32,51 +28,60 @@ func _ready():
 	load_village_state()
 	
 	create_dragon_timer()
-	MusicManager.halfBeat.connect(dragon_beat)
-	reset_time()
-	
-	MapManager.entered_new_map.connect(add_dragon_time)
-	UserInterface.update_progress_bar_max(max_time_value)
-	UserInterface.update_time(time_left)
-
-func _physics_process(_delta: float):
-	if dragon_timer && !dragon_timer.is_stopped():
-		UserInterface.update_time(float(time_left) + dragon_timer.time_left - beat_time)
+	MusicManager.beat.connect(dragon_beat)
+	UserInterface.update_time(dragon_timer.time_left)
+	#reset_time()
 
 func dragon_beat():
-	dragon_timer.start(beat_time)
-	
-	if currentGameState == gameState.home:
-		return
-	
-	time_left -= 1
-	UserInterface.update_time(time_left)
-	if time_left < 1:
-		dragon_death()
-
-func add_dragon_time(time:int = standard_bonus_time):
-	max_time_value += time
-	time_left += time
-	UserInterface.update_progress_bar_max(float(max_time_value))
-	UserInterface.update_time(float(time_left))
+	UserInterface.update_time(dragon_timer.time_left)
 
 func create_dragon_timer():
 	dragon_timer = Timer.new()
 	dragon_timer.one_shot = true
 	add_child(dragon_timer)
+	dragon_timer.timeout.connect(dragon_arrival)
+	dragon_timer.wait_time = starting_time
+	dragon_timer.start()
+	pause_dragon_timer()
+	
 	print("Dragon Timer created")
 
+func pause_dragon_timer():
+	dragon_timer.paused = true
+
+func unpause_dragon_timer():
+	dragon_timer.paused = false
+
+func add_dragon_time(time:float):
+	var old_time = dragon_timer.time_left
+	var new_time = old_time + time
+	dragon_timer.stop()
+	dragon_timer.start(new_time)
+	UserInterface.update_time(dragon_timer.time_left)
+
+func add_new_map_bonus_time() -> void:
+	add_dragon_time(max_bounus_time * exp(-bonus_time_fade_factor * bonus_time_counter))
+	bonus_time_counter += 1
+
+func reset_bonus_time() -> void:
+	bonus_time_counter = 1
+
+func dragon_arrival():
+	MapManager.current_map.game_over_cinema()
+
 func dragon_death():
-	add_building_time(max_time_value - time_left)
+	add_building_time(dragon_timer.wait_time)
 	reset_game()
 
 func reset_time():
-	time_left = starting_time
-	max_time_value = starting_time
+	#dragon_timer.stop()
+	dragon_timer.wait_time = starting_time
+	dragon_timer.start()
+	pause_dragon_timer()
 
 func convert_flee_time(time:float) -> int:
 	# per 60 beats/per minute one day
-	var days:int = roundi(time/60)
+	var days:int = roundi(time/30)
 	var weeks:int = days/7
 	#days -= weeks * 7
 	
@@ -87,8 +92,8 @@ func convert_flee_time(time:float) -> int:
 	return days
 
 func add_building_time(val:int):
-	#building_time += convert_flee_time(val)
-	village_state["building_time"] += 5
+	village_state["building_time"] += convert_flee_time(val)
+	#village_state["building_time"] += 5
 	building_time_changed.emit(village_state["building_time"])
 
 func pay_building_cost(val: int) -> bool:
@@ -119,6 +124,8 @@ func reset_game():
 	MapManager.reset()
 	MusicManager.reset()
 	
+	reset_bonus_time()
+	
 	await get_tree().create_timer(1.0).timeout
 	loading_screen.queue_free()
 	
@@ -127,6 +134,12 @@ func reset_game():
 func change_gamestate(new_gamestate:gameState):
 	currentGameState = new_gamestate
 	game_state_changed.emit(currentGameState)
+	
+	if new_gamestate == gameState.combat:
+		add_new_map_bonus_time()
+		unpause_dragon_timer()
+	else:
+		pause_dragon_timer()
 
 func save_village_state():
 	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.WRITE)
@@ -155,7 +168,6 @@ func load_village_state():
 	var node_data = json.data
 	
 	village_state = node_data
-
 
 func reset_all_progress():
 	for key in village_state:

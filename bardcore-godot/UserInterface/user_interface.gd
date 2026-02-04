@@ -16,7 +16,7 @@ var max_fade:float = 0.0
 var current_intensity : float = -1.0
 
 func _ready():
-	MusicManager.beat.connect(timer_beat)
+	MusicManager.halfBeat.connect(timer_beat)
 	GameManager.game_state_changed.connect(change_ui_state)
 	GameManager.building_time_changed.connect(update_build_label)
 
@@ -34,10 +34,10 @@ func shrink_timer():
 
 func update_time(time:float) -> void:
 	update_time_label(time)
-	update_progress_bar(time)
+	#update_progress_bar(time)
 
 func update_time_label(time:float) -> void:
-	time_left_label.text = str(snapped(time, 0.1))
+	time_left_label.text = str(snapped(time, 1))
 
 func update_progress_bar(val:float) -> void:
 	time_progress_bar.value = time_progress_bar.max_value - val
