@@ -39,7 +39,7 @@ func create_dragon_timer():
 	dragon_timer = Timer.new()
 	dragon_timer.one_shot = true
 	add_child(dragon_timer)
-	dragon_timer.timeout.connect(dragon_death)
+	dragon_timer.timeout.connect(dragon_arrival)
 	dragon_timer.wait_time = starting_time
 	dragon_timer.start()
 	pause_dragon_timer()
@@ -57,6 +57,7 @@ func add_dragon_time(time:float):
 	var new_time = old_time + time
 	dragon_timer.stop()
 	dragon_timer.start(new_time)
+	UserInterface.update_time(dragon_timer.time_left)
 
 func add_new_map_bonus_time() -> void:
 	add_dragon_time(max_bounus_time * exp(-bonus_time_fade_factor * bonus_time_counter))
@@ -65,8 +66,11 @@ func add_new_map_bonus_time() -> void:
 func reset_bonus_time() -> void:
 	bonus_time_counter = 1
 
+func dragon_arrival():
+	MapManager.current_map.game_over_cinema()
+
 func dragon_death():
-	#add_building_time(max_time_value - time_left)
+	add_building_time(dragon_timer.wait_time)
 	reset_game()
 
 func reset_time():
@@ -77,7 +81,7 @@ func reset_time():
 
 func convert_flee_time(time:float) -> int:
 	# per 60 beats/per minute one day
-	var days:int = roundi(time/60)
+	var days:int = roundi(time/30)
 	var weeks:int = days/7
 	#days -= weeks * 7
 	
@@ -88,8 +92,8 @@ func convert_flee_time(time:float) -> int:
 	return days
 
 func add_building_time(val:int):
-	#building_time += convert_flee_time(val)
-	village_state["building_time"] += 5
+	village_state["building_time"] += convert_flee_time(val)
+	#village_state["building_time"] += 5
 	building_time_changed.emit(village_state["building_time"])
 
 func pay_building_cost(val: int) -> bool:
