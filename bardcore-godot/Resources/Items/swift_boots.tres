@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="item_resource" load_steps=5 format=3 uid="uid://43v4c5mp588m"]
+[gd_resource type="Resource" script_class="item_resource" load_steps=6 format=3 uid="uid://43v4c5mp588m"]
 
 [ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_ehwc2"]
+[ext_resource type="PackedScene" uid="uid://3ekd0vy341h1" path="res://BlenderScenes/Item_Boot_Leather_Darkbrown.blend" id="1_g0yid"]
 [ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_0hdoc"]
 [ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_0hdoc"]
 
@@ -15,6 +16,7 @@ metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]
 script = ExtResource("1_ehwc2")
+mesh = ExtResource("1_g0yid")
 type = 3
 upgrades = Array[ExtResource("2_0hdoc")]([SubResource("Resource_g0yid")])
 name = "Swift Boots"

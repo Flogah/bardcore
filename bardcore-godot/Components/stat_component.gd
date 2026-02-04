@@ -79,6 +79,12 @@ func get_stat(s_id: stat_id) -> float:
 		push_warning("There was no stat with stat_id: "+str(s_id)+"! A float with amount 1.0 was returned instead.")
 		return 1.0
 
+func get_stat_object(s_id: stat_id) -> stat:
+	var requested_stat: stat = stats[s_id]
+	if requested_stat:
+		return requested_stat
+	return null
+
 func add_upgrades(Item_ID: int, new_upgrades: Array[upgrade]) -> void:
 	upgrades[Item_ID] = new_upgrades
 	var stats_upgrades_changed: Dictionary[stat_id, int]

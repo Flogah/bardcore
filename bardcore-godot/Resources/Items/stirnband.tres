@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="item_resource" load_steps=7 format=3 uid="uid://3dno4b2b3t25"]
+[gd_resource type="Resource" script_class="item_resource" load_steps=8 format=3 uid="uid://3dno4b2b3t25"]
 
+[ext_resource type="PackedScene" uid="uid://dwrvfsr8pn7ml" path="res://BlenderScenes/Item_Helmet_Red.blend" id="1_fqn2b"]
 [ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_vj6xx"]
 [ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_bis8m"]
 [ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_bis8m"]
@@ -15,10 +16,10 @@ metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [sub_resource type="Resource" id="Resource_imgec"]
 script = ExtResource("3_bis8m")
-amount = 2.0
+amount = 5.0
 operator = 1
 effected_stat = 9
-explanation = "Outgoing Damage +2"
+explanation = "Outgoing Damage +5"
 metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [sub_resource type="Resource" id="Resource_n0eor"]
@@ -31,6 +32,7 @@ metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]
 script = ExtResource("1_vj6xx")
+mesh = ExtResource("1_fqn2b")
 type = 1
 upgrades = Array[ExtResource("2_bis8m")]([SubResource("Resource_fqn2b"), SubResource("Resource_imgec"), SubResource("Resource_n0eor")])
 name = "Stirnband"

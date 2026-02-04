@@ -1,19 +1,21 @@
-[gd_resource type="Resource" script_class="item_resource" load_steps=5 format=3 uid="uid://di7ojlwmo561e"]
+[gd_resource type="Resource" script_class="item_resource" load_steps=6 format=3 uid="uid://di7ojlwmo561e"]
 
+[ext_resource type="PackedScene" uid="uid://b36drb3q3r63h" path="res://BlenderScenes/Item_Torso_Fiber_Orange.blend" id="1_6ibkl"]
 [ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_w3bsn"]
 [ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_w0u2f"]
 [ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_w0u2f"]
 
 [sub_resource type="Resource" id="Resource_6ibkl"]
 script = ExtResource("3_w0u2f")
-amount = 1.5
+amount = 0.5
 operator = 1
 effected_stat = 12
-explanation = "Range +1.5"
+explanation = "Range +0.5"
 metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]
 script = ExtResource("1_w3bsn")
+mesh = ExtResource("1_6ibkl")
 type = 2
 upgrades = Array[ExtResource("2_w0u2f")]([SubResource("Resource_6ibkl")])
 name = "Barden Shirt"
