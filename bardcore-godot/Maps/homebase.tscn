@@ -1,8 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=24 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
-[ext_resource type="PackedScene" uid="uid://c0m48hn2rvbsg" path="res://Maps/Buildings/building.tscn" id="3_fxw5g"]
+[ext_resource type="PackedScene" uid="uid://cuu4pv5q0cii1" path="res://Maps/Buildings/building_maker_fanfare.tscn" id="4_no1lh"]
+[ext_resource type="PackedScene" uid="uid://b4g0c6swxctq4" path="res://Maps/Buildings/building_guesthouse.tscn" id="5_0prmd"]
+[ext_resource type="PackedScene" uid="uid://clme8xwp12duo" path="res://Maps/Buildings/building_maker_fidel.tscn" id="5_w8tnc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
@@ -70,32 +72,35 @@ spawn_position = NodePath("Exits/Spawn")
 exit_portal = NodePath("Exits/Portal")
 
 [node name="CameraArm" type="Node3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 1.5, 0)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.812887, 0.58242065, 0, -0.58242065, 0.812887, 0, 1.5, -1.3411446)
 
 [node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
 projection = 1
-size = 29.846
-near = 0.017
-far = 84.78
+size = 24.018
+near = 2.907
+far = 68.93
 
 [node name="Terrain" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278862, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.451561, 0, 0)
+transform = Transform3D(0.6742704, 0, 0, 0, 1, 0, 0, 0, 0.73544145, -2.451561, 0, 0)
 mesh = SubResource("PlaneMesh_qbut0")
 surface_material_override/0 = SubResource("StandardMaterial3D_qbut0")
 
 [node name="Background" type="MeshInstance3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11501503, -0.01, -0.051662445)
 mesh = SubResource("PlaneMesh_ljco0")
 surface_material_override/0 = SubResource("StandardMaterial3D_2oixm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
 transform = Transform3D(0.5254748, -0.6902425, 0.49743515, 0.08959865, 0.6263045, 0.7744127, -0.8460782, -0.36236477, 0.39095193, 0.2685008, 5.4544697, 0)
-light_energy = 2.171
+light_energy = 1.5
+light_indirect_energy = 3.0
 shadow_enabled = true
+shadow_opacity = 0.55
+shadow_blur = 1.99
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
 environment = SubResource("Environment_15k71")
@@ -112,35 +117,35 @@ shape = SubResource("WorldBoundaryShape3D_df86j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4027414, 0, -17.476318)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.6620111)
 shape = SubResource("BoxShape3D_qbut0")
 
 [node name="Wall2" type="StaticBody3D" parent="Boundaries"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.4237976, 0, 17.523682)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.172325e-07, 0, 3.7008286)
 shape = SubResource("BoxShape3D_ljco0")
 
 [node name="Wall3" type="StaticBody3D" parent="Boundaries"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24.93187, 0, 0.016079903)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1851232e-07, 0, 6.3131924)
 shape = SubResource("BoxShape3D_2oixm")
 
 [node name="Wall5" type="StaticBody3D" parent="Boundaries"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.105402, 0, -10.704235)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.388859)
 shape = SubResource("BoxShape3D_dtoj1")
 
 [node name="Wall6" type="StaticBody3D" parent="Boundaries"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.105402, 0, 10.792435)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.388859)
 shape = SubResource("BoxShape3D_dtoj1")
 
 [node name="Bits" type="Node3D" parent="."]
@@ -203,31 +208,35 @@ mesh = SubResource("BoxMesh_wdvh6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278862, 0, 0)
 
 [node name="Portal" parent="Exits" instance=ExtResource("2_df86j")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 22.533627, 0, 0)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 15.177259, 0, 0)
 
 [node name="Spawn" type="Node3D" parent="Exits"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4909654, 0, 3.8463798)
 
 [node name="Buildings" type="Node3D" parent="."]
 
-[node name="Fidelbauer" parent="Buildings" instance=ExtResource("3_fxw5g")]
-transform = Transform3D(0.6762205, 0, 0.7366993, 0, 1, 0, -0.7366993, 0, 0.6762205, 16.60922, -1.9073486e-06, -8.179792)
-building_name = "Fidelbauer"
+[node name="Fanfarenbauer" parent="Buildings" instance=ExtResource("4_no1lh")]
+transform = Transform3D(0.29262212, 0, 0.95622814, 0, 1, 0, -0.95622814, 0, 0.29262212, 9.618123, -2.861023e-06, -5.5557327)
+build_cost = Dictionary[int, int]({
+0: 0,
+1: 0,
+2: 0
+})
 
-[node name="Trommelbauer" parent="Buildings" instance=ExtResource("3_fxw5g")]
-transform = Transform3D(0.19832453, 0, 0.9801364, 0, 1, 0, -0.9801364, 0, 0.19832453, 11.298207, -1.9073486e-06, -10.587821)
-building_name = "Trommelbauer"
+[node name="Gasthaus" parent="Buildings" instance=ExtResource("5_0prmd")]
+transform = Transform3D(-0.2669356, 0, 0.9637144, 0, 1, 0, -0.9637144, 0, -0.2669356, 1.0095706, 0.024151415, -6.3187637)
+build_cost = Dictionary[int, int]({
+0: 0,
+1: 0,
+2: 0
+})
 
-[node name="Gasthaus" parent="Buildings" instance=ExtResource("3_fxw5g")]
-transform = Transform3D(-0.13922489, 0, 0.99026084, 0, 1, 0, -0.99026084, 0, -0.13922489, -2.6020567, 0, -11.275162)
-building_name = "Gasthaus"
-
-[node name="Lautenbauer" parent="Buildings" instance=ExtResource("3_fxw5g")]
-transform = Transform3D(-0.47282755, 0, 0.881155, 0, 1, 0, -0.881155, 0, -0.47282755, -9.129233, -1.9073486e-06, -9.789698)
-building_name = "Lautenbauer"
-
-[node name="Fanfarenbauer" parent="Buildings" instance=ExtResource("3_fxw5g")]
-transform = Transform3D(-0.8309553, 0, 0.5563392, 0, 1, 0, -0.5563392, 0, -0.8309553, -15.577503, -1.9073486e-06, -6.4840336)
-building_name = "Fanfarenbauer"
+[node name="Building" parent="Buildings" instance=ExtResource("5_w8tnc")]
+transform = Transform3D(-0.67298675, 0, 0.73965454, 0, 1, 0, -0.73965454, 0, -0.67298675, -7.5347934, 1.9073486e-06, -5.492177)
+build_cost = Dictionary[int, int]({
+0: 0,
+1: 0,
+2: 0
+})
 
 [node name="Items" type="Node3D" parent="."]
