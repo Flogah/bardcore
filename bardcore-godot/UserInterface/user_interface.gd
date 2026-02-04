@@ -34,7 +34,7 @@ func shrink_timer():
 
 func update_time(time:float) -> void:
 	update_time_label(time)
-	update_progress_bar(time)
+	#update_progress_bar(time)
 
 func update_time_label(time:float) -> void:
 	time_left_label.text = str(snapped(time, 0.1))
