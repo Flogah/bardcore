@@ -11,9 +11,12 @@ enum gameState {
 }
 
 # get's carried from map to map, so it's important to not have it be a single timer node
-var starting_time:float = 3.0
+var starting_time:float = 1.0
 var dragon_timer:Timer
 
+var bonus_time_counter:int = 1 # the amount of times bonus time was added
+var max_bounus_time:int = 30 # the amount of bonus time for the first map, becomes less with every map
+var bonus_time_fade_factor:float = 0.08 # the lower the less it fades: 0.2 very quick, 0.05 very slowly
 var currentGameState : gameState
 
 # this single variable could hold the unlocks in the village
@@ -50,10 +53,17 @@ func unpause_dragon_timer():
 	dragon_timer.paused = false
 
 func add_dragon_time(time:float):
-	dragon_timer.stop()
 	var old_time = dragon_timer.time_left
 	var new_time = old_time + time
+	dragon_timer.stop()
 	dragon_timer.start(new_time)
+
+func add_new_map_bonus_time() -> void:
+	add_dragon_time(max_bounus_time * exp(-bonus_time_fade_factor * bonus_time_counter))
+	bonus_time_counter += 1
+
+func reset_bonus_time() -> void:
+	bonus_time_counter = 1
 
 func dragon_death():
 	#add_building_time(max_time_value - time_left)
@@ -110,6 +120,8 @@ func reset_game():
 	MapManager.reset()
 	MusicManager.reset()
 	
+	reset_bonus_time()
+	
 	await get_tree().create_timer(1.0).timeout
 	loading_screen.queue_free()
 	
@@ -120,6 +132,7 @@ func change_gamestate(new_gamestate:gameState):
 	game_state_changed.emit(currentGameState)
 	
 	if new_gamestate == gameState.combat:
+		add_new_map_bonus_time()
 		unpause_dragon_timer()
 	else:
 		pause_dragon_timer()
