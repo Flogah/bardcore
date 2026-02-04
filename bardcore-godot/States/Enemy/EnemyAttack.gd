@@ -17,3 +17,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func end_attack():
 	finished.emit("EnemyFollow")
+
+func exit():
+	var effect = $"../../Visual/AttackEffect"
+	effect.hide()

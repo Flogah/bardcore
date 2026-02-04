@@ -11,6 +11,9 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	follow_target = target
 
 func physics_update(_delta: float) -> void:
+	if !follow_target.is_inside_tree():
+		return
+	
 	owner.look_at(follow_target.global_position)
 	
 	var direction = (follow_target.global_position - owner.global_position)
