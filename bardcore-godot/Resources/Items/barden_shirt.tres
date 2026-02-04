@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_6ibkl"]
 script = ExtResource("3_w0u2f")
-amount = 1.5
+amount = 0.5
 operator = 1
 effected_stat = 12
-explanation = "Range +1.5"
+explanation = "Range +0.5"
 metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]
