@@ -2,6 +2,8 @@ extends CharacterBody3D
 class_name Player
 
 signal leave
+signal knocked_out
+signal back_on_feet
 
 const TRUMPET = preload("uid://515m7a070dcx")
 const VIOLIN = preload("uid://lxalv8rqbk0c")
@@ -18,6 +20,11 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 
 @export var stat_comp: stat_component
 @export var inventory: inventory_component
+@export var health_comp: health_component
+
+@export var animation_player: AnimationPlayer
+@export var hitbox: CollisionShape3D
+
 
 @export var indicator_ring: Node3D
 @export var player_colors : PackedColorArray = [
@@ -31,7 +38,7 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 
 var can_move: bool = true
 var can_interact: bool = true
-var can_fight: bool = true
+var can_attack: bool = true
 
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera: Camera3D
@@ -150,3 +157,20 @@ func try_interact():
 			return
 		else:
 			ia.interact()
+
+func _on_health_component_died() -> void:
+	hitbox.disabled = true
+	animation_player.play("die")
+	can_attack = false
+	can_interact = false
+	can_move = false
+	knocked_out.emit()
+
+func full_restore():
+	hitbox.disabled = false
+	animation_player.play_backwards("die")
+	health_comp.heal(health_comp.max_health)
+	can_attack = true
+	can_interact = true
+	can_move = true
+	back_on_feet.emit()
