@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://2ppawe2j46ho"]
+
+[ext_resource type="PackedScene" uid="uid://b226ytu1nwubi" path="res://Meshes/Dragon/wing.glb" id="1_1ks7c"]
+[ext_resource type="Material" uid="uid://dpxel0n6q71m6" path="res://Materials/dragon_black.tres" id="2_q68i4"]
+
+[node name="wing" instance=ExtResource("1_1ks7c")]
+
+[node name="Cube" parent="." index="0"]
+material_override = ExtResource("2_q68i4")

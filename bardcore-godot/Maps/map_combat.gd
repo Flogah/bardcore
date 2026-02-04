@@ -81,6 +81,9 @@ func spawn_players():
 		lock_all_portals()
 
 func check_for_surviving_enemies():
+	if game_over:
+		return
+	
 	await get_tree().create_timer(0.1).timeout
 	var bodies = enemy_nodes.get_children()
 	if bodies:
@@ -91,3 +94,9 @@ func check_for_surviving_enemies():
 			#return
 	all_enemies_dead.emit()
 	print("all dead")
+
+func game_over_cinema():
+	lock_all_portals()
+	arrive_dragon()
+	
+	get_tree().create_timer(5.0).timeout.connect(GameManager.dragon_death)
