@@ -1,7 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://clme8xwp12duo"]
+[gd_scene load_steps=14 format=3 uid="uid://clme8xwp12duo"]
 
 [ext_resource type="Script" uid="uid://dgwh5sbbspeqj" path="res://Maps/Buildings/building.gd" id="1_3tkvv"]
 [ext_resource type="PackedScene" uid="uid://dslspxj3ojm7b" path="res://Maps/Buildings/Stages/Fidel/fidel_stage_1.tscn" id="2_bvdnp"]
+[ext_resource type="PackedScene" uid="uid://cf7lggg8e7ayx" path="res://Maps/Buildings/Stages/Fidel/fidel_stage_2.tscn" id="3_4dkwi"]
+[ext_resource type="PackedScene" uid="uid://d0wt4ff4cgfyn" path="res://Maps/Buildings/Stages/Fidel/fidel_stage_3.tscn" id="4_vye81"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_67fxh"]
 radius = 0.7939086
@@ -14,27 +16,6 @@ size = Vector3(0.12, 0.795, 0.15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wvfqc"]
 size = Vector3(0.06, 0.515, 1.105)
-
-[sub_resource type="BoxMesh" id="BoxMesh_67fxh"]
-size = Vector3(5, 2.5, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_uk1hs"]
-size = Vector3(6.03, 2.5, 4)
-
-[sub_resource type="PrismMesh" id="PrismMesh_67fxh"]
-size = Vector3(4.55, 1.22, 6.3)
-
-[sub_resource type="BoxMesh" id="BoxMesh_uuowk"]
-size = Vector3(0.39, 2, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_lv0hd"]
-size = Vector3(0.39, 1.16, 0.645)
-
-[sub_resource type="BoxMesh" id="BoxMesh_e0lrr"]
-size = Vector3(3.06, 2.5, 2.29)
-
-[sub_resource type="PrismMesh" id="PrismMesh_8ofdm"]
-size = Vector3(2.84, 1.22, 3.505)
 
 [sub_resource type="Animation" id="Animation_67fxh"]
 length = 0.001
@@ -486,6 +467,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4244514, 0.3733486, -1.4507
 mesh = SubResource("BoxMesh_y52u6")
 
 [node name="Level1" type="Node3D" parent="."]
+visible = false
 
 [node name="Fidel_stage1" parent="Level1" instance=ExtResource("2_bvdnp")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0689225, 0, 0)
@@ -493,64 +475,13 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.06
 [node name="Level2" type="Node3D" parent="."]
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0707619, 1.2728355, 0)
-mesh = SubResource("BoxMesh_67fxh")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0707619, 3.7653797, 0)
-mesh = SubResource("BoxMesh_uk1hs")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Level2"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0707619, 5.5631776, 0)
-mesh = SubResource("PrismMesh_67fxh")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.503, 1, 0)
-mesh = SubResource("BoxMesh_uuowk")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Level2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, 0.9758246)
-mesh = SubResource("BoxMesh_lv0hd")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Level2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, -0.96463513)
-mesh = SubResource("BoxMesh_lv0hd")
+[node name="Fidel_stage2" parent="Level2" instance=ExtResource("3_4dkwi")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0252705, 0, 0)
 
 [node name="Level3" type="Node3D" parent="."]
-visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0707619, 1.2728355, 0)
-mesh = SubResource("BoxMesh_67fxh")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0707619, 3.7653797, 0)
-mesh = SubResource("BoxMesh_uk1hs")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Level3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2239492, 6.1730347, -0.5919962)
-mesh = SubResource("BoxMesh_e0lrr")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Level3"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0707619, 5.5631776, 0)
-mesh = SubResource("PrismMesh_67fxh")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Level3"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.326365, 7.8610997, -0.6495418)
-mesh = SubResource("PrismMesh_8ofdm")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.503, 1, 0)
-mesh = SubResource("BoxMesh_uuowk")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Level3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, 0.9758246)
-mesh = SubResource("BoxMesh_lv0hd")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Level3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8942268, 3.8119364, -0.96463513)
-mesh = SubResource("BoxMesh_lv0hd")
+[node name="Fidel_stage3" parent="Level3" instance=ExtResource("4_vye81")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.9582939, 0, 0)
 
 [node name="Level4" type="Node3D" parent="."]
 visible = false
