@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ox8bono7g2cv"]
+
+[ext_resource type="PackedScene" uid="uid://c7fo8ywdqyp2y" path="res://Meshes/Buildings/Guests_stage2.glb" id="1_3kja7"]
+[ext_resource type="Material" uid="uid://cwtm8ihj3sfgl" path="res://Materials/Buildings/Building_trumpets.tres" id="2_7w06b"]
+
+[node name="Guests_stage2" instance=ExtResource("1_3kja7")]
+
+[node name="Cube_001" parent="." index="0"]
+material_override = ExtResource("2_7w06b")
