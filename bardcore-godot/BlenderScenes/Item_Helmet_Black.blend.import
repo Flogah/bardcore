@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://qbwq3hbeiewm"
-path="res://.godot/imported/lover_in_pose.blend-7fe4f72bac0985136cd1da296e8b462e.scn"
+uid="uid://ufb3fs2s5dqw"
+path="res://.godot/imported/Item_Helmet_Black.blend-583cf634a1e61d7877ccad5a6a31f3f8.scn"
 
 [deps]
 
-source_file="res://BlenderScenes/lover_in_pose.blend"
-dest_files=["res://.godot/imported/lover_in_pose.blend-7fe4f72bac0985136cd1da296e8b462e.scn"]
+source_file="res://BlenderScenes/Item_Helmet_Black.blend"
+dest_files=["res://.godot/imported/Item_Helmet_Black.blend-583cf634a1e61d7877ccad5a6a31f3f8.scn"]
 
 [params]
 

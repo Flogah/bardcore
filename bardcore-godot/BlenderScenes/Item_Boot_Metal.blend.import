@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://qbwq3hbeiewm"
-path="res://.godot/imported/lover_in_pose.blend-7fe4f72bac0985136cd1da296e8b462e.scn"
+uid="uid://ql4r4c81i6hj"
+path="res://.godot/imported/Item_Boot_Metal.blend-10a5cb463a930efcdecade076857609b.scn"
 
 [deps]
 
-source_file="res://BlenderScenes/lover_in_pose.blend"
-dest_files=["res://.godot/imported/lover_in_pose.blend-7fe4f72bac0985136cd1da296e8b462e.scn"]
+source_file="res://BlenderScenes/Item_Boot_Metal.blend"
+dest_files=["res://.godot/imported/Item_Boot_Metal.blend-10a5cb463a930efcdecade076857609b.scn"]
 
 [params]
 
