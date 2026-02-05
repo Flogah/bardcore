@@ -41,3 +41,7 @@ func load_buildings():
 		var b_name = building.building_name
 		var new_state = GameManager.get_building_lvl(b_name)
 		building.set_state(new_state)
+
+func show_all_buildings():
+	for building in buildings:
+		building.show()

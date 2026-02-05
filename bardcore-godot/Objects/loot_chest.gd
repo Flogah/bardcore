@@ -22,11 +22,15 @@ func get_ready():
 	if GameManager.currentGameState == GameManager.gameState.post_combat:
 		unlock()
 	else:
-		GameManager.game_state_changed.connect(unlock)
+		GameManager.game_state_changed.connect(check_for_safety)
 
 func read_all_loot():
 	for path in ResourceLoader.list_directory("res://Resources/Items"):
 		item_resources.append(load("res://Resources/Items/" + path))
+
+func check_for_safety(gameState: GameManager.gameState):
+	if gameState != GameManager.gameState.combat:
+		unlock()
 
 func unlock() -> void:
 	locked = false

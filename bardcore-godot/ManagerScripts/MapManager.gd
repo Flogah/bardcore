@@ -72,6 +72,8 @@ func random_out_array(map_array: Array) -> PackedScene:
 	return rand_map
 
 func unload_map():
+	if !current_map:
+		return
 	PlayerManager.save_all_players()
 	
 	if get_tree().current_scene:

@@ -37,6 +37,10 @@ func update_time(time:float) -> void:
 	#update_progress_bar(time)
 
 func update_time_label(time:float) -> void:
+	if time < 1:
+		time_left_label.hide()
+	else:
+		time_left_label.show()
 	time_left_label.text = str(snapped(time, 1))
 
 func update_progress_bar(val:float) -> void:

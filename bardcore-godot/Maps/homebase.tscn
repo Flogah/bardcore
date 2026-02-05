@@ -189,26 +189,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4909654, 0, 3.8463798)
 
 [node name="Fanfarenbauer" parent="Buildings" instance=ExtResource("4_no1lh")]
 transform = Transform3D(0.29262212, 0, 0.95622814, 0, 1, 0, -0.95622814, 0, 0.29262212, 9.618123, -2.861023e-06, -5.5557327)
+visible = false
+building_name = "Fanfarenbauer"
 build_cost = Dictionary[int, int]({
-0: 0,
-1: 0,
-2: 0
+0: 2,
+1: 4,
+2: 8
 })
 
 [node name="Gasthaus" parent="Buildings" instance=ExtResource("5_0prmd")]
 transform = Transform3D(-0.2669356, 0, 0.9637144, 0, 1, 0, -0.9637144, 0, -0.2669356, 1.0095706, 0.024151415, -6.3187637)
+building_name = "Gasthaus"
 build_cost = Dictionary[int, int]({
-0: 0,
-1: 0,
-2: 0
+0: 1,
+1: 5,
+2: 9
 })
 
-[node name="Building" parent="Buildings" instance=ExtResource("5_w8tnc")]
+[node name="Lautenbauer" parent="Buildings" instance=ExtResource("5_w8tnc")]
 transform = Transform3D(-0.67298675, 0, 0.73965454, 0, 1, 0, -0.73965454, 0, -0.67298675, -7.5347934, 1.9073486e-06, -5.492177)
+visible = false
+building_name = "Lautenbauer"
 build_cost = Dictionary[int, int]({
-0: 0,
-1: 0,
-2: 0
+0: 2,
+1: 4,
+2: 6
 })
 
 [node name="Items" type="Node3D" parent="."]
+
+[connection signal="building_upgraded" from="Buildings/Gasthaus" to="." method="show_all_buildings"]
