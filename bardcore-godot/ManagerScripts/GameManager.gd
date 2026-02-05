@@ -31,7 +31,6 @@ func _ready():
 	create_dragon_timer()
 	MusicManager.beat.connect(dragon_beat)
 	UserInterface.update_time(dragon_timer.time_left)
-	dragon_timer.timeout.connect(normalize_dragon_timer)
 	#reset_time()
 
 func dragon_beat():
@@ -70,10 +69,9 @@ func reset_bonus_time() -> void:
 	bonus_time_counter = 1
 
 func speed_up_dragon_timer():
-	Engine.time_scale = 4.0
-
-func normalize_dragon_timer():
-	Engine.time_scale = 1.0
+	dragon_timer.stop()
+	dragon_timer.start(3.0)
+	UserInterface.update_time(dragon_timer.time_left)
 
 func dragon_arrival():
 	MapManager.current_map.game_over_cinema()

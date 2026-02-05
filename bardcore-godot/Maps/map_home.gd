@@ -6,6 +6,7 @@ var buildings
 
 @export var spawn_position:Node3D
 @export var exit_portal:Portal
+@onready var gasthaus: Building = $Buildings/Gasthaus
 
 func _ready() -> void:
 	gather_buildings()
@@ -41,6 +42,8 @@ func load_buildings():
 		var b_name = building.building_name
 		var new_state = GameManager.get_building_lvl(b_name)
 		building.set_state(new_state)
+	if gasthaus.state > 0:
+		show_all_buildings()
 
 func show_all_buildings():
 	for building in buildings:

@@ -217,5 +217,3 @@ build_cost = Dictionary[int, int]({
 })
 
 [node name="Items" type="Node3D" parent="."]
-
-[connection signal="building_upgraded" from="Buildings/Gasthaus" to="." method="show_all_buildings"]
