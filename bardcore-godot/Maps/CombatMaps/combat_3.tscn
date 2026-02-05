@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_ky5dj"]
 [ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="4_ky5dj"]
 [ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="4_oal2d"]
+[ext_resource type="PackedScene" uid="uid://b2awxuj51p6sk" path="res://Meshes/Nature/bush_l.tscn" id="6_q1ill"]
+[ext_resource type="PackedScene" uid="uid://xcv8itqnlrlh" path="res://Meshes/Nature/bush_s.tscn" id="7_c6mun"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oal2d"]
 size = Vector2(35, 35)
@@ -42,11 +44,6 @@ size = Vector3(37.875244, 7.7929688, 2.0117188)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ed50o"]
 size = Vector3(16.576172, 7.7929688, 2.0117188)
-
-[sub_resource type="BoxMesh" id="BoxMesh_qpv88"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_0ssnf"]
-size = Vector3(3.285, 1, 2.705)
 
 [node name="Combat3" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal", "cam")]
 script = ExtResource("1_qqfg0")
@@ -131,42 +128,29 @@ shape = SubResource("BoxShape3D_ed50o")
 
 [node name="Bits" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.149129, 0.5, 7.3653326)
-mesh = SubResource("BoxMesh_qpv88")
+[node name="Bush_L" parent="Bits" instance=ExtResource("6_q1ill")]
+transform = Transform3D(-1.0921185, 0, 1.4719878, 0, 1.832886, 0, -1.4719878, 0, -1.0921185, -3.0097942, 0.42038316, -4.886058)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8531094, 0.50000095, -7.700119)
-mesh = SubResource("BoxMesh_qpv88")
+[node name="Bush_L2" parent="Bits" instance=ExtResource("6_q1ill")]
+transform = Transform3D(0.30983052, 0.2704898, 1.7861439, 0.53082526, 1.7185905, -0.35233837, -1.7267597, 0.57684755, 0.21217313, 7.8575735, 0.42038125, -1.8572264)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9873471, 0.50000095, -2.7861958)
-mesh = SubResource("BoxMesh_qpv88")
+[node name="Bush_S2" parent="Bits" instance=ExtResource("7_c6mun")]
+transform = Transform3D(0.06299954, 0, -0.99801356, 0, 1, 0, 0.99801356, 0, 0.06299954, 3.74862, 0, -3.2268386)
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.115227, 0.49999905, 8.730066)
-mesh = SubResource("BoxMesh_qpv88")
+[node name="Bush_S3" parent="Bits" instance=ExtResource("7_c6mun")]
+transform = Transform3D(-0.8215076, 0, 0.5701975, 0, 1, 0, -0.5701975, 0, -0.8215076, 11.853402, 0, 12.243704)
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.760935, 0.49999905, 10.951485)
-mesh = SubResource("BoxMesh_qpv88")
+[node name="Bush_S4" parent="Bits" instance=ExtResource("7_c6mun")]
+transform = Transform3D(0.24928151, 0, -0.96843106, 0, 1, 0, 0.96843106, 0, 0.24928151, 7.238681, 0, 8.175814)
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.78731, 0.49999905, 12.029179)
-mesh = SubResource("BoxMesh_qpv88")
+[node name="Bush_S5" parent="Bits" instance=ExtResource("7_c6mun")]
+transform = Transform3D(0.9148258, 0, -0.4038487, 0, 1, 0, 0.4038487, 0, 0.9148258, 1.2798018, 0, 12.231119)
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2336059, 0.49999714, -5.2399273)
-mesh = SubResource("BoxMesh_0ssnf")
+[node name="Bush_S6" parent="Bits" instance=ExtResource("7_c6mun")]
+transform = Transform3D(-0.14228342, 0, -0.98982596, 0, 1, 0, 0.98982596, 0, -0.14228342, -3.9911866, 0, 9.455983)
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55742407, 0.50000095, -6.1976795)
-mesh = SubResource("BoxMesh_qpv88")
-
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.068534, 0.4769528, 9.387126)
-mesh = SubResource("BoxMesh_qpv88")
-skeleton = NodePath("../MeshInstance3D5")
+[node name="Bush_S7" parent="Bits" instance=ExtResource("7_c6mun")]
+transform = Transform3D(-0.4150585, 0, -0.90979475, 0, 1, 0, 0.90979475, 0, -0.4150585, -6.0021067, 0, 5.7617865)
 
 [node name="Enemies" type="Node3D" parent="."]
 
