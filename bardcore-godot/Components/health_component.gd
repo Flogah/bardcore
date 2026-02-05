@@ -20,7 +20,8 @@ var time_till_regeneration_timer: Timer
 var regeneration_tick_timer: Timer
 
 func _ready() -> void:
-	health = max_health
+	
+	await get_tree().create_timer(.01).timeout
 	
 	if stat_comp:
 		regeneration_tick_timer = Timer.new()
@@ -37,10 +38,14 @@ func _ready() -> void:
 		update_time_till_regeneration_timer()
 		time_till_regeneration_timer.timeout.connect(regeneration_tick_timer.start)
 		add_child(time_till_regeneration_timer)
-	
+		
+		max_health = stat_comp.get_stat(stat_comp.stat_id.MAX_HEALTH)
+		stat_comp.get_stat_object(stat_comp.stat_id.MAX_HEALTH).changed.connect(update_max_health)
+		
+	health = max_health
 
 func apply(type: hit_effect.effect_type, amount: float):
-	if telegraph_comp: telegraph_comp.display_number(amount, type)
+	if telegraph_comp: telegraph_comp.display_number(int(amount), type)
 	if type == hit_effect.effect_type.ATTACK:
 		damage(amount)
 	if type == hit_effect.effect_type.HEAL:
@@ -53,7 +58,7 @@ func heal(amount: float):
 	var modified_amount: float
 	
 	if stat_comp:
-		modified_amount = health+amount*stat_comp.get_stat(stat_comp.stat_id.IN_HEAL)
+		modified_amount = amount*stat_comp.get_stat(stat_comp.stat_id.IN_HEAL)
 	else: 
 		modified_amount = amount
 		
@@ -85,6 +90,15 @@ func damage(amount: float):
 
 func update_time_till_regeneration_timer() -> void:
 	time_till_regeneration_timer.wait_time = stat_comp.get_stat(stat_comp.stat_id.TIME_TILL_REGENERATION)
+	if !time_till_regeneration_timer.paused:
+		time_till_regeneration_timer.start()
+
+func update_max_health() -> void:
+	var new_max_health = stat_comp.get_stat(stat_comp.stat_id.MAX_HEALTH)
+	var difference = new_max_health * (health / max_health) - health
+	
+	max_health = new_max_health
+	damage(0)
 
 func regenerate() -> void:
 	heal(stat_comp.get_stat(stat_comp.stat_id.REGENERATION_AMOUNT))

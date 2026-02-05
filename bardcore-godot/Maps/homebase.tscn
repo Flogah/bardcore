@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
 [ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="2_w8tnc"]
+[ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="2_w8tnc"]
 [ext_resource type="PackedScene" uid="uid://cuu4pv5q0cii1" path="res://Maps/Buildings/building_maker_fanfare.tscn" id="4_no1lh"]
 [ext_resource type="PackedScene" uid="uid://b4g0c6swxctq4" path="res://Maps/Buildings/building_guesthouse.tscn" id="5_0prmd"]
 [ext_resource type="PackedScene" uid="uid://clme8xwp12duo" path="res://Maps/Buildings/building_maker_fidel.tscn" id="5_w8tnc"]
@@ -19,17 +20,17 @@ size = Vector2(150, 150)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2oixm"]
 albedo_color = Color(0.08111008, 0.1239166, 0.018113298, 1)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dtoj1"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w8tnc"]
+sky_top_color = Color(0.38083324, 0.562918, 0.7395231, 1)
+sky_horizon_color = Color(0.7367734, 0.7745445, 0.80969584, 1)
+ground_horizon_color = Color(0.7367734, 0.7745445, 0.80969584, 1)
 
-[sub_resource type="Sky" id="Sky_0wfyh"]
-sky_material = SubResource("ProceduralSkyMaterial_dtoj1")
+[sub_resource type="Sky" id="Sky_v7h8f"]
+sky_material = SubResource("ProceduralSkyMaterial_w8tnc")
 
-[sub_resource type="Environment" id="Environment_15k71"]
+[sub_resource type="Environment" id="Environment_ffh53"]
 background_mode = 2
-background_energy_multiplier = 0.5
-sky = SubResource("Sky_0wfyh")
+sky = SubResource("Sky_v7h8f")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -95,16 +96,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11501503, -0.01, -0.0516624
 mesh = SubResource("PlaneMesh_ljco0")
 surface_material_override/0 = SubResource("StandardMaterial3D_2oixm")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(0.5254748, -0.6902425, 0.49743515, 0.08959865, 0.6263045, 0.7744127, -0.8460782, -0.36236477, 0.39095193, 0.2685008, 5.4544697, 0)
-light_energy = 1.5
-light_indirect_energy = 3.0
-shadow_enabled = true
-shadow_opacity = 0.55
-shadow_blur = 1.99
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
-environment = SubResource("Environment_15k71")
+environment = SubResource("Environment_ffh53")
+
+[node name="DirectionalLight3D" parent="Terrain" instance=ExtResource("2_w8tnc")]
+transform = Transform3D(0.5254748, -0.69024247, 0.4974351, 0.08959864, 0.62630445, 0.77441263, -0.8460782, -0.36236486, 0.39095196, 0.2685008, 5.4544697, 0)
 
 [node name="Boundaries" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278862, 0, 0)

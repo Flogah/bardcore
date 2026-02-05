@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://d31bh0esbjp34"]
+[gd_scene load_steps=18 format=3 uid="uid://d31bh0esbjp34"]
 
 [ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_1jh6t"]
 [ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_1jh6t"]
 [ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_acvef"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_qmnqa"]
 [ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_5mx70"]
+[ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="4_k7syt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yo7wb"]
 size = Vector2(35, 35)
@@ -18,17 +19,17 @@ size = Vector2(150, 150)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74fqv"]
 albedo_color = Color(0.08111008, 0.1239166, 0.018113298, 1)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vycma"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k7syt"]
+sky_top_color = Color(0.38083324, 0.562918, 0.7395231, 1)
+sky_horizon_color = Color(0.7367734, 0.7745445, 0.80969584, 1)
+ground_horizon_color = Color(0.7367734, 0.7745445, 0.80969584, 1)
 
-[sub_resource type="Sky" id="Sky_vycma"]
-sky_material = SubResource("ProceduralSkyMaterial_vycma")
+[sub_resource type="Sky" id="Sky_d8dag"]
+sky_material = SubResource("ProceduralSkyMaterial_k7syt")
 
-[sub_resource type="Environment" id="Environment_yo7wb"]
+[sub_resource type="Environment" id="Environment_cr68g"]
 background_mode = 2
-background_energy_multiplier = 0.5
-sky = SubResource("Sky_vycma")
+sky = SubResource("Sky_d8dag")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -69,15 +70,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 mesh = SubResource("PlaneMesh_kk8mo")
 surface_material_override/0 = SubResource("StandardMaterial3D_74fqv")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(0.5254748, -0.6902425, 0.49743515, 0.08959865, 0.6263045, 0.7744127, -0.8460782, -0.36236477, 0.39095193, 0.2685008, 5.4544697, 0)
-light_energy = 2.171
-shadow_enabled = true
+[node name="pumpkin_trees" parent="Terrain" instance=ExtResource("3_5mx70")]
+
+[node name="DirectionalLight3D2" parent="Terrain" instance=ExtResource("4_k7syt")]
+transform = Transform3D(0.5254748, -0.6902424, 0.49743515, 0.08959865, 0.62630445, 0.77441263, -0.8460782, -0.3623648, 0.39095202, 0, 5.458948, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
-environment = SubResource("Environment_yo7wb")
-
-[node name="pumpkin_trees" parent="Terrain" instance=ExtResource("3_5mx70")]
+environment = SubResource("Environment_cr68g")
 
 [node name="Boundaries" type="Node3D" parent="."]
 visible = false
