@@ -136,7 +136,7 @@ func reset_game():
 	await get_tree().create_timer(1.0).timeout
 	loading_screen.queue_free()
 	
-	get_tree().change_scene_to_packed(preload("uid://cr1ydxfa4aiik"))
+	get_tree().change_scene_to_packed(load("uid://cr1ydxfa4aiik"))
 
 func change_gamestate(new_gamestate:gameState):
 	currentGameState = new_gamestate
