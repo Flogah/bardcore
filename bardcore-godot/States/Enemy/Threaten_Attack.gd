@@ -16,4 +16,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func end_threat():
 	animation_player.stop()
-	finished.emit("EnemyAttack")
+	
+	if owner.dead:
+		finished.emit("EnemyDead")
+	else:
+		finished.emit("EnemyAttack")

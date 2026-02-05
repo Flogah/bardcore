@@ -69,6 +69,9 @@ func _physics_process(delta: float) -> void:
 		look_direction()
 	
 	velocity.y -= gravity * delta
+	
+	if !can_move:
+		velocity = Vector3.ZERO
 	move_and_slide()
 	
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
@@ -109,19 +112,17 @@ func look_direction():
 		return
 	rotation = Vector3(0, -input_dir.angle() - PI/2, 0)
 
-func movement():
-	if !can_move:
-		return
-	
-	device = PlayerManager.get_player_device(player)
-	var input_dir = MultiplayerInput.get_vector(device, "move_left", "move_right", "move_up", "move_down")
-	
-	if input_dir:
-		velocity.x = input_dir.x * stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED)
-		velocity.z = input_dir.y * stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED)
-	else:
-		velocity.x = move_toward(velocity.x, 0, stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED))
-		velocity.z = move_toward(velocity.z, 0, stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED))
+#func movement():
+	#
+	#device = PlayerManager.get_player_device(player)
+	#var input_dir = MultiplayerInput.get_vector(device, "move_left", "move_right", "move_up", "move_down")
+	#
+	#if input_dir:
+		#velocity.x = input_dir.x * stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED)
+		#velocity.z = input_dir.y * stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED)
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED))
+		#velocity.z = move_toward(velocity.z, 0, stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED))
 
 func set_playername():
 	player_name.set_text("P " + str(player))

@@ -11,6 +11,10 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	owner.target_bard()
 
 func physics_update(_delta: float) -> void:
+	if owner.dead:
+		finished.emit("EnemyDead")
+		return
+	
 	if !owner.target.is_inside_tree():
 		return
 	
