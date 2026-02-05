@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0tri4uknsi5j"]
+[gd_scene load_steps=21 format=3 uid="uid://c0tri4uknsi5j"]
 
 [ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_4byjr"]
 [ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_2cq06"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="4_6kq25"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="4_ahlo8"]
 [ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="5_p857v"]
+[ext_resource type="PackedScene" uid="uid://b2awxuj51p6sk" path="res://Meshes/Nature/bush_l.tscn" id="6_bmanv"]
+[ext_resource type="PackedScene" uid="uid://xcv8itqnlrlh" path="res://Meshes/Nature/bush_s.tscn" id="9_w5tuy"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oal2d"]
 size = Vector2(35, 35)
@@ -41,8 +43,6 @@ size = Vector3(37.875244, 7.7929688, 2.0117188)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ed50o"]
 size = Vector3(16.576172, 7.7929688, 2.0117188)
-
-[sub_resource type="BoxMesh" id="BoxMesh_qpv88"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ssnf"]
 size = Vector3(3.285, 1, 2.705)
@@ -130,42 +130,16 @@ shape = SubResource("BoxShape3D_ed50o")
 
 [node name="Bits" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.149129, 0.5, 7.3653326)
-mesh = SubResource("BoxMesh_qpv88")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.485615, 0.50000095, 3.191925)
-mesh = SubResource("BoxMesh_qpv88")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3237033, 0.50000095, 5.1068583)
-mesh = SubResource("BoxMesh_qpv88")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.115227, 0.49999905, 8.730066)
-mesh = SubResource("BoxMesh_qpv88")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.125774, 0.50000095, -12.900078)
-mesh = SubResource("BoxMesh_qpv88")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.524347, 0.49999905, -15.10199)
-mesh = SubResource("BoxMesh_qpv88")
-
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="Bits"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.174265, 0.49999714, 6.2225494)
+visible = false
 mesh = SubResource("BoxMesh_0ssnf")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.911826, 0.50000095, 7.3577137)
-mesh = SubResource("BoxMesh_qpv88")
+[node name="Bush_L" parent="Bits" instance=ExtResource("6_bmanv")]
+transform = Transform3D(-2.0190794, 0, 0.43665114, 0, 2.0657554, 0, -0.43665114, 0, -2.0190794, -10.489139, 0, 8.334657)
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Bits"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.138928, 0.48685503, 9.090191)
-mesh = SubResource("BoxMesh_qpv88")
-skeleton = NodePath("../MeshInstance3D5")
+[node name="Bush_L2" parent="Bits" instance=ExtResource("6_bmanv")]
+transform = Transform3D(0.46195668, 0, -1.4270935, 0, 1.5, 0, 1.4270935, 0, 0.46195668, 10.180927, 0, -14.803074)
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -185,3 +159,15 @@ transform = Transform3D(0.47688287, 0, -0.878967, 0, 1, 0, 0.878967, 0, 0.476882
 
 [node name="LootChest3" parent="." instance=ExtResource("5_p857v")]
 transform = Transform3D(-0.8405102, 0, 0.541796, 0, 1, 0, -0.541796, 0, -0.8405102, 11.494478, 1.1444092e-05, 12.042531)
+
+[node name="Bush_S" parent="." instance=ExtResource("9_w5tuy")]
+transform = Transform3D(0.8499387, 0, 0.5268816, 0, 1, 0, -0.5268816, 0, 0.8499387, -7.4609346, 0, 7.676955)
+
+[node name="Bush_S2" parent="." instance=ExtResource("9_w5tuy")]
+transform = Transform3D(0.9729777, 0, -0.23089892, 0, 1, 0, 0.23089892, 0, 0.9729777, -4.7278976, 0, 4.4901767)
+
+[node name="Bush_S4" parent="." instance=ExtResource("9_w5tuy")]
+transform = Transform3D(0.9729777, 0, -0.23089892, 0, 1, 0, 0.23089892, 0, 0.9729777, 12.948539, 0, -12.296338)
+
+[node name="Bush_S3" parent="." instance=ExtResource("9_w5tuy")]
+transform = Transform3D(-0.08887688, 0, -0.9960426, 0, 1, 0, 0.9960426, 0, -0.08887688, -11.199965, 0, 5.0026894)

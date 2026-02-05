@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cnslk3e2hn7gb"]
+
+[ext_resource type="Texture2D" uid="uid://cjedmv6iseo6u" path="res://Textures/Nature/leaf2.png" id="1_8ejcd"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.402
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.9911981, 0.77390355, 0.25507432, 1)
+albedo_texture = ExtResource("1_8ejcd")
