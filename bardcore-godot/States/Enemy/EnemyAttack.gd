@@ -16,7 +16,10 @@ func enter(previous_state_path: String, data := {}) -> void:
 	attack_timer.start(.3)
 
 func end_attack():
-	finished.emit("EnemyFollow")
+	if owner.dead:
+		finished.emit("EnemyDead")
+	else:
+		finished.emit("EnemyFollow")
 
 func exit():
 	var effect = $"../../Visual/AttackEffect"

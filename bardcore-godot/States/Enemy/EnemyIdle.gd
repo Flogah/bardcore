@@ -14,6 +14,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 	randomize_wander()
 
 func update(_delta: float) -> void:
+	if owner.dead:
+		finished.emit("EnemyDead")
+	
 	return
 	if wander_time > 0:
 		wander_time -= _delta
