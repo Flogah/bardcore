@@ -39,6 +39,7 @@ func connect_portals():
 
 func unlock_all_portals():
 	mapGameState = GameManager.gameState.post_combat
+	GameManager.change_gamestate(GameManager.gameState.post_combat)
 	for bard in bards:
 		bard.full_restore()
 	for portal in portals:
@@ -105,6 +106,7 @@ func check_for_game_over():
 		if bard.can_attack:
 			return
 	
+	game_over = true
 	GameManager.speed_up_dragon_timer()
 
 func game_over_cinema():
