@@ -4,19 +4,35 @@ signal entered_new_map
 
 const HOMEBASE = preload("uid://cr1ydxfa4aiik")
 
-var combat_maps = []
+var combat_only_maps_weight: int = 5
+var combat_and_treasure_maps_weight: int = 10
+var treasure_maps_weight: int = 1
+
+var combat_only_maps = [
+	preload("res://Maps/CombatMaps/combat_1.tscn"),
+	preload("res://Maps/CombatMaps/combat_2.tscn"),
+]
+
+var combat_and_treasure_maps = [
+	preload("res://Maps/CombatMaps/combat_3.tscn"),
+]
+
+var tresure_maps = [
+	preload("res://Maps/CombatMaps/treasure_room.tscn"),
+]
+
 var current_map : Map
 var coming_from_left: bool = true
 var map_grid : Dictionary[Vector2i, Map] = {}
 var current_grid_position : Vector2i = Vector2i(0,0)
 
-func _ready() -> void:
-	read_all_maps()
-
-func read_all_maps():
-	var dirs = ResourceLoader.list_directory("res://Maps/CombatMaps")
-	for dir in dirs:
-		combat_maps.append("res://Maps/CombatMaps/" + dir)
+#func _ready() -> void:
+	#read_all_maps()
+#
+#func read_all_maps():
+	#var dirs = ResourceLoader.list_directory("res://Maps/CombatMaps")
+	#for dir in dirs:
+		#combat_maps.append("res://Maps/CombatMaps/" + dir)
 
 func get_current_map() -> Map:
 	return current_map
@@ -35,9 +51,24 @@ func get_map(pos : Vector2i) -> Map:
 		entered_new_map.emit()
 	return m
 
+#func random_map() -> PackedScene:
+	#var rand = combat_maps[randi_range(0, combat_maps.size()-1)]
+	#var rand_map = load(rand)
+	#return rand_map
+
 func random_map() -> PackedScene:
-	var rand = combat_maps[randi_range(0, combat_maps.size()-1)]
-	var rand_map = load(rand)
+	var rand = randi_range(0, treasure_maps_weight+combat_only_maps_weight+combat_and_treasure_maps_weight)
+	if rand <= treasure_maps_weight:
+		return random_out_array(tresure_maps)
+	elif rand <= treasure_maps_weight+combat_only_maps_weight:
+		return random_out_array(combat_only_maps)
+	else:
+		return random_out_array(combat_and_treasure_maps)
+	printerr("Something went wrong in random Map loading!")
+	return combat_only_maps[0]
+
+func random_out_array(map_array: Array) -> PackedScene:
+	var rand_map = map_array[randi_range(0, map_array.size()-1)]
 	return rand_map
 
 func unload_map():

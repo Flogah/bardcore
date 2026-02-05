@@ -35,9 +35,9 @@ func _ready() -> void:
 		time_till_regeneration_timer.one_shot = true
 		time_till_regeneration_timer.name = "time_till_regeneration_timer"
 		stat_comp.get_stat_object(stat_comp.stat_id.TIME_TILL_REGENERATION).changed.connect(update_time_till_regeneration_timer)
-		update_time_till_regeneration_timer()
 		time_till_regeneration_timer.timeout.connect(regeneration_tick_timer.start)
 		add_child(time_till_regeneration_timer)
+		update_time_till_regeneration_timer()
 		
 		max_health = stat_comp.get_stat(stat_comp.stat_id.MAX_HEALTH)
 		stat_comp.get_stat_object(stat_comp.stat_id.MAX_HEALTH).changed.connect(update_max_health)
@@ -87,6 +87,9 @@ func damage(amount: float):
 	if health <= 0:
 		health = 0
 		died.emit()
+		if stat_comp:
+			regeneration_tick_timer.stop()
+			time_till_regeneration_timer.stop()
 
 func update_time_till_regeneration_timer() -> void:
 	time_till_regeneration_timer.wait_time = stat_comp.get_stat(stat_comp.stat_id.TIME_TILL_REGENERATION)
