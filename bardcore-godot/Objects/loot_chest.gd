@@ -15,12 +15,14 @@ func interact():
 		open()
 
 func _ready() -> void:
+	MapManager.current_map.bards_spawned.connect(get_ready)
+
+func get_ready():
 	read_all_loot()
-	var map = MapManager.get_current_map()
-	if map is combat_map: 
-		map.all_enemies_dead.connect(unlock)
-	else:
+	if GameManager.currentGameState == GameManager.gameState.post_combat:
 		unlock()
+	else:
+		GameManager.game_state_changed.connect(unlock)
 
 func read_all_loot():
 	for path in ResourceLoader.list_directory("res://Resources/Items"):
