@@ -13,6 +13,7 @@ enum gameState {
 # get's carried from map to map, so it's important to not have it be a single timer node
 var starting_time:float = 1.0
 var dragon_timer:Timer
+var max_time: float = 0.0
 
 var bonus_time_counter:int = 1 # the amount of times bonus time was added
 var max_bounus_time:int = 30 # the amount of bonus time for the first map, becomes less with every map
@@ -44,7 +45,7 @@ func create_dragon_timer():
 	dragon_timer.wait_time = starting_time
 	dragon_timer.start()
 	pause_dragon_timer()
-	
+	max_time = starting_time
 	print("Dragon Timer created")
 
 func pause_dragon_timer():
@@ -56,6 +57,7 @@ func unpause_dragon_timer():
 func add_dragon_time(time:float):
 	var old_time = dragon_timer.time_left
 	var new_time = old_time + time
+	max_time += time
 	dragon_timer.stop()
 	dragon_timer.start(new_time)
 	UserInterface.update_time(dragon_timer.time_left)
@@ -77,7 +79,7 @@ func dragon_arrival():
 	MapManager.current_map.game_over_cinema()
 
 func dragon_death():
-	add_building_time(dragon_timer.wait_time)
+	add_building_time(max_time)
 	reset_game()
 
 func reset_time():
@@ -127,16 +129,19 @@ func reset_game():
 	var loading_screen = preload("res://UserInterface/loading_screen.tscn").instantiate()
 	get_tree().root.add_child(loading_screen)
 	
-	reset_time()
-	MapManager.reset()
-	MusicManager.reset()
-	
-	reset_bonus_time()
+	reset_all_game()
 	
 	await get_tree().create_timer(1.0).timeout
 	loading_screen.queue_free()
 	
 	get_tree().change_scene_to_packed(load("uid://cr1ydxfa4aiik"))
+
+func reset_all_game():
+	reset_time()
+	MapManager.reset()
+	MusicManager.reset()
+	
+	reset_bonus_time()
 
 func change_gamestate(new_gamestate:gameState):
 	currentGameState = new_gamestate
