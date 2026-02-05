@@ -5,8 +5,25 @@ var music_player_1: AudioStreamPlayer
 var music_player_2: AudioStreamPlayer
 var beatTimer: Timer
 var music_volume = -20
-var music1 = preload("uid://cgp353opwrx4t")
-var music2 = preload("uid://dc23co36v6bdl")
+
+enum music_tracks {
+	VILLAGE,
+	COMBAT,
+}
+
+var background_music: Dictionary = {
+	music_tracks.VILLAGE: preload("uid://bwm12bt8i2t00"),
+	music_tracks.COMBAT: preload("uid://cgp353opwrx4t")
+}
+
+var stats_music: Dictionary = {
+	null: music_tracks.VILLAGE,
+	GameManager.gameState.home: music_tracks.VILLAGE,
+	GameManager.gameState.combat: music_tracks.COMBAT,
+	GameManager.gameState.post_combat: music_tracks.VILLAGE,
+	GameManager.gameState.shop: music_tracks.VILLAGE,
+}
+
 @export var rhythm_notifier: RhythmNotifier
 signal beat
 signal halfBeat
@@ -16,6 +33,7 @@ signal eighthBeat
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.game_state_changed.connect(change_music_to_new_state)
 	setup_music_player()
 	setup_music()
 	setup_rhythm()
@@ -67,8 +85,8 @@ func setup_music_player() -> void:
 	music_player_2 = AudioStreamPlayer.new()
 	add_child(music_player_1)
 	add_child(music_player_2)
-	music_player_1.set_stream(music1)
-	music_player_2.set_stream(music2)
+	music_player_1.set_stream(background_music[music_tracks.VILLAGE])
+	music_player_2.set_stream(background_music[music_tracks.COMBAT])
 
 
 func beats() -> void:
@@ -99,3 +117,14 @@ func eighth_beat() -> void:
 func reset():
 	# TODO reset everything so the music restarts clean
 	pass
+
+func change_music_to_new_state(gameState: GameManager.gameState):
+	var new_music_stream = background_music[stats_music[gameState]]
+	if current_music.stream != new_music_stream:
+		if current_music != music_player_1:
+			music_player_1.set_stream(background_music[stats_music[gameState]])
+			change_music(music_player_2, music_player_1)
+		else:
+			music_player_2.set_stream(background_music[stats_music[gameState]])
+			change_music(music_player_1, music_player_2)
+	
