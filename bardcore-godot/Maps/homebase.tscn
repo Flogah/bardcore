@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=25 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
+[ext_resource type="PackedScene" uid="uid://depu4blv1ijn1" path="res://Objects/loot_chest.tscn" id="2_w8tnc"]
 [ext_resource type="PackedScene" uid="uid://cuu4pv5q0cii1" path="res://Maps/Buildings/building_maker_fanfare.tscn" id="4_no1lh"]
 [ext_resource type="PackedScene" uid="uid://b4g0c6swxctq4" path="res://Maps/Buildings/building_guesthouse.tscn" id="5_0prmd"]
 [ext_resource type="PackedScene" uid="uid://clme8xwp12duo" path="res://Maps/Buildings/building_maker_fidel.tscn" id="5_w8tnc"]
@@ -147,6 +148,15 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.388859)
 shape = SubResource("BoxShape3D_dtoj1")
+
+[node name="LootChest" parent="Boundaries" instance=ExtResource("2_w8tnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.506632, 0.099999994, 7.800543)
+
+[node name="LootChest2" parent="Boundaries" instance=ExtResource("2_w8tnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.327002, 0.099999994, 3.696847)
+
+[node name="LootChest3" parent="Boundaries" instance=ExtResource("2_w8tnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.478893, 0.09999904, 9.786627)
 
 [node name="Bits" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278862, 0, 0)
