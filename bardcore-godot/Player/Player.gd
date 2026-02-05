@@ -2,6 +2,8 @@ extends CharacterBody3D
 class_name Player
 
 signal leave
+signal knocked_out
+signal back_on_feet
 
 const TRUMPET = preload("uid://515m7a070dcx")
 const VIOLIN = preload("uid://lxalv8rqbk0c")
@@ -18,6 +20,11 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 
 @export var stat_comp: stat_component
 @export var inventory: inventory_component
+@export var health_comp: health_component
+
+@export var animation_player: AnimationPlayer
+@export var hitbox: CollisionShape3D
+
 
 @export var indicator_ring: Node3D
 @export var player_colors : PackedColorArray = [
@@ -28,6 +35,10 @@ const VIOLIN = preload("uid://lxalv8rqbk0c")
 	Color.WHITE,
 	Color.RED,
 ]
+
+var can_move: bool = true
+var can_interact: bool = true
+var can_attack: bool = true
 
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera: Camera3D
@@ -68,6 +79,9 @@ func _physics_process(delta: float) -> void:
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func point_to_mouse():
+	if !can_move:
+		return
+	
 	var mouse_position = get_viewport().get_mouse_position()
 	
 	camera = get_tree().get_first_node_in_group("Camera")
@@ -87,12 +101,18 @@ func point_to_mouse():
 		look_at(look_at_position)
 
 func look_direction():
+	if !can_move:
+		return
+	
 	var input_dir = input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
 	if !input_dir:
 		return
 	rotation = Vector3(0, -input_dir.angle() - PI/2, 0)
 
 func movement():
+	if !can_move:
+		return
+	
 	device = PlayerManager.get_player_device(player)
 	var input_dir = MultiplayerInput.get_vector(device, "move_left", "move_right", "move_up", "move_down")
 	
@@ -126,6 +146,9 @@ func set_colors():
 	indicator_ring.set_color(col)
 
 func try_interact():
+	if !can_interact:
+		return
+	
 	var interactables = interaction_area.get_overlapping_areas()
 	for thing in interactables:
 		var ia: Interactable = thing.owner
@@ -134,3 +157,20 @@ func try_interact():
 			return
 		else:
 			ia.interact()
+
+func _on_health_component_died() -> void:
+	hitbox.disabled = true
+	animation_player.play("die")
+	can_attack = false
+	can_interact = false
+	can_move = false
+	knocked_out.emit()
+
+func full_restore():
+	hitbox.disabled = false
+	animation_player.play_backwards("die")
+	health_comp.heal(health_comp.max_health)
+	can_attack = true
+	can_interact = true
+	can_move = true
+	back_on_feet.emit()
