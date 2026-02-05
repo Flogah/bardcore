@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=26 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
+[ext_resource type="PackedScene" uid="uid://c8tvjd728x7q" path="res://Maps/camera_system.tscn" id="2_v7h8f"]
 [ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="2_w8tnc"]
 [ext_resource type="PackedScene" uid="uid://cuu4pv5q0cii1" path="res://Maps/Buildings/building_maker_fanfare.tscn" id="4_no1lh"]
 [ext_resource type="PackedScene" uid="uid://b4g0c6swxctq4" path="res://Maps/Buildings/building_guesthouse.tscn" id="5_0prmd"]
@@ -67,20 +68,14 @@ size = Vector3(7.725, 2.885, 3.77)
 [sub_resource type="BoxMesh" id="BoxMesh_wdvh6"]
 size = Vector3(3.925, 2.63, 2.8)
 
-[node name="Homebase" type="Node3D" node_paths=PackedStringArray("spawn_position", "exit_portal")]
+[node name="Homebase" type="Node3D" node_paths=PackedStringArray("spawn_position", "exit_portal", "cam")]
 script = ExtResource("1_fxw5g")
 spawn_position = NodePath("Exits/Spawn")
 exit_portal = NodePath("Exits/Portal")
+cam = NodePath("CameraArm")
 
-[node name="CameraArm" type="Node3D" parent="."]
+[node name="CameraArm" parent="." instance=ExtResource("2_v7h8f")]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.812887, 0.58242065, 0, -0.58242065, 0.812887, 0, 1.5, -1.3411446)
-
-[node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
-projection = 1
-size = 24.018
-near = 2.907
-far = 68.93
 
 [node name="Terrain" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278862, 0, 0)

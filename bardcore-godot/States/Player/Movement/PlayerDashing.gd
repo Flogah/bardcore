@@ -10,6 +10,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 	if !owner.can_move:
 		return
 	
+	#MapManager.current_map.shake()
+	
 	timer_setup()
 	if !dash_cooldown_timer.is_stopped():
 		print("Dash is still on cooldown. Time left: " + str(dash_cooldown_timer.time_left))

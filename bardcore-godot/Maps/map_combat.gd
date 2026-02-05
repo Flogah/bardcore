@@ -111,5 +111,3 @@ func game_over_cinema():
 	game_over = true
 	lock_all_portals()
 	arrive_dragon()
-	
-	get_tree().create_timer(5.0).timeout.connect(GameManager.dragon_death)

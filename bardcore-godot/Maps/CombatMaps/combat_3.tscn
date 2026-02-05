@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://q6c7auq6evki"]
+[gd_scene load_steps=21 format=3 uid="uid://q6c7auq6evki"]
 
 [ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_qqfg0"]
 [ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_8h51k"]
+[ext_resource type="PackedScene" uid="uid://c8tvjd728x7q" path="res://Maps/camera_system.tscn" id="2_oal2d"]
 [ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_vgxg5"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="3_8h51k"]
 [ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_ky5dj"]
@@ -47,12 +48,16 @@ size = Vector3(16.576172, 7.7929688, 2.0117188)
 [sub_resource type="BoxMesh" id="BoxMesh_0ssnf"]
 size = Vector3(3.285, 1, 2.705)
 
-[node name="Combat3" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal")]
+[node name="Combat3" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal", "cam")]
 script = ExtResource("1_qqfg0")
 right_portal = NodePath("Exits/Portal2")
 left_portal = NodePath("Exits/Portal")
 mapGameState = 1
+cam = NodePath("CameraArm")
 metadata/_custom_type_script = "uid://ba7q3y3ses2ty"
+
+[node name="CameraArm" parent="." instance=ExtResource("2_oal2d")]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.812887, 0.58242065, 0, -0.58242065, 0.812887, 0, 1.5, -1.3411446)
 
 [node name="Terrain" type="Node3D" parent="."]
 
@@ -187,13 +192,3 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 
 
 [node name="LootChest" parent="." instance=ExtResource("4_ky5dj")]
 transform = Transform3D(-0.20186433, 0, -0.9794135, 0, 1, 0, 0.9794135, 0, -0.20186433, 11.449697, 0, -13.221106)
-
-[node name="CameraArm" type="Node3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
-projection = 1
-size = 24.0
-near = 0.017
-far = 84.78

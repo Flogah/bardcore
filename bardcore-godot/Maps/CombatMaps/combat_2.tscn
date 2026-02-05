@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://d31bh0esbjp34"]
+[gd_scene load_steps=19 format=3 uid="uid://d31bh0esbjp34"]
 
 [ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_1jh6t"]
 [ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_1jh6t"]
 [ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_acvef"]
+[ext_resource type="PackedScene" uid="uid://c8tvjd728x7q" path="res://Maps/camera_system.tscn" id="2_d8dag"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_qmnqa"]
 [ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_5mx70"]
 [ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="4_k7syt"]
@@ -43,21 +44,15 @@ size = Vector3(16.576172, 7.7929688, 2.0117188)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vycma"]
 
-[node name="Combat1" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal")]
+[node name="Combat1" type="Node3D" node_paths=PackedStringArray("right_portal", "left_portal", "cam")]
 script = ExtResource("1_1jh6t")
 right_portal = NodePath("Exits/Portal2")
 left_portal = NodePath("Exits/Portal")
 mapGameState = 1
+cam = NodePath("CameraArm")
 
-[node name="CameraArm" type="Node3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.8424522, 0.5387707, 0, -0.5387707, 0.8424522, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraArm" groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
-projection = 1
-size = 24.0
-near = 0.017
-far = 84.78
+[node name="CameraArm" parent="." instance=ExtResource("2_d8dag")]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.812887, 0.58242065, 0, -0.58242065, 0.812887, 0, 1.5, -1.3411446)
 
 [node name="Terrain" type="Node3D" parent="."]
 

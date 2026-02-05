@@ -30,6 +30,7 @@ func _ready():
 	create_dragon_timer()
 	MusicManager.beat.connect(dragon_beat)
 	UserInterface.update_time(dragon_timer.time_left)
+	dragon_timer.timeout.connect(normalize_dragon_timer)
 	#reset_time()
 
 func dragon_beat():
@@ -67,7 +68,6 @@ func reset_bonus_time() -> void:
 	bonus_time_counter = 1
 
 func speed_up_dragon_timer():
-	dragon_timer.timeout.connect(normalize_dragon_timer)
 	Engine.time_scale = 4.0
 
 func normalize_dragon_timer():
@@ -136,7 +136,7 @@ func reset_game():
 	await get_tree().create_timer(1.0).timeout
 	loading_screen.queue_free()
 	
-	get_tree().change_scene_to_packed(MapManager.HOMEBASE)
+	get_tree().change_scene_to_packed(load("uid://cr1ydxfa4aiik"))
 
 func change_gamestate(new_gamestate:gameState):
 	currentGameState = new_gamestate
