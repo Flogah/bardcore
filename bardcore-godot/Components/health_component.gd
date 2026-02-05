@@ -87,8 +87,9 @@ func damage(amount: float):
 	if health <= 0:
 		health = 0
 		died.emit()
-		regeneration_tick_timer.stop()
-		time_till_regeneration_timer.stop()
+		if stat_comp:
+			regeneration_tick_timer.stop()
+			time_till_regeneration_timer.stop()
 
 func update_time_till_regeneration_timer() -> void:
 	time_till_regeneration_timer.wait_time = stat_comp.get_stat(stat_comp.stat_id.TIME_TILL_REGENERATION)
