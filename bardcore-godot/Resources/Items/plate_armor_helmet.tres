@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="item_resource" load_steps=6 format=3 uid="uid://vr015yoyqmjp"]
+
+[ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_j7t03"]
+[ext_resource type="PackedScene" uid="uid://dr6s2j13cvulh" path="res://BlenderScenes/Item_Helmet_Metal.blend" id="1_l5wo6"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_bpcuy"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="4_wlxh1"]
+
+[sub_resource type="Resource" id="Resource_3ir0s"]
+script = ExtResource("4_wlxh1")
+amount = 15.0
+operator = 1
+effected_stat = 10
+explanation = "+15 Armor"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[resource]
+script = ExtResource("1_j7t03")
+mesh = ExtResource("1_l5wo6")
+type = 1
+upgrades = Array[ExtResource("2_bpcuy")]([SubResource("Resource_3ir0s")])
+name = "Full Plate Helmet"
+metadata/_custom_type_script = "uid://b7fgxjqg7f181"
