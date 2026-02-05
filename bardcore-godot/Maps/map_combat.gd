@@ -3,11 +3,13 @@ class_name combat_map
 
 signal all_enemies_dead
 
+
 @export var right_portal:Portal
 @export var left_portal:Portal
 
 var enemies = []
 var portals = []
+
 
 @onready var enemy_nodes: Node3D = $Enemies
 @onready var exit_nodes: Node3D = $Exits
@@ -37,6 +39,8 @@ func connect_portals():
 
 func unlock_all_portals():
 	mapGameState = GameManager.gameState.post_combat
+	for bard in bards:
+		bard.full_restore()
 	for portal in portals:
 		portal.unlock()
 	
@@ -75,9 +79,12 @@ func spawn_players():
 		var cur_scene = MapManager.get_current_map()
 		if cur_scene:
 			cur_scene.add_child(player)
+			bards.append(player)
+			player.knocked_out.connect(check_for_game_over)
 			player.position = entrance
 			entrance.z += 2.0
 	
+	bards_spawned.emit()
 	if mapGameState == GameManager.gameState.combat:
 		lock_all_portals()
 
@@ -92,6 +99,13 @@ func check_for_surviving_enemies():
 			return
 	all_enemies_dead.emit()
 	print("all dead")
+
+func check_for_game_over():
+	for bard in bards:
+		if bard.can_attack:
+			return
+	
+	GameManager.speed_up_dragon_timer()
 
 func game_over_cinema():
 	game_over = true

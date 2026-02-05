@@ -66,6 +66,13 @@ func add_new_map_bonus_time() -> void:
 func reset_bonus_time() -> void:
 	bonus_time_counter = 1
 
+func speed_up_dragon_timer():
+	dragon_timer.timeout.connect(normalize_dragon_timer)
+	Engine.time_scale = 4.0
+
+func normalize_dragon_timer():
+	Engine.time_scale = 1.0
+
 func dragon_arrival():
 	MapManager.current_map.game_over_cinema()
 
