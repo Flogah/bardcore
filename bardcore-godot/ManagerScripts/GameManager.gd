@@ -80,7 +80,7 @@ func dragon_arrival():
 
 func dragon_death():
 	add_building_time(max_time)
-	reset_game()
+	game_over_and_reset()
 
 func reset_time():
 	#dragon_timer.stop()
@@ -125,16 +125,15 @@ func get_building_lvl(b_name: String) -> int:
 		return 0
 	return village_state[b_name]
 
-func reset_game():
+func game_over_and_reset():
 	var loading_screen = preload("res://UserInterface/loading_screen.tscn").instantiate()
 	get_tree().root.add_child(loading_screen)
+	loading_screen.populate_labels(max_time)
 	
 	reset_all_game()
-	
-	await get_tree().create_timer(1.0).timeout
-	loading_screen.queue_free()
-	
-	get_tree().change_scene_to_packed(load("uid://cr1ydxfa4aiik"))
+
+func reset_game():
+	reset_all_game()
 
 func reset_all_game():
 	reset_time()
