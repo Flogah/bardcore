@@ -42,7 +42,7 @@ var stat_upgrades: Dictionary[int, Array] = {} # Contains all stat_ids as keys a
 	# -- Health Stats --
 	stat_id.MAX_HEALTH: 100.0, #Maximum Amount of Health
 	stat_id.TIME_TILL_REGENERATION: 2.5, #Seconds till Regeneration starts after last hit
-	stat_id.REGENERATION_AMOUNT: 5.0, #Regeneration per delta time
+	stat_id.REGENERATION_AMOUNT: 5.0, #Regeneration per second
 	stat_id.IN_HEAL: 1.0, #Modifier applied on all incoming heals
 	stat_id.HEALTH_GAIN: 1.0, #Modifier applied on all positive health changes (incoming heals, regeneration, ...)
 	stat_id.IN_DAMAGE: 1.0, #Modifier applied on all negative health changes (hits, status-effect damage, ...)
@@ -119,7 +119,7 @@ func calculate_stat(stat_object: stat, s_id: stat_id) -> void:
 			for mod_upgrade in modifing_upgrades:
 				stat_value = mod_upgrade.apply(stat_value)
 				if mod_upgrade.dynamic: stat_object.dynamic = true
-	stat_object.modified = stat_value
+	stat_object.change_stat(stat_value)
 
 func sort_stat_upgrades_according_to_apply_prio(a: stat_upgrade, b: stat_upgrade) -> bool:
 	if a.apply_priority > b.apply_priority:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cj476uqn2kb0b"]
+[gd_scene load_steps=34 format=3 uid="uid://cj476uqn2kb0b"]
 
 [ext_resource type="Script" uid="uid://bb18oxxgsomp1" path="res://Enemy/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Material" uid="uid://ck4yc4xcgfqh0" path="res://Materials/Placeholders/enemy_red.tres" id="2_0rspp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://h117ub56kau7" path="res://States/Enemy/Threaten_Attack.gd" id="7_47ove"]
 [ext_resource type="PackedScene" uid="uid://be8ut3u87uxov" path="res://Components/telegraphing_component.tscn" id="7_glvfu"]
 [ext_resource type="Script" uid="uid://kcs6hfsjrphy" path="res://States/Enemy/EnemyAttack.gd" id="8_jovdv"]
+[ext_resource type="Script" uid="uid://ce2aqibjd1r6w" path="res://States/Enemy/EnemyDead.gd" id="9_rdorl"]
 [ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="11_ht3ht"]
 [ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="12_ht3ht"]
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="13_rdorl"]
@@ -191,6 +192,30 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CollisionShape3D:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Visual:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_1w3kn"]
 resource_name = "attack"
@@ -305,6 +330,33 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_sbh3k"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.48),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5707964, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_mqp78"]
@@ -486,6 +538,7 @@ tracks/8/keys = {
 _data = {
 &"RESET": SubResource("Animation_ht3ht"),
 &"attack": SubResource("Animation_1w3kn"),
+&"die": SubResource("Animation_sbh3k"),
 &"idle": SubResource("Animation_mqp78"),
 &"threaten": SubResource("Animation_rdorl")
 }
@@ -498,6 +551,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_8tegq")
 
 [node name="Visual" type="Node3D" parent="."]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -564,7 +618,7 @@ debug_color = Color(0, 0.5498251, 0.92603725, 0.41960785)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_md0e3")
-initial_state = NodePath("EnemyFollow")
+initial_state = NodePath("EnemyIdle")
 metadata/_custom_type_script = "uid://c1oy8va3logcp"
 
 [node name="EnemyFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player")]
@@ -586,6 +640,12 @@ script = ExtResource("8_jovdv")
 animation_player = NodePath("../../AnimationPlayer")
 attack_area = NodePath("../../AxeAttackEmitter")
 metadata/_custom_type_script = "uid://kcs6hfsjrphy"
+
+[node name="EnemyDead" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player", "receiver")]
+script = ExtResource("9_rdorl")
+animation_player = NodePath("../../AnimationPlayer")
+receiver = NodePath("../../hit_reciver_box/CollisionShape3D")
+metadata/_custom_type_script = "uid://ce2aqibjd1r6w"
 
 [node name="BloodParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032665014, 1.6581814, -0.007356882)
