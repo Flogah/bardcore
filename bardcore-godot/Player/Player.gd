@@ -69,6 +69,9 @@ func _physics_process(delta: float) -> void:
 		look_direction()
 	
 	velocity.y -= gravity * delta
+	
+	if !can_move:
+		velocity = Vector3.ZERO
 	move_and_slide()
 	
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
