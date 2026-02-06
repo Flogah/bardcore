@@ -23,6 +23,7 @@ size = Vector3(0.085, 0.335, 0.055)
 
 [node name="Instrument" type="Node3D" node_paths=PackedStringArray("attack_area", "vfx_spawnpoint", "combat_statemachine") groups=["Instrument"]]
 script = ExtResource("1_5u75h")
+weak_attack_cooldown = 1.0
 damage_multiplier = 2.0
 attack_area = NodePath("EffectArea")
 vfx_scene = ExtResource("2_pvdqr")
