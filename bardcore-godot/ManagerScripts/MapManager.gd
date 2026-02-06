@@ -26,7 +26,7 @@ var starting_map = preload("res://Maps/StartingMap.tscn")
 var current_map : Map
 var coming_from_left: bool = true
 var map_grid : Dictionary[Vector2i, Map] = {}
-var current_grid_position : Vector2i = Vector2i(0,0)
+var  current_grid_position: Vector2i = Vector2i(0,0)
 
 #func _ready() -> void:
 	#read_all_maps()
@@ -92,6 +92,7 @@ func unload_map():
 func load_map(pos: Vector2i = current_grid_position) -> void:
 	unload_map()
 	var root = get_tree().get_root()
+	current_grid_position = pos
 	var map_to_load = get_map(pos)
 	root.add_child.call_deferred(map_to_load)
 	current_grid_position = pos
