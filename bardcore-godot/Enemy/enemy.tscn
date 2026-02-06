@@ -546,7 +546,7 @@ _data = {
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("health_comp") groups=["Enemy"]]
 script = ExtResource("1_4ra3w")
 health_comp = NodePath("HealthComponent")
-move_speed = 250.0
+move_speed = 300.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
