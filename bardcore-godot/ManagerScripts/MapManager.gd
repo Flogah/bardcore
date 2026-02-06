@@ -26,7 +26,7 @@ var starting_map = preload("res://Maps/StartingMap.tscn")
 var current_map : Map
 var coming_from_left: bool = true
 var map_grid : Dictionary[Vector2i, Map] = {}
-var  current_grid_position: Vector2i = Vector2i(0,0)
+var  current_grid_position: Vector2i = Vector2i(1,0)
 
 #func _ready() -> void:
 	#read_all_maps()

@@ -12,8 +12,8 @@ func physics_update(_delta: float) -> void:
 	var input_dir = input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	
 	if input_dir:
-		player.velocity.x = input_dir.x * player.stat_comp.get_stat(stat_component.stat_id.MOVEMENT_SPEED)
-		player.velocity.z = input_dir.y * player.stat_comp.get_stat(stat_component.stat_id.MOVEMENT_SPEED)
+		player.velocity.x = input_dir.x * player.stat_comp.get_stat(stat_component.stat_id.MOVEMENT_SPEED) * _delta
+		player.velocity.z = input_dir.y * player.stat_comp.get_stat(stat_component.stat_id.MOVEMENT_SPEED) * _delta
 		
 		var look_dir = input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
 		if !look_dir and input.device > -1:

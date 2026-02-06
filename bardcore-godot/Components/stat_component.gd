@@ -36,7 +36,7 @@ var stat_upgrades: Dictionary[int, Array] = {} # Contains all stat_ids as keys a
 @export var stats: Dictionary = { #Contains Stat_id: int -> base_value: float before game and converts on_ready to Stat_id: int -> stat_object: stat
 	
 	# -- Movement Stats --
-	stat_id.MOVEMENT_SPEED: 10.0, #Maximum Move Speed
+	stat_id.MOVEMENT_SPEED: 500.0, #Maximum Move Speed
 	stat_id.MOVEMENT_ACCELERATION: 0.5, #Amount of Acceleration
 	
 	# -- Health Stats --
