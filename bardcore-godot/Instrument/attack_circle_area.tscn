@@ -51,6 +51,7 @@ scale_curve = SubResource("CurveTexture_31l7u")
 size = Vector2(0.3, 0.3)
 
 [node name="AttackCircleArea" type="Node3D" node_paths=PackedStringArray("attack_sound")]
+transform = Transform3D(0.6, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 0, 0)
 script = ExtResource("1_xv3mu")
 attack_sound = NodePath("AudioStreamPlayer3D")
 
