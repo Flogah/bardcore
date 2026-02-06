@@ -77,7 +77,7 @@ invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdorl"]
-size = Vector3(3.5429688, 1, 3.631775)
+size = Vector3(3.5429688, 1, 4.5766296)
 
 [sub_resource type="Animation" id="Animation_ht3ht"]
 length = 0.001
@@ -577,7 +577,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_47ove")
 
 [node name="AttackEffect" type="MeshInstance3D" parent="Visual"]
-transform = Transform3D(1.8471302, -0.09597335, 0, 0.19612971, 0.90386754, 0, 0, 0, 1.862334, 0, 0.5633249, -3.0570927)
+transform = Transform3D(1.8471302, -0.09597335, 0, 0.1961297, 0.9038675, 0, 0, 0, 1.8623339, 0, 0.56332487, -3.9457858)
 visible = false
 mesh = SubResource("PlaneMesh_ht3ht")
 surface_material_override/0 = SubResource("StandardMaterial3D_rdorl")
@@ -674,7 +674,7 @@ targets = Array[int]([0])
 metadata/_custom_type_script = "uid://q46hat3a6486"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AxeAttackEmitter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0227621, -1.5373464)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0227621, -2.0097737)
 shape = SubResource("BoxShape3D_rdorl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

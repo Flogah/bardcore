@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_fqn2b"]
 script = ExtResource("3_bis8m")
-amount = 5.0
+amount = 50.0
 operator = 1
 effected_stat = 0
 apply_priority = 40

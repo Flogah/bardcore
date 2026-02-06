@@ -15,6 +15,7 @@ var combat_only_maps = [
 
 var combat_and_treasure_maps = [
 	preload("res://Maps/CombatMaps/combat_3.tscn"),
+	preload("res://Maps/CombatMaps/combat_4.tscn")
 ]
 
 var treasure_maps = [
