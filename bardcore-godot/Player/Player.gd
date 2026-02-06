@@ -77,7 +77,8 @@ func _physics_process(delta: float) -> void:
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
 		try_interact()
 	
-	if MultiplayerInput.is_action_just_pressed(device, "escape"):
+	# only keyboard can escape to main menu
+	if MultiplayerInput.is_action_just_pressed(-1, "escape"):
 		GameManager.save_village_state()
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
