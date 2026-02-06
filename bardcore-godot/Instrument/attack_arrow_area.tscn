@@ -20,7 +20,6 @@ size = Vector3(0.461792, 15.983612, 1.7919922)
 
 [sub_resource type="Resource" id="Resource_bviwq"]
 script = ExtResource("3_77u0p")
-amount = 5.0
 invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 

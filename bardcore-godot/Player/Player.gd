@@ -5,8 +5,17 @@ signal leave
 signal knocked_out
 signal back_on_feet
 
-const TRUMPET = preload("uid://515m7a070dcx")
-const VIOLIN = preload("uid://lxalv8rqbk0c")
+const TRUMPET = preload("res://Instrument/trumpet.tscn")
+const FIDEL = preload("res://Instrument/Fidel.tscn")
+
+const LOVER = preload("res://BlenderScenes/lover_in_pose_2.tscn")
+
+enum bard_type {
+	lover
+}
+
+@onready var type: bard_type
+var bard_model: Node3D
 
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
@@ -54,10 +63,8 @@ func init(player_num: int):
 
 func _ready() -> void:
 	if !equipped_instrument:
-		if player%2 > 0:
-			add_instrument(VIOLIN)
-		else:
-			add_instrument(TRUMPET)
+		add_instrument(TRUMPET)
+	equip_next_bard()
 	set_colors()
 
 func _physics_process(delta: float) -> void:
@@ -77,7 +84,14 @@ func _physics_process(delta: float) -> void:
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
 		try_interact()
 	
-	if MultiplayerInput.is_action_just_pressed(device, "escape"):
+	if GameManager.currentGameState == GameManager.gameState.home:
+		if MultiplayerInput.is_action_just_pressed(device, "next_instrument"):
+			equip_next_instrument()
+		if MultiplayerInput.is_action_just_pressed(device, "next_bard"):
+			equip_next_bard()
+	
+	# only keyboard can escape to main menu
+	if MultiplayerInput.is_action_just_pressed(-1, "escape"):
 		GameManager.save_village_state()
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
@@ -134,6 +148,20 @@ func add_instrument(instrument):
 	instrument_instance.position = instrument_spawn.position
 	add_child(instrument_instance)
 	equipped_instrument = instrument_instance
+
+func equip_next_instrument():
+	if equipped_instrument.type == Instrument.instrument_type.trumpet:
+		add_instrument(FIDEL)
+	else:
+		add_instrument(TRUMPET)
+
+func equip_next_bard():
+	if bard_model:
+		bard_model.queue_free()
+	var new_model = LOVER.instantiate()
+	visual.add_child(new_model)
+	bard_model = new_model
+	type = bard_type.lover
 
 func set_colors():
 	var col = player_colors[player]
