@@ -17,6 +17,7 @@ height = 5.270996
 
 [node name="Instrument" type="Node3D" node_paths=PackedStringArray("attack_area", "vfx_spawnpoint", "combat_statemachine") groups=["Instrument"]]
 script = ExtResource("1_e8i04")
+weak_attack_cooldown = 1.0
 attack_area = NodePath("EffectArea")
 vfx_scene = ExtResource("2_h8dbk")
 vfx_spawnpoint = NodePath("VFXSpawn")

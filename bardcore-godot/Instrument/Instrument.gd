@@ -13,10 +13,20 @@ var input
 @export var vfx_spawnpoint: Node3D
 @export var combat_statemachine: StateMachine
 
+var attack_cooldown_timer: Timer
+
 func _ready() -> void:
 	equip()
+	setup_cd_timer()
 
 func equip():
 	player = get_parent()
 	player_num = player.player
 	input = player.input
+
+func setup_cd_timer():
+	print("No cooldown timer found. Creating new timer.")
+	attack_cooldown_timer = Timer.new()
+	add_child(attack_cooldown_timer)
+	attack_cooldown_timer.one_shot = true
+	attack_cooldown_timer.wait_time = 5.0
