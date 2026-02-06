@@ -17,9 +17,11 @@ var combat_and_treasure_maps = [
 	preload("res://Maps/CombatMaps/combat_3.tscn"),
 ]
 
-var tresure_maps = [
+var treasure_maps = [
 	preload("res://Maps/CombatMaps/treasure_room.tscn"),
 ]
+
+var starting_map = preload("res://Maps/StartingMap.tscn")
 
 var current_map : Map
 var coming_from_left: bool = true
@@ -57,9 +59,12 @@ func get_map(pos : Vector2i) -> Map:
 	#return rand_map
 
 func random_map() -> PackedScene:
+	if current_grid_position == Vector2i(0,0):
+		return starting_map
+	
 	var rand = randi_range(0, treasure_maps_weight+combat_only_maps_weight+combat_and_treasure_maps_weight)
 	if rand <= treasure_maps_weight:
-		return random_out_array(tresure_maps)
+		return random_out_array(treasure_maps)
 	elif rand <= treasure_maps_weight+combat_only_maps_weight:
 		return random_out_array(combat_only_maps)
 	else:
