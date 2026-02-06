@@ -90,10 +90,7 @@ func _physics_process(delta: float) -> void:
 		if MultiplayerInput.is_action_just_pressed(device, "next_bard"):
 			equip_next_bard()
 	
-	# only keyboard can escape to main menu
-	if MultiplayerInput.is_action_just_pressed(-1, "escape"):
-		GameManager.save_village_state()
-		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
+	
 
 func point_to_mouse():
 	if !can_move:

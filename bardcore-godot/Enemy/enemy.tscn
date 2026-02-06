@@ -635,6 +635,7 @@ metadata/_custom_type_script = "uid://ddb14bq4ftq7b"
 [node name="ThreatenAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("7_47ove")
 animation_player = NodePath("../../AnimationPlayer")
+threatening_time = 0.4
 metadata/_custom_type_script = "uid://h117ub56kau7"
 
 [node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player", "attack_area")]
