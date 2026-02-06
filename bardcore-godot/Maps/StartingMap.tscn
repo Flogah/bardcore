@@ -1,0 +1,168 @@
+[gd_scene load_steps=19 format=3 uid="uid://bb0l0xx0w4kq1"]
+
+[ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_4mixn"]
+[ext_resource type="PackedScene" uid="uid://c8tvjd728x7q" path="res://Maps/camera_system.tscn" id="2_mwsty"]
+[ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="3_kwpyv"]
+[ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="4_yidvv"]
+[ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="5_4ei4i"]
+[ext_resource type="PackedScene" uid="uid://b2awxuj51p6sk" path="res://Meshes/Nature/bush_l.tscn" id="6_q27bx"]
+[ext_resource type="PackedScene" uid="uid://xcv8itqnlrlh" path="res://Meshes/Nature/bush_s.tscn" id="7_qxm68"]
+[ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="9_iaosb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yo7wb"]
+size = Vector2(35, 35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3t7c"]
+albedo_texture = ExtResource("3_kwpyv")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kk8mo"]
+size = Vector2(150, 150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74fqv"]
+albedo_color = Color(0.08111008, 0.1239166, 0.018113298, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8xddd"]
+sky_top_color = Color(0.38083324, 0.562918, 0.7395231, 1)
+sky_horizon_color = Color(0.7367734, 0.7745445, 0.80969584, 1)
+ground_horizon_color = Color(0.7367734, 0.7745445, 0.80969584, 1)
+
+[sub_resource type="Sky" id="Sky_twr7n"]
+sky_material = SubResource("ProceduralSkyMaterial_8xddd")
+
+[sub_resource type="Environment" id="Environment_58y1m"]
+background_mode = 2
+sky = SubResource("Sky_twr7n")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rf6ay"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4m8q"]
+size = Vector3(37.875244, 7.7929688, 2.0117188)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vycma"]
+size = Vector3(16.576172, 7.7929688, 2.0117188)
+
+[node name="StartingMap" type="Node3D" node_paths=PackedStringArray("right_portal", "cam")]
+script = ExtResource("1_4mixn")
+right_portal = NodePath("Exits/Portal2")
+mapGameState = 2
+cam = NodePath("CameraArm")
+
+[node name="CameraArm" parent="." instance=ExtResource("2_mwsty")]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.812887, 0.58242065, 0, -0.58242065, 0.812887, 0, 1.5, -1.3411446)
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
+mesh = SubResource("PlaneMesh_yo7wb")
+surface_material_override/0 = SubResource("StandardMaterial3D_k3t7c")
+
+[node name="Background" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+mesh = SubResource("PlaneMesh_kk8mo")
+surface_material_override/0 = SubResource("StandardMaterial3D_74fqv")
+
+[node name="pumpkin_trees" parent="Terrain" instance=ExtResource("4_yidvv")]
+
+[node name="DirectionalLight3D" parent="Terrain" instance=ExtResource("5_4ei4i")]
+transform = Transform3D(0.5254748, -0.6902424, 0.49743515, 0.08959865, 0.62630445, 0.77441263, -0.8460782, -0.3623648, 0.39095202, 0, 5.458948, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
+environment = SubResource("Environment_58y1m")
+
+[node name="Boundaries" type="Node3D" parent="."]
+visible = false
+
+[node name="Floor" type="StaticBody3D" parent="Boundaries"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Floor"]
+visible = false
+shape = SubResource("WorldBoundaryShape3D_rf6ay")
+
+[node name="Wall" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.476318)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_t4m8q")
+
+[node name="Wall2" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 17.523682)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_t4m8q")
+
+[node name="Wall3" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17.463135, 0, 10.792434)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_vycma")
+
+[node name="Wall4" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17.463135, 0, -10.704235)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_vycma")
+
+[node name="Wall5" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.421297, 0, -10.704235)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_vycma")
+
+[node name="Wall6" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.421297, 0, 10.792435)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/Wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_vycma")
+
+[node name="Bits" type="Node3D" parent="."]
+
+[node name="Bush_L" parent="Bits" instance=ExtResource("6_q27bx")]
+transform = Transform3D(-0.7844765, 0, 1.0573393, 0, 1.316575, 0, -1.0573393, 0, -0.7844765, 6.7534685, 0.4203822, -2.5899487)
+
+[node name="Bush_L3" parent="Bits" instance=ExtResource("6_q27bx")]
+transform = Transform3D(-1.2317389, 0, 1.660172, 0, 2.0672088, 0, -1.660172, 0, -1.2317389, -16.478321, 0.4203822, -2.0958834)
+
+[node name="Bush_L4" parent="Bits" instance=ExtResource("6_q27bx")]
+transform = Transform3D(1.9309636, 0, -0.73805857, 0, 2.0672085, 0, 0.73805857, 0, 1.9309636, -18.064838, 0.4203822, 1.2293153)
+
+[node name="Bush_L5" parent="Bits" instance=ExtResource("6_q27bx")]
+transform = Transform3D(-1.8192055, 0, 0.9817542, 0, 2.0672085, 0, -0.9817542, 0, -1.8192055, -17.202387, 0.4203822, 4.2052145)
+
+[node name="Bush_L2" parent="Bits" instance=ExtResource("6_q27bx")]
+transform = Transform3D(-0.44872004, 0, 0.60479736, 0, 0.75308, 0, -0.60479736, 0, -0.44872004, -11.014434, 0.4203822, 11.140231)
+
+[node name="Bush_S" parent="Bits" instance=ExtResource("7_qxm68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.070589, 9.536743e-07, -5.232784)
+
+[node name="Bush_S6" parent="Bits" instance=ExtResource("7_qxm68")]
+transform = Transform3D(-0.85851276, 0, 0.5127922, 0, 1, 0, -0.5127922, 0, -0.85851276, -9.43815, 9.536743e-07, 10.419328)
+
+[node name="Bush_S4" parent="Bits" instance=ExtResource("7_qxm68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.890309, 9.536743e-07, 9.0594635)
+
+[node name="Bush_S2" parent="Bits" instance=ExtResource("7_qxm68")]
+transform = Transform3D(0.06299954, 0, -0.99801356, 0, 1, 0, 0.99801356, 0, 0.06299954, 3.6515737, 0, -4.9310145)
+
+[node name="Bush_S5" parent="Bits" instance=ExtResource("7_qxm68")]
+transform = Transform3D(0.06299954, 0, -0.99801356, 0, 1, 0, 0.99801356, 0, 0.06299954, 11.103245, 0, -10.516577)
+
+[node name="Bush_S3" parent="Bits" instance=ExtResource("7_qxm68")]
+transform = Transform3D(-0.9898731, 0, -0.14195517, 0, 1, 0, 0.14195517, 0, -0.9898731, 4.0959654, 0, -5.767614)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Exits" type="Node3D" parent="."]
+
+[node name="Portal2" parent="Exits" instance=ExtResource("9_iaosb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 0)
+
+[node name="Spawn" type="Node3D" parent="Exits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.739556, 0, 0)

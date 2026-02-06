@@ -69,7 +69,11 @@ func spawn_players():
 	
 	var entrance
 	if MapManager.coming_from_left:
-		entrance = left_portal.spawn_center.global_position
+		if left_portal:
+			entrance = left_portal.spawn_center.global_position
+		else:
+			var spawn = $Exits/Spawn
+			entrance = spawn.global_position
 	else:
 		entrance = right_portal.spawn_center.global_position
 	
