@@ -84,8 +84,11 @@ func _physics_process(delta: float) -> void:
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
 		try_interact()
 	
-	if MultiplayerInput.is_action_just_pressed(device, "next_instrument") and GameManager.currentGameState == GameManager.gameState.home:
-		equip_next_instrument()
+	if GameManager.currentGameState == GameManager.gameState.home:
+		if MultiplayerInput.is_action_just_pressed(device, "next_instrument"):
+			equip_next_instrument()
+		if MultiplayerInput.is_action_just_pressed(device, "next_bard"):
+			equip_next_bard()
 	
 	# only keyboard can escape to main menu
 	if MultiplayerInput.is_action_just_pressed(-1, "escape"):
