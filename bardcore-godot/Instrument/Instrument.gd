@@ -7,11 +7,13 @@ var input
 
 @export var weak_attack_cooldown:float = 3.0
 @export var strong_attack_cooldown:float = 2.0
+@export var damage_multiplier:float = 1.0
 
 @export var attack_area: Area3D
 @export var vfx_scene: PackedScene
 @export var vfx_spawnpoint: Node3D
 @export var combat_statemachine: StateMachine
+
 
 var attack_cooldown_timer: Timer
 
