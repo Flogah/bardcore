@@ -5,6 +5,11 @@ var player : Player
 var player_num: int
 var input
 
+enum instrument_type {
+	trumpet,
+	fidel
+}
+@export var type: instrument_type
 @export var weak_attack_cooldown:float = 3.0
 @export var strong_attack_cooldown:float = 2.0
 @export var damage_multiplier:float = 1.0
