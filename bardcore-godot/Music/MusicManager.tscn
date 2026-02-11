@@ -8,7 +8,6 @@ script = ExtResource("1_txsen")
 rhythm_notifier = NodePath("RhythmNotifier")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
 autoplay = true
 
 [node name="RhythmNotifier" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player")]

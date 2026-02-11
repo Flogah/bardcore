@@ -8,14 +8,16 @@ signal back_on_feet
 const TRUMPET = preload("res://Instrument/trumpet.tscn")
 const FIDEL = preload("res://Instrument/Fidel.tscn")
 
-const LOVER = preload("res://BlenderScenes/lover_in_pose_2.tscn")
+@onready var lover_model: Node3D = $Visual/lover_in_pose2
+@onready var relic_model: Node3D = $Visual/drinker_fidel
+
 
 enum bard_type {
-	lover
+	lover,
+	relic
 }
 
 @onready var type: bard_type
-var bard_model: Node3D
 
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
@@ -64,7 +66,7 @@ func init(player_num: int):
 func _ready() -> void:
 	if !equipped_instrument:
 		add_instrument(TRUMPET)
-	equip_next_bard()
+	type == bard_type.lover
 	set_colors()
 
 func _physics_process(delta: float) -> void:
@@ -153,12 +155,14 @@ func equip_next_instrument():
 		add_instrument(TRUMPET)
 
 func equip_next_bard():
-	if bard_model:
-		bard_model.queue_free()
-	var new_model = LOVER.instantiate()
-	visual.add_child(new_model)
-	bard_model = new_model
-	type = bard_type.lover
+	if type == bard_type.relic:
+		relic_model.hide()
+		lover_model.show()
+		type = bard_type.lover
+	elif type == bard_type.lover:
+		lover_model.hide()
+		relic_model.show()
+		type = bard_type.relic
 
 func set_colors():
 	var col = player_colors[player]
