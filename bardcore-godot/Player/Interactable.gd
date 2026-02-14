@@ -6,6 +6,8 @@ var closest_hands: Array[Area3D]
 
 func _ready() -> void:
 	# Only exist in interactable layer and no mask:
+	monitoring = false
+	monitorable = true
 	set_collision_layer_value(1, false)
 	set_collision_layer_value(4, true)
 	set_collision_mask_value(1, false)

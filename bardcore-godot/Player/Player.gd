@@ -30,6 +30,7 @@ var bard_model: Node3D
 @export var stat_comp: stat_component
 @export var inventory: inventory_component
 @export var health_comp: health_component
+@export var player_hands: PlayerHands
 
 @export var animation_player: AnimationPlayer
 @export var hitbox: CollisionShape3D
@@ -177,15 +178,12 @@ func set_colors():
 func try_interact():
 	if !can_interact:
 		return
-	
-	var interactables = interaction_area.get_overlapping_areas()
-	for thing in interactables:
-		var ia: Interactable = thing.owner
-		if ia is droppable_item:
-			inventory.pickup(ia)
-			return
+	var closest_ia: Interactable = player_hands.closest_interactable
+	if is_instance_valid(closest_ia):
+		if closest_ia is droppable_item:
+			inventory.pickup(closest_ia)
 		else:
-			ia.interact()
+			closest_ia.interact()
 
 func _on_health_component_died() -> void:
 	hitbox.disabled = true
