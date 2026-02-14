@@ -368,7 +368,10 @@ _data = {
 &"level2_to_level3": SubResource("Animation_wvfqc")
 }
 
-[node name="Building" type="Node3D" node_paths=PackedStringArray("level_0", "level_1", "level_2", "level_3", "level_4")]
+[node name="Building" type="Area3D" node_paths=PackedStringArray("level_0", "level_1", "level_2", "level_3", "level_4")]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
 script = ExtResource("1_gk6qy")
 level_0 = NodePath("Level0")
 level_1 = NodePath("Level1")
@@ -376,13 +379,8 @@ level_2 = NodePath("Level2")
 level_3 = NodePath("Level3")
 level_4 = NodePath("Level4")
 
-[node name="InteractionArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0, 0)
-collision_layer = 8
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64483905, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0.64483905, 0)
 shape = SubResource("SphereShape3D_67fxh")
 
 [node name="Collision" type="StaticBody3D" parent="."]
@@ -491,6 +489,3 @@ visible = false
 libraries = {
 &"": SubResource("AnimationLibrary_y52u6")
 }
-
-[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
-[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
