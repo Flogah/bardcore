@@ -2,7 +2,7 @@ extends State
 class_name ThreatenAttack
 
 @export var animation_player: AnimationPlayer
-@export var threatening_time: float = .5
+@export var threatening_time: float = .2
 
 func enter(previous_state_path: String, data := {}) -> void:
 	animation_player.play("threaten")

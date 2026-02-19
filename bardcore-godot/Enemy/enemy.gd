@@ -8,7 +8,7 @@ var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var visual: Node3D = $Visual
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var statemachine = $StateMachine
-
+@export var health_comp: health_component
 @export var move_speed: float = 2
 
 var target: Player
@@ -36,7 +36,13 @@ func squish():
 	visual.scale.y = .6
 
 func engage():
+	var player_num = PlayerManager.player_nodes.size()
+	var new_max_health = health_comp.max_health
+	for num in player_num:
+		new_max_health *= 1.2
+	health_comp.set_health(new_max_health)
 	statemachine._transition_to_next_state("EnemyFollow")
+	
 
 func target_bard():
 	if !target:

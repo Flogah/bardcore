@@ -21,8 +21,8 @@ func physics_update(_delta: float) -> void:
 	owner.look_at(owner.target.global_position)
 	
 	var direction = (owner.target.global_position - owner.global_position)
-	owner.velocity.x = direction.normalized().x * owner.move_speed
-	owner.velocity.z = direction.normalized().z * owner.move_speed
+	owner.velocity.x = direction.normalized().x * owner.move_speed * _delta
+	owner.velocity.z = direction.normalized().z * owner.move_speed * _delta
 	
 	if direction.length() < threat_range:
 		finished.emit("ThreatenAttack")

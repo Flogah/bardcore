@@ -77,7 +77,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qbut0")
 
 [node name="Background" type="MeshInstance3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11501503, -0.01, -0.051662445)
-visible = false
 mesh = SubResource("PlaneMesh_ljco0")
 surface_material_override/0 = SubResource("StandardMaterial3D_2oixm")
 

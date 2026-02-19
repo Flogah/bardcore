@@ -33,6 +33,12 @@ func _ready():
 	UserInterface.update_time(dragon_timer.time_left)
 	#reset_time()
 
+func _physics_process(_delta: float) -> void:
+	# only keyboard can escape to main menu
+	if MultiplayerInput.is_action_just_pressed(-1, "escape"):
+		GameManager.save_village_state()
+		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
+
 func dragon_beat():
 	UserInterface.update_time(dragon_timer.time_left)
 
@@ -137,7 +143,7 @@ func reset_all_game():
 	reset_time()
 	MapManager.reset()
 	MusicManager.reset()
-	
+	max_time = 0
 	reset_bonus_time()
 
 func change_gamestate(new_gamestate:gameState):

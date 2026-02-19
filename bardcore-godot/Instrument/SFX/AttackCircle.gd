@@ -15,7 +15,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func setup_attack_area():
 	attackArea = ATTACK_CIRCLE_AREA.instantiate()
-	var scale_mult: float = owner.get_parent().stat_comp.get_stat(stat_component.stat_id.ANGLE) + owner.get_parent().stat_comp.get_stat(stat_component.stat_id.RANGE) * 0.65
+	var scale_mult: float = owner.get_parent().stat_comp.get_stat(stat_component.stat_id.ANGLE) + owner.get_parent().stat_comp.get_stat(stat_component.stat_id.RANGE) * 0.4
 	attackArea.scale.x *= scale_mult
 	attackArea.scale.z *= scale_mult 
 	var effect: hit_effect = hit_effect.new()

@@ -78,7 +78,7 @@ shape = ExtResource("5_a5c61")
 [node name="AbilityCone" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(0.4200223, 0, -0.90751386, 0, 1, 0, 0.90751386, 0, 0.4200223, 0, 0, 0)
 stream = ExtResource("5_tlcps")
-volume_db = 10.0
+unit_size = 15.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(6.025799, 0, 0, 0, -2.615866e-07, -0.014115618, 0, 5.9844036, -6.170132e-10, 0, -1.6142532, -2.5807853)
