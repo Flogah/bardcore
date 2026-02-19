@@ -9,16 +9,11 @@ var attack_cooldown_timer: Timer
 var attackArea
 
 func enter(previous_state_path: String, data := {}) -> void:
-	if !attack_cooldown_timer:
-		setup_cd()
-	  
-	if !attack_cooldown_timer.is_stopped():
-		#print("Attack is still on cooldown. Time left: " + str(attack_cooldown_timer.time_left))
-		finished.emit("Idle")
-		return
-	
-	attack_cooldown_timer.start(1.0)
-	#attackArea.global_position = attack_spawn.global_position
+	owner.attack_cooldown_timer.timeout.connect(end_attack)
+	owner.attack_cooldown_timer.start(owner.weak_attack_cooldown)
+	setup_attack_area()
+
+func setup_attack_area():
 	attackArea = ATTACK_CONE_AREA.instantiate()
 	attackArea.scale.x *= owner.get_parent().stat_comp.get_stat(stat_component.stat_id.ANGLE)
 	attackArea.scale.z *= owner.get_parent().stat_comp.get_stat(stat_component.stat_id.RANGE)
@@ -27,21 +22,14 @@ func enter(previous_state_path: String, data := {}) -> void:
 	effect.type = effect.effect_type.ATTACK
 	attackArea.get_child(0).interaction_effect = effect
 	MapManager.current_map.add_child(attackArea)
-	setup_attack_area()
-	
-	finished.emit("Idle")
-	#place_sound.play()
-
-func setup_attack_area():
 	attackArea.global_position = attack_spawn.global_position
 	attackArea.rotation = attack_spawn.global_rotation
 	attackArea.set_color(owner.player_num)
 	await get_tree().create_timer(.01).timeout
 	attackArea.activate()
 
-func setup_cd():
-	print("No cooldown timer found. Creating new timer.")
-	attack_cooldown_timer = Timer.new()
-	add_child(attack_cooldown_timer)
-	attack_cooldown_timer.one_shot = true
-	attack_cooldown_timer.wait_time = 1.5
+func end_attack():
+	finished.emit("Idle")
+
+func exit():
+	owner.attack_cooldown_timer.timeout.disconnect(end_attack)

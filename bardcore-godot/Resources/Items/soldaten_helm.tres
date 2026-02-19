@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="item_resource" load_steps=6 format=3 uid="uid://dllms1y7r3ljh"]
+[gd_resource type="Resource" script_class="item_resource" load_steps=7 format=3 uid="uid://dllms1y7r3ljh"]
 
+[ext_resource type="PackedScene" uid="uid://dr6s2j13cvulh" path="res://BlenderScenes/Item_Helmet_Metal.blend" id="1_1cowb"]
 [ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_ha36r"]
 [ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_jmsiv"]
 [ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_jmsiv"]
@@ -24,6 +25,7 @@ metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]
 script = ExtResource("1_ha36r")
+mesh = ExtResource("1_1cowb")
 type = 1
 upgrades = Array[ExtResource("2_jmsiv")]([SubResource("Resource_1cowb"), SubResource("Resource_7qiyi")])
 name = "Soldaten Helm"

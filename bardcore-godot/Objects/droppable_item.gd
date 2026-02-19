@@ -60,10 +60,8 @@ func update_item_label() -> void:
 		label_text += "\n" + _upgrade.explanation
 	item_label_text = label_text
 
+func display_hint() -> void:
+	if !hint: hint = UserInterface.create_hint(global_position, item_label_text, true)
 
-func _on_area_3d_area_entered(_area: Area3D) -> void:
-	if hint: return
-	hint = UserInterface.create_hint(global_position, item_label_text, true)
-
-func _on_area_3d_area_exited(_area: Area3D) -> void:
+func remove_hint() -> void:
 	if hint: hint.queue_free()

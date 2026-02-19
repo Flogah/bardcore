@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="item_resource" load_steps=5 format=3 uid="uid://pp71fqutj6f8"]
+[gd_resource type="Resource" script_class="item_resource" load_steps=6 format=3 uid="uid://pp71fqutj6f8"]
 
 [ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_83p75"]
+[ext_resource type="PackedScene" uid="uid://ql4r4c81i6hj" path="res://BlenderScenes/Item_Boot_Metal.blend" id="1_fxn6p"]
 [ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_0di0p"]
 [ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_0di0p"]
 
@@ -15,6 +16,7 @@ metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [resource]
 script = ExtResource("1_83p75")
+mesh = ExtResource("1_fxn6p")
 type = 3
 upgrades = Array[ExtResource("2_0di0p")]([SubResource("Resource_fxn6p")])
 name = "Soldaten Stiefel"

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="item_resource" load_steps=7 format=3 uid="uid://djk8m452ol7cx"]
+
+[ext_resource type="PackedScene" uid="uid://bsvogd4medf7k" path="res://BlenderScenes/Item_Ring_Gold_Blue.blend" id="1_0l4vb"]
+[ext_resource type="Script" uid="uid://b7fgxjqg7f181" path="res://Resources/_Resource_Scripts/item_resource.gd" id="1_3oqio"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_m6awl"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="4_ycpia"]
+
+[sub_resource type="Resource" id="Resource_qm4ky"]
+script = ExtResource("4_ycpia")
+amount = 10.0
+operator = 1
+effected_stat = 3
+explanation = "+10 Seconds till Regeneration"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_2phie"]
+script = ExtResource("4_ycpia")
+amount = 20.0
+operator = 1
+effected_stat = 4
+explanation = "+20 Regenaration"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[resource]
+script = ExtResource("1_3oqio")
+mesh = ExtResource("1_0l4vb")
+upgrades = Array[ExtResource("2_m6awl")]([SubResource("Resource_qm4ky"), SubResource("Resource_2phie")])
+name = "Ring of Patience"
+metadata/_custom_type_script = "uid://b7fgxjqg7f181"

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8tvjd728x7q"]
+
+[ext_resource type="Script" uid="uid://bdawri1fbyvp5" path="res://Maps/camera_system.gd" id="1_0db1m"]
+
+[node name="CameraArm" type="Node3D"]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.812887, 0.58242065, 0, -0.58242065, 0.812887, 0, 0, 0)
+script = ExtResource("1_0db1m")
+
+[node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.53)
+projection = 1
+size = 24.018
+near = 2.907
+far = 68.93
+
+[node name="ShakeTimer" type="Timer" parent="."]
