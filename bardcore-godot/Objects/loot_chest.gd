@@ -15,22 +15,16 @@ func interact():
 		open()
 
 func _ready() -> void:
-	MapManager.current_map.bards_spawned.connect(get_ready)
-
-func get_ready():
 	read_all_loot()
-	if GameManager.currentGameState == GameManager.gameState.post_combat:
-		unlock()
+	var map = MapManager.get_current_map()
+	if map is combat_map: 
+		map.all_enemies_dead.connect(unlock)
 	else:
-		GameManager.game_state_changed.connect(check_for_safety)
+		unlock()
 
 func read_all_loot():
 	for path in ResourceLoader.list_directory("res://Resources/Items"):
 		item_resources.append(load("res://Resources/Items/" + path))
-
-func check_for_safety(gameState: GameManager.gameState):
-	if gameState != GameManager.gameState.combat:
-		unlock()
 
 func unlock() -> void:
 	locked = false
@@ -91,11 +85,11 @@ func _throw_item(item: Node3D) -> void:
 	tween.tween_property(item, "global_position", end_pos, duration * 0.5)
 
 
-func display_hint() -> void:
+func _on_area_3d_area_entered(_area: Area3D) -> void:
 	if hint: return
 	if locked: return
 	hint = UserInterface.create_hint(global_position, "Kiste", true)
 
 
-func remove_hint() -> void:
+func _on_area_3d_area_exited(_area: Area3D) -> void:
 	if hint: hint.queue_free()

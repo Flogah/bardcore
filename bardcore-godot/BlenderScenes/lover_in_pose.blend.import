@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://qbwq3hbeiewm"
-path="res://.godot/imported/lover_in_pose.blend-7fe4f72bac0985136cd1da296e8b462e.scn"
+valid=false
 
 [deps]
 
 source_file="res://BlenderScenes/lover_in_pose.blend"
-dest_files=["res://.godot/imported/lover_in_pose.blend-7fe4f72bac0985136cd1da296e8b462e.scn"]
 
 [params]
 

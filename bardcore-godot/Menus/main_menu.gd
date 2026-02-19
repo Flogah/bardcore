@@ -1,8 +1,7 @@
 extends Control
 
 func _on_play_button_pressed() -> void:
-	GameManager.reset_game()
-	get_tree().change_scene_to_packed(load("uid://cr1ydxfa4aiik"))
+	get_tree().change_scene_to_packed(MapManager.HOMEBASE)
 	queue_free()
 
 func _on_quit_button_pressed() -> void:

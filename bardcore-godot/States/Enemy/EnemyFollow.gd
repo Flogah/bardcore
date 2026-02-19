@@ -1,34 +1,14 @@
 extends State
 class_name EnemyFollow
 
-@export var animation_player: AnimationPlayer
-
-var threat_range: float = 2.0
+var follow_target:CharacterBody3D
 
 func enter(_previous_state_path: String, _data := {}) -> void:
-	animation_player.play("idle")
-	
-	owner.target_bard()
+	var target = PlayerManager.player_nodes[randi_range(0, PlayerManager.player_nodes.size()-1)]
+	follow_target = target
 
 func physics_update(_delta: float) -> void:
-	if owner.dead:
-		finished.emit("EnemyDead")
-		return
-	
-	if !owner.target.is_inside_tree():
-		return
-	
-	owner.look_at(owner.target.global_position)
-	
-	var direction = (owner.target.global_position - owner.global_position)
-	owner.velocity.x = direction.normalized().x * owner.move_speed * _delta
-	owner.velocity.z = direction.normalized().z * owner.move_speed * _delta
-	
-	if direction.length() < threat_range:
-		finished.emit("ThreatenAttack")
-	
-	owner.move_and_slide()
-
-func exit():
-	owner.velocity = Vector3.ZERO
+	var direction = (follow_target.global_position - owner.global_position)
+	owner.velocity.x = direction.normalized().x * owner.move_speed
+	owner.velocity.z = direction.normalized().z * owner.move_speed
 	owner.move_and_slide()

@@ -2,22 +2,9 @@ extends CharacterBody3D
 class_name Player
 
 signal leave
-signal knocked_out
-signal back_on_feet
 
-const TRUMPET = preload("res://Instrument/trumpet.tscn")
-const FIDEL = preload("res://Instrument/Fidel.tscn")
-
-@onready var lover_model: Node3D = $Visual/lover_in_pose2
-@onready var relic_model: Node3D = $Visual/drinker_fidel
-
-
-enum bard_type {
-	lover,
-	relic
-}
-
-@onready var type: bard_type
+const TRUMPET = preload("uid://515m7a070dcx")
+const VIOLIN = preload("uid://lxalv8rqbk0c")
 
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
@@ -31,12 +18,6 @@ enum bard_type {
 
 @export var stat_comp: stat_component
 @export var inventory: inventory_component
-@export var health_comp: health_component
-@export var player_hands: PlayerHands
-
-@export var animation_player: AnimationPlayer
-@export var hitbox: CollisionShape3D
-
 
 @export var indicator_ring: Node3D
 @export var player_colors : PackedColorArray = [
@@ -47,10 +28,6 @@ enum bard_type {
 	Color.WHITE,
 	Color.RED,
 ]
-
-var can_move: bool = true
-var can_interact: bool = true
-var can_attack: bool = true
 
 var gravity:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera: Camera3D
@@ -66,8 +43,10 @@ func init(player_num: int):
 
 func _ready() -> void:
 	if !equipped_instrument:
-		add_instrument(TRUMPET)
-	type == bard_type.lover
+		if player%2 > 0:
+			add_instrument(VIOLIN)
+		else:
+			add_instrument(TRUMPET)
 	set_colors()
 
 func _physics_process(delta: float) -> void:
@@ -79,26 +58,16 @@ func _physics_process(delta: float) -> void:
 		look_direction()
 	
 	velocity.y -= gravity * delta
-	
-	if !can_move:
-		velocity = Vector3.ZERO
 	move_and_slide()
 	
 	if MultiplayerInput.is_action_just_pressed(device, "interact"):
 		try_interact()
 	
-	if GameManager.currentGameState == GameManager.gameState.home:
-		if MultiplayerInput.is_action_just_pressed(device, "next_instrument"):
-			equip_next_instrument()
-		if MultiplayerInput.is_action_just_pressed(device, "next_bard"):
-			equip_next_bard()
-	
-	
+	if MultiplayerInput.is_action_just_pressed(device, "escape"):
+		GameManager.save_village_state()
+		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func point_to_mouse():
-	if !can_move:
-		return
-	
 	var mouse_position = get_viewport().get_mouse_position()
 	
 	camera = get_tree().get_first_node_in_group("Camera")
@@ -118,25 +87,21 @@ func point_to_mouse():
 		look_at(look_at_position)
 
 func look_direction():
-	if !can_move:
-		return
-	
 	var input_dir = input.get_vector("look_left", "look_right", "look_up", "look_down").normalized()
 	if !input_dir:
 		return
 	rotation = Vector3(0, -input_dir.angle() - PI/2, 0)
 
-#func movement():
-	#
-	#device = PlayerManager.get_player_device(player)
-	#var input_dir = MultiplayerInput.get_vector(device, "move_left", "move_right", "move_up", "move_down")
-	#
-	#if input_dir:
-		#velocity.x = input_dir.x * stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED)
-		#velocity.z = input_dir.y * stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED)
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED))
-		#velocity.z = move_toward(velocity.z, 0, stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED))
+func movement():
+	device = PlayerManager.get_player_device(player)
+	var input_dir = MultiplayerInput.get_vector(device, "move_left", "move_right", "move_up", "move_down")
+	
+	if input_dir:
+		velocity.x = input_dir.x * stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED)
+		velocity.z = input_dir.y * stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED)
+	else:
+		velocity.x = move_toward(velocity.x, 0, stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED))
+		velocity.z = move_toward(velocity.z, 0, stat_comp.get_stat(stat_comp.stat_id.MOVEMENT_SPEED))
 
 func set_playername():
 	player_name.set_text("P " + str(player))
@@ -148,22 +113,6 @@ func add_instrument(instrument):
 	instrument_instance.position = instrument_spawn.position
 	add_child(instrument_instance)
 	equipped_instrument = instrument_instance
-
-func equip_next_instrument():
-	if equipped_instrument.type == Instrument.instrument_type.trumpet:
-		add_instrument(FIDEL)
-	else:
-		add_instrument(TRUMPET)
-
-func equip_next_bard():
-	if type == bard_type.relic:
-		relic_model.hide()
-		lover_model.show()
-		type = bard_type.lover
-	elif type == bard_type.lover:
-		lover_model.hide()
-		relic_model.show()
-		type = bard_type.relic
 
 func set_colors():
 	var col = player_colors[player]
@@ -177,28 +126,11 @@ func set_colors():
 	indicator_ring.set_color(col)
 
 func try_interact():
-	if !can_interact:
-		return
-	var closest_ia: Interactable = player_hands.closest_interactable
-	if is_instance_valid(closest_ia):
-		if closest_ia is droppable_item:
-			inventory.pickup(closest_ia)
+	var interactables = interaction_area.get_overlapping_areas()
+	for thing in interactables:
+		var ia: Interactable = thing.owner
+		if ia is droppable_item:
+			inventory.pickup(ia)
+			return
 		else:
-			closest_ia.interact()
-
-func _on_health_component_died() -> void:
-	hitbox.disabled = true
-	animation_player.play("die")
-	can_attack = false
-	can_interact = false
-	can_move = false
-	knocked_out.emit()
-
-func full_restore():
-	hitbox.disabled = false
-	animation_player.play_backwards("die")
-	health_comp.heal(health_comp.max_health)
-	can_attack = true
-	can_interact = true
-	can_move = true
-	back_on_feet.emit()
+			ia.interact()
