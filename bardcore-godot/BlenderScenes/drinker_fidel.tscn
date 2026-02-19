@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://w0l6bv40d5fv"]
+
+[ext_resource type="PackedScene" uid="uid://cggp25wtdo751" path="res://BlenderScenes/drinker_fidel.blend" id="1_de05r"]
+
+[node name="drinker_fidel" instance=ExtResource("1_de05r")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
