@@ -13,10 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://btdqkmooqxlov" path="res://Components/health_component.tscn" id="8_00tjw"]
 [ext_resource type="PackedScene" uid="uid://dnrcjxypytfhw" path="res://Components/stat_component.tscn" id="9_x3vf3"]
 [ext_resource type="PackedScene" uid="uid://couj5e4yhr0jl" path="res://Components/indicator_ring.tscn" id="10_x3vf3"]
-[ext_resource type="PackedScene" uid="uid://cff02yiadxtqn" path="res://Components/player_hands.tscn" id="13_gu6f8"]
 [ext_resource type="PackedScene" uid="uid://bc1ryiksd4yvg" path="res://Components/info_ring.tscn" id="13_p5o4e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x3vf3"]
+radius = 1.9830381
 
 [sub_resource type="Animation" id="Animation_p5o4e"]
 length = 0.001
@@ -55,16 +57,12 @@ _data = {
 &"die": SubResource("Animation_5htga")
 }
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_x3vf3"]
-radius = 1.9830381
-
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stat_comp", "inventory", "health_comp", "player_hands", "animation_player", "hitbox", "indicator_ring") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stat_comp", "inventory", "health_comp", "animation_player", "hitbox", "indicator_ring") groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_fhl08")
 stat_comp = NodePath("StatComponent")
 inventory = NodePath("InventoryComponent")
 health_comp = NodePath("HealthComponent")
-player_hands = NodePath("Player Hands")
 animation_player = NodePath("AnimationPlayer")
 hitbox = NodePath("hit_reciver_box/BodyHitbox")
 indicator_ring = NodePath("IndicatorRing")
@@ -152,6 +150,13 @@ stats = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15416038, 0)
 direction_arrow = true
 
+[node name="InteractionArea" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_x3vf3")
+
 [node name="InfoRing" parent="." instance=ExtResource("13_p5o4e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16866893, 0)
 
@@ -159,10 +164,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16866893, 0)
 libraries = {
 &"": SubResource("AnimationLibrary_gu6f8")
 }
-
-[node name="Player Hands" parent="." instance=ExtResource("13_gu6f8")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player Hands"]
-shape = SubResource("SphereShape3D_x3vf3")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
