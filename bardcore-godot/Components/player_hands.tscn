@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cff02yiadxtqn"]
+
+[ext_resource type="Script" uid="uid://bj5h86g7l734h" path="res://Components/player_hands.gd" id="1_lncvw"]
+
+[node name="Player Hands" type="Area3D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_lncvw")
+
+[node name="Check Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Check Timer" to="." method="check_closest"]

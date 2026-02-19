@@ -104,10 +104,11 @@ func finish_building_3(_anim):
 	interaction_collision.disabled = false
 #endregion
 
-func _on_interaction_area_area_entered(_area: Area3D) -> void:
+
+func display_hint():
 	if hint: return
 	
-	var upgrade_available:bool = false
+	var upgrade_available: bool = false
 	var upgrade_txt = "{0} lv.{1}".format([building_name, state])
 	if get_current_upgrade_cost() > -1:
 		if get_current_upgrade_cost() == 1:
@@ -118,7 +119,7 @@ func _on_interaction_area_area_entered(_area: Area3D) -> void:
 	hint = UserInterface.create_hint(global_position, upgrade_txt, upgrade_available)
 	#UserInterface.show_upgrade_hint(self)
 
-func _on_interaction_area_area_exited(_area: Area3D) -> void:
+func remove_hint():
 	if hint: hint.queue_free()
 	#UserInterface.hide_upgrade_hint()
 
