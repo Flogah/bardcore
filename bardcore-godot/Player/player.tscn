@@ -69,7 +69,13 @@ hitbox = NodePath("hit_reciver_box/BodyHitbox")
 indicator_ring = NodePath("IndicatorRing")
 
 [node name="InstrumentSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9820148, 0.18880408, 0, -0.18880408, 0.9820148, 0.049046323, 1.8433441, -0.27600074)
+transform = Transform3D(1, 0, 0, 0, 0.9820148, 0.18880408, 0, -0.18880408, 0.9820148, 0.049046323, 2.0320232, -0.21588235)
+
+[node name="InstrumentSpawn_star" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9820148, 0.18880408, 0, -0.18880408, 0.9820148, 0.084170505, 1.6101367, -0.120291844)
+
+[node name="InstrumentSpawn_relic" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9820148, 0.18880408, 0, -0.18880408, 0.9820148, 0.060612872, 2.1960826, -0.18698041)
 
 [node name="BodyHitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -85,16 +91,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_0wfyh")
 
 [node name="Visual" type="Node3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="lover_in_pose2" parent="Visual" instance=ExtResource("3_gu6f8")]
 transform = Transform3D(-1.145, 0, -1.728902e-07, 0, 1.145, 0, 1.728902e-07, 0, -1.145, 0, 0, 0)
 
 [node name="drinker_fidel" parent="Visual" instance=ExtResource("4_dkpta")]
-transform = Transform3D(-1.305, 0, -1.9704952e-07, 0, 1.305, 0, 1.9704952e-07, 0, -1.305, -0.098569095, 0, -0.11041975)
+transform = Transform3D(-1.38, 0, -2.083742e-07, 0, 1.38, 0, 2.083742e-07, 0, -1.38, -0.098569095, 0, -0.11041975)
 visible = false
 
 [node name="star_fidel" parent="Visual" instance=ExtResource("5_dkpta")]
-transform = Transform3D(-0.63, 0, -9.5127355e-08, 0, 0.63, 0, 9.5127355e-08, 0, -0.63, 0, 0, 0)
+transform = Transform3D(-0.705, 0, -1.06452035e-07, 0, 0.705, 0, 1.06452035e-07, 0, -0.705, 0, 0, 0)
 visible = false
 
 [node name="Movement_StateMachine" type="Node" parent="."]
