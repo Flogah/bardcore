@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://co7r3uteoegh4"]
+[gd_scene load_steps=21 format=3 uid="uid://co7r3uteoegh4"]
 
 [ext_resource type="Script" uid="uid://dx38dnq0t3vu" path="res://Player/Player.gd" id="1_fhl08"]
 [ext_resource type="Script" uid="uid://bhrs6p0rwjb3h" path="res://Components/hit_reciver_box.gd" id="2_5htga"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://exybm47wlxf1" path="res://States/Player/Movement/PlayerIdle.gd" id="3_od3ui"]
 [ext_resource type="Script" uid="uid://cql84k6t4g7rd" path="res://States/Player/Movement/PlayerRunning.gd" id="4_00tjw"]
 [ext_resource type="PackedScene" uid="uid://w0l6bv40d5fv" path="res://BlenderScenes/drinker_fidel.tscn" id="4_dkpta"]
+[ext_resource type="PackedScene" uid="uid://d3b3my2gexwt" path="res://BlenderScenes/star_fidel.blend" id="5_dkpta"]
 [ext_resource type="Script" uid="uid://dri7mdulo5mpn" path="res://States/Player/Movement/PlayerDashing.gd" id="5_x3vf3"]
 [ext_resource type="FontFile" uid="uid://difvbbraws6c5" path="res://addons/Kenney_Fonts/Kenney High.ttf" id="6_apopc"]
 [ext_resource type="PackedScene" uid="uid://dd418ylpenn6d" path="res://Components/inventory_component.tscn" id="7_vtle1"]
@@ -90,6 +91,10 @@ transform = Transform3D(-1.145, 0, -1.728902e-07, 0, 1.145, 0, 1.728902e-07, 0, 
 
 [node name="drinker_fidel" parent="Visual" instance=ExtResource("4_dkpta")]
 transform = Transform3D(-1.305, 0, -1.9704952e-07, 0, 1.305, 0, 1.9704952e-07, 0, -1.305, -0.098569095, 0, -0.11041975)
+visible = false
+
+[node name="star_fidel" parent="Visual" instance=ExtResource("5_dkpta")]
+transform = Transform3D(-0.63, 0, -9.5127355e-08, 0, 0.63, 0, 9.5127355e-08, 0, -0.63, 0, 0, 0)
 visible = false
 
 [node name="Movement_StateMachine" type="Node" parent="."]
