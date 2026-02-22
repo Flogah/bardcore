@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="3_xv3mu"]
 [ext_resource type="AudioStream" uid="uid://0l3sitsl4d1f" path="res://Instrument/SFX/Trumpet/Kreis_Bardcore_tr.wav" id="4_c4r5d"]
 [ext_resource type="AudioStream" uid="uid://dtsfx3hsha42h" path="res://Instrument/SFX/BGM/place_sound.wav" id="6_rtdfi"]
+[ext_resource type="PlaneMesh" uid="uid://ba15lvptqqr2l" path="res://Instrument/ParticleEffects/Note_DrawPass.tres" id="7_fqapy"]
 
 [sub_resource type="Resource" id="Resource_rtdfi"]
 script = ExtResource("2_c4r5d")
@@ -46,9 +47,6 @@ spread = 5.0
 initial_velocity_min = 1.0
 initial_velocity_max = 3.0
 scale_curve = SubResource("CurveTexture_31l7u")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_lyutc"]
-size = Vector2(0.3, 0.3)
 
 [node name="AttackCircleArea" type="Node3D" node_paths=PackedStringArray("attack_sound")]
 transform = Transform3D(0.6, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 0, 0)
@@ -95,12 +93,12 @@ volume_db = 30.0
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3267543, 0)
 emitting = false
-amount = 150
-amount_ratio = 0.2
+amount = 100
+amount_ratio = 0.5
 lifetime = 0.7
 one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_mjlu1")
-draw_pass_1 = SubResource("PlaneMesh_lyutc")
+draw_pass_1 = ExtResource("7_fqapy")
 
 [connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
