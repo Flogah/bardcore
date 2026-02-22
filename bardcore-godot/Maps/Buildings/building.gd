@@ -40,7 +40,7 @@ enum buildState {
 
 @onready var collision: CollisionShape3D = $Collision/CollisionShape3D
 @onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var interaction_collision: CollisionShape3D = $InteractionArea/CollisionShape3D
+@onready var interaction_collision: CollisionShape3D = $CollisionShape3D
 
 func interact():
 	upgrade_to(state +1)
