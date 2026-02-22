@@ -28,10 +28,17 @@ func _ready() -> void:
 		stat_comp.stats[type].changed.connect(drop_overflowing_itmes)
 
 func pickup(item: droppable_item) -> void: #call this if a item should be forced into a slot
-	slots[item.item_resource_.type].append(item)
-	stat_comp.add_upgrades(item.get_instance_id(),item.item_resource_.upgrades)
-	item.get_parent().remove_child(item)
-	drop_overflowing_itmes(item.item_resource_.type)
+	if item:
+		if !item.is_queued_for_deletion():
+			if item.get_parent():
+				item.get_parent().remove_child(item)
+				slots[item.item_resource_.type].append(item)
+				stat_comp.add_upgrades(item.get_instance_id(),item.item_resource_.upgrades)
+				drop_overflowing_itmes(item.item_resource_.type)
+			else:
+				printerr("Item was tried to be picked up, but parent is already null")
+		else:
+			printerr("Item was tried to be picked up, but it is already queued for deletion")
 	
 
 func drop(item_type: droppable_item.item_type) -> void:

@@ -7,9 +7,11 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_gp6lp"]
 radius = 1.0852671
 
-[node name="DroppableItem" type="Node3D" node_paths=PackedStringArray("pickup_area", "item_label")]
+[node name="DroppableItem" type="Area3D" node_paths=PackedStringArray("item_label")]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
 script = ExtResource("1_cph8e")
-pickup_area = NodePath("Area3D")
 item_label = NodePath("Label3D")
 
 [node name="Area3D" type="Area3D" parent="."]
