@@ -17,7 +17,7 @@ const PLACEHOLDER_MESHES := {
 	item_type.INSTRUMENT: "res://BlenderScenes/PlaceHolder_Ringwear.blend",
 }
 
-@export var item_resource_: item_resource = load("res://Resources/Items/default_item.tres")
+@export var item_resource_: item_resource = load("res://Resources/default_item.tres")
 
 @export var pickup_area: Area3D
 @export var item_label: Label3D
