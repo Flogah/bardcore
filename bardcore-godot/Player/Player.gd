@@ -10,11 +10,12 @@ const FIDEL = preload("res://Instrument/Fidel.tscn")
 
 @onready var lover_model: Node3D = $Visual/lover_in_pose2
 @onready var relic_model: Node3D = $Visual/drinker_fidel
-
+@onready var star_model: Node3D = $Visual/star_fidel
 
 enum bard_type {
 	lover,
-	relic
+	relic,
+	star
 }
 
 @onready var type: bard_type
@@ -159,10 +160,18 @@ func equip_next_bard():
 		relic_model.hide()
 		lover_model.show()
 		type = bard_type.lover
+		instrument_spawn = $InstrumentSpawn
 	elif type == bard_type.lover:
 		lover_model.hide()
+		star_model.show()
+		type = bard_type.star
+		instrument_spawn = $InstrumentSpawn_star
+	elif type == bard_type.star:
+		star_model.hide()
 		relic_model.show()
 		type = bard_type.relic
+		instrument_spawn = $InstrumentSpawn_relic
+	add_instrument(TRUMPET)
 
 func set_colors():
 	var col = player_colors[player]
