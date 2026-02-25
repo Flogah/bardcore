@@ -7,6 +7,12 @@ extends Node
 signal player_joined(player)
 signal player_left(player)
 
+enum bard_type {
+	lover,
+	relic,
+	star
+}
+
 # map from player integer to dictionary of data
 # the existence of a key in this dictionary means this player is joined.
 # use get_player_data() and set_player_data() to use this dictionary.
@@ -82,7 +88,7 @@ func join(device: int):
 		# drunk, trumpet are examples
 		player_data[player] = {
 			"device": device,
-			"bard": "drunk",
+			"bard": bard_type.relic,
 			"instrument": "trumpet",
 			"color": "ROYAL_BLUE",
 		}
