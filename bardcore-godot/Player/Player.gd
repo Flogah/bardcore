@@ -165,11 +165,12 @@ func equip_next_bard():
 		relic_model.show()
 		type = PlayerManager.bard_type.relic
 		instrument_spawn = $InstrumentSpawn_relic
+	PlayerManager.set_player_data(player, "bard", type)
 	add_instrument(TRUMPET)
 
 func set_colors():
 	var col = player_colors[player]
-	PlayerManager.set_player_color(player, col)
+	PlayerManager.set_player_data(player, "color", col)
 	#print(PlayerManager.get_player_color(player))
 	#var mat = StandardMaterial3D.new()
 	#mat.albedo_color = col

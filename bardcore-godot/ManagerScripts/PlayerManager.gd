@@ -7,6 +7,8 @@ extends Node
 signal player_joined(player)
 signal player_left(player)
 
+signal player_data_updated(player)
+
 enum bard_type {
 	lover,
 	relic,
@@ -88,7 +90,7 @@ func join(device: int):
 		# drunk, trumpet are examples
 		player_data[player] = {
 			"device": device,
-			"bard": bard_type.relic,
+			"bard": bard_type.lover,
 			"instrument": "trumpet",
 			"color": "ROYAL_BLUE",
 		}
@@ -108,9 +110,6 @@ func get_player_indexes():
 func get_player_device(player: int) -> int:
 	return get_player_data(player, "device")
 
-func set_player_color(player: int, col: Color):
-	set_player_data(player, "color", col)
-
 func get_player_color(player: int) -> Color:
 	return get_player_data(player, "color")
 
@@ -128,6 +127,8 @@ func set_player_data(player: int, key: StringName, value: Variant):
 		return
 	
 	player_data[player][key] = value
+	
+	player_data_updated.emit()
 
 # call this from a loop in the main menu or anywhere they can join
 # this is an example of how to look for an action on all devices

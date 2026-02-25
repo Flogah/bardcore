@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhlou0id1xnvc"]
+[gd_scene load_steps=5 format=3 uid="uid://bhlou0id1xnvc"]
 
 [ext_resource type="Script" uid="uid://b4801makoty31" path="res://UserInterface/user_interface.gd" id="1_71fg6"]
 [ext_resource type="FontFile" uid="uid://d3gwcc2oyaok4" path="res://addons/Kenney_Fonts/Kenney Future Narrow.ttf" id="2_mm0wo"]
-[ext_resource type="PackedScene" uid="uid://bk8d3ervl7clp" path="res://UserInterface/player_info.tscn" id="3_mm0wo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpatf"]
 bg_color = Color(0, 0, 0, 1)
@@ -206,15 +205,12 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="General_UI/PlayerContainer"]
+[node name="PlayerInfoContainer" type="HBoxContainer" parent="General_UI/PlayerContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="PlayerInfo" parent="General_UI/PlayerContainer/HBoxContainer" instance=ExtResource("3_mm0wo")]
-layout_mode = 2
 
 [node name="FadeTimer" type="Timer" parent="."]
