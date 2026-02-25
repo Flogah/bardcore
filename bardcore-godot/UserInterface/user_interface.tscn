@@ -1,20 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhlou0id1xnvc"]
+[gd_scene load_steps=6 format=3 uid="uid://bhlou0id1xnvc"]
 
 [ext_resource type="Script" uid="uid://b4801makoty31" path="res://UserInterface/user_interface.gd" id="1_71fg6"]
 [ext_resource type="FontFile" uid="uid://d3gwcc2oyaok4" path="res://addons/Kenney_Fonts/Kenney Future Narrow.ttf" id="2_mm0wo"]
-[ext_resource type="Texture2D" uid="uid://cbrmi5k31lw24" path="res://icon.svg" id="2_v7due"]
+[ext_resource type="PackedScene" uid="uid://bk8d3ervl7clp" path="res://UserInterface/player_info.tscn" id="3_mm0wo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpatf"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71fg6"]
 bg_color = Color(0.6228889, 0.08363319, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7due"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mm0wo"]
-bg_color = Color(0.79863435, 0.1375759, 0.13508749, 1)
 
 [node name="UserInterface" type="CanvasLayer" node_paths=PackedStringArray("combat_ui", "home_ui", "gen_ui", "upgrade_hint_label", "time_left_label", "time_progress_bar", "build_time_label", "fadeTimer")]
 script = ExtResource("1_71fg6")
@@ -220,44 +214,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayerInfo" type="Control" parent="General_UI/PlayerContainer/HBoxContainer"]
-visible = false
+[node name="PlayerInfo" parent="General_UI/PlayerContainer/HBoxContainer" instance=ExtResource("3_mm0wo")]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ProgressBar" type="ProgressBar" parent="General_UI/PlayerContainer/HBoxContainer/PlayerInfo"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -79.0
-offset_top = -27.0
-offset_right = 79.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_v7due")
-theme_override_styles/fill = SubResource("StyleBoxFlat_mm0wo")
-value = 30.0
-
-[node name="Control" type="Control" parent="General_UI/PlayerContainer/HBoxContainer/PlayerInfo"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="General_UI/PlayerContainer/HBoxContainer/PlayerInfo/Control"]
-position = Vector2(20, 0)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_v7due")
 
 [node name="FadeTimer" type="Timer" parent="."]
