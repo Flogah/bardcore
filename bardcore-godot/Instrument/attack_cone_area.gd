@@ -14,13 +14,14 @@ func _ready() -> void:
 	#unnecessary, it's already connected by hand (check your nodes)
 	#attack_sound.finished.connect(clean_up)
 	MusicManager.beat.connect(_on_triggered)
-	print("beatTimer")
+	#print("beatTimer")
 	
 	mat.set_shader_parameter("AbilityProgress", 0.0)
 
 func _process(delta: float) -> void:
 	var progress = mat.get_shader_parameter("AbilityProgress")
-	progress += delta
+	#progress += delta
+	progress = MusicManager.get_time_to_next_beat(MusicManager.beatType.beat) * 2/ MusicManager.beatType.beat
 	mat.set_shader_parameter("AbilityProgress", progress)
 
 func activate():
