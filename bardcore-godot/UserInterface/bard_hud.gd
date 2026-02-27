@@ -10,17 +10,20 @@ var player_num: int
 
 @onready var health_bar: ProgressBar = $ProgressBar
 @onready var portrait: TextureRect = $Control/TextureRect
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 func setup_HUD(player: int):
 	player_num = player
 	set_type()
 	PlayerManager.player_data_updated.connect(set_type)
+	var player_col = PlayerManager.get_player_color(player)
 	var player_node = PlayerManager.player_nodes[player_num]
 	var health_comp: health_component = player_node.health_comp
 	health_comp.damaged.connect(update_health)
 	health_comp.healed.connect(update_health)
 	update_health(0, 0, health_comp.health)
 	set_max_health(health_comp.max_health)
+	progress_bar.get("theme_override_styles/background").bg_color = player_col
 
 func set_type():
 	current_type = PlayerManager.player_data[player_num]["bard"]
