@@ -20,7 +20,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var progress = mat.get_shader_parameter("AbilityProgress")
-	#progress += delta
 	progress = MusicManager.get_time_to_next_beat(MusicManager.beatType.quarterBeat) * 2 / MusicManager.beatType.quarterBeat
 	mat.set_shader_parameter("AbilityProgress", progress)
 
@@ -44,11 +43,5 @@ func _on_audio_stream_player_3d_finished() -> void:
 	queue_free()
 	
 func set_color(player_num: int):
-	#print(player_num)
-	#var new_mat = StandardMaterial3D.new()
 	var player_col = PlayerManager.get_player_color(player_num)
-	#new_mat.albedo_color = player_col
-	#print(player_col)
-	#mesh_instance.set_surface_override_material(0, new_mat)
-	
 	mat.set_shader_parameter("PlayerColor", player_col)
