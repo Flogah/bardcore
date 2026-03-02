@@ -11,6 +11,7 @@ var player_num: int
 @onready var health_bar: ProgressBar = $ProgressBar
 @onready var portrait: TextureRect = $Control/TextureRect
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var hp_label: Label = $ProgressBar/Control/HPLabel
 
 func setup_HUD(player: int):
 	player_num = player
@@ -36,6 +37,7 @@ func set_type():
 
 func update_health(_amount, _mod, new_h: float):
 	health_bar.value = new_h
+	hp_label.text = str(max(snapped(new_h, 1), 0))
 
 func set_max_health(new_value: float):
 	health_bar.max_value = new_value
