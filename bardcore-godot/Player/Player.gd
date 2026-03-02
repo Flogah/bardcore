@@ -169,6 +169,7 @@ func equip_next_bard():
 	PlayerManager.set_player_data(player, "bard", type)
 	add_instrument(TRUMPET)
 	set_bard_stats()
+	UserInterface.update_hud_manual()
 	
 func set_bard_stats():
 	stat_comp.set_base_stats(type)

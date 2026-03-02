@@ -118,3 +118,9 @@ func reset_hud():
 	var huds = player_info_container.get_children()
 	for hud in huds:
 		hud.queue_free()
+
+func update_hud_manual():
+	await get_tree().create_timer(.1).timeout
+	var huds = player_info_container.get_children()
+	for hud in huds:
+		hud.set_HUD_numbers()

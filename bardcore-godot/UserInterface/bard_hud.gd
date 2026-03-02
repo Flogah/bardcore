@@ -40,5 +40,5 @@ func update_health(_n = 0, _m = 1, health: float = 2):
 	var new_health = health_comp.health
 	var new_max_health = health_comp.max_health
 	health_bar.max_value = new_max_health
-	health_bar.value = new_health
-	hp_label.text = str(max(snapped(health_comp.health, 1), 0))
+	health_bar.value = min(new_health, new_max_health)
+	hp_label.text = str(max(snapped(health_bar.value, 1), 0))
