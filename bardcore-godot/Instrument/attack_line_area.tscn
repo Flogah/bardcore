@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgjsdlwnmpwgj"]
+[gd_scene load_steps=17 format=3 uid="uid://bgjsdlwnmpwgj"]
 
 [ext_resource type="Script" uid="uid://ctb0238ncslkt" path="res://Instrument/attack_line_area.gd" id="1_16o3o"]
 [ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="2_x5ccc"]
 [ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="3_xdx4f"]
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="4_lkfax"]
 [ext_resource type="AudioStream" uid="uid://yee5i1c1nt5k" path="res://Instrument/SFX/BGM/Linie_bardcore_tr_new.wav" id="5_xdx4f"]
-[ext_resource type="Material" uid="uid://btofm21e3f4xw" path="res://Materials/Attacks/attack_area.tres" id="6_77qr4"]
+[ext_resource type="Shader" uid="uid://cmy0sxqutmr02" path="res://Shaders/attack_loading_shader.tres" id="6_77qr4"]
 [ext_resource type="AudioStream" uid="uid://dtsfx3hsha42h" path="res://Instrument/SFX/BGM/place_sound.wav" id="6_lkfax"]
 [ext_resource type="PlaneMesh" uid="uid://ba15lvptqqr2l" path="res://Instrument/ParticleEffects/Note_DrawPass.tres" id="7_31l7u"]
 
@@ -19,6 +19,12 @@ metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 size = Vector3(2.7, 1, 7.5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xdx4f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eqfi2"]
+render_priority = 0
+shader = ExtResource("6_77qr4")
+shader_parameter/PlayerColor = Vector4(1, 0, 1, 0)
+shader_parameter/AbilityProgress = 0.0
 
 [sub_resource type="Resource" id="Resource_xdx4f"]
 script = ExtResource("3_xdx4f")
@@ -68,7 +74,7 @@ volume_db = 5.0
 transform = Transform3D(1.3581512, 0, 0, 0, 1, 0, 0, 0, 3.8189068, 0, -1.1702536, -2.0244663)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_xdx4f")
-surface_material_override/0 = ExtResource("6_77qr4")
+surface_material_override/0 = SubResource("ShaderMaterial_eqfi2")
 
 [node name="hit_emitter_box2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6849185, -1.9609534)

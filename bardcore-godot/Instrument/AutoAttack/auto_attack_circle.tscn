@@ -22,7 +22,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("//8AAP9/hzB1hQAAJoO0NU2GAAD/f4cwJoMAAHWFRD3/fwAATYb/P/+/AADY7kQ92O4AAP+/tDXYfAAAdYVEPYl6AAAmg7Q1/38AAP///z+xeQAA/3+qKiYRAAD/v7Q1/z8AANjuRD2JegAA2HxyHdh8AACJev8OAAAAAP9/qir/fwAAsXkAACYRAAD/P3IdJoMAAIl6/w7/fwAAAAAAAP8/AAAmEf8OdYUAANh8ch3/vwAAJhH/Dk2GAAD/f0Ik2O4AAP8/ch3//wAA/39CJG6XAABoV/8OlqgAAJBoch3drgAA/39CJP9/AAAhUQAAtqsAAEc0/w63ywAASFRyHW7XAAD/f0Ik/38AAJAoAABIVAAARzT/DpBoAABoV/8ORzQAAEhUch1oVwAAkGhyHZAoAAD/f6oqIVEAAP9/qipHNAAAtqu0NWhXAABul7Q1SFQAALfLRD2QaAAAlqhEPf9/AABu1/8//38AAN2u/z+2qwAAt8tEPW6XAACWqEQ9t8sAALartDVu1wAA/3+HMJaoAABul7Q13a4AAP9/hzA/2X8yst1nOz/ZfzKq6VZT/v//f6rpVlOy3Wc7VdNUlma7S6L///9/qaqqqma7S6JV01SWq5ypsR6Pb7iqqqqq/3//v6ucqbGOxx8P/3//vx6Pb7hVzqwcjscfD77RfSNVzqwcvtF9I47HHw9VzqwcvtF9I/9//7+Oxx8PVc6sHL7RfSP/f/+/Ho9vuB6Pb7irnKmxq5ypsaqqqqqqqqqqZrtLoma7S6JV01SWVdNUlv///3////9/qulWU6rpVlOy3Wc7P9l/MrLdZzs/2X8y")
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_debhs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bo807"]
 render_priority = 0
 shader = ExtResource("2_bo807")
 shader_parameter/PlayerColor = Vector4(1, 0, 1, 0)
@@ -63,7 +63,7 @@ script = ExtResource("1_gl66w")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
 mesh = SubResource("ArrayMesh_6x82p")
-surface_material_override/0 = SubResource("ShaderMaterial_debhs")
+surface_material_override/0 = SubResource("ShaderMaterial_bo807")
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
 collision_layer = 0
