@@ -89,7 +89,23 @@ func _on_interaction_area_area_entered(_area: Area3D) -> void:
 func _on_interaction_area_area_exited(_area: Area3D) -> void:
 	if hint: hint.queue_free()
 	#UserInterface.hide_upgrade_hint()
+	
+func display_hint() -> void:
+	if hint: return
+	
+	var upgrade_available:bool = false
+	var upgrade_txt = "{0} lv.{1}".format([building_name, state])
+	if get_current_upgrade_cost() > -1:
+		if get_current_upgrade_cost() == 1:
+			upgrade_txt +=  "\n Kosten: {0} Tag".format([get_current_upgrade_cost()])
+		else:
+			upgrade_txt +=  "\n Kosten: {0} Tage".format([get_current_upgrade_cost()])
+		upgrade_available = true
+	hint = UserInterface.create_hint(global_position, upgrade_txt, upgrade_available)
 
+func remove_hint() -> void:
+	if hint: hint.queue_free()
+	
 func get_current_upgrade_cost() -> int:
 	if !build_cost.has(state):
 		return -1

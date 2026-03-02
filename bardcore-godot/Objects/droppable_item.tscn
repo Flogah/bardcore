@@ -9,17 +9,10 @@ radius = 1.0852671
 
 [node name="DroppableItem" type="Area3D" node_paths=PackedStringArray("item_label")]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 8
 monitoring = false
 script = ExtResource("1_cph8e")
 item_label = NodePath("Label3D")
-
-[node name="Area3D" type="Area3D" parent="."]
-collision_layer = 8
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_gp6lp")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7349086, 0)
@@ -28,5 +21,5 @@ font = ExtResource("2_gp6lp")
 
 [node name="IndicatorRing" parent="." instance=ExtResource("3_0kcch")]
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_gp6lp")
