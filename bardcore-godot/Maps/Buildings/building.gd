@@ -73,12 +73,13 @@ func build_to_1():
 	# upgrade anim
 	anim.animation_finished.connect(finish_building_1)
 	level_1.show()
+	state = buildState.level1
 	anim.play("level0_to_level1")
 
 func finish_building_1(_anim):
 	anim.animation_finished.disconnect(finish_building_1)
 	level_0.hide()
-	state = buildState.level1
+	
 	building_upgraded.emit()
 	
 	collision.disabled = false
@@ -88,12 +89,13 @@ func build_to_2():
 	# build anim
 	level_2.show()
 	anim.animation_finished.connect(finish_building_2)
+	state = buildState.level2
 	anim.play("level1_to_level2")
 
 func finish_building_2(_anim):
 	anim.animation_finished.disconnect(finish_building_2)
 	level_1.hide()
-	state = buildState.level2
+	
 	building_upgraded.emit()
 	
 	interaction_collision.disabled = false
@@ -102,12 +104,13 @@ func build_to_3():
 	# build anim
 	level_3.show()
 	anim.animation_finished.connect(finish_building_3)
+	state = buildState.level3
 	anim.play("level2_to_level3")
 
 func finish_building_3(_anim):
 	anim.animation_finished.disconnect(finish_building_3)
 	level_2.hide()
-	state = buildState.level3
+	
 	building_upgraded.emit()
 	
 	interaction_collision.disabled = false

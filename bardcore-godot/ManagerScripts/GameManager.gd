@@ -22,7 +22,7 @@ var currentGameState : gameState
 
 # this single variable could hold the unlocks in the village
 var village_state: Dictionary = {
-	"building_time": 1,
+	"building_time": 15,
 }
 
 func _ready():

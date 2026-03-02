@@ -99,6 +99,9 @@ func add_upgrades(Item_ID: int, new_upgrades: Array[upgrade]) -> void:
 		recalculate_stats(stats_upgrades_changed)
 
 func remove_upgrades(Item_ID) -> void:
+	if Item_ID not in upgrades.keys():
+		return
+	
 	var old_upgrades: Array[upgrade] = upgrades[Item_ID]
 	var stats_upgrades_changed: Dictionary[stat_id, int]
 	for old_upgrade in old_upgrades:

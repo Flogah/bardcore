@@ -180,5 +180,7 @@ func apply_village_upgrades():
 	for build in buildings:
 		for target_player in player_nodes:
 			player_nodes[target_player].stat_comp.remove_upgrades(build.get_instance_id())
-			var b_upgrade = build.get_current_upgrade()
-			player_nodes[target_player].stat_comp.add_upgrades(build.get_instance_id(), b_upgrade)
+			var b_upgrade: upgrade = build.get_current_upgrade()
+			if b_upgrade:
+				var upgrade_arr: Array[upgrade] = [b_upgrade]
+				player_nodes[target_player].stat_comp.add_upgrades(build.get_instance_id(), upgrade_arr)
