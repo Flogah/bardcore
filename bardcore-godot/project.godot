@@ -47,6 +47,7 @@ folder_colors={
 "res://Objects/": "orange",
 "res://Player/": "orange",
 "res://Resources/": "gray",
+"res://Save/": "gray",
 "res://States/": "blue",
 "res://Textures/": "pink",
 "res://VFX/": "purple",
