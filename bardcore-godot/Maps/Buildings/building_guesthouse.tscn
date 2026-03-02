@@ -7,14 +7,14 @@
 [ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_u3gjg"]
 [ext_resource type="PackedScene" uid="uid://dkbcuq70ia26n" path="res://Maps/Buildings/Stages/Guesthouse/guests_stage_3.tscn" id="4_d73gv"]
 
-[sub_resource type="Resource" id="Resource_6xsa1"]
+[sub_resource type="Resource" id="Resource_8mubm"]
 script = ExtResource("3_u3gjg")
 amount = 2.0
 apply_priority = 1
 explanation = "+100% MaxHealth"
 metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
-[sub_resource type="Resource" id="Resource_38iem"]
+[sub_resource type="Resource" id="Resource_u3gjg"]
 script = ExtResource("3_u3gjg")
 amount = 3.0
 apply_priority = 1
@@ -393,8 +393,9 @@ building_levels = {
 }
 upgrade_list = Dictionary[int, ExtResource("2_8mubm")]({
 0: null,
-2: SubResource("Resource_6xsa1"),
-3: SubResource("Resource_38iem")
+1: null,
+2: SubResource("Resource_8mubm"),
+3: SubResource("Resource_u3gjg")
 })
 level_0 = NodePath("Level0")
 level_1 = NodePath("Level1")
