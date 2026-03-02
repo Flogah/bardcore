@@ -1,9 +1,38 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuu4pv5q0cii1"]
+[gd_scene load_steps=19 format=3 uid="uid://cuu4pv5q0cii1"]
 
 [ext_resource type="Script" uid="uid://dgwh5sbbspeqj" path="res://Maps/Buildings/building.gd" id="1_gk6qy"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_12l5l"]
 [ext_resource type="PackedScene" uid="uid://5pe1dv1hk7j0" path="res://Maps/Buildings/Stages/Fanfare/maker_fanfare_stage_1.tscn" id="2_p4kj7"]
 [ext_resource type="PackedScene" uid="uid://c5yhc7hyedeqj" path="res://Maps/Buildings/Stages/Fanfare/maker_fanfare_stage_2.tscn" id="3_1yu6w"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_q6ooa"]
 [ext_resource type="PackedScene" uid="uid://dk3skpefr0fks" path="res://Maps/Buildings/Stages/Fanfare/maker_fanfare_stage_3.tscn" id="4_2r5xx"]
+
+[sub_resource type="Resource" id="Resource_8bd1a"]
+script = ExtResource("3_q6ooa")
+amount = 0.2
+operator = 1
+effected_stat = 12
+apply_priority = 1
+explanation = "+20% Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_xjubp"]
+script = ExtResource("3_q6ooa")
+amount = 0.4
+operator = 1
+effected_stat = 12
+apply_priority = 1
+explanation = "+40% Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_suhi5"]
+script = ExtResource("3_q6ooa")
+amount = 0.6
+operator = 1
+effected_stat = 12
+apply_priority = 1
+explanation = "+60% Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_67fxh"]
 radius = 1.3064189
@@ -376,6 +405,17 @@ building_levels = {
 2: NodePath("Level2"),
 3: NodePath("Level3")
 }
+upgrade_list = Dictionary[int, ExtResource("2_12l5l")]({
+0: null,
+1: SubResource("Resource_8bd1a"),
+2: SubResource("Resource_xjubp"),
+3: SubResource("Resource_suhi5")
+})
+level_0 = NodePath("Level0")
+level_1 = NodePath("Level1")
+level_2 = NodePath("Level2")
+level_3 = NodePath("Level3")
+level_4 = NodePath("Level4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0.64483905, 0)
