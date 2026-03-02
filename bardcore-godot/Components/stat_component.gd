@@ -1,6 +1,8 @@
 extends Node
 class_name stat_component
 
+var baseStats: BaseStats
+
 enum stat_id {
 	
 	# -- Movement Stats --
@@ -30,42 +32,18 @@ enum stat_id {
 	RING_SLOTS,
 }
 
-var upgrades: Dictionary[int, Array] = {} # Contains all item_ids as keys and point to an array with all upgrades from that item
-var stat_upgrades: Dictionary[int, Array] = {} # Contains all stat_ids as keys and they point onto an array with all upgrades that effect the key-stat
+var upgrades: Dictionary[stat_id, Array] = {} # Contains all item_ids as keys and point to an array with all upgrades from that item
+var stat_upgrades: Dictionary[stat_id, Array] = {} # Contains all stat_ids as keys and they point onto an array with all upgrades that effect the key-stat
 
-@export var stats: Dictionary = { #Contains Stat_id: int -> base_value: float before game and converts on_ready to Stat_id: int -> stat_object: stat
-	
-	# -- Movement Stats --
-	stat_id.MOVEMENT_SPEED: 500.0, #Maximum Move Speed
-	stat_id.MOVEMENT_ACCELERATION: 0.5, #Amount of Acceleration
-	
-	# -- Health Stats --
-	stat_id.MAX_HEALTH: 100.0, #Maximum Amount of Health
-	stat_id.TIME_TILL_REGENERATION: 2.5, #Seconds till Regeneration starts after last hit
-	stat_id.REGENERATION_AMOUNT: 5.0, #Regeneration per second
-	stat_id.IN_HEAL: 1.0, #Modifier applied on all incoming heals
-	stat_id.HEALTH_GAIN: 1.0, #Modifier applied on all positive health changes (incoming heals, regeneration, ...)
-	stat_id.IN_DAMAGE: 1.0, #Modifier applied on all negative health changes (hits, status-effect damage, ...)
-	
-	# -- Combat Stats --
-	stat_id.OUT_HEAL: 1.0, #Modifier applied on all outgoing heals
-	stat_id.OUT_DAMAGE: 20.0, #Modifier applied on all outgoing damaging hits
-	stat_id.ARMOR: 1.0, #Multiplied with the damage after accounting for armor-piercing
-	stat_id.ARMOR_PIERCING: 0.0, #Removed form armor of hits target
-	stat_id.RANGE: 1.0, #Multiplies the leangth of the instruments area
-	stat_id.ANGLE: 1.0, #Multiplies the angle of the instruments area
-	
-	stat_id.HELMET_SLOTS: 1.0,
-	stat_id.TORSO_SLOTS: 1.0,
-	stat_id.BOOTS_SLOTS: 1.0,
-	stat_id.RING_SLOTS: 2.0,
+var stats: Dictionary[stat_id, stat] = { #Contains Stat_id: int -> stat_object: stat
+
 }
 
 func _ready() -> void:
-	for key in stats.keys():
+	for key in BaseStats.stats.keys():
 		var stat_object: stat = stat.new()
-		stat_object.base = stats[key]
-		stat_object.modified = stats[key]
+		stat_object.base = BaseStats.get_base_stat(key)
+		stat_object.modified = BaseStats.get_base_stat(key)
 		stats[key] = stat_object
 		stat_upgrades[key] =  []
 
@@ -87,7 +65,7 @@ func get_stat_object(s_id: stat_id) -> stat:
 
 func add_upgrades(Item_ID: int, new_upgrades: Array[upgrade]) -> void:
 	upgrades[Item_ID] = new_upgrades
-	var stats_upgrades_changed: Dictionary[stat_id, int]
+	var stats_upgrades_changed: Dictionary[stat_id, float]
 	for new_upgrade in new_upgrades:
 		if new_upgrade is stat_upgrade:
 			stats_upgrades_changed[new_upgrade.effected_stat] = 0
@@ -103,7 +81,7 @@ func remove_upgrades(Item_ID) -> void:
 		return
 	
 	var old_upgrades: Array[upgrade] = upgrades[Item_ID]
-	var stats_upgrades_changed: Dictionary[stat_id, int]
+	var stats_upgrades_changed: Dictionary[stat_id, float]
 	for old_upgrade in old_upgrades:
 		if old_upgrade is stat_upgrade:
 			stat_upgrades[old_upgrade.effected_stat].erase(old_upgrade)
@@ -129,6 +107,19 @@ func sort_stat_upgrades_according_to_apply_prio(a: stat_upgrade, b: stat_upgrade
 		return true
 	return false
 
-func recalculate_stats(s_ids: Dictionary[stat_id, int]) -> void:
+func recalculate_stats(s_ids: Dictionary[stat_id, float]) -> void:
 	for s_id in s_ids.keys():
 		calculate_stat(stats[s_id], s_id)
+
+func set_base_stats(bard_type: PlayerManager.bard_type) -> void:
+	var bte = PlayerManager.bard_type
+	if bard_type == bte.lover: baseStats = load("res://Resources/Stats/lover.tres")
+	elif bard_type == bte.relic: baseStats = load("res://Resources/Stats/relic.tres")
+	elif bard_type == bte.star: baseStats = load("res://Resources/Stats/star.tres")
+	for stat_id_ in baseStats.stats.keys():
+		var base_stat: float = baseStats.stats[stat_id_]
+		var base_stat_multiplier: float = 1.0
+		if stat_id_ in baseStats.base_stat_multipliers.keys():
+			base_stat_multiplier = baseStats.base_stat_multipliers[stat_id_]
+		stats[stat_id_].change_base_stat(base_stat * base_stat_multiplier)
+	recalculate_stats(baseStats.stats) #recalculate all stats

@@ -44,10 +44,12 @@ func pickup(item: droppable_item) -> void: #call this if a item should be forced
 func drop(item_type: droppable_item.item_type) -> void:
 	var slot = slots[item_type]
 	if slot[0] is droppable_item:
+		var item_to_drop = slot[0]
+		slot.remove_at(0)
 		MapManager.get_current_map().add_child(slot[0])
 		slot[0].global_position = global_position + global_basis.z * -5
 		stat_comp.remove_upgrades(slot[0].get_instance_id())
-		slot.remove_at(0)
+		
 
 func drop_all():
 	for type in droppable_item.item_type:
