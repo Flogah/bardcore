@@ -5,6 +5,7 @@ extends Node
 # these concepts seem similar but it is useful to separate them so for example, device 6 could control player 1.
 
 signal player_joined(player)
+signal player_spawned(player)
 signal player_left(player)
 
 signal player_data_updated(player)
@@ -50,6 +51,7 @@ func spawn_player(player: int):
 	player_node.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))
 	player_node.set_playername()
 	apply_village_upgrades()
+	player_spawned.emit(player)
 
 func delete_player(player: int):
 	player_nodes[player].queue_free()
