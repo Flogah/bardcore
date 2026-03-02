@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://515m7a070dcx"]
+[gd_scene load_steps=12 format=3 uid="uid://515m7a070dcx"]
 
 [ext_resource type="Script" uid="uid://daueiqykpti77" path="res://Instrument/Instrument.gd" id="1_e8i04"]
 [ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://VFX/sound_particles.tscn" id="2_h8dbk"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://7mjq2lo5wtmw" path="res://States/Player/Combat/AttackCone.gd" id="8_3ipfh"]
 [ext_resource type="AudioStream" uid="uid://cy46frjy36a0t" path="res://Instrument/SFX/BGM/test1.wav" id="8_ui8le"]
 [ext_resource type="PackedScene" uid="uid://dqujrsmr0q3jf" path="res://BlenderScenes/fanfare.tscn" id="10_3ipfh"]
-[ext_resource type="PackedScene" uid="uid://bt1xmx5r64cks" path="res://Instrument/AutoAttack/auto_attack_circle.tscn" id="11_dw12u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tuyoq"]
 radius = 1.7880859
@@ -76,5 +75,3 @@ volume_db = -5.0
 
 [node name="Fanfare2" parent="Visual" instance=ExtResource("10_3ipfh")]
 transform = Transform3D(-1, 0, 6.119594e-08, 0, 1, 0, -8.742278e-08, 0, -0.7, 0, 0, 0)
-
-[node name="AutoAttackCircle" parent="." instance=ExtResource("11_dw12u")]
