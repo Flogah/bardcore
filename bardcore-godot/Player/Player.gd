@@ -176,26 +176,26 @@ func equip_next_bard():
 	
 func set_bard_stats():
 	if type == bard_type.relic:
-		stat_comp.get_stat_object(stat_comp.stat_id.MOVEMENT_SPEED).change_stat(450)
-		stat_comp.get_stat_object(stat_comp.stat_id.MAX_HEALTH).change_stat(150)
-		stat_comp.get_stat_object(stat_comp.stat_id.TIME_TILL_REGENERATION).change_stat(1.25)
-		stat_comp.get_stat_object(stat_comp.stat_id.HEALTH_GAIN).change_stat(1.5)
-		stat_comp.get_stat_object(stat_comp.stat_id.OUT_HEAL).change_stat(1.0)
-		stat_comp.get_stat_object(stat_comp.stat_id.OUT_DAMAGE).change_stat(20)
+		stat_comp.get_stat_object(stat_comp.stat_id.MOVEMENT_SPEED).change_base_stat(450)
+		stat_comp.get_stat_object(stat_comp.stat_id.MAX_HEALTH).change_base_stat(150)
+		stat_comp.get_stat_object(stat_comp.stat_id.TIME_TILL_REGENERATION).change_base_stat(1.25)
+		stat_comp.get_stat_object(stat_comp.stat_id.HEALTH_GAIN).change_base_stat(1.5)
+		stat_comp.get_stat_object(stat_comp.stat_id.OUT_HEAL).change_base_stat(1.0)
+		stat_comp.get_stat_object(stat_comp.stat_id.OUT_DAMAGE).change_base_stat(20)
 	elif type == bard_type.lover:
-		stat_comp.get_stat_object(stat_comp.stat_id.MOVEMENT_SPEED).change_stat(500)
-		stat_comp.get_stat_object(stat_comp.stat_id.MAX_HEALTH).change_stat(100)
-		stat_comp.get_stat_object(stat_comp.stat_id.TIME_TILL_REGENERATION).change_stat(2.5)
-		stat_comp.get_stat_object(stat_comp.stat_id.HEALTH_GAIN).change_stat(1.0)
-		stat_comp.get_stat_object(stat_comp.stat_id.OUT_HEAL).change_stat(1.2)
-		stat_comp.get_stat_object(stat_comp.stat_id.OUT_DAMAGE).change_stat(20)
+		stat_comp.get_stat_object(stat_comp.stat_id.MOVEMENT_SPEED).change_base_stat(500)
+		stat_comp.get_stat_object(stat_comp.stat_id.MAX_HEALTH).change_base_stat(100)
+		stat_comp.get_stat_object(stat_comp.stat_id.TIME_TILL_REGENERATION).change_base_stat(2.5)
+		stat_comp.get_stat_object(stat_comp.stat_id.HEALTH_GAIN).change_base_stat(1.0)
+		stat_comp.get_stat_object(stat_comp.stat_id.OUT_HEAL).change_base_stat(1.2)
+		stat_comp.get_stat_object(stat_comp.stat_id.OUT_DAMAGE).change_base_stat(20)
 	elif type == bard_type.star:
-		stat_comp.get_stat_object(stat_comp.stat_id.MOVEMENT_SPEED).change_stat(600)
-		stat_comp.get_stat_object(stat_comp.stat_id.MAX_HEALTH).change_stat(70)
-		stat_comp.get_stat_object(stat_comp.stat_id.TIME_TILL_REGENERATION).change_stat(2.5)
-		stat_comp.get_stat_object(stat_comp.stat_id.HEALTH_GAIN).change_stat(1.0)
-		stat_comp.get_stat_object(stat_comp.stat_id.OUT_HEAL).change_stat(1.0)
-		stat_comp.get_stat_object(stat_comp.stat_id.OUT_DAMAGE).change_stat(26)
+		stat_comp.get_stat_object(stat_comp.stat_id.MOVEMENT_SPEED).change_base_stat(600)
+		stat_comp.get_stat_object(stat_comp.stat_id.MAX_HEALTH).change_base_stat(70)
+		stat_comp.get_stat_object(stat_comp.stat_id.TIME_TILL_REGENERATION).change_base_stat(2.5)
+		stat_comp.get_stat_object(stat_comp.stat_id.HEALTH_GAIN).change_base_stat(1.0)
+		stat_comp.get_stat_object(stat_comp.stat_id.OUT_HEAL).change_base_stat(1.0)
+		stat_comp.get_stat_object(stat_comp.stat_id.OUT_DAMAGE).change_base_stat(26)
 		
 
 func set_colors():
