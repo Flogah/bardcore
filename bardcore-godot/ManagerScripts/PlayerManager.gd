@@ -49,6 +49,7 @@ func spawn_player(player: int):
 	# random spawn position
 	player_node.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))
 	player_node.set_playername()
+	apply_village_upgrades()
 
 func delete_player(player: int):
 	player_nodes[player].queue_free()
@@ -171,3 +172,13 @@ func get_unjoined_devices():
 
 func reset():
 	player_nodes = {}
+
+func apply_village_upgrades():
+	var homebase = get_tree().current_scene
+	var buildings = homebase.buildings_node.get_children()
+	
+	for build in buildings:
+		for target_player in player_nodes:
+			player_nodes[target_player].stat_comp.remove_upgrades(build.get_instance_id())
+			var b_upgrade = build.get_current_upgrade()
+			player_nodes[target_player].stat_comp.add_upgrades(build.get_instance_id(), b_upgrade)

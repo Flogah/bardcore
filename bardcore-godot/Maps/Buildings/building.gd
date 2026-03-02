@@ -23,6 +23,13 @@ enum buildState {
 	buildState.level2: 5,
 }
 
+@export var upgrade_list: Dictionary[buildState, upgrade] = {
+	buildState.unbuilt: null,
+	buildState.level1: null,
+	buildState.level2: null,
+	buildState.level3: null,
+}
+
 @export var level_0: Node3D
 @export var level_1: Node3D
 @export var level_2: Node3D
@@ -53,6 +60,8 @@ func upgrade():
 		build_to_2()
 	elif state == buildState.level2:
 		build_to_3()
+	
+	PlayerManager.apply_village_upgrades()
 
 #region Upgrade Behaviour
 # could be more compact, but allows less control
@@ -146,3 +155,6 @@ func set_state(new_state: int):
 		level_4.show()
 	
 	state = new_state as buildState
+
+func get_current_upgrade() -> upgrade:
+	return upgrade_list[state]
