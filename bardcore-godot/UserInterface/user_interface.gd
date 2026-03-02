@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 const INPUT_HINT = preload("uid://bfs4dssi0ep7u")
+const BARD_HUD = preload("uid://bk8d3ervl7clp")
+
 
 @export var combat_ui: Control
 @export var home_ui: Control
@@ -15,10 +17,13 @@ const INPUT_HINT = preload("uid://bfs4dssi0ep7u")
 var max_fade:float = 0.0
 var current_intensity : float = -1.0
 
+@onready var player_info_container: HBoxContainer = $General_UI/PlayerContainer/PlayerInfoContainer
+
 func _ready():
 	MusicManager.halfBeat.connect(timer_beat)
 	GameManager.game_state_changed.connect(change_ui_state)
 	GameManager.building_time_changed.connect(update_build_label)
+	PlayerManager.player_joined.connect(add_new_player_HUD)
 
 func _process(_delta):
 	shrink_timer()
@@ -103,3 +108,8 @@ func create_hint(pos:Vector3, text:String, interaction_required:bool) -> InputHi
 func project(pos: Vector3) -> Vector2:
 	var camera : Camera3D = get_tree().get_first_node_in_group("Camera")
 	return camera.unproject_position(pos)
+
+func add_new_player_HUD(player: int):
+	var new_hud = BARD_HUD.instantiate()
+	player_info_container.add_child(new_hud)
+	new_hud.setup_HUD(player)
