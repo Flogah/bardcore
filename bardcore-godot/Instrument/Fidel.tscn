@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://lxalv8rqbk0c"]
+[gd_scene load_steps=15 format=3 uid="uid://lxalv8rqbk0c"]
 
 [ext_resource type="Script" uid="uid://daueiqykpti77" path="res://Instrument/Instrument.gd" id="1_4j0wa"]
 [ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://VFX/sound_particles.tscn" id="2_b0tkk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bgcbxhef1f7dg" path="res://States/Player/Combat/AttackWings.gd" id="7_0g4fy"]
 [ext_resource type="AudioStream" uid="uid://ch7mga6ovy6gd" path="res://Instrument/SFX/Violin/violin1.wav" id="8_3xx44"]
 [ext_resource type="PackedScene" uid="uid://gia1ym8o6sx6" path="res://BlenderScenes/fidel.blend" id="9_b0tkk"]
+[ext_resource type="PackedScene" uid="uid://bt1xmx5r64cks" path="res://Instrument/AutoAttack/auto_attack_circle.tscn" id="10_j7q4d"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nbgvm"]
 radius = 3.643636
@@ -91,3 +92,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fjrip")
 
 [node name="fidel" parent="Visual" instance=ExtResource("9_b0tkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.019524366)
+
+[node name="AutoAttackCircle" parent="." instance=ExtResource("10_j7q4d")]
