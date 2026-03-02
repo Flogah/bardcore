@@ -21,9 +21,10 @@ func setup_attack_area():
 	effect.amount = owner.get_parent().stat_comp.get_stat(stat_component.stat_id.OUT_DAMAGE) * owner.damage_multiplier
 	effect.type = effect.effect_type.ATTACK
 	attackArea.get_child(0).interaction_effect = effect
-	MapManager.current_map.add_child(attackArea)
-	attackArea.global_position = attack_spawn.global_position
-	attackArea.rotation = attack_spawn.global_rotation
+	attack_spawn.add_child(attackArea)
+	#MapManager.current_map.add_child(attackArea)
+	#attackArea.global_position = attack_spawn.global_position
+	#attackArea.rotation = attack_spawn.global_rotation
 	attackArea.set_color(owner.player_num)
 	await get_tree().create_timer(.01).timeout
 	attackArea.activate()
