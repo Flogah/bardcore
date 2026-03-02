@@ -13,17 +13,22 @@ var player_num: int
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var hp_label: Label = $ProgressBar/Control/HPLabel
 
+var health_comp: health_component
+
 func setup_HUD(player: int):
 	player_num = player
 	set_type()
 	PlayerManager.player_data_updated.connect(set_type)
 	var player_col = PlayerManager.get_player_color(player)
-	var player_node = PlayerManager.player_nodes[player_num]
-	var health_comp: health_component = player_node.health_comp
+	var player_node: Player = PlayerManager.player_nodes[player_num]
+	health_comp = player_node.health_comp
+	
 	health_comp.damaged.connect(update_health)
 	health_comp.healed.connect(update_health)
-	update_health(0, 0, health_comp.health)
-	set_max_health(health_comp.max_health)
+	
+	update_health()
+	get_tree().create_timer(.1).timeout.connect(update_health)
+	
 	progress_bar.get("theme_override_styles/background").bg_color = player_col
 
 func set_type():
@@ -35,9 +40,10 @@ func set_type():
 	else:
 		portrait.texture = GODOT_ICON
 
-func update_health(_amount, _mod, new_h: float):
-	health_bar.value = new_h
-	hp_label.text = str(max(snapped(new_h, 1), 0))
+func update_health(_n = 0, _m = 1, health: float = health_comp.health):
+	health_bar.value = health
+	health_bar.max_value = health_comp.max_health
+	hp_label.text = str(max(snapped(health_comp.health, 1), 0))
+	
 
-func set_max_health(new_value: float):
-	health_bar.max_value = new_value
+	
