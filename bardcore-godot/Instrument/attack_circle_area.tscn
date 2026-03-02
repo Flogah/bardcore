@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://bivf4jcutmgdo"]
+[gd_scene load_steps=20 format=4 uid="uid://bivf4jcutmgdo"]
 
 [ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="1_tqdmu"]
 [ext_resource type="Script" uid="uid://cm0jhgrusjbxq" path="res://Instrument/attack_circle_area.gd" id="1_xv3mu"]
 [ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="2_c4r5d"]
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="3_xv3mu"]
 [ext_resource type="AudioStream" uid="uid://0l3sitsl4d1f" path="res://Instrument/SFX/Trumpet/Kreis_Bardcore_tr.wav" id="4_c4r5d"]
+[ext_resource type="Material" uid="uid://btofm21e3f4xw" path="res://Materials/Attacks/attack_area.tres" id="6_f4xkb"]
+[ext_resource type="Shader" uid="uid://cmy0sxqutmr02" path="res://Shaders/attack_loading_shader.tres" id="6_r8oy2"]
 [ext_resource type="AudioStream" uid="uid://dtsfx3hsha42h" path="res://Instrument/SFX/BGM/place_sound.wav" id="6_rtdfi"]
 [ext_resource type="PlaneMesh" uid="uid://ba15lvptqqr2l" path="res://Instrument/ParticleEffects/Note_DrawPass.tres" id="7_fqapy"]
 
@@ -17,10 +19,31 @@ metadata/_custom_type_script = "uid://buv1cjylhq6sg"
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c4r5d"]
 radius = 3.5
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_xv3mu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8efsc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtdfi"]
-albedo_color = Color(0.15455905, 0.56553996, 0, 1)
+[sub_resource type="ArrayMesh" id="ArrayMesh_f4xkb"]
+resource_name = "fullcircle_Circle_003"
+_surfaces = [{
+"aabb": AABB(-2, 0, -2, 4, 1e-05, 4),
+"attribute_data": PackedByteArray("//////9///P/f////3//6f9//9/////p////8/9//9P/f//J////3/9//73////J////0/9//7P/f/+p////vf9//5////+z/3//k////5////+p/3//if///5P/f/x/////if///H+3p/+Tt6f/iben/H+3p/+fRtj/k0bY/4lG2Px/Rtj/n0bY/6m3p/+pRtj/s7en/7NG2P+9t6f/vUbY/8m3p//JRtj/07en/9NG2P/ft6f/30bY/+m3p//pRtj/80bY//+3p//zt6f//w=="),
+"format": 34896613399,
+"index_count": 216,
+"index_data": PackedByteArray("GgAVABIAGgAbABUAGwAXABUAGwAcABcAHQAaABIAHQASABAAHgAbABoAHwAcABsAHgAfABsAHwAgABwAGAAgAB8AGAAZACAAFgAYAB8AFgAfAB4AEwAWAB4AIQAeABoAEwAeACEAIQAaAB0AFAATACEAFAAhACIAIgAhAB0AEQAUACIAIgAdACMAIwAdABAAIwAQAA4AEQAiACQAJAAiACMADwARACQAJQAjAA4AJAAjACUAJQAOAA0ADwAkACYAJgAkACUACwAPACYAJwAlAA0AJgAlACcAJwANAAoACwAmACgAKAAmACcADAALACgAKQAnAAoAKAAnACkAKQAKAAgADAAoACoAKgAoACkACQAMACoAKwApAAgAKgApACsAKwAIAAcACQAqACwALAAqACsABQAJACwALQArAAcALAArAC0ALQAHAAQABQAsAC4ALgAsAC0ABgAFAC4ALwAtAAQALgAtAC8ALwAEAAMABgAuADAAMAAuAC8AAAAGADAAAAAwADEAMAAvADIAMgAvAAMAMQAwADIAMgADAAEAMQAyADMAMwAyAAEAMwABAAIA"),
+"lods": [1e-10, PackedByteArray("AAABAAIAAAADAAEAAAAEAAMAAAAFAAQABgAFAAAABQAHAAQABQAIAAcABQAJAAgACQAKAAgACQALAAoADAALAAkACwANAAoACwAOAA0ACwAPAA4ADwAQAA4ADwARABAAEQASABAAEQATABIAFAATABEAEwAVABIAEwAWABUAFgAXABUAFgAYABcAGAAZABcA")],
+"material": SubResource("StandardMaterial3D_8efsc"),
+"primitive": 3,
+"uv_scale": Vector4(2, 2, 0, 0),
+"vertex_count": 52,
+"vertex_data": PackedByteArray("//8AAP9/ZD91hQAAJoPEPk2GAAD/f/8/JoMAAHWFrjj/fwAATYakLv+/AADY7m0z2O4AAP+/6jvYfAAAdYUGIol6AAAmg+YT/38AAP//yCexeQAA/38FBSYRAAD/v5UL/z8AANjuNRqJegAA2HwJCth8AACJersYAAAAAP9/dgP/fwAAsXlzJiYRAAD/P2ISJoMAAIl6WDL/fwAAAABvLf8/AAAmEZ4gdYUAANh8OTv/vwAAJhHMN02GAAD/f7w+2O4AAP8/XT7//wAA/3//P26XAABoV0k2lqgAAJBolj3drgAA/3/NP/9/AAAhUWsrtqsAAEc0DDa3ywAASFR1PW7XAAD/f+U//38AAJAoHStIVAAARzT0HZBoAABoV04eRzQAAEhUiQ9oVwAAkGjpD5AoAAD/f4wAIVEAAP9/7gBHNAAAtqt0DmhXAABulxUOSFQAALfL7xyQaAAAlqiVHP9/AABu1zcq/38AAN2u5ym2qwAAt8taNW6XAACWqBs1t8sAALarET1u1wAA/3/NP5aoAABul+083a4AAP9/kz+85qCMnN6wkP///384wuKeya8aqCW3bKTIzJqZL6Fnr7OTJbZOp1esW4VRvd6LD7qXmTOzL8VgChnMNBjdwbwD6tLVJSTJSxKp2lQ1E9coLuLPxh8J5RVKAOACQCDvQl5r7dha////f0zemjyf6kBVMfhkcMrVlisN3hw8Oup1VC/6YHSa1TYrlM4pHb/OgB3Qx6EP/Mf7D03AmwCCwAYBnI6wuEGO3rgunOex15sTsh+q76rAqR6rtLqkojq64aI80uCWY/DNh33RQJc56uKK")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjlu1"]
+render_priority = 0
+shader = ExtResource("6_r8oy2")
+shader_parameter/PlayerColor = Vector4(1, 0, 1, 0)
+shader_parameter/AbilityProgress = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xv3mu"]
 
 [sub_resource type="Resource" id="Resource_fqapy"]
 script = ExtResource("2_c4r5d")
@@ -70,9 +93,15 @@ stream = ExtResource("4_c4r5d")
 volume_db = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 0, -1.4952427, 0)
+mesh = SubResource("ArrayMesh_f4xkb")
+surface_material_override/0 = SubResource("ShaderMaterial_mjlu1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(7.2798166, 0, 0, 0, 0.025, 0, 0, 0, 7.2798166, 0, -1.4952427, 0)
+visible = false
 mesh = SubResource("CylinderMesh_xv3mu")
-surface_material_override/0 = SubResource("StandardMaterial3D_rtdfi")
+surface_material_override/0 = ExtResource("6_f4xkb")
 
 [node name="hit_emitter_box2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1664617, 0)

@@ -12,13 +12,7 @@ const FIDEL = preload("res://Instrument/Fidel.tscn")
 @onready var relic_model: Node3D = $Visual/drinker_fidel
 @onready var star_model: Node3D = $Visual/star_fidel
 
-enum bard_type {
-	lover,
-	relic,
-	star
-}
-
-@onready var type: bard_type
+@onready var type: PlayerManager.bard_type
 
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
@@ -67,7 +61,7 @@ func init(player_num: int):
 func _ready() -> void:
 	if !equipped_instrument:
 		add_instrument(TRUMPET)
-	type == bard_type.lover
+	type == PlayerManager.bard_type.lover
 	set_colors()
 
 func _physics_process(delta: float) -> void:
@@ -156,21 +150,22 @@ func equip_next_instrument():
 		add_instrument(TRUMPET)
 
 func equip_next_bard():
-	if type == bard_type.relic:
+	if type == PlayerManager.bard_type.relic:
 		relic_model.hide()
 		lover_model.show()
-		type = bard_type.lover
+		type = PlayerManager.bard_type.lover
 		instrument_spawn = $InstrumentSpawn
-	elif type == bard_type.lover:
+	elif type == PlayerManager.bard_type.lover:
 		lover_model.hide()
 		star_model.show()
-		type = bard_type.star
+		type = PlayerManager.bard_type.star
 		instrument_spawn = $InstrumentSpawn_star
-	elif type == bard_type.star:
+	elif type == PlayerManager.bard_type.star:
 		star_model.hide()
 		relic_model.show()
-		type = bard_type.relic
+		type = PlayerManager.bard_type.relic
 		instrument_spawn = $InstrumentSpawn_relic
+	PlayerManager.set_player_data(player, "bard", type)
 	add_instrument(TRUMPET)
 	set_bard_stats()
 	
@@ -200,7 +195,7 @@ func set_bard_stats():
 
 func set_colors():
 	var col = player_colors[player]
-	PlayerManager.set_player_color(player, col)
+	PlayerManager.set_player_data(player, "color", col)
 	#print(PlayerManager.get_player_color(player))
 	#var mat = StandardMaterial3D.new()
 	#mat.albedo_color = col

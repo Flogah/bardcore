@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://o0tv07dyue51"]
+
+[ext_resource type="PackedScene" uid="uid://b66i1jchxwux8" path="res://BlenderScenes/skeleton_arm_and_axe.blend" id="1_qc70i"]
+[ext_resource type="Texture2D" uid="uid://c7mtdrblr8sjp" path="res://BlenderScenes/textures/skeleton_arm_color.png" id="2_rymwb"]
+[ext_resource type="Texture2D" uid="uid://fcsu8m14sutk" path="res://BlenderScenes/textures/axe_color.png" id="3_acmys"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bvm4j"]
+albedo_texture = ExtResource("2_rymwb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_455ey"]
+albedo_texture = ExtResource("3_acmys")
+
+[node name="skeleton_arm_and_axe" instance=ExtResource("1_qc70i")]
+
+[node name="right_arm" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bvm4j")
+
+[node name="axe" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_455ey")
