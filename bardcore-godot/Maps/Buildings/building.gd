@@ -23,6 +23,13 @@ enum buildState {
 	buildState.level2: 5,
 }
 
+@export var upgrade_list: Dictionary[buildState, upgrade] = {
+	buildState.unbuilt: null,
+	buildState.level1: null,
+	buildState.level2: null,
+	buildState.level3: null,
+}
+
 @export var level_0: Node3D
 @export var level_1: Node3D
 @export var level_2: Node3D
@@ -53,6 +60,8 @@ func upgrade():
 		build_to_2()
 	elif state == buildState.level2:
 		build_to_3()
+	
+	PlayerManager.apply_village_upgrades()
 
 #region Upgrade Behaviour
 # could be more compact, but allows less control
@@ -64,12 +73,13 @@ func build_to_1():
 	# upgrade anim
 	anim.animation_finished.connect(finish_building_1)
 	level_1.show()
+	state = buildState.level1
 	anim.play("level0_to_level1")
 
 func finish_building_1(_anim):
 	anim.animation_finished.disconnect(finish_building_1)
 	level_0.hide()
-	state = buildState.level1
+	
 	building_upgraded.emit()
 	
 	collision.disabled = false
@@ -79,12 +89,13 @@ func build_to_2():
 	# build anim
 	level_2.show()
 	anim.animation_finished.connect(finish_building_2)
+	state = buildState.level2
 	anim.play("level1_to_level2")
 
 func finish_building_2(_anim):
 	anim.animation_finished.disconnect(finish_building_2)
 	level_1.hide()
-	state = buildState.level2
+	
 	building_upgraded.emit()
 	
 	interaction_collision.disabled = false
@@ -93,12 +104,13 @@ func build_to_3():
 	# build anim
 	level_3.show()
 	anim.animation_finished.connect(finish_building_3)
+	state = buildState.level3
 	anim.play("level2_to_level3")
 
 func finish_building_3(_anim):
 	anim.animation_finished.disconnect(finish_building_3)
 	level_2.hide()
-	state = buildState.level3
+	
 	building_upgraded.emit()
 	
 	interaction_collision.disabled = false
@@ -146,3 +158,6 @@ func set_state(new_state: int):
 		level_4.show()
 	
 	state = new_state as buildState
+
+func get_current_upgrade() -> upgrade:
+	return upgrade_list[state]
