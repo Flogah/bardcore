@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jxj1ujtdn53d"
-path="res://.godot/imported/Liebhaberportrait_ui.jpg-2ce6176a249112a4a3bfaba472a91f68.ctex"
+uid="uid://cono65sny6l7d"
+path="res://.godot/imported/hud_star2.png-960a7a8bc3e692a205fab83f2f8d4cdd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Bards/Liebhaberportrait_ui.jpg"
-dest_files=["res://.godot/imported/Liebhaberportrait_ui.jpg-2ce6176a249112a4a3bfaba472a91f68.ctex"]
+source_file="res://Textures/Bards/hud_star2.png"
+dest_files=["res://.godot/imported/hud_star2.png-960a7a8bc3e692a205fab83f2f8d4cdd.ctex"]
 
 [params]
 

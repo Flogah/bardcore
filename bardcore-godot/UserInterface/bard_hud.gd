@@ -1,17 +1,16 @@
 extends Control
 class_name BardHUD
 
-const LIEBHABER_PORTRAIT_HOLZSCHNITT_2 = preload("uid://jxj1ujtdn53d")
-const SAEUFER_PORTRAIT_HOLZSCHNITT_2 = preload("uid://vulycxh5qme7")
-const GODOT_ICON = preload("uid://cbrmi5k31lw24")
+const LIEBHABER_PORTRAIT = preload("uid://bvpwo6w6kxci1")
+const SAEUFER_PORTRAIT = preload("uid://b0ulghyxc1ddu")
+const STAR_PORTRAIT = preload("uid://cono65sny6l7d")
 
 var current_type: PlayerManager.bard_type
 var player_num: int
 
 @onready var health_bar: ProgressBar = $ProgressBar
-@onready var portrait: TextureRect = $Control/TextureRect
-@onready var portrait_links: Control = $Control
-@onready var portrait_rechts: Control = $Control2
+@onready var portrait_links: TextureRect = $Control/TextureRect
+@onready var portrait_rechts: TextureRect = $Control2/TextureRect2
 @onready var progress_bar: ProgressBar = $ProgressBar
 
 func setup_HUD(player: int):
@@ -34,11 +33,14 @@ func setup_HUD(player: int):
 func set_type():
 	current_type = PlayerManager.player_data[player_num]["bard"]
 	if current_type == PlayerManager.bard_type.lover:
-		portrait.texture = LIEBHABER_PORTRAIT_HOLZSCHNITT_2
+		portrait_links.texture = LIEBHABER_PORTRAIT
+		portrait_rechts.texture = LIEBHABER_PORTRAIT
 	elif current_type == PlayerManager.bard_type.relic:
-		portrait.texture = SAEUFER_PORTRAIT_HOLZSCHNITT_2
+		portrait_links.texture = SAEUFER_PORTRAIT
+		portrait_rechts.texture = SAEUFER_PORTRAIT
 	else:
-		portrait.texture = GODOT_ICON
+		portrait_links.texture = STAR_PORTRAIT
+		portrait_rechts.texture = STAR_PORTRAIT
 
 func update_health(_amount, _mod, new_h: float):
 	health_bar.value = new_h
