@@ -205,11 +205,47 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="PlayerInfoContainer" type="HBoxContainer" parent="General_UI/PlayerContainer"]
+[node name="PlayerInfoContainer1" type="HBoxContainer" parent="General_UI/PlayerContainer"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_right = 0.316
+anchor_bottom = 1.0
+offset_right = 0.44799805
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerInfoContainer2" type="HBoxContainer" parent="General_UI/PlayerContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.684
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -0.44799805
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerInfoContainer3" type="HBoxContainer" parent="General_UI/PlayerContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -3.5080001
+anchor_right = 0.316
+anchor_bottom = -2.5080001
+offset_top = -0.023986816
+offset_right = 0.44799805
+offset_bottom = -0.023986816
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerInfoContainer4" type="HBoxContainer" parent="General_UI/PlayerContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.684
+anchor_top = -3.5900002
+anchor_right = 1.0
+anchor_bottom = -2.5900002
+offset_left = -0.44799805
+offset_top = -0.019989014
+offset_bottom = -0.019989014
 grow_horizontal = 2
 grow_vertical = 2
 

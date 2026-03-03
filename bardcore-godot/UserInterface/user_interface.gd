@@ -17,7 +17,10 @@ const BARD_HUD = preload("uid://bk8d3ervl7clp")
 var max_fade:float = 0.0
 var current_intensity : float = -1.0
 
-@onready var player_info_container: HBoxContainer = $General_UI/PlayerContainer/PlayerInfoContainer
+@onready var player_info_container1: HBoxContainer = $General_UI/PlayerContainer/PlayerInfoContainer1
+@onready var player_info_container2: HBoxContainer = $General_UI/PlayerContainer/PlayerInfoContainer2
+@onready var player_info_container3: HBoxContainer = $General_UI/PlayerContainer/PlayerInfoContainer3
+@onready var player_info_container4: HBoxContainer = $General_UI/PlayerContainer/PlayerInfoContainer4
 
 func _ready():
 	MusicManager.halfBeat.connect(timer_beat)
@@ -111,5 +114,12 @@ func project(pos: Vector3) -> Vector2:
 
 func add_new_player_HUD(player: int):
 	var new_hud = BARD_HUD.instantiate()
-	player_info_container.add_child(new_hud)
+	if player == 0 :
+		player_info_container1.add_child(new_hud)
+	elif player == 1 :
+		player_info_container2.add_child(new_hud)
+	elif player == 2 :
+		player_info_container3.add_child(new_hud)
+	elif player == 3 :
+		player_info_container4.add_child(new_hud)
 	new_hud.setup_HUD(player)
