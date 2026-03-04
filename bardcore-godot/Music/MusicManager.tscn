@@ -5,6 +5,7 @@
 
 [node name="MusicManager" type="Node" node_paths=PackedStringArray("rhythm_notifier")]
 script = ExtResource("1_txsen")
+music_volume = 100
 rhythm_notifier = NodePath("RhythmNotifier")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]

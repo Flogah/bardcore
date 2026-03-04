@@ -18,7 +18,7 @@ enum beatType{
 @export var current_music: AudioStreamPlayer
 var music_player_1: AudioStreamPlayer
 var music_player_2: AudioStreamPlayer
-@export var music_volume = -40
+@export var music_volume = -20
 
 enum music_tracks {
 	VILLAGE,

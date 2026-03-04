@@ -72,9 +72,8 @@ func connect_to_beat():
 	beatTimer.one_shot = true
 	beatTimer.timeout.connect(strong_hit)
 	
-	
 	sfx_timer = Timer.new()
-	sfx_timer.wait_time = MusicManager.get_time_to_next_beat(trigger_on_beat) + attack_sound_timing
+	sfx_timer.wait_time = max(0, beatTimer.wait_time + attack_sound_timing)
 	sfx_timer.autostart = true
 	sfx_timer.one_shot = true
 	sfx_timer.timeout.connect(play_attack)
@@ -83,13 +82,13 @@ func connect_to_beat():
 	add_child(sfx_timer)
 
 func weak_hit():
-	#hit_emitter.hit_effect.amount = placement_damage
+	hit_emitter.interaction_effect.amount = placement_damage
 	place_sound_player.play()
 	particles.restart()
 	hit_emitter.hit_check()
 
 func strong_hit():
-	#hit_emitter.hit_effect.amount = damage_mod
+	hit_emitter.interaction_effect.amount = damage_mod
 	particles.restart()
 	hit_emitter.hit_check()
 	mesh_instance.hide()

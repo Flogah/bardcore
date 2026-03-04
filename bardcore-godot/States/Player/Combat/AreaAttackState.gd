@@ -1,8 +1,7 @@
 extends State
-class_name AttackCone
+class_name AreaAttackState
 
-@export var attackArea: PackedScene = preload("uid://d0o1tl8lwamf")
-
+@export var attackArea: PackedScene
 @export var attack_spawn: Node3D
 
 var attackArea_instance
