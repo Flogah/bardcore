@@ -40,7 +40,7 @@ func _process(_delta: float) -> void:
 		return
 	
 	var progress = mat.get_shader_parameter("AbilityProgress")
-	progress = beatTimer.time_left / beatTimer.wait_time
+	progress = (beatTimer.wait_time - beatTimer.time_left) / beatTimer.wait_time
 	mat.set_shader_parameter("AbilityProgress", progress)
 
 func set_sound_emitters():
@@ -92,6 +92,7 @@ func strong_hit():
 	#hit_emitter.hit_effect.amount = damage_mod
 	particles.restart()
 	hit_emitter.hit_check()
+	mesh_instance.hide()
 
 func play_attack():
 	attack_sound_player.play()
@@ -101,5 +102,4 @@ func set_color():
 	mat.set_shader_parameter("PlayerColor", player_col)
 
 func clean_up():
-	mesh_instance.hide()
 	attack_sound_finished.emit()
