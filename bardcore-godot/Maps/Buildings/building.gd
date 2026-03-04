@@ -2,7 +2,6 @@ class_name Building
 extends Interactable
 
 signal building_upgraded
-signal left_hint_area
 
 enum buildState {
 	unbuilt,
@@ -14,6 +13,13 @@ enum buildState {
 @export var building_name:String
 
 @export var state:buildState = buildState.unbuilt
+
+@export var building_levels: Dictionary[buildState, Node3D] = {
+	buildState.unbuilt: null,
+	buildState.level1: null,
+	buildState.level2: null,
+	buildState.level3: null,
+}
 
 # this defines the cost for upgrade from the stated state
 # if it's not in this list, you can' upgrade
@@ -30,12 +36,6 @@ enum buildState {
 	buildState.level3: null,
 }
 
-@export var level_0: Node3D
-@export var level_1: Node3D
-@export var level_2: Node3D
-@export var level_3: Node3D
-@export var level_4: Node3D
-
 #@export var build_level_models:Dictionary[buildState, Node3D] = {}
 
 @onready var collision: CollisionShape3D = $Collision/CollisionShape3D
@@ -43,78 +43,34 @@ enum buildState {
 @onready var interaction_collision: CollisionShape3D = $InteractionArea/CollisionShape3D
 
 func interact():
-	upgrade()
+	upgrade_to(state +1)
 
-func upgrade():
+func upgrade_to(target_level: buildState):
 	# does the current build state even have an upgrade cost
-	if !build_cost.has(state):
-		return
+	if !build_cost.has(state): return
 	# this applies the cost but already checks if there is enough balance left
-	if !GameManager.pay_building_cost(build_cost.get(state)):
-		return
+	if !GameManager.pay_building_cost(build_cost.get(state)): return
+	var new_model = building_levels[target_level]
+	if !new_model: return
+	var curr_model = building_levels[state]
+	
+	state = target_level
+	building_upgraded.emit()
+	PlayerManager.apply_village_upgrades()
 	
 	interaction_collision.disabled = true
-	if state == buildState.unbuilt:
-		build_to_1()
-	elif state == buildState.level1:
-		build_to_2()
-	elif state == buildState.level2:
-		build_to_3()
+	collision.disabled = true
+	new_model.position.y = -13.0
 	
-	PlayerManager.apply_village_upgrades()
-
-#region Upgrade Behaviour
-# could be more compact, but allows less control
-#func build_up(new_state:buildState = state + 1):
-	#if build_level_models.has(new_state):
-		#print(build_level_models.get(new_state))
-
-func build_to_1():
-	# upgrade anim
-	anim.animation_finished.connect(finish_building_1)
-	level_1.show()
-	state = buildState.level1
-	anim.play("level0_to_level1")
-
-func finish_building_1(_anim):
-	anim.animation_finished.disconnect(finish_building_1)
-	level_0.hide()
+	var building_anim_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_parallel(true)
+	building_anim_tween.tween_property(curr_model, "position:y", -13.0, 1.0)
+	curr_model.hide()
 	
-	building_upgraded.emit()
+	new_model.show()
+	building_anim_tween.tween_property(new_model, "position:y", 0.0, 1.0)
 	
 	collision.disabled = false
 	interaction_collision.disabled = false
-
-func build_to_2():
-	# build anim
-	level_2.show()
-	anim.animation_finished.connect(finish_building_2)
-	state = buildState.level2
-	anim.play("level1_to_level2")
-
-func finish_building_2(_anim):
-	anim.animation_finished.disconnect(finish_building_2)
-	level_1.hide()
-	
-	building_upgraded.emit()
-	
-	interaction_collision.disabled = false
-
-func build_to_3():
-	# build anim
-	level_3.show()
-	anim.animation_finished.connect(finish_building_3)
-	state = buildState.level3
-	anim.play("level2_to_level3")
-
-func finish_building_3(_anim):
-	anim.animation_finished.disconnect(finish_building_3)
-	level_2.hide()
-	
-	building_upgraded.emit()
-	
-	interaction_collision.disabled = false
-#endregion
 
 func _on_interaction_area_area_entered(_area: Area3D) -> void:
 	if hint: return
@@ -140,24 +96,16 @@ func get_current_upgrade_cost() -> int:
 	return build_cost.get(state)
 
 func set_state(new_state: int):
-	level_0.hide()
-	level_1.hide()
-	level_2.hide()
-	level_3.hide()
-	level_4.hide()
+	for level in building_levels:
+		building_levels[level].hide()
 	
-	if new_state == 0:
-		level_0.show()
-	if new_state == 1:
-		level_1.show()
-	if new_state == 2:
-		level_2.show()
-	if new_state == 3:
-		level_3.show()
-	if new_state == 4:
-		level_4.show()
+	building_levels[new_state].show()
 	
 	state = new_state as buildState
 
 func get_current_upgrade() -> upgrade:
 	return upgrade_list[state]
+
+func reveal():
+	show()
+	interaction_collision.disabled = false

@@ -367,13 +367,14 @@ _data = {
 &"level2_to_level3": SubResource("Animation_wvfqc")
 }
 
-[node name="Building" type="Node3D" node_paths=PackedStringArray("level_0", "level_1", "level_2", "level_3", "level_4")]
+[node name="Building" type="Node3D" node_paths=PackedStringArray("building_levels")]
 script = ExtResource("1_4ount")
-level_0 = NodePath("Level0")
-level_1 = NodePath("Level1")
-level_2 = NodePath("Level2")
-level_3 = NodePath("Level3")
-level_4 = NodePath("Level4")
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
 
 [node name="InteractionArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0, 0)
@@ -479,12 +480,10 @@ visible = false
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.6848607, 0, 0)
 
 [node name="Level3" type="Node3D" parent="."]
+visible = false
 
 [node name="Guests_stage3" parent="Level3" instance=ExtResource("4_d73gv")]
 transform = Transform3D(-3.7373237e-08, 0, 0.855, 0, 0.855, 0, -0.855, 0, -3.7373237e-08, 0.72345257, 0, 0)
-
-[node name="Level4" type="Node3D" parent="."]
-visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
