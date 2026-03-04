@@ -5,6 +5,7 @@ extends Node
 # these concepts seem similar but it is useful to separate them so for example, device 6 could control player 1.
 
 signal player_joined(player)
+signal player_spawned(player)
 signal player_left(player)
 
 signal player_data_updated(player)
@@ -49,6 +50,8 @@ func spawn_player(player: int):
 	# random spawn position
 	player_node.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))
 	player_node.set_playername()
+	apply_village_upgrades()
+	player_spawned.emit(player)
 
 func delete_player(player: int):
 	player_nodes[player].queue_free()
@@ -171,3 +174,15 @@ func get_unjoined_devices():
 
 func reset():
 	player_nodes = {}
+
+func apply_village_upgrades():
+	var homebase = get_tree().current_scene
+	var buildings = homebase.buildings_node.get_children()
+	
+	for build in buildings:
+		for target_player in player_nodes:
+			player_nodes[target_player].stat_comp.remove_upgrades(build.get_instance_id())
+			var b_upgrade: upgrade = build.get_current_upgrade()
+			if b_upgrade:
+				var upgrade_arr: Array[upgrade] = [b_upgrade]
+				player_nodes[target_player].stat_comp.add_upgrades(build.get_instance_id(), upgrade_arr)

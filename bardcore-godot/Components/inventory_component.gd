@@ -25,7 +25,7 @@ const SLOT_TYPE_SIZE := {
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	for type in SLOT_TYPE_SIZE.keys():
-		stat_comp.stats[type].changed.connect(drop_overflowing_itmes)
+		stat_comp.stats[type].changed.connect(drop_overflowing_items.bind(type))
 
 func pickup(item: droppable_item) -> void: #call this if a item should be forced into a slot
 	if item:
@@ -34,7 +34,7 @@ func pickup(item: droppable_item) -> void: #call this if a item should be forced
 				item.get_parent().remove_child(item)
 				slots[item.item_resource_.type].append(item)
 				stat_comp.add_upgrades(item.get_instance_id(),item.item_resource_.upgrades)
-				drop_overflowing_itmes(item.item_resource_.type)
+				drop_overflowing_items(item.item_resource_.type)
 			else:
 				printerr("Item was tried to be picked up, but parent is already null")
 		else:
@@ -44,16 +44,18 @@ func pickup(item: droppable_item) -> void: #call this if a item should be forced
 func drop(item_type: droppable_item.item_type) -> void:
 	var slot = slots[item_type]
 	if slot[0] is droppable_item:
+		var item_to_drop = slot[0]
+		slot.remove_at(0)
 		MapManager.get_current_map().add_child(slot[0])
 		slot[0].global_position = global_position + global_basis.z * -5
 		stat_comp.remove_upgrades(slot[0].get_instance_id())
-		slot.remove_at(0)
+		
 
 func drop_all():
 	for type in droppable_item.item_type:
 		drop(type)
 
-func drop_overflowing_itmes(item_type: droppable_item.item_type) -> void:
+func drop_overflowing_items(item_type: droppable_item.item_type) -> void:
 	var slot = slots[item_type]
 	if item_type == droppable_item.item_type.INSTRUMENT:
 		if slot.size() > 1:

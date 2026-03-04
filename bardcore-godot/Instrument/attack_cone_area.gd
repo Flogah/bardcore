@@ -7,13 +7,21 @@ var beatTimer: Timer
 @onready var particles: GPUParticles3D = $GPUParticles3D
 @onready var place_sound: AudioStreamPlayer3D = $DotSound
 
+@onready var mat: ShaderMaterial = mesh_instance.get_surface_override_material(0)
 
 func _ready() -> void:
 	#beatTimer = get_tree().get_first_node_in_group('BeatTimer')
 	#unnecessary, it's already connected by hand (check your nodes)
 	#attack_sound.finished.connect(clean_up)
 	MusicManager.beat.connect(_on_triggered)
-	print("beatTimer")
+	#print("beatTimer")
+	
+	mat.set_shader_parameter("AbilityProgress", 0.0)
+
+func _process(delta: float) -> void:
+	var progress = mat.get_shader_parameter("AbilityProgress")
+	progress = MusicManager.get_time_to_next_beat(MusicManager.beatType.beat) * 2/ MusicManager.beatType.beat
+	mat.set_shader_parameter("AbilityProgress", progress)
 
 func activate():
 	await get_tree().create_timer(0.05).timeout
@@ -36,9 +44,5 @@ func _on_audio_stream_player_3d_finished() -> void:
 	queue_free()
 
 func set_color(player_num: int):
-	print(player_num)
-	var new_mat = StandardMaterial3D.new()
 	var player_col = PlayerManager.get_player_color(player_num)
-	new_mat.albedo_color = player_col
-	print(player_col)
-	mesh_instance.set_surface_override_material(0, new_mat)
+	mat.set_shader_parameter("PlayerColor", player_col)

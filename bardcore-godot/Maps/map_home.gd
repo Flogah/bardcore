@@ -11,7 +11,7 @@ var buildings
 func _ready() -> void:
 	gather_buildings()
 	load_buildings()
-	save_buildings()
+	#save_buildings()
 	exit_portal.on_enter_portal.connect(enter_run)
 	GameManager.change_gamestate(mapGameState)
 	spawn_players()
@@ -23,6 +23,7 @@ func enter_run():
 	MapManager.load_map()
 
 func spawn_players():
+	UserInterface.reset_hud()
 	var players = PlayerManager.player_data
 	for player in players:
 		PlayerManager.spawn_player(player)
@@ -31,6 +32,7 @@ func gather_buildings():
 	buildings = buildings_node.get_children()
 	for building in buildings:
 		building.building_upgraded.connect(save_buildings)
+	gasthaus.building_upgraded.connect(unhide_village)
 
 func save_buildings():
 	for building in buildings:
@@ -43,8 +45,8 @@ func load_buildings():
 		var new_state = GameManager.get_building_lvl(b_name)
 		building.set_state(new_state)
 	if gasthaus.state > 0:
-		show_all_buildings()
+		unhide_village()
 
-func show_all_buildings():
+func unhide_village():
 	for building in buildings:
-		building.show()
+		building.reveal()

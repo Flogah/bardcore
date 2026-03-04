@@ -61,7 +61,8 @@ func init(player_num: int):
 func _ready() -> void:
 	if !equipped_instrument:
 		add_instrument(TRUMPET)
-	type == PlayerManager.bard_type.lover
+	type = PlayerManager.bard_type.lover
+	set_bard_stats()
 	set_colors()
 
 func _physics_process(delta: float) -> void:
@@ -167,6 +168,11 @@ func equip_next_bard():
 		instrument_spawn = $InstrumentSpawn_relic
 	PlayerManager.set_player_data(player, "bard", type)
 	add_instrument(TRUMPET)
+	set_bard_stats()
+	UserInterface.update_hud_manual()
+	
+func set_bard_stats():
+	stat_comp.set_base_stats(type)
 
 func set_colors():
 	var col = player_colors[player]

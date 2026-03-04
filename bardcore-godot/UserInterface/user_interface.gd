@@ -26,7 +26,7 @@ func _ready():
 	MusicManager.halfBeat.connect(timer_beat)
 	GameManager.game_state_changed.connect(change_ui_state)
 	GameManager.building_time_changed.connect(update_build_label)
-	PlayerManager.player_joined.connect(add_new_player_HUD)
+	PlayerManager.player_spawned.connect(add_new_player_HUD)
 
 func _process(_delta):
 	shrink_timer()
@@ -123,3 +123,14 @@ func add_new_player_HUD(player: int):
 	elif player == 3 :
 		player_info_container4.add_child(new_hud)
 	new_hud.setup_HUD(player)
+
+func reset_hud():
+	var huds = player_info_container.get_children()
+	for hud in huds:
+		hud.queue_free()
+
+func update_hud_manual():
+	await get_tree().create_timer(.1).timeout
+	var huds = player_info_container.get_children()
+	for hud in huds:
+		hud.set_HUD_numbers()
