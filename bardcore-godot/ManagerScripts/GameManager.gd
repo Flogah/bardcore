@@ -157,6 +157,9 @@ func change_gamestate(new_gamestate:gameState):
 		pause_dragon_timer()
 
 func save_village_state():
+	if !DirAccess.dir_exists_absolute("res://Save"):
+		DirAccess.make_dir_recursive_absolute("res://Save")
+	
 	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.WRITE)
 	
 	var save_state = village_state
