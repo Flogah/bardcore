@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://515m7a070dcx"]
+[gd_scene load_steps=12 format=3 uid="uid://515m7a070dcx"]
 
 [ext_resource type="Script" uid="uid://daueiqykpti77" path="res://Instrument/Instrument.gd" id="1_e8i04"]
-[ext_resource type="PackedScene" uid="uid://li05xa022xnw" path="res://VFX/sound_particles.tscn" id="2_h8dbk"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="3_ui8le"]
 [ext_resource type="Script" uid="uid://blr8ho4ugylvs" path="res://States/Player/Combat/PlayerCombatIdle.gd" id="5_3ipfh"]
 [ext_resource type="AudioStream" uid="uid://cuy8j1a0hlxe5" path="res://Instrument/SFX/Trumpet/trumpet1.wav" id="6_dw12u"]
@@ -16,11 +15,8 @@
 radius = 1.7880859
 height = 5.270996
 
-[node name="Instrument" type="Node3D" node_paths=PackedStringArray("attack_area", "vfx_spawnpoint", "combat_statemachine") groups=["Instrument"]]
+[node name="Instrument" type="Node3D" node_paths=PackedStringArray("vfx_spawnpoint", "combat_statemachine") groups=["Instrument"]]
 script = ExtResource("1_e8i04")
-weak_attack_cooldown = 1.0
-attack_area = NodePath("EffectArea")
-vfx_scene = ExtResource("2_h8dbk")
 vfx_spawnpoint = NodePath("VFXSpawn")
 combat_statemachine = NodePath("CombatStateMachine")
 
