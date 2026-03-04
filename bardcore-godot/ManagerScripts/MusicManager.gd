@@ -18,7 +18,7 @@ enum beatType{
 @export var current_music: AudioStreamPlayer
 var music_player_1: AudioStreamPlayer
 var music_player_2: AudioStreamPlayer
-@export var music_volume = -20
+@export var music_volume = -40
 
 enum music_tracks {
 	VILLAGE,
@@ -105,6 +105,8 @@ func setup_music_player() -> void:
 	add_child(music_player_2)
 	music_player_1.set_stream(background_music[music_tracks.VILLAGE])
 	music_player_2.set_stream(background_music[music_tracks.COMBAT])
+	music_player_1.volume_db = music_volume
+	music_player_2.volume_db = music_volume
 
 func beats() -> void:
 	setup_timer(1)
