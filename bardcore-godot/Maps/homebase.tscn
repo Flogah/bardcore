@@ -257,10 +257,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4909654, 0, 3.8463798)
 
 [node name="Buildings" type="Node3D" parent="."]
 
-[node name="Fanfarenbauer" parent="Buildings" instance=ExtResource("4_no1lh")]
-transform = Transform3D(0.2926221, 0, 0.95622814, 0, 1.3, 0, -0.95622814, 0, 0.2926221, 9.618123, -2.861023e-06, -5.5557327)
+[node name="Fanfarenbauer" parent="Buildings" node_paths=PackedStringArray("building_levels") instance=ExtResource("4_no1lh")]
+transform = Transform3D(0.2926221, 0, 0.95622814, 0, 1, 0, -0.95622814, 0, 0.2926221, 9.618123, -2.861023e-06, -5.5557327)
 visible = false
 building_name = "Fanfarenbauer"
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
 upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 0: null,
 1: SubResource("Resource_ly701"),
@@ -268,9 +274,15 @@ upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 3: SubResource("Resource_3u4xm")
 })
 
-[node name="Gasthaus" parent="Buildings" instance=ExtResource("5_0prmd")]
-transform = Transform3D(-0.30697596, 0, 1.1082715, 0, 1.3, 0, -1.1082715, 0, -0.30697596, 1.4207015, 0.024151415, -6.3187637)
+[node name="Gasthaus" parent="Buildings" node_paths=PackedStringArray("building_levels") instance=ExtResource("5_0prmd")]
+transform = Transform3D(-0.26693562, 0, 0.96371436, 0, 1, 0, -0.96371436, 0, -0.26693562, 1.4207015, 0.024151415, -6.3187637)
 building_name = "Gasthaus"
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
 upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 0: null,
 1: null,
@@ -278,10 +290,16 @@ upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 3: SubResource("Resource_wd2mf")
 })
 
-[node name="Lautenbauer" parent="Buildings" instance=ExtResource("5_w8tnc")]
-transform = Transform3D(-0.67298675, 0, 0.73965454, 0, 1.3, 0, -0.73965454, 0, -0.67298675, -7.5347934, 1.9073486e-06, -5.492177)
+[node name="Lautenbauer" parent="Buildings" node_paths=PackedStringArray("building_levels") instance=ExtResource("5_w8tnc")]
+transform = Transform3D(-0.67298675, 0, 0.73965454, 0, 1, 0, -0.73965454, 0, -0.67298675, -7.5347934, 1.9073486e-06, -5.492177)
 visible = false
 building_name = "Lautenbauer"
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
 upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 0: null,
 1: SubResource("Resource_e2eow"),
