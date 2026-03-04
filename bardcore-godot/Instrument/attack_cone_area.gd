@@ -38,7 +38,6 @@ func _on_triggered() -> void:
 	MusicManager.beat.disconnect(_on_triggered)
 	mesh_instance.hide()
 
-
 func _on_audio_stream_player_3d_finished() -> void:
 	print("clean up")
 	queue_free()

@@ -1,17 +1,26 @@
 extends Node3D
+class_name AttackArea
 
-@export var trigger_on_beat: MusicManager.beatType
-@export var place_sound: AudioStreamMP3
-@export var attack_sound: AudioStreamMP3
-@export var attack_sound_timing: float
-@export var placement_damage: float
+signal attack_sound_finished
+
+@export var trigger_on_beat: MusicManager.beatType = MusicManager.beatType.beat
+@export var place_sound: AudioStream
+@export var attack_sound: AudioStream
+@export var attack_sound_timing: float = 0.0
+@export var placement_damage: float = 5.0
 
 var beatTimer: Timer
+var sfx_timer: Timer
 var player_num: int
 
 var angle_mod
 var range_mod
 var damage_mod
+
+var place_sound_player
+var attack_sound_player
+
+var attack_sound_playing: bool = false
 
 @onready var hit_emitter: hit_emitter_box = $hit_emitter_box
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
@@ -19,9 +28,11 @@ var damage_mod
 @onready var mat: ShaderMaterial = mesh_instance.get_surface_override_material(0)
 
 func _ready() -> void:
-	attack_sound.finished.connect(clean_up)
 	mat.set_shader_parameter("AbilityProgress", 0.0)
+	set_color()
+	set_sound_emitters()
 	connect_to_beat()
+	
 	weak_hit()
 
 func _process(_delta: float) -> void:
@@ -31,19 +42,18 @@ func _process(_delta: float) -> void:
 	var progress = mat.get_shader_parameter("AbilityProgress")
 	progress = beatTimer.time_left / beatTimer.wait_time
 	mat.set_shader_parameter("AbilityProgress", progress)
-	
-	if beatTimer.time_left <= attack_sound_timing:
-		attack_sound.play()
 
 func set_sound_emitters():
 	if place_sound:
-		var place_sound_player = AudioStreamPlayer3D.new()
+		place_sound_player = AudioStreamPlayer3D.new()
 		place_sound_player.set_stream(place_sound)
 		add_child(place_sound_player)
 	if attack_sound:
-		var attack_sound_player = AudioStreamPlayer3D.new()
+		attack_sound_player = AudioStreamPlayer3D.new()
 		attack_sound_player.set_stream(attack_sound)
 		add_child(attack_sound_player)
+		
+		attack_sound_player.finished.connect(clean_up)
 
 func set_bard_data(player: int):
 	player_num = player
@@ -61,22 +71,35 @@ func connect_to_beat():
 	beatTimer.autostart = true
 	beatTimer.one_shot = true
 	beatTimer.timeout.connect(strong_hit)
+	
+	
+	sfx_timer = Timer.new()
+	sfx_timer.wait_time = MusicManager.get_time_to_next_beat(trigger_on_beat) + attack_sound_timing
+	sfx_timer.autostart = true
+	sfx_timer.one_shot = true
+	sfx_timer.timeout.connect(play_attack)
+	
 	add_child(beatTimer)
+	add_child(sfx_timer)
 
 func weak_hit():
-	hit_emitter.hit_effect.amount = placement_damage
-	place_sound.play()
+	#hit_emitter.hit_effect.amount = placement_damage
+	place_sound_player.play()
 	particles.restart()
 	hit_emitter.hit_check()
 
 func strong_hit():
-	hit_emitter.hit_effect.amount = damage_mod
+	#hit_emitter.hit_effect.amount = damage_mod
 	particles.restart()
 	hit_emitter.hit_check()
+
+func play_attack():
+	attack_sound_player.play()
 
 func set_color():
 	var player_col = PlayerManager.get_player_color(player_num)
 	mat.set_shader_parameter("PlayerColor", player_col)
 
 func clean_up():
-	queue_free()
+	mesh_instance.hide()
+	attack_sound_finished.emit()
