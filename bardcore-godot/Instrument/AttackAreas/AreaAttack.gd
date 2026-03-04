@@ -10,7 +10,7 @@ signal attack_sound_finished
 @export var placement_damage: float = 5.0
 
 var beatTimer: Timer
-var sfx_timer: Timer
+var beat_alignment_timer: Timer
 var player_num: int
 
 var angle_mod
@@ -28,11 +28,12 @@ var attack_sound_playing: bool = false
 @onready var mat: ShaderMaterial = mesh_instance.get_surface_override_material(0)
 
 func _ready() -> void:
-	mat.set_shader_parameter("AbilityProgress", 0.0)
+	# player parameters area already set by state machine, so we can just set color
 	set_color()
+	mat.set_shader_parameter("AbilityProgress", 0.0)
 	set_sound_emitters()
 	connect_to_beat()
-	
+	#immediately trigger the weak hit on placement
 	weak_hit()
 
 func _process(_delta: float) -> void:
@@ -81,23 +82,26 @@ func connect_to_beat():
 	beatTimer.one_shot = true
 	beatTimer.timeout.connect(strong_hit)
 	
-	sfx_timer = Timer.new()
-	sfx_timer.wait_time = max(0, beatTimer.wait_time + attack_sound_timing)
-	sfx_timer.autostart = true
-	sfx_timer.one_shot = true
-	sfx_timer.timeout.connect(play_attack)
+	# a timer that handles the difference between trigger and beats
+	beat_alignment_timer = Timer.new()
+	beat_alignment_timer.wait_time = max(0, beatTimer.wait_time + attack_sound_timing)
+	beat_alignment_timer.autostart = true
+	beat_alignment_timer.one_shot = true
+	beat_alignment_timer.timeout.connect(play_attack)
 	
 	add_child(beatTimer)
-	add_child(sfx_timer)
+	add_child(beat_alignment_timer)
 
 func weak_hit():
 	hit_emitter.interaction_effect.amount = placement_damage
 	place_sound_player.play()
 	particles.restart()
+	await get_tree().create_timer(.05).timeout
 	hit_emitter.hit_check()
 
 func strong_hit():
 	hit_emitter.interaction_effect.amount = damage_mod
+	# sound is triggered somewhere else to better align with beats
 	particles.restart()
 	hit_emitter.hit_check()
 	mesh_instance.hide()
@@ -110,4 +114,5 @@ func set_color():
 	mat.set_shader_parameter("PlayerColor", player_col)
 
 func clean_up():
+	# asks the attacking state to finish the cleanup
 	attack_sound_finished.emit()
