@@ -11,16 +11,15 @@ signal attack_sound_finished
 
 var beatTimer: Timer
 var beat_alignment_timer: Timer
-var player_num: int
 
+# modifiers to the attack area and damage
+var player_num: int
 var angle_mod
 var range_mod
 var damage_mod
 
 var place_sound_player
 var attack_sound_player
-
-var attack_sound_playing: bool = false
 
 @onready var hit_emitter: hit_emitter_box = $hit_emitter_box
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
