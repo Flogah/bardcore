@@ -67,7 +67,16 @@ func set_beat(type: MusicManager.beatType = MusicManager.beatType.beat):
 
 func connect_to_beat():
 	beatTimer = Timer.new()
-	beatTimer.wait_time = MusicManager.get_time_to_next_beat(trigger_on_beat)
+	
+	# OLD WAY
+	#beatTimer.wait_time = MusicManager.get_time_to_next_beat(trigger_on_beat)
+	
+	# EXPERIMENT
+	# this way, times to trigger stay more or less constistent
+	var beat_time = MusicManager.rhythm_notifier.beat_length
+	var beat_wait_time = MusicManager.get_time_to_next_beat(MusicManager.beatType.beat)
+	beatTimer.wait_time = beat_time * trigger_on_beat + beat_wait_time
+	
 	beatTimer.autostart = true
 	beatTimer.one_shot = true
 	beatTimer.timeout.connect(strong_hit)
