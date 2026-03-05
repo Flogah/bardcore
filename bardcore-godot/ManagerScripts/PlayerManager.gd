@@ -16,12 +16,21 @@ enum bard_type {
 	star
 }
 
+var player_colors : PackedColorArray = [
+	Color(0.142, 0.118, 0.79, 1.0),
+	Color(0.0, 0.615, 0.0),
+	Color(0.774, 0.774, 0.0),
+	Color(0.0, 0.0, 0.0),
+	Color(1.0, 1.0, 1.0),
+	Color(0.166, 0.529, 0.58)
+]
+
 # map from player integer to dictionary of data
 # the existence of a key in this dictionary means this player is joined.
 # use get_player_data() and set_player_data() to use this dictionary.
 var player_data: Dictionary = {}
 
-const MAX_PLAYERS = 8
+const MAX_PLAYERS = 4
 
 var player_nodes = {}
 
@@ -95,7 +104,7 @@ func join(device: int):
 			"device": device,
 			"bard": bard_type.lover,
 			"instrument": "trumpet",
-			"color": "ROYAL_BLUE",
+			"color": player_colors[player],
 		}
 		player_joined.emit(player)
 
