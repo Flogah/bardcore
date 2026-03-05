@@ -74,7 +74,7 @@ func connect_to_beat():
 	#beatTimer.wait_time = MusicManager.get_time_to_next_beat(trigger_on_beat)
 	
 	# EXPERIMENT
-	# this way, times to trigger stay more or less constistent
+	 #this way, times to trigger stay more or less constistent
 	var beat_time = MusicManager.rhythm_notifier.beat_length
 	var beat_wait_time = MusicManager.get_time_to_next_beat(MusicManager.beatType.beat)
 	beatTimer.wait_time = beat_time * trigger_on_beat + beat_wait_time
@@ -85,7 +85,7 @@ func connect_to_beat():
 	
 	# a timer that handles the difference between trigger and beats
 	beat_alignment_timer = Timer.new()
-	beat_alignment_timer.wait_time = max(0, beatTimer.wait_time + attack_sound_timing)
+	beat_alignment_timer.wait_time = max(0, beatTimer.wait_time - attack_sound_timing)
 	beat_alignment_timer.autostart = true
 	beat_alignment_timer.one_shot = true
 	beat_alignment_timer.timeout.connect(play_attack)

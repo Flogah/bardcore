@@ -14,7 +14,5 @@ autoplay = true
 
 [node name="RhythmNotifier" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player")]
 script = ExtResource("3_upvx7")
-bpm = 120.0
-beat_length = 0.5
 audio_stream_player = NodePath("../Music")
 metadata/_custom_type_script = "uid://dos3qhffr4v0a"

@@ -5,6 +5,7 @@ class_name AutoAttackCircle
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var mat: ShaderMaterial = mesh.get_surface_override_material(0)
 @onready var particles: GPUParticles3D = $GPUParticles3D
+@onready var audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 var beat_mode: MusicManager.beatType = MusicManager.beatType.beat
 
@@ -26,5 +27,6 @@ func update_visual():
 	mat.set_shader_parameter("AbilityProgress", progress)
 
 func trigger_attack():
+	#audio.play()
 	particles.restart()
 	hit_emitter.hit_check()
