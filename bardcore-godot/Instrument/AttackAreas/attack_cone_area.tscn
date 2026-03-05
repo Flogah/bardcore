@@ -71,7 +71,7 @@ scale_curve = SubResource("CurveTexture_tlcps")
 
 [node name="AttackConeArea" type="Node3D"]
 script = ExtResource("1_pfavb")
-trigger_on_beat = 4
+trigger_on_beat = 2
 place_sound = ExtResource("2_bl61r")
 attack_sound = ExtResource("3_xnx7v")
 attack_sound_timing = 1.7

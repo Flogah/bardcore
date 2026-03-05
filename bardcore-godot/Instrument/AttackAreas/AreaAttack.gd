@@ -19,8 +19,8 @@ var angle_mod
 var range_mod
 var damage_mod
 
-var place_sound_player
-var attack_sound_player
+var place_sound_player: AudioStreamPlayer3D
+var attack_sound_player: AudioStreamPlayer3D
 
 @onready var hit_emitter: hit_emitter_box = $hit_emitter_box
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
@@ -86,13 +86,17 @@ func connect_to_beat():
 	beatTimer.timeout.connect(strong_hit)
 	add_child(beatTimer)
 	
-	# a timer that handles the difference between trigger and beats
-	beat_alignment_timer = Timer.new()
-	beat_alignment_timer.wait_time = max(0.01, beatTimer.wait_time - attack_sound_timing)
-	beat_alignment_timer.autostart = true
-	beat_alignment_timer.one_shot = true
-	beat_alignment_timer.timeout.connect(play_attack)
-	add_child(beat_alignment_timer)
+	var beat_diff = beatTimer.wait_time - attack_sound_timing
+	if beat_diff > 0.01:
+		# a timer that handles the difference between trigger and beats
+		beat_alignment_timer = Timer.new()
+		beat_alignment_timer.wait_time = beat_diff
+		beat_alignment_timer.autostart = true
+		beat_alignment_timer.one_shot = true
+		beat_alignment_timer.timeout.connect(play_attack)
+		add_child(beat_alignment_timer)
+	else:
+		play_attack(-beat_diff)
 
 func weak_hit():
 	hit_emitter.interaction_effect.amount = placement_damage
@@ -108,10 +112,9 @@ func strong_hit():
 	hit_emitter.hit_check()
 	mesh_instance.hide()
 
-func play_attack():
+func play_attack(audio_position: float = 0.0):
 	place_sound_player.stop()
-	attack_sound_player.stop()
-	attack_sound_player.play()
+	attack_sound_player.play(audio_position)
 
 func set_color():
 	var player_col = PlayerManager.get_player_color(player_num)

@@ -57,7 +57,7 @@ scale_curve = SubResource("CurveTexture_3s72y")
 
 [node name="AttackArrowArea" type="Node3D"]
 script = ExtResource("1_0tgma")
-trigger_on_beat = 4
+trigger_on_beat = 3
 place_sound = ExtResource("2_rx3uq")
 attack_sound = ExtResource("3_1qy4u")
 attack_sound_timing = 1.65
