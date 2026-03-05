@@ -186,7 +186,9 @@ func reset():
 
 func apply_village_upgrades():
 	var homebase = get_tree().current_scene
+	if !homebase: return
 	var buildings = homebase.buildings_node.get_children()
+	if !buildings: return
 	
 	for build in buildings:
 		for target_player in player_nodes:
