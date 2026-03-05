@@ -7,6 +7,7 @@ signal attack_sound_finished
 @export var place_sound: AudioStream
 @export var attack_sound: AudioStream
 @export var attack_sound_timing: float = 0.0
+@export var volume_adjustment: float = 0.0
 @export var placement_damage: float = 5.0
 
 var beatTimer: Timer
@@ -53,6 +54,7 @@ func set_sound_emitters():
 	if attack_sound:
 		attack_sound_player = AudioStreamPlayer3D.new()
 		attack_sound_player.set_stream(attack_sound)
+		attack_sound_player.volume_db = volume_adjustment
 		add_child(attack_sound_player)
 		
 		attack_sound_player.finished.connect(clean_up)
