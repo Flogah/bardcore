@@ -16,7 +16,7 @@ const BARD_HUD = preload("uid://bk8d3ervl7clp")
 
 var max_fade:float = 0.0
 var current_intensity : float = -1.0
-var active_huds: Array[BardHUD] = []
+var active_huds: Dictionary[int, BardHUD] = {}
 
 @onready var player_info_container1: HBoxContainer = $General_UI/PlayerContainer/PlayerInfoContainer1
 @onready var player_info_container2: HBoxContainer = $General_UI/PlayerContainer/PlayerInfoContainer2
@@ -123,14 +123,15 @@ func add_new_player_HUD(player: int):
 		player_info_container3.add_child(new_hud)
 	elif player == 3 :
 		player_info_container4.add_child(new_hud)
-	active_huds.append(new_hud)
+	active_huds[player] = new_hud
 	new_hud.setup_HUD(player)
 
 func reset_hud():
-	for hud in active_huds:
-		hud.queue_free()
+	for num in active_huds:
+		if active_huds[num] and is_instance_valid(active_huds[num]):
+			active_huds[num].queue_free()
 
 func update_hud_manual():
 	await get_tree().create_timer(.1).timeout
-	for hud in active_huds:
-		hud.set_HUD_numbers()
+	for num in active_huds:
+		active_huds[num].set_HUD_numbers()

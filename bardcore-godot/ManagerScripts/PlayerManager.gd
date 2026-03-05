@@ -186,12 +186,16 @@ func reset():
 
 func apply_village_upgrades():
 	var homebase = get_tree().current_scene
+	if !homebase: return
 	var buildings = homebase.buildings_node.get_children()
+	if !buildings: return
 	
 	for build in buildings:
 		for target_player in player_nodes:
-			player_nodes[target_player].stat_comp.remove_upgrades(build.get_instance_id())
-			var b_upgrade: upgrade = build.get_current_upgrade()
-			if b_upgrade:
-				var upgrade_arr: Array[upgrade] = [b_upgrade]
-				player_nodes[target_player].stat_comp.add_upgrades(build.get_instance_id(), upgrade_arr)
+			if player_nodes[target_player] and is_instance_valid(player_nodes[target_player]):
+				var stats = player_nodes[target_player].stat_comp
+				stats.remove_upgrades(build.get_instance_id())
+				var b_upgrade: upgrade = build.get_current_upgrade()
+				if b_upgrade:
+					var upgrade_arr: Array[upgrade] = [b_upgrade]
+					player_nodes[target_player].stat_comp.add_upgrades(build.get_instance_id(), upgrade_arr)

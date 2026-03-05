@@ -7,8 +7,8 @@ const STAR_PORTRAIT = preload("uid://cono65sny6l7d")
 
 var current_type: PlayerManager.bard_type
 var player_num: int
+var health_comp
 
-@onready var health_comp: health_component = PlayerManager.player_nodes[player_num].health_comp
 @onready var health_bar: ProgressBar = $ProgressBar
 @onready var portrait_links: TextureRect = $Control/TextureRect
 @onready var portrait_rechts: TextureRect = $Control2/TextureRect2
@@ -17,6 +17,7 @@ var player_num: int
 
 func setup_HUD(player: int):
 	player_num = player
+	health_comp = PlayerManager.player_nodes[player_num].health_comp
 	set_type()
 	if player == 0 or player == 2 :
 		portrait_rechts.hide()

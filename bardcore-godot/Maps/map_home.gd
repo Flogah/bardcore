@@ -23,6 +23,7 @@ func enter_run():
 	MapManager.load_map()
 
 func spawn_players():
+	#UserInterface.reset_hud()
 	UserInterface.reset_hud()
 	var players = PlayerManager.player_data
 	for player in players:
