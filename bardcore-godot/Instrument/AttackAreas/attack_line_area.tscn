@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="3_xdx4f"]
 [ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="4_lkfax"]
 [ext_resource type="Shader" uid="uid://cmy0sxqutmr02" path="res://Shaders/attack_loading_shader.tres" id="6_77qr4"]
-[ext_resource type="AudioStream" uid="uid://dtsfx3hsha42h" path="res://Instrument/SFX/BGM/place_sound.wav" id="6_lkfax"]
+[ext_resource type="AudioStream" uid="uid://tyi6hawcutxg" path="res://Instrument/SFX/BGM/place_sound.wav" id="6_lkfax"]
 [ext_resource type="PlaneMesh" uid="uid://ba15lvptqqr2l" path="res://Instrument/ParticleEffects/Note_DrawPass.tres" id="7_31l7u"]
 
 [sub_resource type="Resource" id="Resource_31l7u"]
@@ -44,9 +44,10 @@ scale_curve = SubResource("CurveTexture_lkfax")
 
 [node name="AttackLineArea" type="Node3D"]
 script = ExtResource("1_77qr4")
-trigger_on_beat = 2
+trigger_on_beat = 4
 place_sound = ExtResource("6_lkfax")
 attack_sound = ExtResource("3_eqfi2")
+attack_sound_timing = 1.15
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6849185, -1.9609534)
