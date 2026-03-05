@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=34 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://b4g0c6swxctq4" path="res://Maps/Buildings/building_guesthouse.tscn" id="5_0prmd"]
 [ext_resource type="PackedScene" uid="uid://xcv8itqnlrlh" path="res://Meshes/Nature/bush_s.tscn" id="5_d75n0"]
 [ext_resource type="PackedScene" uid="uid://clme8xwp12duo" path="res://Maps/Buildings/building_maker_fidel.tscn" id="5_w8tnc"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="9_ly701"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="10_wp41v"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
@@ -63,6 +65,73 @@ height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ly701"]
 albedo_color = Color(0.6004086, 0.33401474, 0.1412242, 1)
+
+[sub_resource type="Resource" id="Resource_ly701"]
+script = ExtResource("10_wp41v")
+amount = 0.2
+operator = 1
+effected_stat = 12
+apply_priority = 1
+explanation = "Add .2 Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_wp41v"]
+script = ExtResource("10_wp41v")
+amount = 0.4
+operator = 1
+effected_stat = 12
+apply_priority = 1
+explanation = "Add .4 Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_3u4xm"]
+script = ExtResource("10_wp41v")
+amount = 0.6
+effected_stat = 12
+apply_priority = 1
+explanation = "Add .6 Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_vh0gy"]
+script = ExtResource("10_wp41v")
+amount = 2.0
+apply_priority = 1
+explanation = "Max Health x2"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_wd2mf"]
+script = ExtResource("10_wp41v")
+amount = 4.0
+apply_priority = 1
+explanation = "Max Health x4"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_e2eow"]
+script = ExtResource("10_wp41v")
+amount = 15.0
+operator = 1
+effected_stat = 9
+apply_priority = 1
+explanation = "+15 dmg"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_kcxeq"]
+script = ExtResource("10_wp41v")
+amount = 30.0
+operator = 1
+effected_stat = 9
+apply_priority = 1
+explanation = "+30 dmg"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_5eiu6"]
+script = ExtResource("10_wp41v")
+amount = 60.0
+operator = 1
+effected_stat = 9
+apply_priority = 1
+explanation = "+60 dmg"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [node name="Homebase" type="Node3D" node_paths=PackedStringArray("spawn_position", "exit_portal", "cam")]
 script = ExtResource("1_fxw5g")
