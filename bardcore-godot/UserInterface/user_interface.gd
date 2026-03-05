@@ -128,7 +128,8 @@ func add_new_player_HUD(player: int):
 
 func reset_hud():
 	for num in active_huds:
-		active_huds[num].queue_free()
+		if active_huds[num] and is_instance_valid(active_huds[num]):
+			active_huds[num].queue_free()
 
 func update_hud_manual():
 	await get_tree().create_timer(.1).timeout

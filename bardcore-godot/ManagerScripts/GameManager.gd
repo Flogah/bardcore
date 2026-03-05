@@ -38,6 +38,7 @@ func _physics_process(_delta: float) -> void:
 	# only keyboard can escape to main menu
 	if MultiplayerInput.is_action_just_pressed(-1, "escape"):
 		GameManager.save_village_state()
+		UserInterface.reset_hud()
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func dragon_beat():
