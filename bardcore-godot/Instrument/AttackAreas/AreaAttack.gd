@@ -82,15 +82,14 @@ func connect_to_beat():
 	beatTimer.autostart = true
 	beatTimer.one_shot = true
 	beatTimer.timeout.connect(strong_hit)
+	add_child(beatTimer)
 	
 	# a timer that handles the difference between trigger and beats
 	beat_alignment_timer = Timer.new()
-	beat_alignment_timer.wait_time = max(0, beatTimer.wait_time - attack_sound_timing)
+	beat_alignment_timer.wait_time = max(0.01, beatTimer.wait_time - attack_sound_timing)
 	beat_alignment_timer.autostart = true
 	beat_alignment_timer.one_shot = true
 	beat_alignment_timer.timeout.connect(play_attack)
-	
-	add_child(beatTimer)
 	add_child(beat_alignment_timer)
 
 func weak_hit():
@@ -108,6 +107,8 @@ func strong_hit():
 	mesh_instance.hide()
 
 func play_attack():
+	place_sound_player.stop()
+	attack_sound_player.stop()
 	attack_sound_player.play()
 
 func set_color():

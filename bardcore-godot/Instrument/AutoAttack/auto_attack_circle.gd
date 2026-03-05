@@ -27,6 +27,6 @@ func update_visual():
 	mat.set_shader_parameter("AbilityProgress", progress)
 
 func trigger_attack():
-	#audio.play()
+	audio.play()
 	particles.restart()
 	hit_emitter.hit_check()

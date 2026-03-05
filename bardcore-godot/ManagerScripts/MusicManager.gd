@@ -32,10 +32,10 @@ var background_music: Dictionary = {
 
 var stats_music: Dictionary = {
 	null: music_tracks.VILLAGE,
-	GameManager.gameState.home: music_tracks.VILLAGE,
+	GameManager.gameState.home: music_tracks.COMBAT,
 	GameManager.gameState.combat: music_tracks.COMBAT,
-	GameManager.gameState.post_combat: music_tracks.VILLAGE,
-	GameManager.gameState.shop: music_tracks.VILLAGE,
+	GameManager.gameState.post_combat: music_tracks.COMBAT,
+	GameManager.gameState.shop: music_tracks.COMBAT,
 }
 
 @export var rhythm_notifier: RhythmNotifier
