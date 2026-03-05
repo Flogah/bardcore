@@ -47,7 +47,7 @@ script = ExtResource("1_77qr4")
 trigger_on_beat = 4
 place_sound = ExtResource("6_lkfax")
 attack_sound = ExtResource("3_eqfi2")
-attack_sound_timing = 1.15
+attack_sound_timing = 1.65
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6849185, -1.9609534)

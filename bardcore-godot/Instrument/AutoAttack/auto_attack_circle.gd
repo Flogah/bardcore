@@ -24,9 +24,10 @@ func update_visual():
 	
 	var progress = mat.get_shader_parameter("AbilityProgress")
 	progress = MusicManager.get_time_to_next_beat(MusicManager.beatType.beat) * 2/ MusicManager.beatType.beat
+	progress += 0.1
 	mat.set_shader_parameter("AbilityProgress", progress)
 
 func trigger_attack():
-	audio.play()
+	#audio.play()
 	particles.restart()
 	hit_emitter.hit_check()

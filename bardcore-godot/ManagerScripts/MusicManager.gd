@@ -18,7 +18,7 @@ enum beatType{
 @export var current_music: AudioStreamPlayer
 var music_player_1: AudioStreamPlayer
 var music_player_2: AudioStreamPlayer
-@export var music_volume = -30
+@export var music_volume = -20
 
 enum music_tracks {
 	VILLAGE,
@@ -32,10 +32,10 @@ var background_music: Dictionary = {
 
 var stats_music: Dictionary = {
 	null: music_tracks.VILLAGE,
-	GameManager.gameState.home: music_tracks.COMBAT,
+	GameManager.gameState.home: music_tracks.VILLAGE,
 	GameManager.gameState.combat: music_tracks.COMBAT,
-	GameManager.gameState.post_combat: music_tracks.COMBAT,
-	GameManager.gameState.shop: music_tracks.COMBAT,
+	GameManager.gameState.post_combat: music_tracks.VILLAGE,
+	GameManager.gameState.shop: music_tracks.VILLAGE,
 }
 
 @export var rhythm_notifier: RhythmNotifier
