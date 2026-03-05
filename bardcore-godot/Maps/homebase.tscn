@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=36 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
@@ -267,12 +267,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4909654, 0, 3.8463798)
 transform = Transform3D(0.2926221, 0, 0.95622814, 0, 1, 0, -0.95622814, 0, 0.2926221, 9.618123, -2.861023e-06, -5.5557327)
 visible = false
 building_name = "Fanfarenbauer"
-building_levels = {
-0: NodePath("Level0"),
-1: NodePath("Level1"),
-2: NodePath("Level2"),
-3: NodePath("Level3")
-}
+building_levels = {}
 upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 0: null,
 1: SubResource("Resource_ly701"),
@@ -300,12 +295,7 @@ upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 transform = Transform3D(-0.67298675, 0, 0.73965454, 0, 1, 0, -0.73965454, 0, -0.67298675, -7.5347934, 1.9073486e-06, -5.492177)
 visible = false
 building_name = "Lautenbauer"
-building_levels = {
-0: NodePath("Level0"),
-1: NodePath("Level1"),
-2: NodePath("Level2"),
-3: NodePath("Level3")
-}
+building_levels = {}
 upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 0: null,
 1: SubResource("Resource_e2eow"),
