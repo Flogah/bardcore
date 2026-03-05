@@ -4,6 +4,8 @@ class_name Player
 signal leave
 signal knocked_out
 signal back_on_feet
+signal bard_type_changed(new_type)
+signal instrument_changed
 
 const TRUMPET = preload("res://Instrument/trumpet.tscn")
 const FIDEL = preload("res://Instrument/Fidel.tscn")
@@ -157,8 +159,8 @@ func equip_next_bard():
 		type = PlayerManager.bard_type.relic
 		instrument_spawn = $InstrumentSpawn_relic
 	PlayerManager.set_player_data(player, "bard", type)
-	add_instrument(TRUMPET)
 	set_bard_stats()
+	bard_type_changed.emit(type)
 	UserInterface.update_hud_manual()
 	
 func set_bard_stats():
