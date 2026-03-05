@@ -23,6 +23,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bo807"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_bo807")
 shader_parameter/PlayerColor = Vector4(1, 0, 1, 0)
