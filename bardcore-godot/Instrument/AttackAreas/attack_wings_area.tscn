@@ -57,8 +57,10 @@ scale_curve = SubResource("CurveTexture_jyf3u")
 
 [node name="AttackWingsArea" type="Node3D"]
 script = ExtResource("1_pqokr")
+trigger_on_beat = 4
 place_sound = ExtResource("2_vh1qi")
 attack_sound = ExtResource("3_0wuec")
+attack_sound_timing = 1.67
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
 collision_layer = 0
