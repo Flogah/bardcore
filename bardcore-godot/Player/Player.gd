@@ -18,8 +18,6 @@ const FIDEL = preload("res://Instrument/Fidel.tscn")
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
 @onready var visual: Node3D = $Visual
 
-@onready var interaction_area: Area3D = $InteractionArea
-
 @export var dash_force: float = 50.0
 @export var dash_cooldown: float = 2.0
 @export var dash_duration: float = 0.1
