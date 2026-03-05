@@ -40,7 +40,7 @@ enum buildState {
 
 @onready var collision: CollisionShape3D = $Collision/CollisionShape3D
 @onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var interaction_collision: CollisionShape3D = $InteractionArea/CollisionShape3D
+@onready var interaction_collision: CollisionShape3D = $CollisionShape3D
 
 func interact():
 	upgrade_to(state +1)
@@ -89,7 +89,28 @@ func _on_interaction_area_area_entered(_area: Area3D) -> void:
 func _on_interaction_area_area_exited(_area: Area3D) -> void:
 	if hint: hint.queue_free()
 	#UserInterface.hide_upgrade_hint()
+	
+func display_hint() -> void:
+	if hint: return
+	
+	var upgrade_available:bool = false
+	var upgrade_txt = "{0} lv.{1}".format([building_name, state])
+	if upgrade_list[state]:
+		upgrade_txt += "\n Current effect: {0}".format([upgrade_list[state].explanation])
+	if get_current_upgrade_cost() > -1:
+		if get_current_upgrade_cost() == 1:
+			upgrade_txt +=  "\n Kosten: {0} Tag".format([get_current_upgrade_cost()])
+		else:
+			upgrade_txt +=  "\n Kosten: {0} Tage".format([get_current_upgrade_cost()])
+		upgrade_available = true
+	if state+1 in upgrade_list.keys():
+		if upgrade_list[state+1]:
+			upgrade_txt += "\n Next effect: {0}".format([upgrade_list[state+1].explanation])
+	hint = UserInterface.create_hint(global_position, upgrade_txt, upgrade_available)
 
+func remove_hint() -> void:
+	if hint: hint.queue_free()
+	
 func get_current_upgrade_cost() -> int:
 	if !build_cost.has(state):
 		return -1

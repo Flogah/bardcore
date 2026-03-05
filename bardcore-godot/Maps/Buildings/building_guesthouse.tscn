@@ -1,9 +1,25 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4g0c6swxctq4"]
+[gd_scene load_steps=18 format=3 uid="uid://b4g0c6swxctq4"]
 
 [ext_resource type="Script" uid="uid://dgwh5sbbspeqj" path="res://Maps/Buildings/building.gd" id="1_4ount"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="2_8mubm"]
 [ext_resource type="PackedScene" uid="uid://bosgsamw01bu" path="res://Maps/Buildings/Stages/Guesthouse/guests_stage_1.tscn" id="2_12jn7"]
 [ext_resource type="PackedScene" uid="uid://ox8bono7g2cv" path="res://Maps/Buildings/Stages/Guesthouse/guests_stage_2.tscn" id="3_d73gv"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="3_u3gjg"]
 [ext_resource type="PackedScene" uid="uid://dkbcuq70ia26n" path="res://Maps/Buildings/Stages/Guesthouse/guests_stage_3.tscn" id="4_d73gv"]
+
+[sub_resource type="Resource" id="Resource_8mubm"]
+script = ExtResource("3_u3gjg")
+amount = 2.0
+apply_priority = 1
+explanation = "+100% MaxHealth"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_u3gjg"]
+script = ExtResource("3_u3gjg")
+amount = 3.0
+apply_priority = 1
+explanation = "+200% MaxHealth"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_67fxh"]
 radius = 0.7939086
@@ -367,7 +383,7 @@ _data = {
 &"level2_to_level3": SubResource("Animation_wvfqc")
 }
 
-[node name="Building" type="Node3D" node_paths=PackedStringArray("building_levels")]
+[node name="Building" type="Area3D" node_paths=PackedStringArray("building_levels")]
 script = ExtResource("1_4ount")
 building_levels = {
 0: NodePath("Level0"),
@@ -375,14 +391,15 @@ building_levels = {
 2: NodePath("Level2"),
 3: NodePath("Level3")
 }
+upgrade_list = Dictionary[int, ExtResource("2_8mubm")]({
+0: null,
+1: null,
+2: SubResource("Resource_8mubm"),
+3: SubResource("Resource_u3gjg")
+})
 
-[node name="InteractionArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0, 0)
-collision_layer = 8
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64483905, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0017574, 0.64483905, 0)
 shape = SubResource("SphereShape3D_67fxh")
 
 [node name="Collision" type="StaticBody3D" parent="."]
@@ -489,6 +506,3 @@ transform = Transform3D(-3.7373237e-08, 0, 0.855, 0, 0.855, 0, -0.855, 0, -3.737
 libraries = {
 &"": SubResource("AnimationLibrary_y52u6")
 }
-
-[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
-[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
