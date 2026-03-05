@@ -44,7 +44,7 @@ scale_curve = SubResource("CurveTexture_lkfax")
 
 [node name="AttackLineArea" type="Node3D"]
 script = ExtResource("1_77qr4")
-trigger_on_beat = 4
+trigger_on_beat = 2
 place_sound = ExtResource("6_lkfax")
 attack_sound = ExtResource("3_eqfi2")
 attack_sound_timing = 1.65
