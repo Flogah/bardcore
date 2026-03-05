@@ -10,7 +10,9 @@ var beat_mode: MusicManager.beatType = MusicManager.beatType.beat
 
 func _ready() -> void:
 	MusicManager.beat.connect(trigger_attack)
-	global_position = PlayerManager.player_nodes[owner.player_num].global_position
+	#global_position = PlayerManager.player_nodes[owner.player_num].global_position
+	position = Vector3.ZERO
+	global_position.y = .01
 
 func _process(delta: float) -> void:
 	update_visual()

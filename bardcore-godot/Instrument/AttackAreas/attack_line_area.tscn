@@ -20,7 +20,7 @@ size = Vector3(2.7, 1, 7.5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xdx4f"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eqfi2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6l10"]
 render_priority = 0
 shader = ExtResource("6_77qr4")
 shader_parameter/PlayerColor = Vector4(1, 0, 1, 0)
@@ -62,13 +62,13 @@ visible = false
 shape = SubResource("BoxShape3D_lkfax")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.3581512, 0, 0, 0, 1, 0, 0, 0, 3.8189068, 0, -1.1702536, -2.0244663)
+transform = Transform3D(1.3581512, 0, 0, 0, 1, 0, 0, 0, 3.8189068, 0, 0.0017328262, -2.0244663)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_xdx4f")
-surface_material_override/0 = SubResource("ShaderMaterial_eqfi2")
+surface_material_override/0 = SubResource("ShaderMaterial_h6l10")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0789976, -2.014927)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09298885, -2.014927)
 emitting = false
 amount = 50
 amount_ratio = 0.5

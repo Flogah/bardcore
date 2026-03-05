@@ -32,6 +32,8 @@ func _ready() -> void:
 	mat.set_shader_parameter("AbilityProgress", 0.0)
 	set_sound_emitters()
 	connect_to_beat()
+	# make sure its above ground
+	global_position.y = 0.02
 	#immediately trigger the weak hit on placement
 	weak_hit()
 

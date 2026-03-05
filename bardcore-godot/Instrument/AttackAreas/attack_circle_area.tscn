@@ -36,7 +36,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("//8AAP9/ZD91hQAAJoPEPk2GAAD/f/8/JoMAAHWFrjj/fwAATYakLv+/AADY7m0z2O4AAP+/6jvYfAAAdYUGIol6AAAmg+YT/38AAP//yCexeQAA/38FBSYRAAD/v5UL/z8AANjuNRqJegAA2HwJCth8AACJersYAAAAAP9/dgP/fwAAsXlzJiYRAAD/P2ISJoMAAIl6WDL/fwAAAABvLf8/AAAmEZ4gdYUAANh8OTv/vwAAJhHMN02GAAD/f7w+2O4AAP8/XT7//wAA/3//P26XAABoV0k2lqgAAJBolj3drgAA/3/NP/9/AAAhUWsrtqsAAEc0DDa3ywAASFR1PW7XAAD/f+U//38AAJAoHStIVAAARzT0HZBoAABoV04eRzQAAEhUiQ9oVwAAkGjpD5AoAAD/f4wAIVEAAP9/7gBHNAAAtqt0DmhXAABulxUOSFQAALfL7xyQaAAAlqiVHP9/AABu1zcq/38AAN2u5ym2qwAAt8taNW6XAACWqBs1t8sAALarET1u1wAA/3/NP5aoAABul+083a4AAP9/kz+85qCMnN6wkP///384wuKeya8aqCW3bKTIzJqZL6Fnr7OTJbZOp1esW4VRvd6LD7qXmTOzL8VgChnMNBjdwbwD6tLVJSTJSxKp2lQ1E9coLuLPxh8J5RVKAOACQCDvQl5r7dha////f0zemjyf6kBVMfhkcMrVlisN3hw8Oup1VC/6YHSa1TYrlM4pHb/OgB3Qx6EP/Mf7D03AmwCCwAYBnI6wuEGO3rgunOex15sTsh+q76rAqR6rtLqkojq64aI80uCWY/DNh33RQJc56uKK")
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjlu1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rw1ik"]
 render_priority = 0
 shader = ExtResource("7_0m5vq")
 shader_parameter/PlayerColor = Vector4(1, 0, 1, 0)
@@ -70,7 +70,7 @@ place_sound = ExtResource("2_bim3y")
 attack_sound = ExtResource("3_c7ues")
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1664617, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46836507, 0)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_nide2")
@@ -82,12 +82,12 @@ metadata/_custom_type_script = "uid://q46hat3a6486"
 shape = SubResource("CylinderShape3D_c4r5d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 0, -1.4952427, 0)
+transform = Transform3D(1.7500001, 0, 0, 0, 1.75, 0, 0, 0, 1.7500001, 0, 0.0024279058, 0)
 mesh = SubResource("ArrayMesh_f4xkb")
-surface_material_override/0 = SubResource("ShaderMaterial_mjlu1")
+surface_material_override/0 = SubResource("ShaderMaterial_rw1ik")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3267543, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17091629, 0)
 emitting = false
 amount = 100
 amount_ratio = 0.5
