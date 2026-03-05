@@ -62,7 +62,7 @@ func setup_music() -> void:
 	current_music.volume_db = music_volume
 	current_music = music_player_1
 
-func change_music(from: AudioStreamPlayer, to: AudioStreamPlayer, bpm: int = 100) -> void:
+func change_music(from: AudioStreamPlayer, to: AudioStreamPlayer, bpm: int = 120) -> void:
 	stop_music()
 	if current_music == from:
 		current_music = to
@@ -105,6 +105,8 @@ func setup_music_player() -> void:
 	add_child(music_player_2)
 	music_player_1.set_stream(background_music[music_tracks.VILLAGE])
 	music_player_2.set_stream(background_music[music_tracks.COMBAT])
+	music_player_1.volume_db = music_volume
+	music_player_2.volume_db = music_volume
 
 func beats() -> void:
 	setup_timer(1)

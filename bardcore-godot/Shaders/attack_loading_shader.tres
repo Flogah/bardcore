@@ -15,8 +15,8 @@ function = 19
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_uiint"]
 default_input_values = [0, 0.0, 1, 1.0]
 
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ftncu"]
-default_input_values = [0, 0.0, 1, 0.3]
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_ftncu"]
+default_input_values = [0, 0.0, 1, 0.3, 2, 1.0]
 
 [sub_resource type="VisualShaderNodeVec4Parameter" id="VisualShaderNodeVec4Parameter_psxrf"]
 parameter_name = "PlayerColor"
@@ -32,7 +32,7 @@ default_input_values = [0, 1.0, 1, 0.0]
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_disabled, unshaded;
 
 uniform vec4 PlayerColor = vec4(1.000000, 0.000000, 1.000000, 0.000000);
 uniform float AbilityProgress : hint_range(0.0, 1.0) = 0.0;
@@ -71,18 +71,21 @@ void fragment() {
 	float n_out6p0 = step(n_out18p0, n_out15p0);
 
 
-// FloatOp:19
-	float n_in19p1 = 0.30000;
-	float n_out19p0 = n_out6p0 + n_in19p1;
+// Clamp:20
+	float n_in20p1 = 0.30000;
+	float n_in20p2 = 1.00000;
+	float n_out20p0 = clamp(n_out6p0, n_in20p1, n_in20p2);
 
 
 // Output:0
 	ALBEDO = vec3(n_out4p0.xyz);
-	ALPHA = n_out19p0;
+	ALPHA = n_out20p0;
 
 
 }
 "
+modes/specular = 2
+flags/unshaded = true
 nodes/fragment/0/position = Vector2(680, 140)
 nodes/fragment/4/node = SubResource("VisualShaderNodeVec4Parameter_psxrf")
 nodes/fragment/4/position = Vector2(-1160, 20)
@@ -98,6 +101,6 @@ nodes/fragment/17/node = SubResource("VisualShaderNodeFloatFunc_228kh")
 nodes/fragment/17/position = Vector2(-1420, 380)
 nodes/fragment/18/node = SubResource("VisualShaderNodeFloatOp_uiint")
 nodes/fragment/18/position = Vector2(-1200, 380)
-nodes/fragment/19/node = SubResource("VisualShaderNodeFloatOp_ftncu")
-nodes/fragment/19/position = Vector2(-500, 380)
-nodes/fragment/connections = PackedInt32Array(4, 0, 0, 0, 15, 0, 6, 1, 17, 0, 18, 0, 18, 0, 6, 0, 10, 0, 17, 0, 5, 2, 15, 0, 6, 0, 19, 0, 19, 0, 0, 1)
+nodes/fragment/20/node = SubResource("VisualShaderNodeClamp_ftncu")
+nodes/fragment/20/position = Vector2(-480, 380)
+nodes/fragment/connections = PackedInt32Array(4, 0, 0, 0, 15, 0, 6, 1, 17, 0, 18, 0, 18, 0, 6, 0, 10, 0, 17, 0, 5, 2, 15, 0, 20, 0, 0, 1, 6, 0, 20, 0)

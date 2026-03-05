@@ -31,16 +31,7 @@ const FIDEL = preload("res://Instrument/Fidel.tscn")
 @export var animation_player: AnimationPlayer
 @export var hitbox: CollisionShape3D
 
-
 @export var indicator_ring: Node3D
-@export var player_colors : PackedColorArray = [
-	Color.BLUE,
-	Color.GREEN,
-	Color.YELLOW,
-	Color.BLACK,
-	Color.WHITE,
-	Color.RED,
-]
 
 var can_move: bool = true
 var can_interact: bool = true
@@ -175,15 +166,16 @@ func set_bard_stats():
 	stat_comp.set_base_stats(type)
 
 func set_colors():
-	var col = player_colors[player]
-	PlayerManager.set_player_data(player, "color", col)
+	#var col = player_colors[player]
+	#PlayerManager.set_player_data(player, "color", col)
 	#print(PlayerManager.get_player_color(player))
 	#var mat = StandardMaterial3D.new()
 	#mat.albedo_color = col
 	#var meshes = visual.get_children()
 	#for mesh in meshes:
 		#mesh.set_surface_override_material(0, mat)
-	indicator_ring.set_color(col)
+	
+	indicator_ring.set_color(PlayerManager.get_player_color(player))
 
 func try_interact():
 	if !can_interact:
