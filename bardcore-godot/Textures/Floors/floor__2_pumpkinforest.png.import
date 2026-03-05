@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df8eiwyfrvm24"
-path.s3tc="res://.godot/imported/floor_pumpkin_txt.png-b177ebc59ec24b55a253c6306c0bf5d3.s3tc.ctex"
+uid="uid://dc1d48i1bv4br"
+path.s3tc="res://.godot/imported/floor__2_pumpkinforest.png-3ae91229822d2b097ebdd69b70b328b3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Floors/floor_pumpkin_txt.png"
-dest_files=["res://.godot/imported/floor_pumpkin_txt.png-b177ebc59ec24b55a253c6306c0bf5d3.s3tc.ctex"]
+source_file="res://Textures/Floors/floor__2_pumpkinforest.png"
+dest_files=["res://.godot/imported/floor__2_pumpkinforest.png-3ae91229822d2b097ebdd69b70b328b3.s3tc.ctex"]
 
 [params]
 
