@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-@onready var player_sprite: AnimatedSprite2D = %PlayerSprite
+@export var move_speed = 200.0
+@export var jump_distance: float = 100.0
+@export var jump_height: float = 50.0
+@export var jump_time_to_peak: float = 0.4
+@export var jump_time_to_descent: float = 0.25
 
-var move_speed = 200.0
-var jump_distance: float = 100.0
-var jump_height: float = 50.0
-var jump_time_to_peak: float = 0.4
-var jump_time_to_descent: float = 0.25
+var current_jump_time: float = 0.0
+
+@onready var player_sprite: AnimatedSprite2D = %PlayerSprite
 
 @onready var jump_velocity: float = calculate_jump_velocity(jump_height, jump_time_to_peak)
 @onready var up_gravity: float = calculate_jump_gravity(jump_height, jump_time_to_peak)
@@ -14,6 +16,14 @@ var jump_time_to_descent: float = 0.25
 @onready var horizontal_speed: float = calculate_jump_horizontal_velocity(jump_distance, jump_time_to_peak, jump_time_to_descent)
 
 func _physics_process(delta: float) -> void:
+	if !is_on_floor() and current_jump_time > 0.0:
+		current_jump_time -= delta
+		print(current_jump_time)
+	if current_jump_time < 0.0:
+		if velocity.y < 0.0:
+			velocity.y = 0.0
+			current_jump_time = 0.0
+	
 	# Add the gravity.
 	if velocity.y <= 0.0:
 		velocity.y += up_gravity * delta
@@ -45,6 +55,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("puppet_jump") and is_on_floor():
 		velocity.y = jump_velocity
 		velocity.x = sign(direction) * horizontal_speed
+		current_jump_time = jump_time_to_peak
+	if Input.is_action_just_released("puppet_jump"):
+		current_jump_time = -1.0
+	
 	
 	move_and_slide()
 
