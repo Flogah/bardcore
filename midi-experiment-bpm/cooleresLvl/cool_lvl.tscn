@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cnrn1e7f5wpt6"]
+
+[ext_resource type="Script" uid="uid://bre14mi56fqh" path="res://cooleresLvl/player.gd" id="1_ail51"]
+[ext_resource type="Texture2D" uid="uid://hh58byksso7k" path="res://icon.svg" id="1_o0odi"]
+[ext_resource type="PackedScene" uid="uid://c1d14qkkiobvg" path="res://cooleresLvl/platform.tscn" id="3_ibgcv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ail51"]
+size = Vector2(1149, 49)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibgcv"]
+radius = 40.1995
+
+[node name="CoolLvl" type="Node2D" unique_id=798418285]
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1447074075]
+position = Vector2(0, 598)
+
+[node name="ColorRect" type="ColorRect" parent="Ground" unique_id=1312388113]
+offset_top = 2.0
+offset_right = 1150.0
+offset_bottom = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=231442600]
+position = Vector2(575.5, 26.5)
+shape = SubResource("RectangleShape2D_ail51")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1488627242]
+position = Vector2(268, 394)
+script = ExtResource("1_ail51")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=664310135]
+position = Vector2(-1.9073486e-06, -1.9073486e-06)
+scale = Vector2(0.65625, 0.65625)
+texture = ExtResource("1_o0odi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=887987015]
+shape = SubResource("CircleShape2D_ibgcv")
+
+[node name="platform" parent="." unique_id=156686376 instance=ExtResource("3_ibgcv")]
+position = Vector2(796, 575)
+
+[node name="platform2" parent="." unique_id=123603364 instance=ExtResource("3_ibgcv")]
+position = Vector2(796, 575)
