@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://csvbtuxxitgln"]
+
+[sub_resource type="Curve2D" id="Curve2D_5a6mk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 230)
+}
+point_count = 2
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xs4vg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x18fg"]
+size = Vector2(31.000008, 189)
+
+[sub_resource type="Animation" id="Animation_5a6mk"]
+resource_name = "platformUpDown"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xs4vg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x18fg"]
+_data = {
+&"RESET": SubResource("Animation_xs4vg"),
+&"platformUpDown": SubResource("Animation_5a6mk")
+}
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_5a6mk")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(0, 230)
+rotation = 1.5707964
+physics_material_override = SubResource("PhysicsMaterial_xs4vg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(0.5, -0.50001144)
+shape = SubResource("RectangleShape2D_x18fg")
+
+[node name="Polygon2D" type="Polygon2D" parent="AnimatableBody2D"]
+position = Vector2(92.069435, 1.533962)
+scale = Vector2(0.9629042, 0.97563493)
+color = Color(0.29863456, 0.17212352, 0.006638771, 1)
+polygon = PackedVector2Array(-111.19427, -98.94476, -111.19425, 94.77523, -78.999985, 94.77523, -79, -99)
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 1.5707964
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../AnimatableBody2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x18fg")
+}
