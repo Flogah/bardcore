@@ -9,6 +9,7 @@ var target_scale: String = "f-moll"
 var notes = []
 var achtel_count: int = 0
 
+var tonart = 0
 var pitch = 0
 var note1 = 50
 var note2 = 54
@@ -136,13 +137,17 @@ func joystick_input_mapping(input: Vector2):
 	if Input.is_action_just_pressed("l_stick_up"):
 		queue_note_simple(1,note1+pitch,1.0)
 	if Input.is_action_just_pressed("l_stick_right"):
-		queue_note_simple(1,note2+pitch,1.0)
+		queue_note_simple(1,note2+pitch+tonart,1.0)
 	if Input.is_action_just_pressed("l_stick_left"):
 		queue_note_simple(1,note4+pitch,1.0)
 	if Input.is_action_just_pressed("pitch_up"):
 		pitch += 1
 	if Input.is_action_just_pressed("pitch_down"):
 		pitch -= 1
+	if Input.is_action_just_pressed("change_tonart"):
+		if tonart == -1:
+			tonart = 0
+		else: tonart = -1
 
 # ------------------- NOTE SYSTEM -------------------
 
