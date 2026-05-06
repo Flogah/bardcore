@@ -43,6 +43,7 @@ _data = {
 }
 
 [node name="platform" type="AnimatableBody2D" unique_id=156686376]
+position = Vector2(796, 575)
 script = ExtResource("1_cc5qu")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=90730063]
