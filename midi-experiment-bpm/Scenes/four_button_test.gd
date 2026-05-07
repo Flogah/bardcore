@@ -146,8 +146,9 @@ func joystick_input_mapping(input: Vector2):
 		pitch -= 1
 	if Input.is_action_just_pressed("change_tonart"):
 		if tonart == -1:
-			tonart = 0
-		else: tonart = -1
+			set_tonart(true)
+		else: 
+			set_tonart(false)
 
 # ------------------- NOTE SYSTEM -------------------
 
@@ -236,3 +237,11 @@ func apply_scale(note_array: Array, scale: String) -> Array:
 		"test":
 			pass
 	return new_array
+
+func set_tonart(dur: bool) -> void:
+	if dur:
+		tonart = 0
+		Schnittstelle.tonart = 0
+	else:
+		tonart = -1
+		Schnittstelle.tonart = -1
