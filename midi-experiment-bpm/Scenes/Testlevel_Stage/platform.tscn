@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://c1d14qkkiobvg"]
+
+[ext_resource type="Script" uid="uid://y0cftys2a5ah" path="res://Scenes/Testlevel_Stage/platform_up.gd" id="1_cc5qu"]
+
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlvvm"]
+size = Vector2(228, 19)
+
+[sub_resource type="Animation" id="Animation_w356k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(796, 575)]
+}
+
+[sub_resource type="Animation" id="Animation_ldb8e"]
+resource_name = "platformUp"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(796, 575), Vector2(796, 390.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8p4au"]
+_data = {
+&"RESET": SubResource("Animation_w356k"),
+&"platformUp": SubResource("Animation_ldb8e")
+}
+
+[node name="platform" type="AnimatableBody2D" unique_id=156686376]
+position = Vector2(796, 575)
+script = ExtResource("1_cc5qu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=90730063]
+offset_left = -116.0
+offset_right = 113.0
+offset_bottom = 19.0
+color = Color(0.4185401, 0.6126485, 0.5993311, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=786756520]
+position = Vector2(-1, 9.5)
+shape = SubResource("RectangleShape2D_wlvvm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1507007147]
+libraries/ = SubResource("AnimationLibrary_8p4au")
