@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csx0u1m05qhlt"
-path="res://.godot/imported/Environment_Nacht.png-c6beda053e50442245ede4bc356c11b2.ctex"
+uid="uid://b6nj5xw0lk0gy"
+path="res://.godot/imported/Barde.png-ae3b9814b50b6d2acc83b6cb992bdd54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2D-Assets/Environment_Nacht.png"
-dest_files=["res://.godot/imported/Environment_Nacht.png-c6beda053e50442245ede4bc356c11b2.ctex"]
+source_file="res://Assets/2D-Assets/Barde.png"
+dest_files=["res://.godot/imported/Barde.png-ae3b9814b50b6d2acc83b6cb992bdd54.ctex"]
 
 [params]
 

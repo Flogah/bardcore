@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6nj5xw0lk0gy"
-path="res://.godot/imported/Barde.png-3219bd1e8c7b4adbd1ce6008bf53e8ae.ctex"
+uid="uid://ccq3xwnjmwqwh"
+path="res://.godot/imported/Sonne.png-0bddd81904143ca5300839ca63b55645.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2D-Assets/Barde.png"
-dest_files=["res://.godot/imported/Barde.png-3219bd1e8c7b4adbd1ce6008bf53e8ae.ctex"]
+source_file="res://Assets/2D-Assets/Sonne.png"
+dest_files=["res://.godot/imported/Sonne.png-0bddd81904143ca5300839ca63b55645.ctex"]
 
 [params]
 

@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://cnrn1e7f5wpt6"]
 
-[ext_resource type="Script" uid="uid://bre14mi56fqh" path="res://cooleresLvl/player.gd" id="1_ail51"]
+[ext_resource type="Script" uid="uid://bre14mi56fqh" path="res://Scenes/Testlevel_Stage/player.gd" id="1_ail51"]
 [ext_resource type="Texture2D" uid="uid://hh58byksso7k" path="res://icon.svg" id="1_o0odi"]
-[ext_resource type="Texture2D" uid="uid://csx0u1m05qhlt" path="res://2D-Assets/Environment_Nacht.png" id="1_w356k"]
-[ext_resource type="Texture2D" uid="uid://bxbxb5pk4do53" path="res://2D-Assets/Mond.png" id="2_1r667"]
-[ext_resource type="Texture2D" uid="uid://c1beycay8ywe1" path="res://2D-Assets/Environment_Tag.png" id="2_8p4au"]
-[ext_resource type="Texture2D" uid="uid://ccq3xwnjmwqwh" path="res://2D-Assets/Sonne.png" id="3_1r667"]
-[ext_resource type="PackedScene" uid="uid://c1d14qkkiobvg" path="res://cooleresLvl/platform.tscn" id="3_ibgcv"]
-[ext_resource type="Texture2D" uid="uid://dbi2ltqc7pvh4" path="res://2D-Assets/Buehnenrahmen.png" id="4_wlvvm"]
-[ext_resource type="Texture2D" uid="uid://b6nj5xw0lk0gy" path="res://2D-Assets/Barde.png" id="9_jmun6"]
+[ext_resource type="Texture2D" uid="uid://csx0u1m05qhlt" path="res://Assets/2D-Assets/Environment_Nacht.png" id="1_w356k"]
+[ext_resource type="Texture2D" uid="uid://bxbxb5pk4do53" path="res://Assets/2D-Assets/Mond.png" id="2_1r667"]
+[ext_resource type="Texture2D" uid="uid://c1beycay8ywe1" path="res://Assets/2D-Assets/Environment_Tag.png" id="2_8p4au"]
+[ext_resource type="Texture2D" uid="uid://ccq3xwnjmwqwh" path="res://Assets/2D-Assets/Sonne.png" id="3_1r667"]
+[ext_resource type="PackedScene" uid="uid://c1d14qkkiobvg" path="res://Scenes/Testlevel_Stage/platform.tscn" id="3_ibgcv"]
+[ext_resource type="Texture2D" uid="uid://dbi2ltqc7pvh4" path="res://Assets/2D-Assets/Buehnenrahmen.png" id="4_wlvvm"]
+[ext_resource type="Texture2D" uid="uid://b6nj5xw0lk0gy" path="res://Assets/2D-Assets/Barde.png" id="9_jmun6"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ail51"]
 size = Vector2(1149, 168)

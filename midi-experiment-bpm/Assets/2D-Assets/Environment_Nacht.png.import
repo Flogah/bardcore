@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxbxb5pk4do53"
-path="res://.godot/imported/Mond.png-a3f28e9c5c8cb3e87280e8a0ac96579d.ctex"
+uid="uid://csx0u1m05qhlt"
+path="res://.godot/imported/Environment_Nacht.png-8e22997396a6680cb7627df827b06b1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2D-Assets/Mond.png"
-dest_files=["res://.godot/imported/Mond.png-a3f28e9c5c8cb3e87280e8a0ac96579d.ctex"]
+source_file="res://Assets/2D-Assets/Environment_Nacht.png"
+dest_files=["res://.godot/imported/Environment_Nacht.png-8e22997396a6680cb7627df827b06b1e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccq3xwnjmwqwh"
-path="res://.godot/imported/Sonne.png-e4b2592edd38d21727f4913e8bdc89f1.ctex"
+uid="uid://dbi2ltqc7pvh4"
+path="res://.godot/imported/Buehnenrahmen.png-b523f9d58868506675949bb79da95b10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2D-Assets/Sonne.png"
-dest_files=["res://.godot/imported/Sonne.png-e4b2592edd38d21727f4913e8bdc89f1.ctex"]
+source_file="res://Assets/2D-Assets/Buehnenrahmen.png"
+dest_files=["res://.godot/imported/Buehnenrahmen.png-b523f9d58868506675949bb79da95b10.ctex"]
 
 [params]
 
