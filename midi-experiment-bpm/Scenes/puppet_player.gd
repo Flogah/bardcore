@@ -18,7 +18,7 @@ var current_jump_time: float = 0.0
 func _physics_process(delta: float) -> void:
 	if !is_on_floor() and current_jump_time > 0.0:
 		current_jump_time -= delta
-		print(current_jump_time)
+		#print(current_jump_time)
 	if current_jump_time < 0.0:
 		if velocity.y < 0.0:
 			velocity.y = 0.0
