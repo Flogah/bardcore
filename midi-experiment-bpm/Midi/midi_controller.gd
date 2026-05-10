@@ -103,6 +103,7 @@ func handle_timing(delta: float):
 	if beat_time >= seconds_per_beat:
 		beat_time -= seconds_per_beat
 		time_signature += 1
+		beat.emit()
 		
 		if time_signature >= beats_per_bar:
 			time_signature = 0
@@ -167,6 +168,7 @@ func play_note():
 	if waiting_note.size() > 0:
 		amy.send(waiting_note)
 		last_played_note = waiting_note["note"]
+		note_played.emit(waiting_note["note"])
 		waiting_note = {}
 
 # ------------------- CAPTURE -------------------
@@ -189,6 +191,7 @@ func capture_mode_activation(toggle):
 		capture_mode = true
 	else:
 		capture_mode = false
+	capture_mode_changed.emit(capture_mode)
 
 # ------------------- MISC -------------------
 
@@ -221,15 +224,18 @@ func apply_scale(note_array: Array, scale: String) -> Array:
 			new_array = note_array.map(func(n): return n + 5)
 		"test":
 			pass
+	scale_changed.emit(scale)
 	return new_array
 
 func set_tonart(dur: bool) -> void:
 	if dur:
 		tonart = 0
 		Schnittstelle.tonart = 0
+		tonart_changed.emit("dur")
 	else:
 		tonart = -1
 		Schnittstelle.tonart = -1
+		tonart_changed.emit("moll")
 
 func get_note_name(note: int) -> String:
 	var note_name: String = "NaN"
