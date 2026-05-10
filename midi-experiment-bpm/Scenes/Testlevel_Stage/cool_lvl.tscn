@@ -68,11 +68,6 @@ texture = ExtResource("1_o0odi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=887987015]
 shape = SubResource("CircleShape2D_ibgcv")
 
-[node name="platform" parent="." unique_id=156686376 instance=ExtResource("3_ibgcv")]
-
-[node name="platform2" parent="." unique_id=123603364 instance=ExtResource("3_ibgcv")]
-visible = false
-
 [node name="Buehnenrahmen" type="Sprite2D" parent="." unique_id=590454405]
 position = Vector2(581, 332)
 scale = Vector2(0.32222226, 0.32222226)
@@ -84,4 +79,9 @@ scale = Vector2(0.23611113, 0.23611113)
 texture = ExtResource("9_jmun6")
 
 [node name="4ButtonTest" parent="." unique_id=1032183014 instance=ExtResource("11_hrf86")]
+visible = false
+
+[node name="platform" parent="." unique_id=156686376 instance=ExtResource("3_ibgcv")]
+
+[node name="platform2" parent="." unique_id=123603364 instance=ExtResource("3_ibgcv")]
 visible = false
