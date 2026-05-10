@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://bre14mi56fqh" path="res://Scenes/Testlevel_Stage/player.gd" id="1_ail51"]
 [ext_resource type="Texture2D" uid="uid://hh58byksso7k" path="res://icon.svg" id="1_o0odi"]
 [ext_resource type="Texture2D" uid="uid://csx0u1m05qhlt" path="res://Assets/2D-Assets/Environment_Nacht.png" id="1_w356k"]
+[ext_resource type="Script" uid="uid://dc52xpv03nt0n" path="res://Scenes/Testlevel_Stage/cool_lvl.gd" id="1_we1xy"]
 [ext_resource type="Texture2D" uid="uid://bxbxb5pk4do53" path="res://Assets/2D-Assets/Mond.png" id="2_1r667"]
 [ext_resource type="Texture2D" uid="uid://c1beycay8ywe1" path="res://Assets/2D-Assets/Environment_Tag.png" id="2_8p4au"]
 [ext_resource type="Texture2D" uid="uid://ccq3xwnjmwqwh" path="res://Assets/2D-Assets/Sonne.png" id="3_1r667"]
 [ext_resource type="PackedScene" uid="uid://c1d14qkkiobvg" path="res://Scenes/Testlevel_Stage/platform.tscn" id="3_ibgcv"]
 [ext_resource type="Texture2D" uid="uid://dbi2ltqc7pvh4" path="res://Assets/2D-Assets/Buehnenrahmen.png" id="4_wlvvm"]
 [ext_resource type="Texture2D" uid="uid://b6nj5xw0lk0gy" path="res://Assets/2D-Assets/Barde.png" id="9_jmun6"]
-
+[ext_resource type="PackedScene" uid="uid://ds710ptqa20da" path="res://Scenes/Testlevel_Music/FourButtonTest.tscn" id="11_hrf86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ail51"]
 size = Vector2(1149, 168)
@@ -18,6 +19,7 @@ size = Vector2(1149, 168)
 radius = 40.1995
 
 [node name="CoolLvl" type="Node2D" unique_id=798418285]
+script = ExtResource("1_we1xy")
 
 [node name="EnvironmentNacht" type="Sprite2D" parent="." unique_id=1804085444]
 position = Vector2(570.88885, 343.5)
@@ -80,3 +82,6 @@ texture = ExtResource("4_wlvvm")
 position = Vector2(61, 605)
 scale = Vector2(0.23611113, 0.23611113)
 texture = ExtResource("9_jmun6")
+
+[node name="4ButtonTest" parent="." unique_id=1032183014 instance=ExtResource("11_hrf86")]
+visible = false

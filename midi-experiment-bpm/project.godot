@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Midi_experiments"
-run/main_scene="res://Scenes/Testlevel_Music/FourButtonTest.tscn"
+run/main_scene="uid://cnrn1e7f5wpt6"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

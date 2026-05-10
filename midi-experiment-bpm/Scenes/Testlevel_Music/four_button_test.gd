@@ -173,6 +173,7 @@ func queue_note(data: Dictionary):
 func play_note():
 	if waiting_note.size() > 0:
 		amy.send(waiting_note)
+		Schnittstelle.add_note(waiting_note["note"])
 		waiting_note = {}
 
 # ------------------- CAPTURE -------------------
