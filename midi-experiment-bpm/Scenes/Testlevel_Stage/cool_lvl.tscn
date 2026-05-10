@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cnrn1e7f5wpt6"]
 
 [ext_resource type="Script" uid="uid://bre14mi56fqh" path="res://Scenes/Testlevel_Stage/player.gd" id="1_ail51"]
-[ext_resource type="Texture2D" uid="uid://hh58byksso7k" path="res://icon.svg" id="1_o0odi"]
 [ext_resource type="Texture2D" uid="uid://csx0u1m05qhlt" path="res://Assets/2D-Assets/Environment_Nacht.png" id="1_w356k"]
 [ext_resource type="Script" uid="uid://dc52xpv03nt0n" path="res://Scenes/Testlevel_Stage/cool_lvl.gd" id="1_we1xy"]
 [ext_resource type="Texture2D" uid="uid://bxbxb5pk4do53" path="res://Assets/2D-Assets/Mond.png" id="2_1r667"]
@@ -9,8 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://ccq3xwnjmwqwh" path="res://Assets/2D-Assets/Sonne.png" id="3_1r667"]
 [ext_resource type="PackedScene" uid="uid://c1d14qkkiobvg" path="res://Scenes/Testlevel_Stage/platform.tscn" id="3_ibgcv"]
 [ext_resource type="Texture2D" uid="uid://dbi2ltqc7pvh4" path="res://Assets/2D-Assets/Buehnenrahmen.png" id="4_wlvvm"]
+[ext_resource type="Texture2D" uid="uid://ct56q1so6wxgt" path="res://Assets/2D-Assets/ritter.png" id="8_6tyv8"]
 [ext_resource type="Texture2D" uid="uid://b6nj5xw0lk0gy" path="res://Assets/2D-Assets/Barde.png" id="9_jmun6"]
 [ext_resource type="PackedScene" uid="uid://ds710ptqa20da" path="res://Scenes/Testlevel_Music/FourButtonTest.tscn" id="11_hrf86"]
+[ext_resource type="Texture2D" uid="uid://b2tyt64tfdp7c" path="res://Assets/2D-Assets/Musikbar_Nacht.png" id="12_cd2hu"]
+[ext_resource type="Texture2D" uid="uid://b63rykt5pq1ku" path="res://Assets/2D-Assets/Musikbar_Tag.png" id="13_6tyv8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ail51"]
 size = Vector2(1149, 168)
@@ -60,10 +62,10 @@ shape = SubResource("RectangleShape2D_ail51")
 position = Vector2(268, 394)
 script = ExtResource("1_ail51")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=664310135]
-position = Vector2(-1.9073486e-06, -1.9073486e-06)
-scale = Vector2(0.65625, 0.65625)
-texture = ExtResource("1_o0odi")
+[node name="Ritter" type="Sprite2D" parent="Player" unique_id=1001745251]
+position = Vector2(8, -325)
+scale = Vector2(0.725, 0.725)
+texture = ExtResource("8_6tyv8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=887987015]
 shape = SubResource("CircleShape2D_ibgcv")
@@ -85,3 +87,14 @@ visible = false
 
 [node name="platform2" parent="." unique_id=123603364 instance=ExtResource("3_ibgcv")]
 visible = false
+
+[node name="MusikbarNacht" type="Sprite2D" parent="." unique_id=1311448302]
+position = Vector2(575, 602)
+scale = Vector2(0.77816933, 0.56125003)
+texture = ExtResource("12_cd2hu")
+
+[node name="MusikbarTag" type="Sprite2D" parent="." unique_id=990708554]
+visible = false
+position = Vector2(575, 602)
+scale = Vector2(0.778, 0.561)
+texture = ExtResource("13_6tyv8")

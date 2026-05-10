@@ -4,6 +4,8 @@ var day: bool = false
 
 @onready var stage_day: Sprite2D = $EnvironmentTag
 @onready var stage_night: Sprite2D = $EnvironmentNacht
+@onready var ui_day: Sprite2D = $MusikbarTag
+@onready var ui_night: Sprite2D = $MusikbarNacht
 
 func _ready() -> void:
 	Schnittstelle.day.connect(switch_day_night.bind(true))
@@ -11,4 +13,6 @@ func _ready() -> void:
 
 func switch_day_night(day: bool) -> void:
 	stage_day.visible = day
+	ui_day.visible = day
 	stage_night.visible = !day
+	ui_night.visible = !day
