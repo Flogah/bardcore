@@ -3,7 +3,7 @@ extends AnimatableBody2D
 var is_down: bool = true
 var max_move_up: int = 500
 var max_move_down: int = 0
-var move_speed: int = 5
+var move_speed: int = 20
 
 @onready var start_pos_y: int = int(position.y)
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
