@@ -1,31 +1,13 @@
 [gd_scene format=3 uid="uid://dqgxkn3untdpw"]
 
 [ext_resource type="Script" uid="uid://d3u3ldko7y4ox" path="res://Scenes/puppet_player.gd" id="1_fqh1s"]
-[ext_resource type="Texture2D" uid="uid://bdoyf8mar3tev" path="res://Assets/Sprites/Libresprite/KnightRed-Sheet.png" id="1_xee5b"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fqh1s"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_draqj"]
-atlas = ExtResource("1_xee5b")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yoguy"]
-atlas = ExtResource("1_xee5b")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n081p"]
-atlas = ExtResource("1_xee5b")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4l36"]
-atlas = ExtResource("1_xee5b")
-region = Rect2(64, 0, 32, 32)
+[ext_resource type="Texture2D" uid="uid://ct56q1so6wxgt" path="res://Assets/2D-Assets/ritter.png" id="2_fqh1s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fdrmv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_draqj")
+"texture": ExtResource("2_fqh1s")
 }],
 "loop": true,
 "name": &"idle",
@@ -33,7 +15,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yoguy")
+"texture": ExtResource("2_fqh1s")
 }],
 "loop": true,
 "name": &"jump",
@@ -41,25 +23,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n081p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t4l36")
+"texture": ExtResource("2_fqh1s")
 }],
 "loop": true,
 "name": &"walk",
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fqh1s"]
+radius = 37.0
+height = 142.0
+
 [node name="PuppetPlayer" type="CharacterBody2D" unique_id=434851246]
 script = ExtResource("1_fqh1s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=272230037]
-visible = false
-shape = SubResource("CapsuleShape2D_fqh1s")
-
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=570207427]
 unique_name_in_owner = true
+position = Vector2(0, -448)
 sprite_frames = SubResource("SpriteFrames_fdrmv")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=272230037]
+shape = SubResource("CapsuleShape2D_fqh1s")

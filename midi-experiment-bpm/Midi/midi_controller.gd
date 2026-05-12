@@ -150,7 +150,8 @@ func queue_note_simple(synth: int = 1, note: int = 52, vel: float = 1.0):
 	var data = {
 		"synth" : synth,
 		"note" : note,
-		"vel" : vel
+		"vel" : vel,
+		"kind" : tonart
 	}
 	queue_note(data)
 
@@ -158,8 +159,9 @@ func queue_note(data: Dictionary):
 	var synth = data["synth"]
 	var note = data["note"]
 	var vel = data["vel"]
+	var kind = data["kind"]
 	
-	waiting_note = {"synth": synth, "patch": patch, "num_voices": 6, "note": note, "vel": vel}
+	waiting_note = {"synth": synth, "patch": patch, "num_voices": 6, "note": note, "vel": vel, "kind": kind}
 	
 	if capture_mode:
 		capture_note(data)
@@ -167,6 +169,7 @@ func queue_note(data: Dictionary):
 func play_note():
 	if waiting_note.size() > 0:
 		amy.send(waiting_note)
+		Schnittstelle.add_note(waiting_note["note"], waiting_note["kind"])
 		last_played_note = waiting_note["note"]
 		note_played.emit(waiting_note["note"])
 		waiting_note = {}
