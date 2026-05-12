@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbob81d4ohmlp"]
 
-[ext_resource type="Script" uid="uid://bd4psr0bkiy2c" path="res://Scenes/Testlevel_Music/four_button_test.gd" id="1_cnnty"]
+[ext_resource type="Script" uid="uid://cbpltiwlju83w" path="res://Midi/midi_controller.gd" id="1_cnnty"]
 
 [node name="MidiController" type="Node" unique_id=791663942]
 script = ExtResource("1_cnnty")
