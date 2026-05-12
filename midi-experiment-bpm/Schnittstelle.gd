@@ -21,7 +21,12 @@ func check_for_triggers() -> void:
 	check_night_or_day()
 
 func check_up_or_down() -> void:
-	var difference: int = notes_played[0]["note"] - notes_played[1]["note"]
+	var difference: int = 0
+	for i in range(0,3):
+		if notes_played[i]["note"] < notes_played[i+1]["note"]:
+			difference -= 1
+		elif notes_played[i]["note"] > notes_played[i+1]["note"]:
+			difference += 1
 	if difference > 0:
 		up.emit()
 	elif difference < 0:
