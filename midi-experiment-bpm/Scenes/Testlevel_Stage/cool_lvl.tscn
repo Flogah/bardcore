@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b2tyt64tfdp7c" path="res://Assets/2D-Assets/Musikbar_Nacht.png" id="12_cd2hu"]
 [ext_resource type="PackedScene" uid="uid://dqgxkn3untdpw" path="res://Scenes/PuppetPlayer.tscn" id="12_ur75q"]
 [ext_resource type="Texture2D" uid="uid://b63rykt5pq1ku" path="res://Assets/2D-Assets/Musikbar_Tag.png" id="13_6tyv8"]
+[ext_resource type="PackedScene" uid="uid://n1k8rw3kbgxx" path="res://Scenes/LevelParts/day_night_platform.tscn" id="13_cd2hu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ail51"]
 size = Vector2(1149, 168)
@@ -82,5 +83,9 @@ texture = ExtResource("13_6tyv8")
 
 [node name="PuppetPlayer" parent="." unique_id=434851246 instance=ExtResource("12_ur75q")]
 position = Vector2(273, 442)
+jump_height = 150.0
 
 [node name="MidiController" parent="." unique_id=791663942 instance=ExtResource("12_6tyv8")]
+
+[node name="DayNightPlatform" parent="." unique_id=1420247842 instance=ExtResource("13_cd2hu")]
+position = Vector2(802, 455)
