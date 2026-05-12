@@ -233,11 +233,9 @@ func apply_scale(note_array: Array, scale: String) -> Array:
 func set_tonart(dur: bool) -> void:
 	if dur:
 		tonart = 0
-		Schnittstelle.tonart = 0
 		tonart_changed.emit("dur")
 	else:
 		tonart = -1
-		Schnittstelle.tonart = -1
 		tonart_changed.emit("moll")
 
 func get_note_name(note: int) -> String:
