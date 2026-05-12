@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://n1k8rw3kbgxx"]
+
+[ext_resource type="Script" uid="uid://c5legl34hdlbv" path="res://Scenes/LevelParts/day_night_platform.gd" id="1_bo6dt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orlff"]
+size = Vector2(200, 40)
+
+[node name="DayNightPlatform" type="StaticBody2D" unique_id=1420247842]
+script = ExtResource("1_bo6dt")
+cycle_colors = Dictionary[int, Color]({
+0: Color(0.5764706, 0.4392157, 0.85882354, 1),
+1: Color(1, 0.27058825, 0, 1)
+})
+
+[node name="PlatformColorShape" type="ColorRect" parent="." unique_id=56301295]
+unique_name_in_owner = true
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+color = Color(0.5764706, 0.4392157, 0.85882354, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=602105035]
+unique_name_in_owner = true
+visible = false
+shape = SubResource("RectangleShape2D_orlff")
