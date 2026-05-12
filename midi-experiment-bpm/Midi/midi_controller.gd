@@ -168,7 +168,7 @@ func queue_note(data: Dictionary):
 
 func play_note():
 	if waiting_note.size() > 0:
-		amy.send(waiting_note)
+		amy.send({"synth": waiting_note["synth"], "patch": waiting_note["patch"], "num_voices": 6, "note": waiting_note["note"] + waiting_note["kind"], "vel": waiting_note["vel"]})
 		Schnittstelle.add_note(waiting_note["note"], waiting_note["kind"])
 		last_played_note = waiting_note["note"]
 		note_played.emit(waiting_note["note"])
