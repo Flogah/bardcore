@@ -12,14 +12,17 @@ cycle_colors = Dictionary[int, Color]({
 1: Color(1, 0.27058825, 0, 1)
 })
 
-[node name="Outline" type="ColorRect" parent="." unique_id=1610122050]
+[node name="Visual" type="Node2D" parent="." unique_id=1475838776]
+unique_name_in_owner = true
+
+[node name="Outline" type="ColorRect" parent="Visual" unique_id=1610122050]
 offset_left = -100.0
 offset_top = -20.0
 offset_right = 100.0
 offset_bottom = 20.0
 color = Color(0, 0, 0, 1)
 
-[node name="PlatformColorShape" type="ColorRect" parent="." unique_id=56301295]
+[node name="PlatformColorShape" type="ColorRect" parent="Visual" unique_id=56301295]
 unique_name_in_owner = true
 offset_left = -97.0
 offset_top = -17.0

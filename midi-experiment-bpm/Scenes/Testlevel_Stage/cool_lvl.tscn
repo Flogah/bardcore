@@ -83,6 +83,7 @@ texture = ExtResource("13_6tyv8")
 
 [node name="PuppetPlayer" parent="." unique_id=434851246 instance=ExtResource("12_ur75q")]
 position = Vector2(273, 442)
+jump_height = 150.0
 
 [node name="MidiController" parent="." unique_id=791663942 instance=ExtResource("12_6tyv8")]
 

@@ -16,6 +16,7 @@ enum cycle {
 	cycle.night: Color.MEDIUM_PURPLE
 }
 
+@onready var visual: Node2D = %Visual
 @onready var platform_color_shape: ColorRect = %PlatformColorShape
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 
@@ -46,8 +47,8 @@ func day_night_change(new_time: cycle):
 
 func sleep():
 	collision_shape_2d.disabled = true
-	platform_color_shape.modulate = Color(1, 1, 1, 0.2)
+	visual.modulate = Color(1, 1, 1, 0.2)
 
 func wake():
 	collision_shape_2d.disabled = false
-	platform_color_shape.modulate = Color(1, 1, 1, 1)
+	visual.modulate = Color(1, 1, 1, 1)
