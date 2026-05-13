@@ -16,6 +16,7 @@
 size = Vector2(35, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptfht"]
+albedo_color = Color(0.66068023, 0.696675, 0.63698363, 1)
 albedo_texture = ExtResource("3_c6mun")
 normal_enabled = true
 normal_scale = -1.0
