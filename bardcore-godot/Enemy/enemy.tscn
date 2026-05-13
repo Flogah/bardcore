@@ -61,7 +61,6 @@ orientation = 2
 
 [sub_resource type="Resource" id="Resource_1w3kn"]
 script = ExtResource("12_ht3ht")
-amount = 20.0
 critical_multiplier = 0.0
 invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
@@ -536,7 +535,7 @@ _data = {
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("health_comp") groups=["Enemy"]]
 script = ExtResource("1_4ra3w")
 health_comp = NodePath("HealthComponent")
-move_speed = 300.0
+move_speed = 200.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -620,7 +619,7 @@ metadata/_custom_type_script = "uid://ddb14bq4ftq7b"
 [node name="ThreatenAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("7_47ove")
 animation_player = NodePath("../../AnimationPlayer")
-threatening_time = 0.4
+threatening_time = 0.6
 metadata/_custom_type_script = "uid://h117ub56kau7"
 
 [node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player", "attack_area")]
@@ -648,6 +647,7 @@ draw_pass_1 = SubResource("PlaneMesh_0rspp")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("telegraph_comp") instance=ExtResource("6_glvfu")]
 telegraph_comp = NodePath("../TelegraphingComponent")
+max_health = 50.0
 
 [node name="TelegraphingComponent" parent="." instance=ExtResource("7_glvfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4725027, 0)
