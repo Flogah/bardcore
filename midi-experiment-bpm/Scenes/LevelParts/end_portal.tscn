@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dtgrhokwhur2b"]
+
+[ext_resource type="Script" uid="uid://dy5gwq5fk624v" path="res://Scenes/LevelParts/end_portal.gd" id="1_1snec"]
+[ext_resource type="Texture2D" uid="uid://hh58byksso7k" path="res://icon.svg" id="1_6m57u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1snec"]
+radius = 37.0
+height = 164.0
+
+[node name="EndPortal" type="Area2D" unique_id=123946315]
+script = ExtResource("1_1snec")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1713092493]
+position = Vector2(0, -9.999989)
+scale = Vector2(1, 2.0312502)
+texture = ExtResource("1_6m57u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1711159623]
+shape = SubResource("CapsuleShape2D_1snec")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

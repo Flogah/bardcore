@@ -34,7 +34,7 @@ animations = [{
 radius = 37.0
 height = 142.0
 
-[node name="PuppetPlayer" type="CharacterBody2D" unique_id=434851246]
+[node name="PuppetPlayer" type="CharacterBody2D" unique_id=434851246 groups=["playerpuppet"]]
 script = ExtResource("1_fqh1s")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=570207427]
