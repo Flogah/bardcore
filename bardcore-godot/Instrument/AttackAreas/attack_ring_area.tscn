@@ -59,7 +59,6 @@ scale_curve = SubResource("CurveTexture_eaha5")
 
 [node name="AttackRingArea" type="Node3D"]
 script = ExtResource("1_d0ktr")
-trigger_on_beat = 2
 place_sound = ExtResource("2_ew8l5")
 attack_sound = ExtResource("3_2x6w7")
 attack_sound_timing = 1.6

@@ -18,7 +18,7 @@
 size = Vector2(45, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbut0"]
-albedo_color = Color(0.41981313, 0.41981313, 0.4198131, 1)
+albedo_color = Color(0.27387273, 0.27387276, 0.2738727, 1)
 albedo_texture = ExtResource("3_ly701")
 normal_enabled = true
 normal_scale = 1.88
@@ -64,7 +64,7 @@ bottom_radius = 3.0
 height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ly701"]
-albedo_color = Color(0.6004086, 0.33401474, 0.1412242, 1)
+albedo_color = Color(0.45417458, 0.24543822, 0.094159774, 1)
 
 [sub_resource type="Resource" id="Resource_ly701"]
 script = ExtResource("10_wp41v")
@@ -267,7 +267,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4909654, 0, 3.8463798)
 transform = Transform3D(0.2926221, 0, 0.95622814, 0, 1, 0, -0.95622814, 0, 0.2926221, 9.618123, -2.861023e-06, -5.5557327)
 visible = false
 building_name = "Fanfarenbauer"
-building_levels = {}
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
 upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 0: null,
 1: SubResource("Resource_ly701"),
@@ -295,7 +300,12 @@ upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 transform = Transform3D(-0.67298675, 0, 0.73965454, 0, 1, 0, -0.73965454, 0, -0.67298675, -7.5347934, 1.9073486e-06, -5.492177)
 visible = false
 building_name = "Lautenbauer"
-building_levels = {}
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
 upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
 0: null,
 1: SubResource("Resource_e2eow"),

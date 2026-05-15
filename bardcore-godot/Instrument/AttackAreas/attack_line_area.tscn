@@ -44,13 +44,12 @@ scale_curve = SubResource("CurveTexture_lkfax")
 
 [node name="AttackLineArea" type="Node3D"]
 script = ExtResource("1_77qr4")
-trigger_on_beat = 2
 place_sound = ExtResource("6_lkfax")
 attack_sound = ExtResource("3_eqfi2")
 attack_sound_timing = 1.65
 
 [node name="hit_emitter_box" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6849185, -1.9609534)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.961)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("2_x5ccc")
@@ -59,7 +58,6 @@ targets = Array[int]([1])
 metadata/_custom_type_script = "uid://q46hat3a6486"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="hit_emitter_box"]
-visible = false
 shape = SubResource("BoxShape3D_lkfax")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
