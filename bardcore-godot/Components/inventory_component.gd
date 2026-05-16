@@ -46,9 +46,9 @@ func drop(item_type: droppable_item.item_type) -> void:
 	if slot[0] is droppable_item:
 		var item_to_drop = slot[0]
 		slot.remove_at(0)
-		MapManager.get_current_map().add_child(slot[0])
-		slot[0].global_position = global_position + global_basis.z * -5
-		stat_comp.remove_upgrades(slot[0].get_instance_id())
+		MapManager.get_current_map().add_child(item_to_drop)
+		item_to_drop.global_position = global_position + global_basis.z * -5
+		stat_comp.remove_upgrades(item_to_drop.get_instance_id())
 		
 
 func drop_all():
