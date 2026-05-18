@@ -204,3 +204,6 @@ func full_restore():
 	can_interact = true
 	can_move = true
 	back_on_feet.emit()
+
+func reset_inventory() -> void:
+	inventory.reset()

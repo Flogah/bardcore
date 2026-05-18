@@ -23,11 +23,15 @@ func enter_run():
 	MapManager.load_map()
 
 func spawn_players():
-	#UserInterface.reset_hud()
-	UserInterface.reset_hud()
-	var players = PlayerManager.player_data
-	for player in players:
-		PlayerManager.spawn_player(player)
+	if PlayerManager.player_nodes.is_empty():
+		return
+	var player_nodes = PlayerManager.player_nodes
+	for player_node in player_nodes:
+		var player: Player = player_nodes[player_node]
+		player.full_restore()
+		player.reset_inventory()
+		self.add_child(player)
+		player.position = Vector3(0,0,0)
 
 func gather_buildings():
 	buildings = buildings_node.get_children()

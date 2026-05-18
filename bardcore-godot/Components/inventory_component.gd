@@ -64,3 +64,13 @@ func drop_overflowing_items(item_type: droppable_item.item_type) -> void:
 	while slot.size() > int(stat_comp.get_stat(SLOT_TYPE_SIZE[item_type])):
 		drop(item_type)
 	return
+
+func reset() -> void:
+	slots = {
+	droppable_item.item_type.RING: [],
+	droppable_item.item_type.HELMET: [],
+	droppable_item.item_type.TORSO: [],
+	droppable_item.item_type.BOOTS: [],
+	droppable_item.item_type.INSTRUMENT: [],
+	}
+	stat_comp.reset()

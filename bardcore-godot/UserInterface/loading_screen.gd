@@ -13,5 +13,5 @@ func populate_labels(rooms):
 	days_label.text = str(GameManager.convert_flee_time(rooms))
 
 func return_to_village():
-	get_tree().change_scene_to_packed(load("uid://cr1ydxfa4aiik"))
+	MapManager.load_home()
 	queue_free()

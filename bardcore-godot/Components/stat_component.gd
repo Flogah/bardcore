@@ -123,3 +123,6 @@ func set_base_stats(bard_type: PlayerManager.bard_type) -> void:
 			base_stat_multiplier = baseStats.base_stat_multipliers[stat_id_]
 		stats[stat_id_].change_base_stat(base_stat * base_stat_multiplier)
 	recalculate_stats(baseStats.stats) #recalculate all stats
+
+func reset() -> void:
+	_ready()

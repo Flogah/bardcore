@@ -28,7 +28,7 @@ var starting_map = preload("res://Maps/StartingMap.tscn")
 var current_map : Map
 var coming_from_left: bool = true
 var map_grid : Dictionary[Vector2i, Map] = {}
-var  current_grid_position: Vector2i = Vector2i(1,0)
+var current_grid_position: Vector2i = Vector2i(1,0)
 
 #func _ready() -> void:
 	#read_all_maps()
@@ -116,6 +116,19 @@ func go_left():
 	var map_l = current_grid_position - Vector2i(1,0)
 	coming_from_left = false
 	load_map(map_l)
+
+func load_home() -> void:
+	var pos = Vector2i(1,0)
+	unload_map()
+	var village = HOMEBASE.instantiate()
+	var root = get_tree().get_root()
+	current_grid_position = pos
+	root.add_child.call_deferred(village)
+	current_grid_position = pos
+	set_current_map(village)
+	
+	await get_tree().create_timer(.2).timeout
+	GameManager.change_gamestate(current_map.mapGameState)
 
 func reset():
 	unload_map()
