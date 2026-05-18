@@ -1,6 +1,7 @@
 extends Node
 
 signal entered_new_map
+signal spawned_players
 
 const HOMEBASE = preload("uid://cr1ydxfa4aiik")
 
@@ -100,7 +101,8 @@ func load_map(pos: Vector2i = current_grid_position) -> void:
 	set_current_map(map_to_load)
 	
 	await get_tree().create_timer(.2).timeout
-	current_map.spawn_players()
+	await current_map.spawn_players()
+	spawned_players.emit()
 	GameManager.change_gamestate(current_map.mapGameState)
 
 func go_right():

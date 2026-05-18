@@ -21,8 +21,12 @@ enum instrument_type {
 
 #var attack_cooldown_timer: Timer
 
+func combat_transition_to_idle() -> void:
+	combat_statemachine._transition_to_next_state("Idle")
+
 func _ready() -> void:
 	equip()
+	MapManager.spawned_players.connect(combat_transition_to_idle)
 	#setup_cd_timer()
 
 func equip():
