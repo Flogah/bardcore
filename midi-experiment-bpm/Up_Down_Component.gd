@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 @export var max_move_up: int = 500
