@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d0w2qne1yl4pp"]
+
+[ext_resource type="Script" uid="uid://dtwb4jcai2re7" path="res://Up_Down_Component.gd" id="1_6xnsf"]
+
+[node name="Up Down Component" type="Node" unique_id=943674881]
+script = ExtResource("1_6xnsf")
