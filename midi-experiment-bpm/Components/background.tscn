@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://6w2c4mmue0td"]
+
+[ext_resource type="Script" uid="uid://cibnsq301ecfv" path="res://Components/background.gd" id="1_vk2ms"]
+[ext_resource type="Texture2D" uid="uid://ccq3xwnjmwqwh" path="res://Assets/2D-Assets/Sonne.png" id="2_3ifan"]
+[ext_resource type="Texture2D" uid="uid://bxbxb5pk4do53" path="res://Assets/2D-Assets/Mond.png" id="3_wm7fn"]
+
+[sub_resource type="Gradient" id="Gradient_qma8g"]
+offsets = PackedFloat32Array(0, 0.93703705)
+colors = PackedColorArray(4.042983e-06, 0.67266166, 0.9355924, 1, 0, 0.426354, 0.52047443, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3ifan"]
+gradient = SubResource("Gradient_qma8g")
+
+[sub_resource type="Gradient" id="Gradient_wm7fn"]
+offsets = PackedFloat32Array(0, 0.8333333)
+colors = PackedColorArray(1.3235956e-07, 0.19597957, 0.28666767, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3wice"]
+gradient = SubResource("Gradient_wm7fn")
+
+[node name="Background" type="Node2D" unique_id=188712323]
+script = ExtResource("1_vk2ms")
+
+[node name="Day" type="Sprite2D" parent="." unique_id=1366640422]
+position = Vector2(1.3014517, 0.99996936)
+rotation = -1.5707964
+scale = Vector2(3.0578964, 1291.449)
+texture = SubResource("GradientTexture1D_3ifan")
+
+[node name="Night" type="Sprite2D" parent="." unique_id=728598561]
+rotation = -1.5707964
+scale = Vector2(3.0766017, 1292.8699)
+texture = SubResource("GradientTexture1D_3wice")
+
+[node name="Sun" type="Sprite2D" parent="." unique_id=1853005191]
+position = Vector2(364, -188.00002)
+scale = Vector2(0.22268516, 0.22291669)
+texture = ExtResource("2_3ifan")
+
+[node name="Moon" type="Sprite2D" parent="." unique_id=2138687867]
+position = Vector2(367, -185)
+scale = Vector2(0.30185184, 0.33888888)
+texture = ExtResource("3_wm7fn")
