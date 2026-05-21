@@ -6,14 +6,20 @@ extends CharacterBody2D
 @export var jump_time_to_peak: float = 0.4
 @export var jump_time_to_descent: float = 0.25
 
+@export var cam_drag: float = 100
+
 var current_jump_time: float = 0.0
 
 @onready var player_sprite: AnimatedSprite2D = %PlayerSprite
+@onready var camera: Camera2D = $Camera2D
 
 @onready var jump_velocity: float = calculate_jump_velocity(jump_height, jump_time_to_peak)
 @onready var up_gravity: float = calculate_jump_gravity(jump_height, jump_time_to_peak)
 @onready var down_gravity: float = calculate_fall_gravity(jump_height, jump_time_to_descent)
 @onready var horizontal_speed: float = calculate_jump_horizontal_velocity(jump_distance, jump_time_to_peak, jump_time_to_descent)
+
+func _ready() -> void:
+	camera.global_position = global_position  + Vector2(0,-100)
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor() and current_jump_time > 0.0:
@@ -61,6 +67,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 	move_and_slide()
+	drag_camera(delta)
 
 # from GDquest
 # height should work in pixels for 2D and meters in 3D
@@ -76,3 +83,28 @@ func calculate_fall_gravity(height: float, time_to_descent: float) -> float:
 
 func calculate_jump_horizontal_velocity(distance: float, time_to_peak: float, time_to_descent: float) -> float:
 	return distance / (time_to_peak + time_to_descent)
+
+func drag_camera(delta: float) -> void:
+	var target: Vector2 = global_position 
+	# Abstand Kamera -> Ziel
+	var offset: Vector2 = target - camera.global_position
+	var distance: float = offset.length()
+	# Deadzone
+	if distance > cam_drag:
+		
+		# Nur den Teil bewegen der außerhalb der Deadzone liegt
+		var excess_distance: float = distance - cam_drag
+		
+		# Geschwindigkeit skaliert mit Entfernung
+		var speed: float = excess_distance * 6.0
+		
+		# Smooth movement
+		camera.global_position = camera.global_position.lerp(
+			target - offset.normalized() * cam_drag,
+			speed * delta
+		)
+	# Sicherheitsgrenze:
+	# Spieler darf beim Fallen niemals unter den Bildschirmrand verschwinden
+	if camera.global_position.y > target.y -100:
+		camera.global_position.y = target.y -100
+		
