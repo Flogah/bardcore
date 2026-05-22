@@ -1,7 +1,7 @@
 extends Control
 
-@onready var button_sprite: Sprite2D = %ButtonSprite
 @onready var timer: Timer = %Timer
+@onready var button_sprite: TextureRect = %ButtonTextureRect
 
 var blink_timer_length:float = 0.5
 var blink_timer:float
