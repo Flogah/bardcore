@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://buky4mae7ddll"]
+
+[ext_resource type="Script" uid="uid://jdttvh1suwdc" path="res://Menus/demo_end_screen.gd" id="1_c8cqy"]
+[ext_resource type="Texture2D" uid="uid://cjo1ju3d6ctr4" path="res://Textures/Video/Screenshot 2026-05-22 164854.png" id="1_lbcbr"]
+[ext_resource type="VideoStream" uid="uid://b8r7lxkfc3rfr" path="res://Textures/Video/Endscene.ogv" id="1_xq6ir"]
+
+[node name="DemoEndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c8cqy")
+
+[node name="Preview" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_lbcbr")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+stream = ExtResource("1_xq6ir")
+autoplay = true
+loop = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 161.0
+offset_right = 1085.0
+offset_bottom = 290.0
+theme_override_constants/separation = 29
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "DANKE FÜRS SPIELEN"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "KOMMT AUF UNSEREN DISCORD"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
