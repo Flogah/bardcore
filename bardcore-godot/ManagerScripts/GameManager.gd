@@ -194,5 +194,5 @@ func load_village_state():
 func reset_all_progress():
 	for key in village_state:
 		village_state[key] = 0
-	village_state["building_time"] = 1
+	village_state["building_time"] = 15
 	save_village_state()

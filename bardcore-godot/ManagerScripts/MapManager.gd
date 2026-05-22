@@ -92,9 +92,15 @@ func unload_map():
 		root.remove_child.call_deferred(current_map)
 
 func load_map(pos: Vector2i = current_grid_position) -> void:
+	current_grid_position = pos
+	if current_grid_position == Vector2i(11,0):
+		var endscreen = preload("uid://buky4mae7ddll")
+		GameManager.reset_all_game()
+		get_tree().change_scene_to_packed.call_deferred(endscreen)
+		return
+	
 	unload_map()
 	var root = get_tree().get_root()
-	current_grid_position = pos
 	var map_to_load = get_map(pos)
 	root.add_child.call_deferred(map_to_load)
 	current_grid_position = pos
@@ -107,6 +113,7 @@ func load_map(pos: Vector2i = current_grid_position) -> void:
 
 func go_right():
 	print("Going right!")
+	
 	var map_r = current_grid_position + Vector2i(1,0)
 	coming_from_left = true
 	load_map(map_r)
@@ -132,5 +139,6 @@ func load_home() -> void:
 
 func reset():
 	unload_map()
+	current_grid_position = Vector2i(1,0)
 	map_grid = {}
 	coming_from_left = true

@@ -5,6 +5,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	UserInterface.hide()
+	GameManager.reset_all_progress()
 	timer.timeout.connect(_on_timeout)
 	timer.start()
 
