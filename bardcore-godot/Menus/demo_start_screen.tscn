@@ -9,7 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://c08k8q0xmkkmw" path="res://Textures/UI/Bardcore_schriftzug.png" id="7_xgdgm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5edt3"]
-bg_color = Color(0.8745098, 0.8745098, 0.8745098, 0.6117647)
+bg_color = Color(0.8745098, 0.8745098, 0.8745098, 0.7137255)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="DemoStartScreen" type="Control"]
 layout_mode = 3
@@ -32,75 +41,33 @@ texture = ExtResource("2_h3qs2")
 expand_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 674.0
-offset_top = 225.0
-offset_right = 1037.0
-offset_bottom = 407.0
+offset_left = 649.0
+offset_top = 300.0
+offset_right = 1067.0
+offset_bottom = 481.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5edt3")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(0, 175)
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_5edt3")
-theme_override_font_sizes/font_size = 31
-text = "Band versammeln"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_5edt3")
-theme_override_font_sizes/font_size = 31
-text = "Kopfhörer auf"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_5edt3")
-theme_override_font_sizes/font_size = 31
-text = "Controller in die Hand"
-horizontal_alignment = 1
-
-[node name="PanelContainer2" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 652.0
-offset_top = 283.0
-offset_right = 1064.0
-offset_bottom = 454.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5edt3")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 9
 alignment = 2
 
-[node name="ButtonTextureRect" type="TextureRect" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="ButtonTextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_hjvpx")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_5edt3")
