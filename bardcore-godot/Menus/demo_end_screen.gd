@@ -5,9 +5,10 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	UserInterface.hide()
+	GameManager.reset_all_progress()
 	timer.timeout.connect(_on_timeout)
 	timer.start()
 
 func _on_timeout():
 	UserInterface.show()
-	get_tree().change_scene_to_packed(load("uid://7sn5taw7aace"))
+	get_tree().change_scene_to_packed(load("uid://b27ykus1hcepg"))
