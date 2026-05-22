@@ -38,7 +38,7 @@ func _ready():
 	player_joined.connect(spawn_player)
 	player_left.connect(delete_player)
 
-func _process(_delta):
+func _unhandled_input(event: InputEvent) -> void:
 	handle_join_input()
 
 func spawn_player(player: int):
