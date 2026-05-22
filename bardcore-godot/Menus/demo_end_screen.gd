@@ -10,4 +10,4 @@ func _ready() -> void:
 
 func _on_timeout():
 	UserInterface.show()
-	get_tree().change_scene_to_packed(load("uid://7sn5taw7aace"))
+	get_tree().change_scene_to_packed(load("uid://b27ykus1hcepg"))

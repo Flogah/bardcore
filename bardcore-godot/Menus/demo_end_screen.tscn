@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://buky4mae7ddll"]
+[gd_scene load_steps=9 format=3 uid="uid://buky4mae7ddll"]
 
 [ext_resource type="Script" uid="uid://jdttvh1suwdc" path="res://Menus/demo_end_screen.gd" id="1_c8cqy"]
 [ext_resource type="Texture2D" uid="uid://cjo1ju3d6ctr4" path="res://Textures/Video/Screenshot 2026-05-22 164854.png" id="1_lbcbr"]
 [ext_resource type="VideoStream" uid="uid://b8r7lxkfc3rfr" path="res://Textures/Video/Endscene.ogv" id="1_xq6ir"]
+[ext_resource type="FontFile" uid="uid://dvw28qfjlcubu" path="res://Fonts/Pentiment_Humanist.otf" id="4_7om8m"]
+[ext_resource type="Texture2D" uid="uid://tyev5r1ro87y" path="res://Textures/QR_Bardcore.png" id="5_ha3ep"]
+[ext_resource type="Texture2D" uid="uid://4s1gsyh6j575" path="res://Textures/pngegg.png" id="6_ikg67"]
+[ext_resource type="Texture2D" uid="uid://djrnylcdsfkkd" path="res://Textures/UI/Bardcore Logo.png" id="7_ikg67"]
+[ext_resource type="Texture2D" uid="uid://c08k8q0xmkkmw" path="res://Textures/UI/Bardcore_schriftzug.png" id="8_lde1d"]
 
 [node name="DemoEndScreen" type="Control"]
 layout_mode = 3
@@ -38,27 +43,48 @@ loop = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 526.0
-offset_top = 161.0
-offset_right = 1085.0
-offset_bottom = 290.0
+offset_left = 502.0
+offset_top = 238.0
+offset_right = 1125.0
+offset_bottom = 367.0
 theme_override_constants/separation = 29
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 36
-text = "DANKE FÜRS SPIELEN"
+theme_override_fonts/font = ExtResource("4_7om8m")
+theme_override_font_sizes/font_size = 50
+text = "Danke fürs Spielen!"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 36
-text = "KOMMT AUF UNSEREN DISCORD"
+theme_override_fonts/font = ExtResource("4_7om8m")
+theme_override_font_sizes/font_size = 26
+text = "Kommt auf den Discord für mehr News"
 horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
+
+[node name="Discord" type="Sprite2D" parent="."]
+position = Vector2(817.00006, 482.99997)
+scale = Vector2(0.45524678, 0.4552467)
+texture = ExtResource("5_ha3ep")
+
+[node name="Pngegg" type="Sprite2D" parent="Discord"]
+position = Vector2(3.5683594, 7.1365967)
+scale = Vector2(0.3074214, 0.30742142)
+texture = ExtResource("6_ikg67")
+
+[node name="BardcoreLogo" type="Sprite2D" parent="."]
+position = Vector2(527.25, 134)
+scale = Vector2(0.16589221, 0.16589223)
+texture = ExtResource("7_ikg67")
+
+[node name="BardcoreSchriftzug" type="Sprite2D" parent="."]
+position = Vector2(819.25, 169)
+texture = ExtResource("8_lde1d")

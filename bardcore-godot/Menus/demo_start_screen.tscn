@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b27ykus1hcepg"]
+[gd_scene load_steps=11 format=3 uid="uid://b27ykus1hcepg"]
 
 [ext_resource type="Script" uid="uid://0npdy4vpx6fy" path="res://Menus/demo_start_screen.gd" id="1_gh64w"]
 [ext_resource type="Texture2D" uid="uid://50al8qjrsqfv" path="res://Textures/UI/Menu_screen6.png" id="2_h3qs2"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://bscssmhsp6j2h" path="res://addons/Kenney_Fonts/Kenney Future.ttf" id="4_h3qs2"]
 [ext_resource type="Texture2D" uid="uid://djrnylcdsfkkd" path="res://Textures/UI/Bardcore Logo.png" id="5_8to6m"]
 [ext_resource type="Texture2D" uid="uid://c08k8q0xmkkmw" path="res://Textures/UI/Bardcore_schriftzug.png" id="7_xgdgm"]
+[ext_resource type="Texture2D" uid="uid://tyev5r1ro87y" path="res://Textures/QR_Bardcore.png" id="8_xgdgm"]
+[ext_resource type="Texture2D" uid="uid://4s1gsyh6j575" path="res://Textures/pngegg.png" id="9_ewben"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5edt3"]
 bg_color = Color(0.8745098, 0.8745098, 0.8745098, 0.7137255)
@@ -43,9 +45,9 @@ expand_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 649.0
-offset_top = 300.0
+offset_top = 251.0
 offset_right = 1067.0
-offset_bottom = 481.0
+offset_bottom = 432.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5edt3")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -105,3 +107,13 @@ text = "HANA & SPRING DEMO"
 [node name="BardcoreSchriftzug" type="Sprite2D" parent="."]
 position = Vector2(857, 179)
 texture = ExtResource("7_xgdgm")
+
+[node name="Discord" type="Sprite2D" parent="."]
+position = Vector2(1037, 525)
+scale = Vector2(0.2802469, 0.28024688)
+texture = ExtResource("8_xgdgm")
+
+[node name="Pngegg" type="Sprite2D" parent="Discord"]
+position = Vector2(3.5683594, 7.1365967)
+scale = Vector2(0.3074214, 0.30742142)
+texture = ExtResource("9_ewben")
