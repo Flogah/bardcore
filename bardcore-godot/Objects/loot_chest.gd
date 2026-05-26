@@ -91,11 +91,11 @@ func _throw_item(item: Node3D) -> void:
 	tween.tween_property(item, "global_position", end_pos, duration * 0.5)
 
 
-func _on_area_3d_area_entered(_area: Area3D) -> void:
+func display_hint() -> void:
 	if hint: return
 	if locked: return
 	hint = UserInterface.create_hint(global_position, "Kiste", true)
 
 
-func _on_area_3d_area_exited(_area: Area3D) -> void:
+func remove_hint() -> void:
 	if hint: hint.queue_free()

@@ -73,7 +73,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_11gta")
 theme_override_font_sizes/font_size = 14
-text = "Werkschau"
+text = "GG BAVARIA"
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/Start" to="MainMenu" method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Reset" to="MainMenu" method="_on_reset_pressed"]

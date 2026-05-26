@@ -25,28 +25,37 @@ const SLOT_TYPE_SIZE := {
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	for type in SLOT_TYPE_SIZE.keys():
-		stat_comp.stats[type].changed.connect(drop_overflowing_itmes)
+		stat_comp.stats[type].changed.connect(drop_overflowing_items.bind(type))
 
 func pickup(item: droppable_item) -> void: #call this if a item should be forced into a slot
-	slots[item.item_resource_.type].append(item)
-	stat_comp.add_upgrades(item.get_instance_id(),item.item_resource_.upgrades)
-	item.get_parent().remove_child(item)
-	drop_overflowing_itmes(item.item_resource_.type)
+	if item:
+		if !item.is_queued_for_deletion():
+			if item.get_parent():
+				item.get_parent().remove_child(item)
+				slots[item.item_resource_.type].append(item)
+				stat_comp.add_upgrades(item.get_instance_id(),item.item_resource_.upgrades)
+				drop_overflowing_items(item.item_resource_.type)
+			else:
+				printerr("Item was tried to be picked up, but parent is already null")
+		else:
+			printerr("Item was tried to be picked up, but it is already queued for deletion")
 	
 
 func drop(item_type: droppable_item.item_type) -> void:
 	var slot = slots[item_type]
 	if slot[0] is droppable_item:
-		MapManager.get_current_map().add_child(slot[0])
-		slot[0].global_position = global_position + global_basis.z * -5
-		stat_comp.remove_upgrades(slot[0].get_instance_id())
+		var item_to_drop = slot[0]
 		slot.remove_at(0)
+		MapManager.get_current_map().add_child(item_to_drop)
+		item_to_drop.global_position = global_position + global_basis.z * -5
+		stat_comp.remove_upgrades(item_to_drop.get_instance_id())
+		
 
 func drop_all():
 	for type in droppable_item.item_type:
 		drop(type)
 
-func drop_overflowing_itmes(item_type: droppable_item.item_type) -> void:
+func drop_overflowing_items(item_type: droppable_item.item_type) -> void:
 	var slot = slots[item_type]
 	if item_type == droppable_item.item_type.INSTRUMENT:
 		if slot.size() > 1:
@@ -55,3 +64,13 @@ func drop_overflowing_itmes(item_type: droppable_item.item_type) -> void:
 	while slot.size() > int(stat_comp.get_stat(SLOT_TYPE_SIZE[item_type])):
 		drop(item_type)
 	return
+
+func reset() -> void:
+	slots = {
+	droppable_item.item_type.RING: [],
+	droppable_item.item_type.HELMET: [],
+	droppable_item.item_type.TORSO: [],
+	droppable_item.item_type.BOOTS: [],
+	droppable_item.item_type.INSTRUMENT: [],
+	}
+	stat_comp.reset()

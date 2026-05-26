@@ -4,26 +4,21 @@ class_name Player
 signal leave
 signal knocked_out
 signal back_on_feet
+signal bard_type_changed(new_type)
+signal instrument_changed
 
 const TRUMPET = preload("res://Instrument/trumpet.tscn")
 const FIDEL = preload("res://Instrument/Fidel.tscn")
 
 @onready var lover_model: Node3D = $Visual/lover_in_pose2
 @onready var relic_model: Node3D = $Visual/drinker_fidel
+@onready var star_model: Node3D = $Visual/star_fidel
 
-
-enum bard_type {
-	lover,
-	relic
-}
-
-@onready var type: bard_type
+@onready var type: PlayerManager.bard_type
 
 @onready var player_name: Label3D = $PlayerName
 @onready var instrument_spawn: Node3D = $InstrumentSpawn
 @onready var visual: Node3D = $Visual
-
-@onready var interaction_area: Area3D = $InteractionArea
 
 @export var dash_force: float = 50.0
 @export var dash_cooldown: float = 2.0
@@ -32,20 +27,12 @@ enum bard_type {
 @export var stat_comp: stat_component
 @export var inventory: inventory_component
 @export var health_comp: health_component
+@export var player_hands: PlayerHands
 
 @export var animation_player: AnimationPlayer
 @export var hitbox: CollisionShape3D
 
-
 @export var indicator_ring: Node3D
-@export var player_colors : PackedColorArray = [
-	Color.BLUE,
-	Color.GREEN,
-	Color.YELLOW,
-	Color.BLACK,
-	Color.WHITE,
-	Color.RED,
-]
 
 var can_move: bool = true
 var can_interact: bool = true
@@ -66,7 +53,8 @@ func init(player_num: int):
 func _ready() -> void:
 	if !equipped_instrument:
 		add_instrument(TRUMPET)
-	type == bard_type.lover
+	type = PlayerManager.bard_type.lover
+	set_bard_stats()
 	set_colors()
 
 func _physics_process(delta: float) -> void:
@@ -155,38 +143,50 @@ func equip_next_instrument():
 		add_instrument(TRUMPET)
 
 func equip_next_bard():
-	if type == bard_type.relic:
+	if type == PlayerManager.bard_type.relic:
 		relic_model.hide()
 		lover_model.show()
-		type = bard_type.lover
-	elif type == bard_type.lover:
+		type = PlayerManager.bard_type.lover
+		instrument_spawn = $InstrumentSpawn
+	elif type == PlayerManager.bard_type.lover:
 		lover_model.hide()
+		star_model.show()
+		type = PlayerManager.bard_type.star
+		instrument_spawn = $InstrumentSpawn_star
+	elif type == PlayerManager.bard_type.star:
+		star_model.hide()
 		relic_model.show()
-		type = bard_type.relic
+		type = PlayerManager.bard_type.relic
+		instrument_spawn = $InstrumentSpawn_relic
+	PlayerManager.set_player_data(player, "bard", type)
+	set_bard_stats()
+	bard_type_changed.emit(type)
+	UserInterface.update_hud_manual()
+	
+func set_bard_stats():
+	stat_comp.set_base_stats(type)
 
 func set_colors():
-	var col = player_colors[player]
-	PlayerManager.set_player_color(player, col)
+	#var col = player_colors[player]
+	#PlayerManager.set_player_data(player, "color", col)
 	#print(PlayerManager.get_player_color(player))
 	#var mat = StandardMaterial3D.new()
 	#mat.albedo_color = col
 	#var meshes = visual.get_children()
 	#for mesh in meshes:
 		#mesh.set_surface_override_material(0, mat)
-	indicator_ring.set_color(col)
+	
+	indicator_ring.set_color(PlayerManager.get_player_color(player))
 
 func try_interact():
 	if !can_interact:
 		return
-	
-	var interactables = interaction_area.get_overlapping_areas()
-	for thing in interactables:
-		var ia: Interactable = thing.owner
-		if ia is droppable_item:
-			inventory.pickup(ia)
-			return
+	var closest_ia: Interactable = player_hands.closest_interactable
+	if is_instance_valid(closest_ia):
+		if closest_ia is droppable_item:
+			inventory.pickup(closest_ia)
 		else:
-			ia.interact()
+			closest_ia.interact()
 
 func _on_health_component_died() -> void:
 	hitbox.disabled = true
@@ -204,3 +204,6 @@ func full_restore():
 	can_interact = true
 	can_move = true
 	back_on_feet.emit()
+
+func reset_inventory() -> void:
+	inventory.reset()

@@ -58,7 +58,7 @@ func heal(amount: float):
 	var modified_amount: float
 	
 	if stat_comp:
-		modified_amount = amount*stat_comp.get_stat(stat_comp.stat_id.IN_HEAL)
+		modified_amount = amount*stat_comp.get_stat(stat_comp.stat_id.HEALTH_GAIN)
 	else: 
 		modified_amount = amount
 		

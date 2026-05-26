@@ -1,10 +1,12 @@
-[gd_scene load_steps=34 format=3 uid="uid://cj476uqn2kb0b"]
+[gd_scene load_steps=33 format=3 uid="uid://cj476uqn2kb0b"]
 
 [ext_resource type="Script" uid="uid://bb18oxxgsomp1" path="res://Enemy/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Material" uid="uid://ck4yc4xcgfqh0" path="res://Materials/Placeholders/enemy_red.tres" id="2_0rspp"]
 [ext_resource type="Script" uid="uid://c1oy8va3logcp" path="res://States/state_machine.gd" id="2_md0e3"]
 [ext_resource type="Script" uid="uid://bjrk6xcq3yky0" path="res://States/Enemy/EnemyFollow.gd" id="3_4ra3w"]
+[ext_resource type="PackedScene" uid="uid://bw1i1fickk641" path="res://BlenderScenes/skeleton_gameplaceholder.blend" id="3_mqp78"]
 [ext_resource type="Script" uid="uid://bhrs6p0rwjb3h" path="res://Components/hit_reciver_box.gd" id="4_eqilm"]
+[ext_resource type="PackedScene" uid="uid://b66i1jchxwux8" path="res://BlenderScenes/skeleton_arm_and_axe.blend" id="4_sbh3k"]
 [ext_resource type="PackedScene" uid="uid://btdqkmooqxlov" path="res://Components/health_component.tscn" id="6_glvfu"]
 [ext_resource type="Script" uid="uid://ddb14bq4ftq7b" path="res://States/Enemy/EnemyIdle.gd" id="6_m6jha"]
 [ext_resource type="Script" uid="uid://h117ub56kau7" path="res://States/Enemy/Threaten_Attack.gd" id="7_47ove"]
@@ -18,18 +20,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tegq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7p1mj"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_efk13"]
-top_radius = 0.04
-bottom_radius = 0.04
-height = 1.64
-
-[sub_resource type="PrismMesh" id="PrismMesh_nmr1a"]
-size = Vector3(0.125, 0.525, 0.405)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47ove"]
-albedo_color = Color(0.7331349, 0.656968, 0.520284, 1)
-metallic_specular = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ht3ht"]
 size = Vector2(1.1, 0.385)
@@ -71,7 +61,6 @@ orientation = 2
 
 [sub_resource type="Resource" id="Resource_1w3kn"]
 script = ExtResource("12_ht3ht")
-amount = 20.0
 critical_multiplier = 0.0
 invincability_time = 0.0
 metadata/_custom_type_script = "uid://buv1cjylhq6sg"
@@ -88,9 +77,9 @@ tracks/0/path = NodePath("Visual/Axe:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.5993645, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.5993645, -0.25, 0, 0.25, 0, 0, -1.6666667e-05, 0.09989409, 0, 0),
+"times": PackedFloat32Array(0, 0.0001)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -546,7 +535,7 @@ _data = {
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("health_comp") groups=["Enemy"]]
 script = ExtResource("1_4ra3w")
 health_comp = NodePath("HealthComponent")
-move_speed = 300.0
+move_speed = 200.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -557,24 +546,19 @@ transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_7p1mj")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_0rspp")
 
+[node name="skeleton_gameplaceholder" parent="Visual" instance=ExtResource("3_mqp78")]
+transform = Transform3D(-1.0999855, 0, -0.005663655, 0, 1.1, 0, 0.005663655, 0, -1.0999855, 0, 0, 0)
+
 [node name="Axe" type="Node3D" parent="Visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5993645, 1.0470201, 0)
 
-[node name="AxeHandle" type="MeshInstance3D" parent="Visual/Axe"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4523122, -0.01017797)
-mesh = SubResource("CylinderMesh_efk13")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("2_0rspp")
-
-[node name="AxeHead" type="MeshInstance3D" parent="Visual/Axe/AxeHandle"]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0.00013840199, 0.56786025, -0.20773166)
-mesh = SubResource("PrismMesh_nmr1a")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_47ove")
+[node name="skeleton_arm_and_axe" parent="Visual/Axe" instance=ExtResource("4_sbh3k")]
+transform = Transform3D(-0.3796397, 0.91389257, -0.1437837, 0.8908675, 0.40304333, 0.20954439, 0.24945204, -0.048540913, -0.9671687, -0.43064696, 0.62139606, -0.026125474)
 
 [node name="AttackEffect" type="MeshInstance3D" parent="Visual"]
 transform = Transform3D(1.8471302, -0.09597335, 0, 0.1961297, 0.9038675, 0, 0, 0, 1.8623339, 0, 0.56332487, -3.9457858)
@@ -635,7 +619,7 @@ metadata/_custom_type_script = "uid://ddb14bq4ftq7b"
 [node name="ThreatenAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("7_47ove")
 animation_player = NodePath("../../AnimationPlayer")
-threatening_time = 0.4
+threatening_time = 0.6
 metadata/_custom_type_script = "uid://h117ub56kau7"
 
 [node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player", "attack_area")]
@@ -663,6 +647,7 @@ draw_pass_1 = SubResource("PlaneMesh_0rspp")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("telegraph_comp") instance=ExtResource("6_glvfu")]
 telegraph_comp = NodePath("../TelegraphingComponent")
+max_health = 50.0
 
 [node name="TelegraphingComponent" parent="." instance=ExtResource("7_glvfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4725027, 0)

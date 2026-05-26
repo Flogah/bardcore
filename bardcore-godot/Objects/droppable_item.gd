@@ -17,7 +17,7 @@ const PLACEHOLDER_MESHES := {
 	item_type.INSTRUMENT: "res://BlenderScenes/PlaceHolder_Ringwear.blend",
 }
 
-@export var item_resource_: item_resource = load("res://Resources/Items/default_item.tres")
+@export var item_resource_: item_resource = load("res://Resources/default_item.tres")
 
 @export var pickup_area: Area3D
 @export var item_label: Label3D
@@ -61,9 +61,9 @@ func update_item_label() -> void:
 	item_label_text = label_text
 
 
-func _on_area_3d_area_entered(_area: Area3D) -> void:
+func display_hint() -> void:
 	if hint: return
 	hint = UserInterface.create_hint(global_position, item_label_text, true)
 
-func _on_area_3d_area_exited(_area: Area3D) -> void:
+func remove_hint() -> void:
 	if hint: hint.queue_free()

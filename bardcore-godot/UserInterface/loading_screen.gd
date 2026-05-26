@@ -8,10 +8,10 @@ class_name LoadingScreen
 func _ready() -> void:
 	animation_player.play("reveal")
 
-func populate_labels(time):
-	time_label.text = str(snapped(time, 1))
-	days_label.text = str(GameManager.convert_flee_time(time))
+func populate_labels(rooms):
+	time_label.text = str(rooms-1)
+	days_label.text = str(GameManager.convert_flee_time(rooms))
 
 func return_to_village():
-	get_tree().change_scene_to_packed(load("uid://cr1ydxfa4aiik"))
+	MapManager.load_home()
 	queue_free()

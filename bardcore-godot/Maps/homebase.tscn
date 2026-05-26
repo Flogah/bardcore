@@ -1,20 +1,28 @@
-[gd_scene load_steps=24 format=3 uid="uid://cr1ydxfa4aiik"]
+[gd_scene load_steps=36 format=3 uid="uid://cr1ydxfa4aiik"]
 
 [ext_resource type="Script" uid="uid://crlcryk7jusqr" path="res://Maps/map_home.gd" id="1_fxw5g"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_df86j"]
 [ext_resource type="PackedScene" uid="uid://c8tvjd728x7q" path="res://Maps/camera_system.tscn" id="2_v7h8f"]
 [ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="2_w8tnc"]
+[ext_resource type="Texture2D" uid="uid://cywqoa513a723" path="res://Textures/Floors/floor_village_1.png" id="3_ly701"]
 [ext_resource type="PackedScene" uid="uid://cuu4pv5q0cii1" path="res://Maps/Buildings/building_maker_fanfare.tscn" id="4_no1lh"]
+[ext_resource type="Texture2D" uid="uid://bcni8js3y3mw5" path="res://Textures/Floors/floor_village_1_normal.png" id="4_wp41v"]
 [ext_resource type="PackedScene" uid="uid://b2awxuj51p6sk" path="res://Meshes/Nature/bush_l.tscn" id="4_yja0d"]
 [ext_resource type="PackedScene" uid="uid://b4g0c6swxctq4" path="res://Maps/Buildings/building_guesthouse.tscn" id="5_0prmd"]
 [ext_resource type="PackedScene" uid="uid://xcv8itqnlrlh" path="res://Meshes/Nature/bush_s.tscn" id="5_d75n0"]
 [ext_resource type="PackedScene" uid="uid://clme8xwp12duo" path="res://Maps/Buildings/building_maker_fidel.tscn" id="5_w8tnc"]
+[ext_resource type="Script" uid="uid://builv1ecm2x88" path="res://Resources/_Resource_Scripts/upgrade.gd" id="9_ly701"]
+[ext_resource type="Script" uid="uid://y5etfwy1xbcx" path="res://Resources/_Resource_Scripts/stat_upgrade_editor_friendly.gd" id="10_wp41v"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbut0"]
 size = Vector2(45, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbut0"]
-albedo_color = Color(0.40392157, 0.23921569, 0.14901961, 1)
+albedo_color = Color(0.27387273, 0.27387276, 0.2738727, 1)
+albedo_texture = ExtResource("3_ly701")
+normal_enabled = true
+normal_scale = 1.88
+normal_texture = ExtResource("4_wp41v")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ljco0"]
 size = Vector2(150, 150)
@@ -56,7 +64,74 @@ bottom_radius = 3.0
 height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ly701"]
-albedo_color = Color(0.6004086, 0.33401474, 0.1412242, 1)
+albedo_color = Color(0.45417458, 0.24543822, 0.094159774, 1)
+
+[sub_resource type="Resource" id="Resource_ly701"]
+script = ExtResource("10_wp41v")
+amount = 0.2
+operator = 1
+effected_stat = 12
+apply_priority = 1
+explanation = "Add .2 Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_wp41v"]
+script = ExtResource("10_wp41v")
+amount = 0.4
+operator = 1
+effected_stat = 12
+apply_priority = 1
+explanation = "Add .4 Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_3u4xm"]
+script = ExtResource("10_wp41v")
+amount = 0.6
+effected_stat = 12
+apply_priority = 1
+explanation = "Add .6 Range"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_vh0gy"]
+script = ExtResource("10_wp41v")
+amount = 2.0
+apply_priority = 1
+explanation = "Max Health x2"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_wd2mf"]
+script = ExtResource("10_wp41v")
+amount = 4.0
+apply_priority = 1
+explanation = "Max Health x4"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_e2eow"]
+script = ExtResource("10_wp41v")
+amount = 15.0
+operator = 1
+effected_stat = 9
+apply_priority = 1
+explanation = "+15 dmg"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_kcxeq"]
+script = ExtResource("10_wp41v")
+amount = 30.0
+operator = 1
+effected_stat = 9
+apply_priority = 1
+explanation = "+30 dmg"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
+
+[sub_resource type="Resource" id="Resource_5eiu6"]
+script = ExtResource("10_wp41v")
+amount = 60.0
+operator = 1
+effected_stat = 9
+apply_priority = 1
+explanation = "+60 dmg"
+metadata/_custom_type_script = "uid://y5etfwy1xbcx"
 
 [node name="Homebase" type="Node3D" node_paths=PackedStringArray("spawn_position", "exit_portal", "cam")]
 script = ExtResource("1_fxw5g")
@@ -71,12 +146,12 @@ transform = Transform3D(0.9999999, 0, 0, 0, 0.812887, 0.58242065, 0, -0.58242065
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278862, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
-transform = Transform3D(0.6742704, 0, 0, 0, 1, 0, 0, 0, 0.73544145, -2.451561, 0, 0)
+transform = Transform3D(0.735, 0, 0, 0, 0.735, 0, 0, 0, 0.93496394, -2.452, -0.02, 0)
 mesh = SubResource("PlaneMesh_qbut0")
 surface_material_override/0 = SubResource("StandardMaterial3D_qbut0")
 
 [node name="Background" type="MeshInstance3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11501503, -0.01, -0.051662445)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11501503, -0.42818093, -0.051662445)
 mesh = SubResource("PlaneMesh_ljco0")
 surface_material_override/0 = SubResource("StandardMaterial3D_2oixm")
 
@@ -188,33 +263,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4909654, 0, 3.8463798)
 
 [node name="Buildings" type="Node3D" parent="."]
 
-[node name="Fanfarenbauer" parent="Buildings" instance=ExtResource("4_no1lh")]
-transform = Transform3D(0.29262212, 0, 0.95622814, 0, 1, 0, -0.95622814, 0, 0.29262212, 9.618123, -2.861023e-06, -5.5557327)
+[node name="Fanfarenbauer" parent="Buildings" node_paths=PackedStringArray("building_levels") instance=ExtResource("4_no1lh")]
+transform = Transform3D(0.2926221, 0, 0.95622814, 0, 1, 0, -0.95622814, 0, 0.2926221, 9.618123, -2.861023e-06, -5.5557327)
 visible = false
 building_name = "Fanfarenbauer"
-build_cost = Dictionary[int, int]({
-0: 2,
-1: 4,
-2: 8
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
+upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
+0: null,
+1: SubResource("Resource_ly701"),
+2: SubResource("Resource_wp41v"),
+3: SubResource("Resource_3u4xm")
 })
 
-[node name="Gasthaus" parent="Buildings" instance=ExtResource("5_0prmd")]
-transform = Transform3D(-0.2669356, 0, 0.9637144, 0, 1, 0, -0.9637144, 0, -0.2669356, 1.0095706, 0.024151415, -6.3187637)
+[node name="Gasthaus" parent="Buildings" node_paths=PackedStringArray("building_levels") instance=ExtResource("5_0prmd")]
+transform = Transform3D(-0.26693562, 0, 0.96371436, 0, 1, 0, -0.96371436, 0, -0.26693562, 1.4207015, 0.024151415, -6.3187637)
 building_name = "Gasthaus"
-build_cost = Dictionary[int, int]({
-0: 1,
-1: 5,
-2: 9
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
+upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
+0: null,
+1: null,
+2: SubResource("Resource_vh0gy"),
+3: SubResource("Resource_wd2mf")
 })
 
-[node name="Lautenbauer" parent="Buildings" instance=ExtResource("5_w8tnc")]
+[node name="Lautenbauer" parent="Buildings" node_paths=PackedStringArray("building_levels") instance=ExtResource("5_w8tnc")]
 transform = Transform3D(-0.67298675, 0, 0.73965454, 0, 1, 0, -0.73965454, 0, -0.67298675, -7.5347934, 1.9073486e-06, -5.492177)
 visible = false
 building_name = "Lautenbauer"
-build_cost = Dictionary[int, int]({
-0: 2,
-1: 4,
-2: 6
+building_levels = {
+0: NodePath("Level0"),
+1: NodePath("Level1"),
+2: NodePath("Level2"),
+3: NodePath("Level3")
+}
+upgrade_list = Dictionary[int, ExtResource("9_ly701")]({
+0: null,
+1: SubResource("Resource_e2eow"),
+2: SubResource("Resource_kcxeq"),
+3: SubResource("Resource_5eiu6")
 })
 
 [node name="Items" type="Node3D" parent="."]

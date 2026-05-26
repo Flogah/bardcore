@@ -34,3 +34,16 @@ Analyse Kampfsystem momentan:
 	- Alle Fähigkeiten gleich wertvoll
 	- Kein Spam erlauben
 	- CD auch Teil von Balancing
+
+Mehr Ideen:
+- Fähigkeiten ENDEN auf Takt, statt dann erst anzufangen
+- Puffer timer damit Phrase bis zum Auslösen gespielt werden kann
+- Kurze Phrasen - Kleiner Effekt
+- Lange Phrasen - Großer Effekt
+
+Ziele bis GGBavaria:
+- Fähigkeitensounds runterfahren und an BGM anpassen
+- Aufladen der Fähigkeiten
+- Fähigkeitensounds und Aufladen anpassen
+- Auto Angriffe
+- Fähigkeiten an direkt angeheftet an Spieler

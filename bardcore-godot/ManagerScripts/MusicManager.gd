@@ -1,10 +1,24 @@
 extends Node
 
+signal beat
+signal halfBeat
+signal thirdBeat
+signal quarterBeat
+signal eighthBeat
+
+enum beatType{
+	none,
+	beat,
+	halfBeat,
+	thirdBeat,
+	quarterBeat,
+	eigthBeat,
+}
+
 @export var current_music: AudioStreamPlayer
 var music_player_1: AudioStreamPlayer
 var music_player_2: AudioStreamPlayer
-var beatTimer: Timer
-var music_volume = -20
+@export var music_volume = -20
 
 enum music_tracks {
 	VILLAGE,
@@ -25,11 +39,8 @@ var stats_music: Dictionary = {
 }
 
 @export var rhythm_notifier: RhythmNotifier
-signal beat
-signal halfBeat
-signal thirdBeat
-signal quarterBeat
-signal eighthBeat
+
+var beatTimers = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,7 +48,6 @@ func _ready() -> void:
 	setup_music_player()
 	setup_music()
 	setup_rhythm()
-	setup_timer()
 	beats()
 	half_beat()
 	third_beat()
@@ -52,7 +62,7 @@ func setup_music() -> void:
 	current_music.volume_db = music_volume
 	current_music = music_player_1
 
-func change_music(from: AudioStreamPlayer, to: AudioStreamPlayer, bpm: int = 100) -> void:
+func change_music(from: AudioStreamPlayer, to: AudioStreamPlayer, bpm: int = 120) -> void:
 	stop_music()
 	if current_music == from:
 		current_music = to
@@ -75,10 +85,18 @@ func change_rhythm(bpm: int) -> void:
 	rhythm_notifier.bpm = bpm
 	rhythm_notifier.audio_stream_player = current_music
 
-func setup_timer() -> void:
-	beatTimer = Timer.new()
-	add_child(beatTimer)
-	beatTimer.start(3.0)
+func setup_timer(beat_type: beatType) -> void:
+	var timer = Timer.new()
+	beatTimers[beat_type] = timer
+	add_child(timer)
+
+func start_timer(beat_type: beatType):
+	var beat_time = rhythm_notifier.beat_length
+	beatTimers[beat_type].start(beat_time * beat_type)
+
+func get_time_to_next_beat(beat_type: beatType):
+	var beat_time = rhythm_notifier.beat_length
+	return (beat_time * beat_type) - beatTimers[beat_type].time_left
 
 func setup_music_player() -> void:
 	music_player_1 = AudioStreamPlayer.new()
@@ -87,33 +105,47 @@ func setup_music_player() -> void:
 	add_child(music_player_2)
 	music_player_1.set_stream(background_music[music_tracks.VILLAGE])
 	music_player_2.set_stream(background_music[music_tracks.COMBAT])
-
+	music_player_1.volume_db = music_volume
+	music_player_2.volume_db = music_volume
 
 func beats() -> void:
+	setup_timer(1)
 	rhythm_notifier.beats(1).connect(func(count):
 		#print("BEAT")
-		beat.emit())
-		
+		beat.emit()
+		start_timer(1)
+		)
+
 func half_beat() -> void:
+	setup_timer(2)
 	rhythm_notifier.beats(2).connect(func(count):
 		#print("BEAT")
-		halfBeat.emit())
-		
+		halfBeat.emit()
+		start_timer(2)
+		)
+
 func third_beat() -> void:
+	setup_timer(3)
 	rhythm_notifier.beats(3).connect(func(count):
 		#print("BEAT")
-		thirdBeat.emit())
+		thirdBeat.emit()
+		start_timer(3)
+		)
+
 func quarter_beat() -> void:
+	setup_timer(4)
 	rhythm_notifier.beats(4).connect(func(count):
 		#print("BEAT")
-		quarterBeat.emit())
-		
+		quarterBeat.emit()
+		start_timer(4)
+		)
+
 func eighth_beat() -> void:
 	rhythm_notifier.beats(8).connect(func(count):
 		#print("BEAT")
-		eighthBeat.emit())
-	#emit_signal(notify_signal)
-	
+		eighthBeat.emit()
+		)
+
 func reset():
 	# TODO reset everything so the music restarts clean
 	pass

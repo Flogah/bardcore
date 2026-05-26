@@ -14,6 +14,7 @@ enum gameState {
 var starting_time:float = 1.0
 var dragon_timer:Timer
 var max_time: float = 0.0
+var combat_rooms: int = 0
 
 var bonus_time_counter:int = 1 # the amount of times bonus time was added
 var max_bounus_time:int = 30 # the amount of bonus time for the first map, becomes less with every map
@@ -22,7 +23,7 @@ var currentGameState : gameState
 
 # this single variable could hold the unlocks in the village
 var village_state: Dictionary = {
-	"building_time": 1,
+	"building_time": 15,
 }
 
 func _ready():
@@ -37,6 +38,7 @@ func _physics_process(_delta: float) -> void:
 	# only keyboard can escape to main menu
 	if MultiplayerInput.is_action_just_pressed(-1, "escape"):
 		GameManager.save_village_state()
+		UserInterface.reset_hud()
 		get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 func dragon_beat():
@@ -83,7 +85,7 @@ func dragon_arrival():
 	MapManager.current_map.game_over_cinema()
 
 func dragon_death():
-	add_building_time(max_time)
+	add_building_time(combat_rooms)
 	game_over_and_reset()
 
 func reset_time():
@@ -92,20 +94,20 @@ func reset_time():
 	dragon_timer.start()
 	pause_dragon_timer()
 
-func convert_flee_time(time:float) -> int:
+func convert_flee_time(rooms:float) -> float:
 	# per 60 beats/per minute one day
-	var days:int = roundi(time/30)
+	var days:int = rooms/3.5
 	var weeks:int = days/7
 	#days -= weeks * 7
 	
-	print("Time survived: " + str(time))
+	print("Time survived: " + str(rooms))
 	print("Days earned: " + str(days))
 	print("Weeks earned: " + str(weeks))
 	
 	return days
 
-func add_building_time(val:int):
-	village_state["building_time"] += convert_flee_time(val)
+func add_building_time(rooms:int):
+	village_state["building_time"] += convert_flee_time(rooms)
 	#village_state["building_time"] += 5
 	building_time_changed.emit(village_state["building_time"])
 
@@ -132,7 +134,7 @@ func get_building_lvl(b_name: String) -> int:
 func game_over_and_reset():
 	var loading_screen = preload("res://UserInterface/loading_screen.tscn").instantiate()
 	get_tree().root.add_child(loading_screen)
-	loading_screen.populate_labels(max_time)
+	loading_screen.populate_labels(combat_rooms)
 	
 	reset_all_game()
 
@@ -144,6 +146,7 @@ func reset_all_game():
 	MapManager.reset()
 	MusicManager.reset()
 	max_time = 0
+	combat_rooms = 0
 	reset_bonus_time()
 
 func change_gamestate(new_gamestate:gameState):
@@ -153,10 +156,14 @@ func change_gamestate(new_gamestate:gameState):
 	if new_gamestate == gameState.combat:
 		add_new_map_bonus_time()
 		unpause_dragon_timer()
+		combat_rooms += 1
 	else:
 		pause_dragon_timer()
 
 func save_village_state():
+	if !DirAccess.dir_exists_absolute("res://Save"):
+		DirAccess.make_dir_recursive_absolute("res://Save")
+	
 	var save_file = FileAccess.open("res://Save/Savegame.save", FileAccess.WRITE)
 	
 	var save_state = village_state
@@ -187,5 +194,5 @@ func load_village_state():
 func reset_all_progress():
 	for key in village_state:
 		village_state[key] = 0
-	village_state["building_time"] = 1
+	village_state["building_time"] = 15
 	save_village_state()

@@ -1,20 +1,25 @@
-[gd_scene load_steps=20 format=3 uid="uid://d31bh0esbjp34"]
+[gd_scene load_steps=21 format=3 uid="uid://d31bh0esbjp34"]
 
 [ext_resource type="Script" uid="uid://ba7q3y3ses2ty" path="res://Maps/map_combat.gd" id="1_1jh6t"]
 [ext_resource type="PackedScene" uid="uid://cj476uqn2kb0b" path="res://Enemy/enemy.tscn" id="2_1jh6t"]
-[ext_resource type="Texture2D" uid="uid://df8eiwyfrvm24" path="res://Textures/Floors/floor_pumpkin_txt.png" id="2_acvef"]
 [ext_resource type="PackedScene" uid="uid://c8tvjd728x7q" path="res://Maps/camera_system.tscn" id="2_d8dag"]
 [ext_resource type="PackedScene" uid="uid://cqu7spuwqnbsd" path="res://Maps/portal.tscn" id="2_qmnqa"]
-[ext_resource type="PackedScene" uid="uid://d3qopq8jk36mq" path="res://Maps/pumpkin_forest/pumpkin_trees.tscn" id="3_5mx70"]
+[ext_resource type="Texture2D" uid="uid://dc1d48i1bv4br" path="res://Textures/Floors/floor__2_pumpkinforest.png" id="3_m5hue"]
+[ext_resource type="Texture2D" uid="uid://cfqjan3goaike" path="res://Textures/Floors/floor__2_pumpkinforest_normal.png" id="4_brodo"]
 [ext_resource type="PackedScene" uid="uid://dtrftm4tniuvl" path="res://Maps/sunlight.tscn" id="4_k7syt"]
 [ext_resource type="PackedScene" uid="uid://xcv8itqnlrlh" path="res://Meshes/Nature/bush_s.tscn" id="6_h82xw"]
 [ext_resource type="PackedScene" uid="uid://b2awxuj51p6sk" path="res://Meshes/Nature/bush_l.tscn" id="7_m5hue"]
+[ext_resource type="ArrayMesh" uid="uid://bagu3d7b6m3mx" path="res://Meshes/Pumpkin_forest/pumpkinforest_3.res" id="10_m5hue"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yo7wb"]
 size = Vector2(35, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3t7c"]
-albedo_texture = ExtResource("2_acvef")
+albedo_color = Color(0.6220511, 0.7160186, 0.58650625, 1)
+albedo_texture = ExtResource("3_m5hue")
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource("4_brodo")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kk8mo"]
 size = Vector2(150, 150)
@@ -57,21 +62,25 @@ transform = Transform3D(0.9999999, 0, 0, 0, 0.812887, 0.58242065, 0, -0.58242065
 [node name="Terrain" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, -0.04, -1.715)
 mesh = SubResource("PlaneMesh_yo7wb")
 surface_material_override/0 = SubResource("StandardMaterial3D_k3t7c")
 
 [node name="Background" type="MeshInstance3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3255174, 0)
 mesh = SubResource("PlaneMesh_kk8mo")
 surface_material_override/0 = SubResource("StandardMaterial3D_74fqv")
-
-[node name="pumpkin_trees" parent="Terrain" instance=ExtResource("3_5mx70")]
 
 [node name="DirectionalLight3D2" parent="Terrain" instance=ExtResource("4_k7syt")]
 transform = Transform3D(0.5254748, -0.6902424, 0.49743515, 0.08959865, 0.62630445, 0.77441263, -0.8460782, -0.3623648, 0.39095202, 0, 5.458948, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain"]
 environment = SubResource("Environment_cr68g")
+
+[node name="Pumpkinforest_3" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.444, -0.596, 2.123)
+mesh = ExtResource("10_m5hue")
+skeleton = NodePath("../..")
 
 [node name="Boundaries" type="Node3D" parent="."]
 visible = false

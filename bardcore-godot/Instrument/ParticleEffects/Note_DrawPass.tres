@@ -1,0 +1,22 @@
+[gd_resource type="PlaneMesh" load_steps=3 format=3 uid="uid://ba15lvptqqr2l"]
+
+[ext_resource type="Texture2D" uid="uid://cv1ls5qqune7x" path="res://Textures/Particles/note_w.png" id="1_1co7w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77qr4"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(2.7075353, 2.7075353, 2.7075353, 1)
+albedo_texture = ExtResource("1_1co7w")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[resource]
+material = SubResource("StandardMaterial3D_77qr4")
+size = Vector2(0.7, 0.7)
+orientation = 2

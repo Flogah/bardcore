@@ -1,0 +1,98 @@
+[gd_scene load_steps=17 format=4 uid="uid://bivf4jcutmgdo"]
+
+[ext_resource type="Script" uid="uid://6jcgbwb7pqix" path="res://Instrument/AttackAreas/AreaAttack.gd" id="1_78md6"]
+[ext_resource type="AudioStream" uid="uid://tyi6hawcutxg" path="res://Instrument/SFX/BGM/place_sound.wav" id="2_bim3y"]
+[ext_resource type="AudioStream" uid="uid://b03m56sa2jjsu" path="res://Instrument/SFX/TR_3.mp3" id="3_c7ues"]
+[ext_resource type="Script" uid="uid://q46hat3a6486" path="res://Components/hit_emitter_box.gd" id="4_nide2"]
+[ext_resource type="Script" uid="uid://buv1cjylhq6sg" path="res://Resources/_Resource_Scripts/hit_effect.gd" id="5_r560q"]
+[ext_resource type="Script" uid="uid://b3i64m7rduvqh" path="res://Resources/_Resource_Scripts/status.gd" id="6_6rtmp"]
+[ext_resource type="Shader" uid="uid://cmy0sxqutmr02" path="res://Shaders/attack_loading_shader.tres" id="7_0m5vq"]
+[ext_resource type="PlaneMesh" uid="uid://ba15lvptqqr2l" path="res://Instrument/ParticleEffects/Note_DrawPass.tres" id="8_jviyh"]
+
+[sub_resource type="Resource" id="Resource_rtdfi"]
+script = ExtResource("5_r560q")
+amount = 0.0
+invincability_time = 0.0
+metadata/_custom_type_script = "uid://buv1cjylhq6sg"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c4r5d"]
+radius = 3.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8efsc"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_f4xkb"]
+resource_name = "fullcircle_Circle_003"
+_surfaces = [{
+"aabb": AABB(-2, 0, -2, 4, 1e-05, 4),
+"attribute_data": PackedByteArray("//////9///P/f////3//6f9//9/////p////8/9//9P/f//J////3/9//73////J////0/9//7P/f/+p////vf9//5////+z/3//k////5////+p/3//if///5P/f/x/////if///H+3p/+Tt6f/iben/H+3p/+fRtj/k0bY/4lG2Px/Rtj/n0bY/6m3p/+pRtj/s7en/7NG2P+9t6f/vUbY/8m3p//JRtj/07en/9NG2P/ft6f/30bY/+m3p//pRtj/80bY//+3p//zt6f//w=="),
+"format": 34896613399,
+"index_count": 216,
+"index_data": PackedByteArray("GgAVABIAGgAbABUAGwAXABUAGwAcABcAHQAaABIAHQASABAAHgAbABoAHwAcABsAHgAfABsAHwAgABwAGAAgAB8AGAAZACAAFgAYAB8AFgAfAB4AEwAWAB4AIQAeABoAEwAeACEAIQAaAB0AFAATACEAFAAhACIAIgAhAB0AEQAUACIAIgAdACMAIwAdABAAIwAQAA4AEQAiACQAJAAiACMADwARACQAJQAjAA4AJAAjACUAJQAOAA0ADwAkACYAJgAkACUACwAPACYAJwAlAA0AJgAlACcAJwANAAoACwAmACgAKAAmACcADAALACgAKQAnAAoAKAAnACkAKQAKAAgADAAoACoAKgAoACkACQAMACoAKwApAAgAKgApACsAKwAIAAcACQAqACwALAAqACsABQAJACwALQArAAcALAArAC0ALQAHAAQABQAsAC4ALgAsAC0ABgAFAC4ALwAtAAQALgAtAC8ALwAEAAMABgAuADAAMAAuAC8AAAAGADAAAAAwADEAMAAvADIAMgAvAAMAMQAwADIAMgADAAEAMQAyADMAMwAyAAEAMwABAAIA"),
+"lods": [1e-10, PackedByteArray("AAABAAIAAAADAAEAAAAEAAMAAAAFAAQABgAFAAAABQAHAAQABQAIAAcABQAJAAgACQAKAAgACQALAAoADAALAAkACwANAAoACwAOAA0ACwAPAA4ADwAQAA4ADwARABAAEQASABAAEQATABIAFAATABEAEwAVABIAEwAWABUAFgAXABUAFgAYABcAGAAZABcA")],
+"material": SubResource("StandardMaterial3D_8efsc"),
+"primitive": 3,
+"uv_scale": Vector4(2, 2, 0, 0),
+"vertex_count": 52,
+"vertex_data": PackedByteArray("//8AAP9/ZD91hQAAJoPEPk2GAAD/f/8/JoMAAHWFrjj/fwAATYakLv+/AADY7m0z2O4AAP+/6jvYfAAAdYUGIol6AAAmg+YT/38AAP//yCexeQAA/38FBSYRAAD/v5UL/z8AANjuNRqJegAA2HwJCth8AACJersYAAAAAP9/dgP/fwAAsXlzJiYRAAD/P2ISJoMAAIl6WDL/fwAAAABvLf8/AAAmEZ4gdYUAANh8OTv/vwAAJhHMN02GAAD/f7w+2O4AAP8/XT7//wAA/3//P26XAABoV0k2lqgAAJBolj3drgAA/3/NP/9/AAAhUWsrtqsAAEc0DDa3ywAASFR1PW7XAAD/f+U//38AAJAoHStIVAAARzT0HZBoAABoV04eRzQAAEhUiQ9oVwAAkGjpD5AoAAD/f4wAIVEAAP9/7gBHNAAAtqt0DmhXAABulxUOSFQAALfL7xyQaAAAlqiVHP9/AABu1zcq/38AAN2u5ym2qwAAt8taNW6XAACWqBs1t8sAALarET1u1wAA/3/NP5aoAABul+083a4AAP9/kz+85qCMnN6wkP///384wuKeya8aqCW3bKTIzJqZL6Fnr7OTJbZOp1esW4VRvd6LD7qXmTOzL8VgChnMNBjdwbwD6tLVJSTJSxKp2lQ1E9coLuLPxh8J5RVKAOACQCDvQl5r7dha////f0zemjyf6kBVMfhkcMrVlisN3hw8Oup1VC/6YHSa1TYrlM4pHb/OgB3Qx6EP/Mf7D03AmwCCwAYBnI6wuEGO3rgunOex15sTsh+q76rAqR6rtLqkojq64aI80uCWY/DNh33RQJc56uKK")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rw1ik"]
+render_priority = 0
+shader = ExtResource("7_0m5vq")
+shader_parameter/PlayerColor = Vector4(1, 0, 1, 0)
+shader_parameter/AbilityProgress = 0.0
+
+[sub_resource type="Curve" id="Curve_r8oy2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2991453, 0.8849558), 1.260733, 1.260733, 0, 0, Vector2(0.7307693, 0.5973452), -1.4955752, -1.4955752, 0, 0, Vector2(0.9871796, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_31l7u"]
+curve = SubResource("Curve_r8oy2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mjlu1"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 90, 1)
+emission_ring_height = 0.2
+emission_ring_radius = 3.5
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+scale_curve = SubResource("CurveTexture_31l7u")
+
+[node name="AttackCircleArea" type="Node3D"]
+script = ExtResource("1_78md6")
+place_sound = ExtResource("2_bim3y")
+attack_sound = ExtResource("3_c7ues")
+attack_sound_timing = 1.9
+volume_adjustment = 20.0
+
+[node name="hit_emitter_box" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46836507, 0)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_nide2")
+interaction_effect = SubResource("Resource_rtdfi")
+targets = Array[int]([1])
+metadata/_custom_type_script = "uid://q46hat3a6486"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit_emitter_box"]
+shape = SubResource("CylinderShape3D_c4r5d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.7500001, 0, 0, 0, 1.75, 0, 0, 0, 1.7500001, 0, 0.0024279058, 0)
+mesh = SubResource("ArrayMesh_f4xkb")
+surface_material_override/0 = SubResource("ShaderMaterial_rw1ik")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17091629, 0)
+emitting = false
+amount = 100
+amount_ratio = 0.5
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_mjlu1")
+draw_pass_1 = ExtResource("8_jviyh")

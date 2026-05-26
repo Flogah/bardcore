@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="bardcore"
-run/main_scene="uid://7sn5taw7aace"
+run/main_scene="uid://b27ykus1hcepg"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Textures/icon.svg"
 
 [autoload]
 
@@ -48,6 +48,7 @@ folder_colors={
 "res://Objects/": "orange",
 "res://Player/": "orange",
 "res://Resources/": "gray",
+"res://Save/": "gray",
 "res://States/": "blue",
 "res://Textures/": "pink",
 "res://VFX/": "purple",

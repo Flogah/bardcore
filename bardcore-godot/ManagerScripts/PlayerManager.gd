@@ -5,14 +5,32 @@ extends Node
 # these concepts seem similar but it is useful to separate them so for example, device 6 could control player 1.
 
 signal player_joined(player)
+signal player_spawned(player)
 signal player_left(player)
+
+signal player_data_updated(player)
+
+enum bard_type {
+	lover,
+	relic,
+	star
+}
+
+var player_colors : PackedColorArray = [
+	Color(0.142, 0.118, 0.79, 1.0),
+	Color(0.0, 0.615, 0.0),
+	Color(0.774, 0.774, 0.0),
+	Color(0.0, 0.0, 0.0),
+	Color(1.0, 1.0, 1.0),
+	Color(0.166, 0.529, 0.58)
+]
 
 # map from player integer to dictionary of data
 # the existence of a key in this dictionary means this player is joined.
 # use get_player_data() and set_player_data() to use this dictionary.
 var player_data: Dictionary = {}
 
-const MAX_PLAYERS = 8
+const MAX_PLAYERS = 4
 
 var player_nodes = {}
 
@@ -20,7 +38,7 @@ func _ready():
 	player_joined.connect(spawn_player)
 	player_left.connect(delete_player)
 
-func _process(_delta):
+func _unhandled_input(event: InputEvent) -> void:
 	handle_join_input()
 
 func spawn_player(player: int):
@@ -41,6 +59,8 @@ func spawn_player(player: int):
 	# random spawn position
 	player_node.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))
 	player_node.set_playername()
+	apply_village_upgrades()
+	player_spawned.emit(player)
 
 func delete_player(player: int):
 	player_nodes[player].queue_free()
@@ -82,9 +102,9 @@ func join(device: int):
 		# drunk, trumpet are examples
 		player_data[player] = {
 			"device": device,
-			"bard": "drunk",
+			"bard": bard_type.lover,
 			"instrument": "trumpet",
-			"color": "ROYAL_BLUE",
+			"color": player_colors[player],
 		}
 		player_joined.emit(player)
 
@@ -101,9 +121,6 @@ func get_player_indexes():
 
 func get_player_device(player: int) -> int:
 	return get_player_data(player, "device")
-
-func set_player_color(player: int, col: Color):
-	set_player_data(player, "color", col)
 
 func get_player_color(player: int) -> Color:
 	return get_player_data(player, "color")
@@ -122,6 +139,8 @@ func set_player_data(player: int, key: StringName, value: Variant):
 		return
 	
 	player_data[player][key] = value
+	
+	player_data_updated.emit()
 
 # call this from a loop in the main menu or anywhere they can join
 # this is an example of how to look for an action on all devices
@@ -164,3 +183,19 @@ func get_unjoined_devices():
 
 func reset():
 	player_nodes = {}
+
+func apply_village_upgrades():
+	var homebase = get_tree().current_scene
+	if !homebase: return
+	var buildings = homebase.buildings_node.get_children()
+	if !buildings: return
+	
+	for build in buildings:
+		for target_player in player_nodes:
+			if player_nodes[target_player] and is_instance_valid(player_nodes[target_player]):
+				var stats = player_nodes[target_player].stat_comp
+				stats.remove_upgrades(build.get_instance_id())
+				var b_upgrade: upgrade = build.get_current_upgrade()
+				if b_upgrade:
+					var upgrade_arr: Array[upgrade] = [b_upgrade]
+					player_nodes[target_player].stat_comp.add_upgrades(build.get_instance_id(), upgrade_arr)

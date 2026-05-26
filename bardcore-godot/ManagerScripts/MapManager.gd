@@ -1,6 +1,7 @@
 extends Node
 
 signal entered_new_map
+signal spawned_players
 
 const HOMEBASE = preload("uid://cr1ydxfa4aiik")
 
@@ -27,7 +28,7 @@ var starting_map = preload("res://Maps/StartingMap.tscn")
 var current_map : Map
 var coming_from_left: bool = true
 var map_grid : Dictionary[Vector2i, Map] = {}
-var  current_grid_position: Vector2i = Vector2i(1,0)
+var current_grid_position: Vector2i = Vector2i(1,0)
 
 #func _ready() -> void:
 	#read_all_maps()
@@ -91,20 +92,28 @@ func unload_map():
 		root.remove_child.call_deferred(current_map)
 
 func load_map(pos: Vector2i = current_grid_position) -> void:
+	current_grid_position = pos
+	if current_grid_position == Vector2i(11,0):
+		var endscreen = preload("uid://buky4mae7ddll")
+		GameManager.reset_all_game()
+		get_tree().change_scene_to_packed.call_deferred(endscreen)
+		return
+	
 	unload_map()
 	var root = get_tree().get_root()
-	current_grid_position = pos
 	var map_to_load = get_map(pos)
 	root.add_child.call_deferred(map_to_load)
 	current_grid_position = pos
 	set_current_map(map_to_load)
 	
 	await get_tree().create_timer(.2).timeout
-	current_map.spawn_players()
+	await current_map.spawn_players()
+	spawned_players.emit()
 	GameManager.change_gamestate(current_map.mapGameState)
 
 func go_right():
 	print("Going right!")
+	
 	var map_r = current_grid_position + Vector2i(1,0)
 	coming_from_left = true
 	load_map(map_r)
@@ -115,7 +124,21 @@ func go_left():
 	coming_from_left = false
 	load_map(map_l)
 
+func load_home() -> void:
+	var pos = Vector2i(1,0)
+	unload_map()
+	var village = HOMEBASE.instantiate()
+	var root = get_tree().get_root()
+	current_grid_position = pos
+	root.add_child.call_deferred(village)
+	current_grid_position = pos
+	set_current_map(village)
+	
+	await get_tree().create_timer(.2).timeout
+	GameManager.change_gamestate(current_map.mapGameState)
+
 func reset():
 	unload_map()
+	current_grid_position = Vector2i(1,0)
 	map_grid = {}
 	coming_from_left = true

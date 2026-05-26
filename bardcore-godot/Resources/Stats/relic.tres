@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://ckl2nuliv7mwd"]
+
+[ext_resource type="Script" uid="uid://dkogjm4rqvy24" path="res://Resources/_Resource_Scripts/base_stats.gd" id="1_c1ew7"]
+
+[resource]
+script = ExtResource("1_c1ew7")
+base_stat_multipliers = Dictionary[int, float]({
+0: 0.9,
+2: 1.5,
+3: 0.5,
+6: 1.5
+})
+metadata/_custom_type_script = "uid://dkogjm4rqvy24"
