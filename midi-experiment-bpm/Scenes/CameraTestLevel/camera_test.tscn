@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b8t13veycao46"]
+
+[ext_resource type="Texture2D" uid="uid://c4lab4uswtos0" path="res://Assets/PlaceholderTextures/texture_10.png" id="1_lkgx7"]
+[ext_resource type="PackedScene" uid="uid://dqgxkn3untdpw" path="res://Scenes/PuppetPlayer.tscn" id="1_omdgx"]
+[ext_resource type="PackedScene" uid="uid://bwpa0ijp8gw65" path="res://Scenes/CameraTestLevel/Camera_System.tscn" id="3_vrs5w"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hlaua"]
+
+[node name="CameraTest" type="Node2D" unique_id=2033371444]
+
+[node name="BG" type="ColorRect" parent="." unique_id=2137675076]
+offset_left = -6021.0
+offset_top = -636.0
+offset_right = 6050.0
+offset_bottom = 7.0
+color = Color(0.45708156, 0.61880857, 0.73766905, 1)
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=178805059]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=942853354]
+shape = SubResource("WorldBoundaryShape2D_hlaua")
+
+[node name="TextureRect" type="TextureRect" parent="Ground" unique_id=1515380439]
+modulate = Color(0.4962358, 0.55640525, 0.2402372, 1)
+offset_left = -6069.0
+offset_right = 6069.0
+offset_bottom = 386.0
+texture = ExtResource("1_lkgx7")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="PuppetPlayer" parent="." unique_id=434851246 instance=ExtResource("1_omdgx")]
+move_speed = 500.0
+jump_height = 150.0
+
+[node name="Camera2D" parent="." unique_id=726759940 node_paths=PackedStringArray("target") instance=ExtResource("3_vrs5w")]
+position = Vector2(0, -150)
+target = NodePath("../PuppetPlayer")

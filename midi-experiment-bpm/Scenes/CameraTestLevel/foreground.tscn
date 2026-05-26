@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bcbcvvoo6bbmy"]
+
+[ext_resource type="Texture2D" uid="uid://dbi2ltqc7pvh4" path="res://Assets/2D-Assets/Buehnenrahmen.png" id="1_l2agv"]
+[ext_resource type="Texture2D" uid="uid://b6nj5xw0lk0gy" path="res://Assets/2D-Assets/Barde.png" id="2_l6ubm"]
+
+[node name="Foreground" type="CanvasLayer" unique_id=1761682602]
+
+[node name="Buehnenrahmen" type="Sprite2D" parent="." unique_id=142541716]
+position = Vector2(590.00006, 326)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("1_l2agv")
+
+[node name="Barde" type="Sprite2D" parent="." unique_id=112191491]
+position = Vector2(123.00003, 559)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("2_l6ubm")
