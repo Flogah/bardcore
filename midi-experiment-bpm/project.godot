@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Midi_experiments"
-run/main_scene="uid://ce6sgp0nsl03e"
+run/main_scene="uid://bxn6s4fo8pxg0"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
