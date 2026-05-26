@@ -22,14 +22,22 @@ var collision: CollisionShape2D
 func _ready() -> void:
 	Schnittstelle.day.connect(_on_change_to_day)
 	Schnittstelle.night.connect(_on_change_to_night)
+	
 	for child in platform.get_children():
 		if child is CollisionShape2D:
 			collision = child
-			pass
-	printerr("No CollisionShape3D in Platform")
+			continue
+	if !platform:
+		printerr("No CollisionShape3D in Platform")
+	else:
+		if Schnittstelle.is_day:
+			_on_change_to_day()
+		else:
+			_on_change_to_night()
 
 func _on_active_time_changed():
-	platform.modulate = cycle_colors[active_during]
+	if platform:
+		platform.modulate = cycle_colors[active_during]
 
 func _on_change_to_night():
 	if active_during == cycle.night:

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ct56q1so6wxgt" path="res://Assets/2D-Assets/ritter.png" id="2_fqh1s"]
 [ext_resource type="Texture2D" uid="uid://dbi2ltqc7pvh4" path="res://Assets/2D-Assets/Buehnenrahmen.png" id="3_yoguy"]
 [ext_resource type="Texture2D" uid="uid://b6nj5xw0lk0gy" path="res://Assets/2D-Assets/Barde.png" id="4_n081p"]
+[ext_resource type="PackedScene" uid="uid://6w2c4mmue0td" path="res://Components/background.tscn" id="5_n081p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fdrmv"]
 animations = [{
@@ -63,3 +64,6 @@ texture = ExtResource("3_yoguy")
 position = Vector2(-461, 244.00003)
 scale = Vector2(0.23611113, 0.23611113)
 texture = ExtResource("4_n081p")
+
+[node name="Background" parent="." unique_id=188712323 instance=ExtResource("5_n081p")]
+z_index = -100

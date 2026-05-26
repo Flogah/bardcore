@@ -7,6 +7,8 @@ signal water
 signal day
 signal night
 
+var is_day: bool = true
+
 var notes_played: Array = [{"note": 0, "kind": 0},{"note": 0, "kind": 0},{"note": 0, "kind": 0},{"note": 0, "kind": 0},]
 
 func add_note(note: int, kind: int) -> void:
@@ -42,5 +44,7 @@ func check_fire_or_water() -> void:
 func check_night_or_day() -> void:
 	if notes_played[0]["kind"] == 0:
 		day.emit()
+		is_day = true
 	if notes_played[0]["kind"] == -1:
 		night.emit()
+		is_day = false
