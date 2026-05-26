@@ -6,6 +6,7 @@
 script = ExtResource("1_cnnty")
 
 [node name="MidiDebugUI" type="CanvasLayer" parent="." unique_id=631999387]
+layer = 99
 
 [node name="Control" type="Control" parent="MidiDebugUI" unique_id=650112523]
 layout_mode = 3
