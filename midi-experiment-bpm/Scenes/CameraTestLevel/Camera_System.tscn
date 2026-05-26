@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bwpa0ijp8gw65"]
+
+[ext_resource type="Script" uid="uid://drkxdwheainns" path="res://Scenes/CameraTestLevel/camera_2d.gd" id="1_um8fo"]
+[ext_resource type="PackedScene" uid="uid://bcbcvvoo6bbmy" path="res://Scenes/CameraTestLevel/foreground.tscn" id="2_icfcq"]
+
+[node name="Camera2D" type="Camera2D" unique_id=726759940 node_paths=PackedStringArray("target")]
+limit_left = -800
+limit_top = -485
+limit_bottom = 157
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("1_um8fo")
+target = NodePath("")
+
+[node name="Foreground" parent="." unique_id=1761682602 instance=ExtResource("2_icfcq")]
