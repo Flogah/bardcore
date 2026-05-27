@@ -18,7 +18,7 @@ var achtel_count: int = 0
 
 var tonart = 0
 var pitch = 0
-var note1 = 1
+var note1 = 31
 var note2 = 36
 var note3 = 41
 var note4 = 45
@@ -136,6 +136,12 @@ func handle_input():
 	if Input.is_action_just_pressed("strum_down"):
 		strum_down()
 	
+	if Input.is_action_just_pressed("change_tonart"):
+		if tonart == 0:
+			set_tonart(false)
+		else:
+			set_tonart(true)
+	
 	if Input.is_action_just_pressed("capture_mode"):
 		capture_mode_activation(true)
 	if Input.is_action_just_released("capture_mode"):
@@ -192,6 +198,7 @@ func play_note_direct(data: Dictionary):
 	
 	amy.send({"synth": synth, "patch": patch, "num_voices": 6, "note": note + kind, "vel": vel})
 	Schnittstelle.add_note(note, kind)
+	note_played.emit(note)
 
 func strum_up(strum_delay:float = 0.07):
 	queue_note(pack_note(1, note1+pitch), strum_delay * 0)
