@@ -10,7 +10,7 @@ signal capture_mode_changed(new_mode)
 signal tonart_changed(new_tonart)
 
 var amy
-var patch: int = 121
+var patch: int = 13
 var starting_note: int = 60
 var target_scale: String = "f-moll"
 var notes = []
@@ -18,7 +18,7 @@ var achtel_count: int = 0
 
 var tonart = 0
 var pitch = 0
-var note1 = 31
+var note1 = 1
 var note2 = 36
 var note3 = 41
 var note4 = 45
@@ -190,12 +190,12 @@ func play_note_direct(data: Dictionary):
 	
 	amy.send({"synth": synth, "patch": patch, "num_voices": 6, "note": note + kind, "vel": vel})
 
-func strum_all(strum_delay:float = 0.08):
-	#queue_note(pack_note(1, note1+pitch), strum_delay * 0)
-	#queue_note(pack_note(2, note2+pitch), strum_delay * 1)
-	queue_note(pack_note(3, note3+pitch), strum_delay * 0)
-	queue_note(pack_note(4, note4+pitch), strum_delay * 1)
-	queue_note(pack_note(5, note5+pitch), strum_delay * 2)
+func strum_all(strum_delay:float = 0.07):
+	queue_note(pack_note(1, note1+pitch), strum_delay * 0)
+	queue_note(pack_note(2, note2+pitch), strum_delay * 1)
+	queue_note(pack_note(3, note3+pitch), strum_delay * 2)
+	queue_note(pack_note(4, note4+pitch), strum_delay * 3)
+	queue_note(pack_note(5, note5+pitch), strum_delay * 5)
 
 
 # ------------------- CAPTURE -------------------
