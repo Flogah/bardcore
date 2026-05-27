@@ -18,15 +18,16 @@ var achtel_count: int = 0
 
 var tonart = 0
 var pitch = 0
-var note1 = 45
-var note2 = 50
-var note3 = 55
-var note4 = 60
-var note5 = 77
+var note1 = 31
+var note2 = 36
+var note3 = 41
+var note4 = 45
+var note5 = 50
 
 var last_played_note: int = 0
 var waiting_note: Dictionary = {}
 var capture_dict_1: Dictionary = {}
+var note_queue:Dictionary[float, Dictionary] = {}
 
 # --- BPM SYSTEM ---
 var bpm: float = 120.0
@@ -62,7 +63,8 @@ func _process(delta: float) -> void:
 	handle_timing(delta)
 	handle_input()
 	
-	playback_from_capture()
+	#playback_from_capture()
+	read_note_queue(delta)
 	
 	if debug_mode:
 		update_debug_ui()
@@ -119,16 +121,19 @@ func handle_input():
 		decrease_bpm()
 	
 	if Input.is_action_just_pressed("pick_1"):
-		queue_note_simple(1,note1+pitch,1.0)
+		queue_note(pack_note(1,note1+pitch))
 	if Input.is_action_just_pressed("pick_2"):
-		queue_note_simple(1,note2+pitch,1.0)
+		queue_note(pack_note(2,note2+pitch))
 	if Input.is_action_just_pressed("pick_3"):
-		queue_note_simple(1,note3+pitch,1.0)
+		queue_note(pack_note(3,note3+pitch))
 	if Input.is_action_just_pressed("pick_4"):
-		queue_note_simple(1,note4+pitch,1.0)
+		queue_note(pack_note(4,note4+pitch))
 	if Input.is_action_just_pressed("pick_5"):
-		queue_note_simple(1,note5+pitch,1.0)
-		
+		queue_note(pack_note(5,note5+pitch))
+	
+	if Input.is_action_just_pressed("strum_up"):
+		strum_all()
+	
 	if Input.is_action_just_pressed("capture_mode"):
 		capture_mode_activation(true)
 	if Input.is_action_just_released("capture_mode"):
@@ -137,25 +142,37 @@ func handle_input():
 
 # ------------------- NOTE SYSTEM -------------------
 
-func queue_note_simple(synth: int = 1, note: int = 52, vel: float = 1.0):
+func pack_note(synth: int = 1, note: int = 52, vel: float = 1.0) -> Dictionary:
 	var data = {
 		"synth" : synth,
 		"note" : note,
 		"vel" : vel,
 		"kind" : tonart
 	}
-	queue_note(data)
+	return data
 
-func queue_note(data: Dictionary):
+func queue_note(data: Dictionary, delay:float = 0.0):
 	var synth = data["synth"]
 	var note = data["note"]
 	var vel = data["vel"]
 	var kind = data["kind"]
 	
-	waiting_note = {"synth": synth, "patch": patch, "num_voices": 6, "note": note, "vel": vel, "kind": kind}
+	note_queue[delay] = {"synth": synth, "patch": patch, "num_voices": 6, "note": note, "vel": vel, "kind": kind}
 	
 	if capture_mode:
 		capture_note(data)
+
+func read_note_queue(delta):
+	var keys = note_queue.keys()
+	for timing in keys:
+		var data = note_queue[timing]
+		note_queue.erase(timing)
+		var new_timing = timing
+		new_timing -= delta
+		if new_timing <= 0.0:
+			play_note_direct(data)
+		else:
+			note_queue[new_timing] = data
 
 func play_note():
 	if waiting_note.size() > 0:
@@ -164,6 +181,22 @@ func play_note():
 		last_played_note = waiting_note["note"]
 		note_played.emit(waiting_note["note"])
 		waiting_note = {}
+
+func play_note_direct(data: Dictionary):
+	var synth = data["synth"]
+	var note = data["note"]
+	var vel = data["vel"]
+	var kind = data["kind"]
+	
+	amy.send({"synth": synth, "patch": patch, "num_voices": 6, "note": note + kind, "vel": vel})
+
+func strum_all(strum_delay:float = 0.08):
+	#queue_note(pack_note(1, note1+pitch), strum_delay * 0)
+	#queue_note(pack_note(2, note2+pitch), strum_delay * 1)
+	queue_note(pack_note(3, note3+pitch), strum_delay * 0)
+	queue_note(pack_note(4, note4+pitch), strum_delay * 1)
+	queue_note(pack_note(5, note5+pitch), strum_delay * 2)
+
 
 # ------------------- CAPTURE -------------------
 
@@ -176,8 +209,8 @@ func capture_note(data: Dictionary):
 func playback_from_capture():
 	var key = str(time_signature) + "_" + str(achtel_count % 8)
 	
-	if capture_dict_1.has(key):
-		queue_note(capture_dict_1[key])
+	#if capture_dict_1.has(key):
+		#queue_note(capture_dict_1[key])
 
 func capture_mode_activation(toggle):
 	if toggle:
