@@ -58,7 +58,6 @@ size = Vector2(40, 245.49216)
 size = Vector2(40, 152.57399)
 
 [node name="playtestlvl" type="Node2D" unique_id=1123868853 node_paths=PackedStringArray("end_portal", "game_over_ui", "player")]
-position = Vector2(0, -3)
 script = ExtResource("1_gehns")
 end_portal = NodePath("EndPortal")
 game_over_ui = NodePath("PuppetPlayer/GameOverUI")
@@ -226,7 +225,7 @@ scale = Vector2(1.0000005, 1.0000005)
 shape = SubResource("RectangleShape2D_2pqdv")
 
 [node name="AnimatableBody2D4" type="AnimatableBody2D" parent="Enviroment" unique_id=580000328]
-modulate = Color(0.5764706, 0.4392157, 0.85882354, 1)
+modulate = Color(1, 0.27058825, 0, 1)
 position = Vector2(1927, -280)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/AnimatableBody2D4" unique_id=869568870]
@@ -243,9 +242,9 @@ color = Color(0.2973829, 0.00052775367, 0.424428, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Day Night Component" parent="Enviroment/AnimatableBody2D4" unique_id=1946397199 instance=ExtResource("5_tor6x")]
-active_during = 1
 
 [node name="AnimatableBody2D5" type="AnimatableBody2D" parent="Enviroment" unique_id=1390459501]
+modulate = Color(0.5764706, 0.4392157, 0.85882354, 1)
 position = Vector2(2190, -84)
 rotation = 1.5707964
 
@@ -263,6 +262,7 @@ color = Color(1, 0.5019608, 0.29411766, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Day Night Component" parent="Enviroment/AnimatableBody2D5" unique_id=298220186 instance=ExtResource("5_tor6x")]
+active_during = 1
 
 [node name="block3" type="StaticBody2D" parent="Enviroment" unique_id=631147910]
 position = Vector2(2183.9998, -319)
@@ -404,7 +404,7 @@ scale = Vector2(0.11527778, 0.11527778)
 texture = ExtResource("7_4kkay")
 
 [node name="SpaceToJump" type="Sprite2D" parent="tutorial" unique_id=1011045972]
-position = Vector2(788, -70.00002)
+position = Vector2(923, -205.99997)
 scale = Vector2(0.08379629, 0.08379629)
 texture = ExtResource("8_kjvtx")
 
@@ -486,5 +486,6 @@ horizontal_alignment = 1
 
 [node name="Camera2D" parent="." unique_id=726759940 node_paths=PackedStringArray("target") instance=ExtResource("14_mdqs6")]
 position = Vector2(400, -267)
+limit_left = -91
 limit_top = -736
 target = NodePath("../PuppetPlayer")
