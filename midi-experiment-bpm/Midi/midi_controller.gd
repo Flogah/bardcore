@@ -132,7 +132,9 @@ func handle_input():
 		queue_note(pack_note(5,note5+pitch))
 	
 	if Input.is_action_just_pressed("strum_up"):
-		strum_all()
+		strum_up()
+	if Input.is_action_just_pressed("strum_down"):
+		strum_down()
 	
 	if Input.is_action_just_pressed("capture_mode"):
 		capture_mode_activation(true)
@@ -189,14 +191,21 @@ func play_note_direct(data: Dictionary):
 	var kind = data["kind"]
 	
 	amy.send({"synth": synth, "patch": patch, "num_voices": 6, "note": note + kind, "vel": vel})
+	Schnittstelle.add_note(note, kind)
 
-func strum_all(strum_delay:float = 0.07):
+func strum_up(strum_delay:float = 0.07):
 	queue_note(pack_note(1, note1+pitch), strum_delay * 0)
 	queue_note(pack_note(2, note2+pitch), strum_delay * 1)
 	queue_note(pack_note(3, note3+pitch), strum_delay * 2)
 	queue_note(pack_note(4, note4+pitch), strum_delay * 3)
-	queue_note(pack_note(5, note5+pitch), strum_delay * 5)
+	queue_note(pack_note(5, note5+pitch), strum_delay * 4)
 
+func strum_down(strum_delay:float = 0.07):
+	queue_note(pack_note(1, note5+pitch), strum_delay * 0)
+	queue_note(pack_note(2, note4+pitch), strum_delay * 1)
+	queue_note(pack_note(3, note3+pitch), strum_delay * 2)
+	queue_note(pack_note(4, note2+pitch), strum_delay * 3)
+	queue_note(pack_note(5, note1+pitch), strum_delay * 4)
 
 # ------------------- CAPTURE -------------------
 
