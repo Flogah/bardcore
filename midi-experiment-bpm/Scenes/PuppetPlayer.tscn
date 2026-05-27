@@ -30,9 +30,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fqh1s"]
-radius = 37.0
-height = 142.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqh1s"]
+size = Vector2(102, 72)
 
 [node name="PuppetPlayer" type="CharacterBody2D" unique_id=434851246 groups=["playerpuppet"]]
 script = ExtResource("1_fqh1s")
@@ -45,5 +44,5 @@ animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=272230037]
-position = Vector2(0, -71)
-shape = SubResource("CapsuleShape2D_fqh1s")
+position = Vector2(-6, -45)
+shape = SubResource("RectangleShape2D_fqh1s")

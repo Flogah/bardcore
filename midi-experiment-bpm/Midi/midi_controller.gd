@@ -136,11 +136,12 @@ func handle_input():
 	if Input.is_action_just_pressed("strum_down"):
 		strum_down()
 	
-	if Input.is_action_just_pressed("change_tonart"):
-		if tonart == 0:
-			set_tonart(false)
-		else:
-			set_tonart(true)
+	if Input.is_action_just_pressed("hold_chord"):
+		tonart = -1
+		tonart_changed.emit("moll")
+	if Input.is_action_just_released("hold_chord"):
+		tonart = 0
+		tonart_changed.emit("dur")
 	
 	if Input.is_action_just_pressed("capture_mode"):
 		capture_mode_activation(true)
