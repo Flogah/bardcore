@@ -18,10 +18,11 @@ var achtel_count: int = 0
 
 var tonart = 0
 var pitch = 0
-var note1 = 50
-var note2 = 54
-var note3 = 57
-var note4 = 62
+var note1 = 45
+var note2 = 50
+var note3 = 55
+var note4 = 60
+var note5 = 77
 
 var last_played_note: int = 0
 var waiting_note: Dictionary = {}
@@ -117,32 +118,22 @@ func handle_input():
 	if Input.is_action_just_pressed("bpm_down"):
 		decrease_bpm()
 	
-	var l_stick_input = Input.get_vector("l_stick_left", "l_stick_right", "l_stick_down", "l_stick_up")
-	joystick_input_mapping(l_stick_input)
-	
+	if Input.is_action_just_pressed("pick_1"):
+		queue_note_simple(1,note1+pitch,1.0)
+	if Input.is_action_just_pressed("pick_2"):
+		queue_note_simple(1,note2+pitch,1.0)
+	if Input.is_action_just_pressed("pick_3"):
+		queue_note_simple(1,note3+pitch,1.0)
+	if Input.is_action_just_pressed("pick_4"):
+		queue_note_simple(1,note4+pitch,1.0)
+	if Input.is_action_just_pressed("pick_5"):
+		queue_note_simple(1,note5+pitch,1.0)
+		
 	if Input.is_action_just_pressed("capture_mode"):
 		capture_mode_activation(true)
 	if Input.is_action_just_released("capture_mode"):
 		capture_mode_activation(false)
 
-func joystick_input_mapping(input: Vector2):
-	if Input.is_action_just_pressed("l_stick_down"):
-		queue_note_simple(1,note3+pitch,1.0)
-	if Input.is_action_just_pressed("l_stick_up"):
-		queue_note_simple(1,note1+pitch,1.0)
-	if Input.is_action_just_pressed("l_stick_right"):
-		queue_note_simple(1,note2+pitch+tonart,1.0)
-	if Input.is_action_just_pressed("l_stick_left"):
-		queue_note_simple(1,note4+pitch,1.0)
-	if Input.is_action_just_pressed("pitch_up"):
-		pitch += 1
-	if Input.is_action_just_pressed("pitch_down"):
-		pitch -= 1
-	if Input.is_action_just_pressed("change_tonart"):
-		if tonart == -1:
-			set_tonart(true)
-		else: 
-			set_tonart(false)
 
 # ------------------- NOTE SYSTEM -------------------
 
