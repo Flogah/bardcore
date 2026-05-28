@@ -363,7 +363,7 @@ scale = Vector2(1, 1.0000007)
 shape = SubResource("RectangleShape2D_v7rp6")
 
 [node name="block6" type="StaticBody2D" parent="Enviroment" unique_id=1686841451]
-position = Vector2(4147, -153.99997)
+position = Vector2(4110, -153.99997)
 scale = Vector2(4.115765, 3.9174228)
 
 [node name="ColorRect" type="ColorRect" parent="Enviroment/block6" unique_id=1889165913]
