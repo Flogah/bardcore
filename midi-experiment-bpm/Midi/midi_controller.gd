@@ -143,6 +143,14 @@ func handle_input():
 		tonart = 0
 		tonart_changed.emit("dur")
 	
+	if Input.is_action_just_pressed("change_tonart"):
+		if tonart == 0:
+			tonart = -1
+			tonart_changed.emit("moll")
+		else:
+			tonart = 0
+			tonart_changed.emit("dur")
+	
 	if Input.is_action_just_pressed("capture_mode"):
 		capture_mode_activation(true)
 	if Input.is_action_just_released("capture_mode"):
