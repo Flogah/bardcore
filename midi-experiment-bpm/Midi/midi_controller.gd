@@ -141,7 +141,7 @@ func handle_input():
 		decrease_bpm()
 	
 	if Input.is_action_just_pressed("pick_1"):
-		pluck(1, current_stringing[1])
+		pluck(1)
 	#if Input.is_action_just_pressed("pick_2"):
 		#queue_note(pack_note(2,note2+pitch))
 	#if Input.is_action_just_pressed("pick_3"):
@@ -179,8 +179,8 @@ func handle_input():
 
 # ------------------- NOTE SYSTEM -------------------
 
-func pluck(string_num:int, data:Dictionary):
-	var note = data["note"]
+func pluck(string_num:int):
+	var note = current_stringing[string_num]["note"]
 	
 	amy.send({"synth": string_num, "patch": patch, "num_voices": 6, "note": note, "vel": 1.0})
 
