@@ -18,11 +18,30 @@ var achtel_count: int = 0
 
 var tonart = 0
 var pitch = 0
-var note1 = 31
-var note2 = 36
-var note3 = 41
-var note4 = 45
-var note5 = 50
+
+const g_stimmung: Dictionary[int, Dictionary] = {
+	1: {"note" : 33},
+	2: {"note" : 38},
+	3: {"note" : 43},
+	4: {"note" : 47},
+	5: {"note" : 52},
+}
+
+const tiefe_g_stimmung: Dictionary[int, Dictionary] = {
+	1: {"note" : 31},
+	2: {"note" : 36},
+	3: {"note" : 41},
+	4: {"note" : 45},
+	5: {"note" : 50},
+}
+
+# normal C = get_note_value("C", 3)
+var stringings:Dictionary[String, Dictionary] = {
+	"g_stimmung":g_stimmung,
+	"tiefe_g_stimmung":tiefe_g_stimmung,
+}
+
+var current_stringing:Dictionary = {}
 
 var last_played_note: int = 0
 var waiting_note: Dictionary = {}
@@ -56,8 +75,9 @@ func _ready() -> void:
 	init_amy()
 	achtel.connect(play_note)
 	notes = get_octave()
-	
 	update_bpm(bpm)
+	
+	current_stringing = stringings["g_stimmung"]
 
 func _process(delta: float) -> void:
 	handle_timing(delta)
@@ -121,20 +141,20 @@ func handle_input():
 		decrease_bpm()
 	
 	if Input.is_action_just_pressed("pick_1"):
-		queue_note(pack_note(1,note1+pitch))
-	if Input.is_action_just_pressed("pick_2"):
-		queue_note(pack_note(2,note2+pitch))
-	if Input.is_action_just_pressed("pick_3"):
-		queue_note(pack_note(3,note3+pitch))
-	if Input.is_action_just_pressed("pick_4"):
-		queue_note(pack_note(4,note4+pitch))
-	if Input.is_action_just_pressed("pick_5"):
-		queue_note(pack_note(5,note5+pitch))
+		pluck(1, current_stringing[1])
+	#if Input.is_action_just_pressed("pick_2"):
+		#queue_note(pack_note(2,note2+pitch))
+	#if Input.is_action_just_pressed("pick_3"):
+		#queue_note(pack_note(3,note3+pitch))
+	#if Input.is_action_just_pressed("pick_4"):
+		#queue_note(pack_note(4,note4+pitch))
+	#if Input.is_action_just_pressed("pick_5"):
+		#queue_note(pack_note(5,note5+pitch))
 	
-	if Input.is_action_just_pressed("strum_up"):
-		strum_up()
-	if Input.is_action_just_pressed("strum_down"):
-		strum_down()
+	#if Input.is_action_just_pressed("strum_up"):
+		#strum_up()
+	#if Input.is_action_just_pressed("strum_down"):
+		#strum_down()
 	
 	if Input.is_action_just_pressed("hold_chord"):
 		tonart = -1
@@ -159,14 +179,10 @@ func handle_input():
 
 # ------------------- NOTE SYSTEM -------------------
 
-func pack_note(synth: int = 1, note: int = 52, vel: float = 1.0) -> Dictionary:
-	var data = {
-		"synth" : synth,
-		"note" : note,
-		"vel" : vel,
-		"kind" : tonart
-	}
-	return data
+func pluck(string_num:int, data:Dictionary):
+	var note = data["note"]
+	
+	amy.send({"synth": string_num, "patch": patch, "num_voices": 6, "note": note, "vel": 1.0})
 
 func queue_note(data: Dictionary, delay:float = 0.0):
 	var synth = data["synth"]
@@ -209,19 +225,19 @@ func play_note_direct(data: Dictionary):
 	Schnittstelle.add_note(note, kind)
 	note_played.emit(note)
 
-func strum_up(strum_delay:float = 0.07):
-	queue_note(pack_note(1, note1+pitch), strum_delay * 0)
-	queue_note(pack_note(2, note2+pitch), strum_delay * 1)
-	queue_note(pack_note(3, note3+pitch), strum_delay * 2)
-	queue_note(pack_note(4, note4+pitch), strum_delay * 3)
-	queue_note(pack_note(5, note5+pitch), strum_delay * 4)
-
-func strum_down(strum_delay:float = 0.07):
-	queue_note(pack_note(1, note5+pitch), strum_delay * 0)
-	queue_note(pack_note(2, note4+pitch), strum_delay * 1)
-	queue_note(pack_note(3, note3+pitch), strum_delay * 2)
-	queue_note(pack_note(4, note2+pitch), strum_delay * 3)
-	queue_note(pack_note(5, note1+pitch), strum_delay * 4)
+#func strum_up(strum_delay:float = 0.07):
+	#queue_note(pack_note(1, note1+pitch), strum_delay * 0)
+	#queue_note(pack_note(2, note2+pitch), strum_delay * 1)
+	#queue_note(pack_note(3, note3+pitch), strum_delay * 2)
+	#queue_note(pack_note(4, note4+pitch), strum_delay * 3)
+	#queue_note(pack_note(5, note5+pitch), strum_delay * 4)
+#
+#func strum_down(strum_delay:float = 0.07):
+	#queue_note(pack_note(1, note5+pitch), strum_delay * 0)
+	#queue_note(pack_note(2, note4+pitch), strum_delay * 1)
+	#queue_note(pack_note(3, note3+pitch), strum_delay * 2)
+	#queue_note(pack_note(4, note2+pitch), strum_delay * 3)
+	#queue_note(pack_note(5, note1+pitch), strum_delay * 4)
 
 # ------------------- CAPTURE -------------------
 
@@ -306,6 +322,24 @@ func get_note_name(note: int) -> String:
 	note_name += str(note/12)
 	
 	return note_name
+
+func get_note_value(name:String, register:int = 3) -> int:
+	var value:int = register * 12
+	name = name.to_upper()
+	match name:
+		"C": value += 0
+		"C#": value += 1
+		"D": value += 2
+		"D#": value += 3
+		"E": value += 4
+		"F": value += 5
+		"F#": value += 6
+		"G": value += 7
+		"G#": value += 8
+		"A": value += 9
+		"A#": value += 10
+		"H": value += 11
+	return value
 
 # --- DEBUG
 
