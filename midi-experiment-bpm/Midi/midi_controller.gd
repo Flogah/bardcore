@@ -20,19 +20,19 @@ var tonart = 0
 var pitch = 0
 
 const g_stimmung: Dictionary[int, Dictionary] = {
-	1: {"note" : 33},
-	2: {"note" : 38},
-	3: {"note" : 43},
-	4: {"note" : 47},
-	5: {"note" : 52},
+	1: {"note" : 33}, #A2
+	2: {"note" : 38}, #D3
+	3: {"note" : 43}, #G3
+	4: {"note" : 47}, #H3
+	5: {"note" : 52}, #E4
 }
 
 const tiefe_g_stimmung: Dictionary[int, Dictionary] = {
-	1: {"note" : 31},
-	2: {"note" : 36},
-	3: {"note" : 41},
-	4: {"note" : 45},
-	5: {"note" : 50},
+	1: {"note" : 31}, #G2
+	2: {"note" : 36}, #C3
+	3: {"note" : 41}, #F3
+	4: {"note" : 45}, #A3
+	5: {"note" : 50}, #D4
 }
 
 # normal C = get_note_value("C", 3)
